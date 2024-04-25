@@ -1,0 +1,15 @@
+C:\Users\ponpy\source\repos\KLTN\10-be\src\Services.Abstraction\bin\Debug\net8.0\Services.Abstraction.deps.json
+C:\Users\ponpy\source\repos\KLTN\10-be\src\Services.Abstraction\bin\Debug\net8.0\Services.Abstraction.dll
+C:\Users\ponpy\source\repos\KLTN\10-be\src\Services.Abstraction\bin\Debug\net8.0\Services.Abstraction.pdb
+C:\Users\ponpy\source\repos\KLTN\10-be\src\Services.Abstraction\bin\Debug\net8.0\Entities.dll
+C:\Users\ponpy\source\repos\KLTN\10-be\src\Services.Abstraction\bin\Debug\net8.0\Entities.pdb
+C:\Users\ponpy\source\repos\KLTN\10-be\src\Services.Abstraction\obj\Debug\net8.0\Services.Abstraction.csproj.AssemblyReference.cache
+C:\Users\ponpy\source\repos\KLTN\10-be\src\Services.Abstraction\obj\Debug\net8.0\Services.Abstraction.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ponpy\source\repos\KLTN\10-be\src\Services.Abstraction\obj\Debug\net8.0\Services.Abstraction.AssemblyInfoInputs.cache
+C:\Users\ponpy\source\repos\KLTN\10-be\src\Services.Abstraction\obj\Debug\net8.0\Services.Abstraction.AssemblyInfo.cs
+C:\Users\ponpy\source\repos\KLTN\10-be\src\Services.Abstraction\obj\Debug\net8.0\Services.Abstraction.csproj.CoreCompileInputs.cache
+C:\Users\ponpy\source\repos\KLTN\10-be\src\Services.Abstraction\obj\Debug\net8.0\Services.4D1A1826.Up2Date
+C:\Users\ponpy\source\repos\KLTN\10-be\src\Services.Abstraction\obj\Debug\net8.0\Services.Abstraction.dll
+C:\Users\ponpy\source\repos\KLTN\10-be\src\Services.Abstraction\obj\Debug\net8.0\refint\Services.Abstraction.dll
+C:\Users\ponpy\source\repos\KLTN\10-be\src\Services.Abstraction\obj\Debug\net8.0\Services.Abstraction.pdb
+C:\Users\ponpy\source\repos\KLTN\10-be\src\Services.Abstraction\obj\Debug\net8.0\ref\Services.Abstraction.dll
