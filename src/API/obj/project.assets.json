@@ -3092,19 +3092,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ponpy\\.nuget\\packages\\": {}
+    "C:\\Users\\tinhb\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ponpy\\source\\repos\\KLTN\\10-be\\src\\API\\API.csproj",
+      "projectUniqueName": "D:\\Workspace\\dotnet-asp\\DoAn\\10-be\\src\\API\\API.csproj",
       "projectName": "API",
-      "projectPath": "C:\\Users\\ponpy\\source\\repos\\KLTN\\10-be\\src\\API\\API.csproj",
-      "packagesPath": "C:\\Users\\ponpy\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ponpy\\source\\repos\\KLTN\\10-be\\src\\API\\obj\\",
+      "projectPath": "D:\\Workspace\\dotnet-asp\\DoAn\\10-be\\src\\API\\API.csproj",
+      "packagesPath": "C:\\Users\\tinhb\\.nuget\\packages\\",
+      "outputPath": "D:\\Workspace\\dotnet-asp\\DoAn\\10-be\\src\\API\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\ponpy\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\tinhb\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -3112,23 +3117,24 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\ponpy\\source\\repos\\KLTN\\10-be\\src\\Persistence\\Persistence.csproj": {
-              "projectPath": "C:\\Users\\ponpy\\source\\repos\\KLTN\\10-be\\src\\Persistence\\Persistence.csproj"
+            "D:\\Workspace\\dotnet-asp\\DoAn\\10-be\\src\\Persistence\\Persistence.csproj": {
+              "projectPath": "D:\\Workspace\\dotnet-asp\\DoAn\\10-be\\src\\Persistence\\Persistence.csproj"
             },
-            "C:\\Users\\ponpy\\source\\repos\\KLTN\\10-be\\src\\Repositories.Implementation\\Repositories.Implementation.csproj": {
-              "projectPath": "C:\\Users\\ponpy\\source\\repos\\KLTN\\10-be\\src\\Repositories.Implementation\\Repositories.Implementation.csproj"
+            "D:\\Workspace\\dotnet-asp\\DoAn\\10-be\\src\\Repositories.Implementation\\Repositories.Implementation.csproj": {
+              "projectPath": "D:\\Workspace\\dotnet-asp\\DoAn\\10-be\\src\\Repositories.Implementation\\Repositories.Implementation.csproj"
             },
-            "C:\\Users\\ponpy\\source\\repos\\KLTN\\10-be\\src\\Services.Abstraction\\Services.Abstraction.csproj": {
-              "projectPath": "C:\\Users\\ponpy\\source\\repos\\KLTN\\10-be\\src\\Services.Abstraction\\Services.Abstraction.csproj"
+            "D:\\Workspace\\dotnet-asp\\DoAn\\10-be\\src\\Services.Abstraction\\Services.Abstraction.csproj": {
+              "projectPath": "D:\\Workspace\\dotnet-asp\\DoAn\\10-be\\src\\Services.Abstraction\\Services.Abstraction.csproj"
             },
-            "C:\\Users\\ponpy\\source\\repos\\KLTN\\10-be\\src\\Services.Implementation\\Services.Implementation.csproj": {
-              "projectPath": "C:\\Users\\ponpy\\source\\repos\\KLTN\\10-be\\src\\Services.Implementation\\Services.Implementation.csproj"
+            "D:\\Workspace\\dotnet-asp\\DoAn\\10-be\\src\\Services.Implementation\\Services.Implementation.csproj": {
+              "projectPath": "D:\\Workspace\\dotnet-asp\\DoAn\\10-be\\src\\Services.Implementation\\Services.Implementation.csproj"
             }
           }
         }
@@ -3137,11 +3143,6 @@
         "warnAsError": [
           "NU1605"
         ]
-      },
-      "restoreAuditProperties": {
-        "enableAudit": "true",
-        "auditLevel": "low",
-        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -3172,7 +3173,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

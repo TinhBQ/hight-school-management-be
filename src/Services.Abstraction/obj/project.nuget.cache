@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "V27+xWBNTAn/xcSKmTFYxXxlEKIDUo+QQfm+2eeocD9vbx/mhZRJCphJ1GpxJWNb0NMqASkfG5aL2IPgdeCIHQ==",
+  "dgSpecHash": "AX8viEDRpJIhUrNXgRFdBlAayoJtusinGA3wUhotniuJZmJ4I7+YC1Zm3/O6r0+pxCcVpiyLRq2/k5/DTyAJrg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\ponpy\\source\\repos\\KLTN\\10-be\\src\\Services.Abstraction\\Services.Abstraction.csproj",
+  "projectFilePath": "D:\\Workspace\\dotnet-asp\\DoAn\\10-be\\src\\Services.Abstraction\\Services.Abstraction.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

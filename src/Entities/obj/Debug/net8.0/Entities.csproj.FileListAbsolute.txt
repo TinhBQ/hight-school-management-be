@@ -9,3 +9,15 @@ C:\Users\ponpy\source\repos\KLTN\10-be\src\Entities\obj\Debug\net8.0\Entities.dl
 C:\Users\ponpy\source\repos\KLTN\10-be\src\Entities\obj\Debug\net8.0\refint\Entities.dll
 C:\Users\ponpy\source\repos\KLTN\10-be\src\Entities\obj\Debug\net8.0\Entities.pdb
 C:\Users\ponpy\source\repos\KLTN\10-be\src\Entities\obj\Debug\net8.0\ref\Entities.dll
+D:\Workspace\dotnet-asp\DoAn\10-be\src\Entities\bin\Debug\net8.0\Entities.deps.json
+D:\Workspace\dotnet-asp\DoAn\10-be\src\Entities\bin\Debug\net8.0\Entities.dll
+D:\Workspace\dotnet-asp\DoAn\10-be\src\Entities\bin\Debug\net8.0\Entities.pdb
+D:\Workspace\dotnet-asp\DoAn\10-be\src\Entities\obj\Debug\net8.0\Entities.GeneratedMSBuildEditorConfig.editorconfig
+D:\Workspace\dotnet-asp\DoAn\10-be\src\Entities\obj\Debug\net8.0\Entities.AssemblyInfoInputs.cache
+D:\Workspace\dotnet-asp\DoAn\10-be\src\Entities\obj\Debug\net8.0\Entities.AssemblyInfo.cs
+D:\Workspace\dotnet-asp\DoAn\10-be\src\Entities\obj\Debug\net8.0\Entities.csproj.CoreCompileInputs.cache
+D:\Workspace\dotnet-asp\DoAn\10-be\src\Entities\obj\Debug\net8.0\Entities.sourcelink.json
+D:\Workspace\dotnet-asp\DoAn\10-be\src\Entities\obj\Debug\net8.0\Entities.dll
+D:\Workspace\dotnet-asp\DoAn\10-be\src\Entities\obj\Debug\net8.0\refint\Entities.dll
+D:\Workspace\dotnet-asp\DoAn\10-be\src\Entities\obj\Debug\net8.0\Entities.pdb
+D:\Workspace\dotnet-asp\DoAn\10-be\src\Entities\obj\Debug\net8.0\ref\Entities.dll
