@@ -16,7 +16,7 @@ namespace Entities.DAOs
 
 
         [ForeignKey(nameof(Class))]
-        public Guid ClassId { get; set; }
+        public Guid? ClassId { get; set; }
         public Class Class { get; set; } = null!;
 
 

@@ -1,7 +1,10 @@
-﻿namespace Entities.Common
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Entities.Common
 {
     public abstract class BaseEntity
     {
+        [Key]
         public Guid Id { get; set; }
 
         public bool IsDeleted { get; set; }

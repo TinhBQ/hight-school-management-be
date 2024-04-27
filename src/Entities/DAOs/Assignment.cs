@@ -13,17 +13,17 @@ namespace Entities.DAOs
 
 
         [ForeignKey(nameof(Teacher))]
-        public Guid TeacherId { get; set; }
+        public Guid? TeacherId { get; set; }
         public Teacher Teacher { get; set; } = null!;
 
 
         [ForeignKey(nameof(Subject))]
-        public Guid SubjectId { get; set; }
+        public Guid? SubjectId { get; set; }
         public Subject Subject { get; set; } = null!;
 
 
         [ForeignKey(nameof(Class))]
-        public Guid ClassId { get; set; }
+        public Guid? ClassId { get; set; }
         public Class Class { get; set; } = null!;
 
 

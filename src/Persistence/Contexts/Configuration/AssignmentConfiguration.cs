@@ -8,10 +8,7 @@ namespace Persistence.Contexts.Configuration
     {
         public void Configure(EntityTypeBuilder<Assignment> builder)
         {
-            builder.HasOne(a => a.Teacher)
-                .WithMany(t => t.Assignments)
-                .HasForeignKey(a => a.TeacherId)
-                .OnDelete(DeleteBehavior.ClientSetNull);
+
         }
     }
 }
