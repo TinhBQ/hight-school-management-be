@@ -1,4 +1,5 @@
-﻿using Contexts;
+﻿using AutoMapper;
+using Contexts;
 using Microsoft.EntityFrameworkCore;
 using Persistence.Repositories;
 using Services.Abstraction.IApplicationServices;
@@ -46,5 +47,12 @@ namespace API.Extensions
         public static void ConfigureServiceManager(this IServiceCollection services) =>
             services.AddScoped<IServiceManager, ServiceManager>();
 
+        public static void AddAutoMapper(this IServiceCollection services) =>
+            services.AddSingleton(x =>
+                new MapperConfiguration(cfg =>
+                {
+                    cfg.AddProfile(new MappingProfile());
+                }).CreateMapper()
+            );
     }
 }

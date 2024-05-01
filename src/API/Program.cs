@@ -1,9 +1,7 @@
 using API.Extensions;
 using Microsoft.AspNetCore.HttpOverrides;
 using NLog;
-using Services.Abstraction.IApplicationServices;
 using Services.Abstraction.ILoggerServices;
-using Services.Implementation;
 
 namespace API
 {
@@ -23,7 +21,7 @@ namespace API
             builder.Services.ConfigureRepositoryManager();
             builder.Services.ConfigureServiceManager();
             builder.Services.ConfigureSqlContext(builder.Configuration);
-            builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            builder.Services.AddAutoMapper();
 
             builder.Services.AddControllers()
                 .AddApplicationPart(typeof(AssemblyReference).Assembly);
@@ -32,12 +30,6 @@ namespace API
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
-
-            /* builder.Services.AddDbContext<HsmsDbContext>(opt
-                         => opt.UseSqlServer(@"Server=localhost,1433; Initial Catalog=hsms;User Id = sa; Password=123456;Trust Server Certificate=True"));*/
-
-            /* builder.Services.AddScoped<Repository>();*/
-            builder.Services.AddScoped<ITimetableService, TimetableService>();
 
             var app = builder.Build();
 

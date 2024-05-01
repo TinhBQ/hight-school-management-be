@@ -98,7 +98,7 @@ namespace Services.Implementation
 
             var ids = string.Join(",", teacherCollectionToReturn.Select(c => c.Id));
 
-            return (teachers: teacherCollectionToReturn, ids: ids);
+            return (teachers: teacherCollectionToReturn, ids);
         }
 
         public async Task DeleteTeacherCollectionAsync(IEnumerable<Guid> ids, bool trackChanges)
@@ -123,10 +123,7 @@ namespace Services.Implementation
         {
             var teacher = await _repository.TeacherRepository.GetTeacherAsync(teacherId, trackChanges);
 
-            if (teacher is null)
-                throw new TeacherNotFoundException(teacherId);
-
-            return teacher;
+            return teacher is null ? throw new TeacherNotFoundException(teacherId) : teacher;
         }
 
 

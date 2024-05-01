@@ -6,9 +6,27 @@ namespace Persistence.Contexts.Configuration
 {
     public class TeacherConfiguration : IEntityTypeConfiguration<Teacher>
     {
-        public void Configure(EntityTypeBuilder<Teacher> builder)
+        public void Configure(EntityTypeBuilder<Teacher> entity)
         {
-            builder.HasData
+            entity.HasKey(e => e.Id);
+            entity.Property(e => e.Id);
+            entity.Property(e => e.Username).IsRequired(false);
+            entity.Property(e => e.Hash).IsRequired(false);
+            entity.Property(e => e.Salt).IsRequired(false);
+            entity.Property(e => e.FirstName).IsRequired();
+            entity.Property(e => e.LastName).IsRequired();
+            entity.Property(e => e.MiddleName).IsRequired(false);
+            entity.Property(e => e.ShortName).IsRequired();
+            entity.Property(e => e.PeriodCount);
+
+            entity.HasOne(e => e.Class)
+                .WithOne(e => e.HomeroomTeacher)
+                .HasForeignKey<Class>(e => e.HomeroomTeacherId)
+                .HasConstraintName("FK__Teacher__Class__HomeroomTeacherId")
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .IsRequired(false);
+
+            entity.HasData
                 (
                     new Teacher { Id = new Guid("4ecdfa98-3748-490a-94d9-d41372ede3af"), FirstName = "Đặng", MiddleName = "Thị Hồng", LastName = "Hoa", ShortName = "Hoa(A)" },
                     new Teacher { Id = new Guid("f2fb80b2-ca3e-4284-a914-0bb30afd4d7c"), FirstName = "Nguyễn", MiddleName = "Huỳnh", LastName = "Nhi", ShortName = "Nhi" },

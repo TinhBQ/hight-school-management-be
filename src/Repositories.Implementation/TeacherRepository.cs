@@ -7,12 +7,8 @@ using Services.Abstraction.IRepositoryServices;
 
 namespace Persistence.Repositories
 {
-    public class TeacherRepository : RepositoryBase<Teacher>, ITeacherRepository
+    public class TeacherRepository(HsmsDbContext repositoryContext) : RepositoryBase<Teacher>(repositoryContext), ITeacherRepository
     {
-        public TeacherRepository(HsmsDbContext repositoryContext) : base(repositoryContext)
-        {
-        }
-
         public async Task<PagedList<Teacher>> GetAllTeachersAsync(TeacherParameters teacherParameters, bool trackChanges)
         {
             var teacheres = await FindAll(trackChanges)

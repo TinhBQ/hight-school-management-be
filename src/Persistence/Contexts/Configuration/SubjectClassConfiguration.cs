@@ -6,9 +6,26 @@ namespace Persistence.Contexts.Configuration
 {
     public class SubjectClassConfiguration : IEntityTypeConfiguration<SubjectClass>
     {
-        public void Configure(EntityTypeBuilder<SubjectClass> builder)
+        public void Configure(EntityTypeBuilder<SubjectClass> entity)
         {
-            builder.HasData
+            entity.HasKey(e => e.Id);
+            entity.Property(e => e.Id);
+            entity.Property(e => e.PeriodCount);
+
+            entity.HasOne(e => e.Class)
+                .WithMany(e => e.SubjectClasses)
+                .HasForeignKey(e => e.ClassId)
+                .HasConstraintName("FK__SubjectClass__Class__ClassId")
+                .OnDelete(DeleteBehavior.Cascade)
+                .IsRequired();
+            entity.HasOne(e => e.Subject)
+                .WithMany(e => e.SubjectClasses)
+                .HasForeignKey(e => e.SubjectId)
+                .HasConstraintName("FK__SubjectClass__Subject__SubjectId")
+                .OnDelete(DeleteBehavior.Cascade)
+                .IsRequired();
+
+            entity.HasData
                 (
                     new SubjectClass { Id = new Guid("e35113de-0843-4baa-8245-3655402b885b"), ClassId = new Guid("499be294-43cb-4c41-8c83-e2737065ee76"), SubjectId = new Guid("c8647f07-10d0-44c0-a9ed-fe0b9f2fca87"), PeriodCount = 3 },
                     new SubjectClass { Id = new Guid("c8676fa7-b43c-477c-843c-6a6a1dd120fc"), ClassId = new Guid("499be294-43cb-4c41-8c83-e2737065ee76"), SubjectId = new Guid("1289697a-0e3b-4f69-98ed-8b58f4f71c69"), PeriodCount = 4 },

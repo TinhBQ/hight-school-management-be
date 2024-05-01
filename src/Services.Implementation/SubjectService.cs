@@ -98,7 +98,7 @@ namespace Services.Implementation
 
             var ids = string.Join(",", subjectCollectionToReturn.Select(c => c.Id));
 
-            return (subjects: subjectCollectionToReturn, ids: ids);
+            return (subjects: subjectCollectionToReturn, ids);
         }
 
         public async Task DeleteSubjectCollectionAsync(IEnumerable<Guid> ids, bool trackChanges)
@@ -123,10 +123,7 @@ namespace Services.Implementation
         {
             var subject = await _repository.SubjectRepository.GetSubjectAsync(subjectId, trackChanges);
 
-            if (subject is null)
-                throw new SubjectNotFoundException(subjectId);
-
-            return subject;
+            return subject is null ? throw new SubjectNotFoundException(subjectId) : subject;
         }
 
 

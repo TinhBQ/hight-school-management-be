@@ -7,9 +7,25 @@ namespace Persistence.Contexts.Configuration
 {
     public class ClassConfiguration : IEntityTypeConfiguration<Class>
     {
-        public void Configure(EntityTypeBuilder<Class> builder)
+        public void Configure(EntityTypeBuilder<Class> entity)
         {
-            builder.HasData
+            entity.HasKey(e => e.Id);
+            entity.Property(e => e.Id).IsRequired();
+            entity.Property(e => e.Name).IsRequired();
+            entity.Property(e => e.Grade).IsRequired();
+            entity.Property(e => e.SchoolShift).HasConversion<int>();
+            entity.Property(e => e.StartYear).IsRequired();
+            entity.Property(e => e.EndYear).IsRequired();
+            entity.Property(e => e.PeriodCount).IsRequired();
+
+            entity.HasOne(e => e.HomeroomTeacher)
+                .WithOne(e => e.Class)
+                .HasForeignKey<Teacher>(e => e.ClassId)
+                .HasConstraintName("FK__Class__Teacher__ClassId")
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .IsRequired(false);
+
+            entity.HasData
                 (
                 new Class
                 {

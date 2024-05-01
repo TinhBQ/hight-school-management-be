@@ -1,5 +1,4 @@
 ﻿using Entities.Common;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Entities.DAOs
 {
@@ -14,11 +13,8 @@ namespace Entities.DAOs
         public string ShortName { get; set; } = null!;
         public int PeriodCount { get; set; }
 
-
-        [ForeignKey(nameof(Class))]
         public Guid? ClassId { get; set; }
         public Class Class { get; set; } = null!;
-
 
         public ICollection<Assignment> Assignments { get; set; } = null!;
         public ICollection<SubjectTeacher> SubjectTeachers { get; set; } = null!;

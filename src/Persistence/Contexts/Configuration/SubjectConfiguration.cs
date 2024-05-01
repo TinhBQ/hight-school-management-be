@@ -6,9 +6,14 @@ namespace Persistence.Contexts.Configuration
 {
     public class SubjectConfiguration : IEntityTypeConfiguration<Subject>
     {
-        public void Configure(EntityTypeBuilder<Subject> builder)
+        public void Configure(EntityTypeBuilder<Subject> entity)
         {
-            builder.HasData
+            entity.HasKey(e => e.Id);
+            entity.Property(e => e.Id);
+            entity.Property(e => e.Name).IsRequired();
+            entity.Property(e => e.ShortName).IsRequired();
+
+            entity.HasData
                 (
                     new Subject { Id = new Guid("2e66193f-1903-49e9-a575-383024ede8d8"), Name = "Sinh hoạt", ShortName = "SH" },
                     new Subject { Id = new Guid("c8647f07-10d0-44c0-a9ed-fe0b9f2fca87"), Name = "Ngữ văn", ShortName = "VAN" },

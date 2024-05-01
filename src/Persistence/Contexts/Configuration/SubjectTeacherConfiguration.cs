@@ -6,9 +6,26 @@ namespace Persistence.Contexts.Configuration
 {
     public class SubjectTeacherConfiguration : IEntityTypeConfiguration<SubjectTeacher>
     {
-        public void Configure(EntityTypeBuilder<SubjectTeacher> builder)
+        public void Configure(EntityTypeBuilder<SubjectTeacher> entity)
         {
-            builder.HasData
+            entity.HasKey(e => e.Id);
+            entity.Property(e => e.Id);
+            entity.Property(e => e.IsMain).IsRequired();
+
+            entity.HasOne(e => e.Teacher)
+                .WithMany(e => e.SubjectTeachers)
+                .HasForeignKey(e => e.TeacherId)
+                .HasConstraintName("FK__SubjectTeacher__Teacher__TeacherId")
+                .OnDelete(DeleteBehavior.Cascade)
+                .IsRequired();
+            entity.HasOne(e => e.Subject)
+                .WithMany(e => e.SubjectTeachers)
+                .HasForeignKey(e => e.SubjectId)
+                .HasConstraintName("FK__SubjectTeacher__Subject__SubjectId")
+                .OnDelete(DeleteBehavior.Cascade)
+                .IsRequired();
+
+            entity.HasData
                 (
                     new SubjectTeacher { Id = new Guid("67976e6a-3180-4792-b5c1-127b43180a08"), TeacherId = new Guid("4ecdfa98-3748-490a-94d9-d41372ede3af"), SubjectId = new Guid("c30a4784-1394-45a7-a287-77cd660f4f02"), IsMain = true },
                     new SubjectTeacher { Id = new Guid("0e373b10-9974-475b-b9a1-3ca7a7991df7"), TeacherId = new Guid("f2fb80b2-ca3e-4284-a914-0bb30afd4d7c"), SubjectId = new Guid("6b941b7e-f715-43a6-a7fc-dcc807fb37cb"), IsMain = true },
