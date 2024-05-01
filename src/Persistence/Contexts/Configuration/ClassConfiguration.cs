@@ -35,7 +35,8 @@ namespace Persistence.Contexts.Configuration
                     StartYear = 2023,
                     EndYear = 2024,
                     PeriodCount = 25,
-                    SchoolShift = ESchoolShift.Morning
+                    SchoolShift = ESchoolShift.Morning,
+                    HomeroomTeacherId = new Guid("6749a629-6964-43f4-bc38-2173b963413c"),
                 },
                 new Class
                 {
@@ -45,7 +46,8 @@ namespace Persistence.Contexts.Configuration
                     StartYear = 2023,
                     EndYear = 2024,
                     PeriodCount = 25,
-                    SchoolShift = ESchoolShift.Morning
+                    SchoolShift = ESchoolShift.Morning,
+                    HomeroomTeacherId = new Guid("f6a2d0e1-fcdc-4ea0-9c40-ffea09fd9490"),
                 },
                 new Class
                 {
@@ -55,7 +57,8 @@ namespace Persistence.Contexts.Configuration
                     StartYear = 2023,
                     EndYear = 2024,
                     PeriodCount = 25,
-                    SchoolShift = ESchoolShift.Morning
+                    SchoolShift = ESchoolShift.Morning,
+                    HomeroomTeacherId = new Guid("a1a9f708-9a48-42fd-9308-3a106f9be31f"),
                 },
                 new Class
                 {
@@ -65,7 +68,8 @@ namespace Persistence.Contexts.Configuration
                     StartYear = 2023,
                     EndYear = 2024,
                     PeriodCount = 25,
-                    SchoolShift = ESchoolShift.Morning
+                    SchoolShift = ESchoolShift.Morning,
+                    HomeroomTeacherId = new Guid("e7dc5f6e-0671-48ec-a298-9bd7ab8ffbf1"),
                 },
                 new Class
                 {
@@ -75,7 +79,8 @@ namespace Persistence.Contexts.Configuration
                     StartYear = 2023,
                     EndYear = 2024,
                     PeriodCount = 25,
-                    SchoolShift = ESchoolShift.Morning
+                    SchoolShift = ESchoolShift.Morning,
+                    HomeroomTeacherId = new Guid("e936ed8e-b9ff-448c-b641-2cede0b5c9da"),
                 },
                 new Class
                 {
@@ -85,7 +90,8 @@ namespace Persistence.Contexts.Configuration
                     StartYear = 2023,
                     EndYear = 2024,
                     PeriodCount = 25,
-                    SchoolShift = ESchoolShift.Morning
+                    SchoolShift = ESchoolShift.Morning,
+                    HomeroomTeacherId = new Guid("dae59f4a-9ee2-4995-8034-fd78c18d99bf"),
                 },
                 new Class
                 {
@@ -95,7 +101,8 @@ namespace Persistence.Contexts.Configuration
                     StartYear = 2023,
                     EndYear = 2024,
                     PeriodCount = 25,
-                    SchoolShift = ESchoolShift.Morning
+                    SchoolShift = ESchoolShift.Morning,
+                    HomeroomTeacherId = new Guid("e57f2e3e-6335-4fb4-bb4a-c12a73b5d7cd"),
                 },
                 new Class
                 {
@@ -105,7 +112,8 @@ namespace Persistence.Contexts.Configuration
                     StartYear = 2023,
                     EndYear = 2024,
                     PeriodCount = 25,
-                    SchoolShift = ESchoolShift.Morning
+                    SchoolShift = ESchoolShift.Morning,
+                    HomeroomTeacherId = new Guid("67174939-7dbf-44b7-a94d-42f3cc73457a"),
                 },
                 new Class
                 {
@@ -115,7 +123,8 @@ namespace Persistence.Contexts.Configuration
                     StartYear = 2023,
                     EndYear = 2024,
                     PeriodCount = 25,
-                    SchoolShift = ESchoolShift.Afternoon
+                    SchoolShift = ESchoolShift.Afternoon,
+                    HomeroomTeacherId = new Guid("647c4458-ab3e-45b5-9b71-7e109bfffdb5"),
                 },
                 new Class
                 {
@@ -125,7 +134,9 @@ namespace Persistence.Contexts.Configuration
                     StartYear = 2023,
                     EndYear = 2024,
                     PeriodCount = 25,
-                    SchoolShift = ESchoolShift.Afternoon
+                    SchoolShift = ESchoolShift.Afternoon,
+                    HomeroomTeacherId = new Guid("7f392915-ee09-4dcf-91ec-17d94ec39563"),
+
                 },
                 new Class
                 {
@@ -135,7 +146,9 @@ namespace Persistence.Contexts.Configuration
                     StartYear = 2023,
                     EndYear = 2024,
                     PeriodCount = 25,
-                    SchoolShift = ESchoolShift.Afternoon
+                    SchoolShift = ESchoolShift.Afternoon,
+                    HomeroomTeacherId = new Guid("9f09c5a3-7799-40ed-911c-c5161c05cabc"),
+
                 },
                 new Class
                 {
@@ -145,7 +158,9 @@ namespace Persistence.Contexts.Configuration
                     StartYear = 2023,
                     EndYear = 2024,
                     PeriodCount = 25,
-                    SchoolShift = ESchoolShift.Afternoon
+                    SchoolShift = ESchoolShift.Afternoon,
+                    HomeroomTeacherId = new Guid("fbcb8e24-1905-40fb-b49c-d27ff9ce20a2"),
+
                 },
                 new Class
                 {
@@ -155,7 +170,9 @@ namespace Persistence.Contexts.Configuration
                     StartYear = 2023,
                     EndYear = 2024,
                     PeriodCount = 25,
-                    SchoolShift = ESchoolShift.Afternoon
+                    SchoolShift = ESchoolShift.Afternoon,
+                    HomeroomTeacherId = new Guid("5fe80a00-fa41-476c-a915-0238a70672cc"),
+
                 },
                 new Class
                 {
@@ -165,7 +182,9 @@ namespace Persistence.Contexts.Configuration
                     StartYear = 2023,
                     EndYear = 2024,
                     PeriodCount = 25,
-                    SchoolShift = ESchoolShift.Afternoon
+                    SchoolShift = ESchoolShift.Afternoon,
+                    HomeroomTeacherId = new Guid("c1f9b122-383b-42bd-9a04-10964679b550"),
+
                 },
                 new Class
                 {
@@ -175,7 +194,8 @@ namespace Persistence.Contexts.Configuration
                     StartYear = 2023,
                     EndYear = 2024,
                     PeriodCount = 25,
-                    SchoolShift = ESchoolShift.Afternoon
+                    SchoolShift = ESchoolShift.Afternoon,
+                    HomeroomTeacherId = new Guid("4986a2cc-8233-4a41-93ac-43e35e250c1a"),
                 },
                 new Class
                 {
@@ -185,7 +205,8 @@ namespace Persistence.Contexts.Configuration
                     StartYear = 2023,
                     EndYear = 2024,
                     PeriodCount = 25,
-                    SchoolShift = ESchoolShift.Afternoon
+                    SchoolShift = ESchoolShift.Afternoon,
+                    HomeroomTeacherId = new Guid("5e80e258-35bd-42b3-a6a5-cd46794565a9"),
                 },
                 new Class
                 {
@@ -195,7 +216,8 @@ namespace Persistence.Contexts.Configuration
                     StartYear = 2023,
                     EndYear = 2024,
                     PeriodCount = 25,
-                    SchoolShift = ESchoolShift.Afternoon
+                    SchoolShift = ESchoolShift.Afternoon,
+                    HomeroomTeacherId = new Guid("475b148d-8c8f-42a3-beae-f81c4f01ae3a"),
                 },
                 new Class
                 {
@@ -205,7 +227,8 @@ namespace Persistence.Contexts.Configuration
                     StartYear = 2023,
                     EndYear = 2024,
                     PeriodCount = 25,
-                    SchoolShift = ESchoolShift.Morning
+                    SchoolShift = ESchoolShift.Morning,
+                    HomeroomTeacherId = new Guid("cb45fd82-caf7-49b3-8afa-07ad739cba97"),
                 },
                 new Class
                 {
@@ -215,7 +238,8 @@ namespace Persistence.Contexts.Configuration
                     StartYear = 2023,
                     EndYear = 2024,
                     PeriodCount = 25,
-                    SchoolShift = ESchoolShift.Morning
+                    SchoolShift = ESchoolShift.Morning,
+                    HomeroomTeacherId = new Guid("df6cc373-ae5c-4cce-b000-c48af3fe3e2b"),
                 },
                 new Class
                 {
@@ -225,7 +249,8 @@ namespace Persistence.Contexts.Configuration
                     StartYear = 2023,
                     EndYear = 2024,
                     PeriodCount = 25,
-                    SchoolShift = ESchoolShift.Morning
+                    SchoolShift = ESchoolShift.Morning,
+                    HomeroomTeacherId = new Guid("1a4e58d0-5e19-42c2-b73f-ac0d7b6988f1"),
                 },
                 new Class
                 {
@@ -235,7 +260,8 @@ namespace Persistence.Contexts.Configuration
                     StartYear = 2023,
                     EndYear = 2024,
                     PeriodCount = 25,
-                    SchoolShift = ESchoolShift.Morning
+                    SchoolShift = ESchoolShift.Morning,
+                    HomeroomTeacherId = new Guid("8a557738-6e34-43c5-9ec9-3b45ac4fdea5"),
                 },
                 new Class
                 {
@@ -245,7 +271,8 @@ namespace Persistence.Contexts.Configuration
                     StartYear = 2023,
                     EndYear = 2024,
                     PeriodCount = 25,
-                    SchoolShift = ESchoolShift.Morning
+                    SchoolShift = ESchoolShift.Morning,
+                    HomeroomTeacherId = new Guid("4f2b309b-1b10-4204-b627-7d376533ea15"),
                 },
                 new Class
                 {
@@ -255,7 +282,8 @@ namespace Persistence.Contexts.Configuration
                     StartYear = 2023,
                     EndYear = 2024,
                     PeriodCount = 25,
-                    SchoolShift = ESchoolShift.Morning
+                    SchoolShift = ESchoolShift.Morning,
+                    HomeroomTeacherId = new Guid("0c6c9e47-e7c5-4d30-9945-65672be86dfc"),
                 },
                 new Class
                 {
@@ -265,7 +293,8 @@ namespace Persistence.Contexts.Configuration
                     StartYear = 2023,
                     EndYear = 2024,
                     PeriodCount = 25,
-                    SchoolShift = ESchoolShift.Morning
+                    SchoolShift = ESchoolShift.Morning,
+                    HomeroomTeacherId = new Guid("b7adecee-f4d7-4a2d-8457-e5d27a427278"),
                 },
                 new Class
                 {
@@ -275,7 +304,8 @@ namespace Persistence.Contexts.Configuration
                     StartYear = 2023,
                     EndYear = 2024,
                     PeriodCount = 25,
-                    SchoolShift = ESchoolShift.Morning
+                    SchoolShift = ESchoolShift.Morning,
+                    HomeroomTeacherId = new Guid("fb1a4dad-e5a9-416c-aad1-f0c98e394e49"),
                 }
                 );
         }

@@ -24,7 +24,7 @@ namespace Services.Implementation
             var teacheresDTO = _mapper.Map<IEnumerable<TeacherDTO>>(teacheresWithMetaData);
 
 
-            return (teachers: teacheresDTO, metaData: teacheresWithMetaData.MetaData);
+            return (teachers: teacheresDTO, metaData: teacheresWithMetaData.metaData);
 
         }
 

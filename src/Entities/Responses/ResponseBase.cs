@@ -1,25 +1,9 @@
 ﻿namespace Entities.Responses
 {
-    public class ResponseBase<T> where T : class
+    public class ResponseBase<T>
     {
-        public ResponseBase()
-        {
-        }
-        public ResponseBase(T data, string message = "")
-        {
-            Succeeded = true;
-            Message = message;
-            Data = data;
-        }
-        public ResponseBase(string message)
-        {
-            Succeeded = false;
-            Message = message;
-        }
-
-        public bool Succeeded { get; set; }
-        public string Message { get; set; } = null!;
-        public List<string> Errors { get; set; } = null!;
-        public T Data { get; set; } = null!;
+        public bool Succeeded { get; set; } = true;
+        public string Message { get; set; } = "";
+        public T? Data { get; set; }
     }
 }

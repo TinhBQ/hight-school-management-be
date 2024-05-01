@@ -1,6 +1,9 @@
 ﻿using API.ModelBinders;
+using DomainModel.Responses;
+using Entities.DAOs;
 using Entities.DTOs;
 using Entities.RequestFeatures;
+using Entities.Responses;
 using Microsoft.AspNetCore.Mvc;
 using Services.Abstraction.IApplicationServices;
 using System.Text.Json;
@@ -19,21 +22,41 @@ namespace API.Presentation.Controllers
             var (classes, metaData) = await _service.ClassService.GetAllClassesAsync(classParameters, trackChanges: false);
             Response.Headers["X-Pagination"] = JsonSerializer.Serialize(metaData);
 
-            return Ok(classes);
+            var response = new ResponseBase<IEnumerable<ClassDTO>>
+            {
+                Data = classes,
+                Message = ResponseMessage.GetClassesSuccess,
+            };
+
+            return Ok(response);
         }
 
         [HttpGet("{id:guid}", Name = "ClassById")]
         public async Task<IActionResult> GetClass(Guid id)
         {
             var klass = await _service.ClassService.GetClassAsync(id, trackChanges: false);
-            return Ok(klass);
+
+            var response = new ResponseBase<ClassDTO>
+            {
+                Data = klass,
+                Message = ResponseMessage.GetClassSuccess,
+            };
+
+            return Ok(response);
         }
 
         [HttpGet("collection/({ids})", Name = "ClassCollection")]
         public async Task<IActionResult> GetClassCollection([ModelBinder(BinderType = typeof(ArrayModelBinder))] IEnumerable<Guid> ids)
         {
             var classes = await _service.ClassService.GetByIdsAsync(ids, trackChanges: false);
-            return Ok(classes);
+
+            var response = new ResponseBase<IEnumerable<ClassDTO?>>
+            {
+                Data = classes,
+                Message = ResponseMessage.GetClassesSuccess,
+            };
+
+            return Ok(response);
         }
 
         [HttpPost("collection")]

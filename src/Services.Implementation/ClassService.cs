@@ -22,9 +22,7 @@ namespace Services.Implementation
 
             var classesDTO = _mapper.Map<IEnumerable<ClassDTO>>(classesWithMetaData);
 
-            _logger.LogInfo("classesDTO: " + classesDTO);
-
-            return (classes: classesDTO, metaData: classesWithMetaData.MetaData);
+            return (classes: classesDTO, metaData: classesWithMetaData.metaData);
 
         }
 

@@ -24,7 +24,7 @@ namespace Services.Implementation
             var subjectesDTO = _mapper.Map<IEnumerable<SubjectDTO>>(subjectesWithMetaData);
 
 
-            return (subjects: subjectesDTO, metaData: subjectesWithMetaData.MetaData);
+            return (subjects: subjectesDTO, metaData: subjectesWithMetaData.metaData);
 
         }
 

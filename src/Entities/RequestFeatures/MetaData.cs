@@ -2,12 +2,12 @@
 {
     public class MetaData
     {
-        public int CurrentPage { get; set; }
-        public int TotalPages { get; set; }
-        public int PageSize { get; set; }
-        public int TotalCount { get; set; }
+        public int currentPage { get; set; }
+        public int totalPages { get; set; }
+        public int pageSize { get; set; }
+        public int totalCount { get; set; }
 
-        public bool HasPrevious => CurrentPage > 1;
-        public bool HasNext => CurrentPage < TotalPages;
+        public bool hasPrevious => currentPage > 1;
+        public bool hasNext => currentPage < totalPages;
     }
 }

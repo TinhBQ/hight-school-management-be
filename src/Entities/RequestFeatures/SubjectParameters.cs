@@ -2,8 +2,8 @@
 {
     public class SubjectParameters : RequestParameters
     {
-        public SubjectParameters() => OrderBy = "name";
+        public SubjectParameters() => orderBy = "name";
 
-        public string? SearchTerm { get; set; }
+        public string? searchTerm { get; set; }
     }
 }

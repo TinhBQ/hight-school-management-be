@@ -16,15 +16,15 @@ namespace Persistence.Repositories
         public async Task<PagedList<Subject>> GetAllSubjectsAsync(SubjectParameters subjectParameters, bool trackChanges)
         {
             var subjectes = await FindAll(trackChanges)
-                .Search(subjectParameters.SearchTerm ?? "")
-                .Sort(subjectParameters.OrderBy ?? "name")
-                .Skip((subjectParameters.PageNumber - 1) * subjectParameters.PageSize)
-                .Take(subjectParameters.PageSize)
+                .Search(subjectParameters.searchTerm ?? "")
+                .Sort(subjectParameters.orderBy ?? "name")
+                .Skip((subjectParameters.pageNumber - 1) * subjectParameters.pageSize)
+                .Take(subjectParameters.pageSize)
                 .ToListAsync();
 
             var count = await FindAll(trackChanges).CountAsync();
 
-            return new PagedList<Subject>(subjectes, count, subjectParameters.PageNumber, subjectParameters.PageSize);
+            return new PagedList<Subject>(subjectes, count, subjectParameters.pageNumber, subjectParameters.pageSize);
         }
 
         public async Task<Subject?> GetSubjectAsync(Guid SubjectId, bool trackChanges) =>
