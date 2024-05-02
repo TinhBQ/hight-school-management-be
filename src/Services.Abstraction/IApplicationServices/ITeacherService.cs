@@ -1,4 +1,4 @@
-﻿using Entities.DTOs;
+﻿using Entities.DTOs.CRUD;
 using Entities.RequestFeatures;
 
 namespace Services.Abstraction.IApplicationServices

@@ -1,8 +1,8 @@
 ﻿using Entities.Common;
 
-namespace Entities.DTOs
+namespace Entities.DTOs.CRUD
 {
-    public record ClassForUpdateDTO(
+    public record ClassForCreationDTO(
         int Grade,
         ESchoolShift SchoolShift,
         string Name,

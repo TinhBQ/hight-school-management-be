@@ -1,7 +1,7 @@
 ﻿using API.ModelBinders;
 using DomainModel.Responses;
 using Entities.DAOs;
-using Entities.DTOs;
+using Entities.DTOs.CRUD;
 using Entities.RequestFeatures;
 using Entities.Responses;
 using Microsoft.AspNetCore.Mvc;

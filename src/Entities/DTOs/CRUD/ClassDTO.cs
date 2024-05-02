@@ -1,13 +1,16 @@
 ﻿using Entities.Common;
 
-namespace Entities.DTOs
+namespace Entities.DTOs.CRUD
 {
-    public record ClassForCreationDTO(
+    public record ClassDTO(
+        Guid Id,
         int Grade,
         ESchoolShift SchoolShift,
         string Name,
         int StartYear,
         int EndYear,
-        int PeriodCount
+        int PeriodCount,
+        DateTime CreateAt,
+        DateTime UpdateAt
     );
 }

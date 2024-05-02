@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Entities.DAOs;
-using Entities.DTOs;
+using Entities.DTOs.CRUD;
 using Entities.Exceptions;
 using Entities.RequestFeatures;
 using Services.Abstraction.IApplicationServices;

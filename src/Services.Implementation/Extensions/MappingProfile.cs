@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Entities.DAOs;
-using Entities.DTOs;
+using Entities.DTOs.CRUD;
 
 
 namespace Services.Implementation.Extensions

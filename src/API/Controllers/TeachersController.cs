@@ -1,5 +1,5 @@
 ﻿using API.ModelBinders;
-using Entities.DTOs;
+using Entities.DTOs.CRUD;
 using Entities.RequestFeatures;
 using Microsoft.AspNetCore.Mvc;
 using Services.Abstraction.IApplicationServices;

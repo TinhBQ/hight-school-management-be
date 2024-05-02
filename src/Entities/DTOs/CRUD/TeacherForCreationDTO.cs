@@ -1,4 +1,4 @@
-﻿namespace Entities.DTOs
+﻿namespace Entities.DTOs.CRUD
 {
     public record TeacherForCreationDTO
         (
