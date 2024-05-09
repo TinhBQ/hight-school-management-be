@@ -12,15 +12,15 @@ namespace Persistence.Repositories
         public async Task<PagedList<Class>> GetAllClassesAsync(ClassParameters classParameters, bool trackChanges)
         {
             var classes = await FindAll(trackChanges)
-                .Search(classParameters.searchTerm ?? "")
-                .Sort(classParameters.orderBy ?? "name")
-                .Skip((classParameters.pageNumber - 1) * classParameters.pageSize)
-                .Take(classParameters.pageSize)
+                .Search(classParameters.SearchTerm ?? "")
+                .Sort(classParameters.OrderBy ?? "name")
+                .Skip((classParameters.PageNumber - 1) * classParameters.PageSize)
+                .Take(classParameters.PageSize)
                 .ToListAsync();
 
             var count = await FindAll(trackChanges).CountAsync();
 
-            return new PagedList<Class>(classes, count, classParameters.pageNumber, classParameters.pageSize);
+            return new PagedList<Class>(classes, count, classParameters.PageNumber, classParameters.PageSize);
         }
 
         public async Task<Class?> GetClassAsync(Guid classId, bool trackChanges) =>

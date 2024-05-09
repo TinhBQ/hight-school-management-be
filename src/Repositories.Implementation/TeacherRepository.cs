@@ -13,14 +13,14 @@ namespace Persistence.Repositories
         {
             var teacheres = await FindAll(trackChanges)
                 .Search(teacherParameters.searchTerm ?? "")
-                .Sort(teacherParameters.orderBy ?? "firstName")
-                .Skip((teacherParameters.pageNumber - 1) * teacherParameters.pageSize)
-                .Take(teacherParameters.pageSize)
+                .Sort(teacherParameters.OrderBy ?? "firstName")
+                .Skip((teacherParameters.PageNumber - 1) * teacherParameters.PageSize)
+                .Take(teacherParameters.PageSize)
                 .ToListAsync();
 
             var count = await FindAll(trackChanges).CountAsync();
 
-            return new PagedList<Teacher>(teacheres, count, teacherParameters.pageNumber, teacherParameters.pageSize);
+            return new PagedList<Teacher>(teacheres, count, teacherParameters.PageNumber, teacherParameters.PageSize);
         }
 
         public async Task<Teacher?> GetTeacherAsync(Guid TeacherId, bool trackChanges) =>

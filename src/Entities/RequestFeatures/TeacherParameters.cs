@@ -2,7 +2,7 @@
 {
     public class TeacherParameters : RequestParameters
     {
-        public TeacherParameters() => orderBy = "name";
+        public TeacherParameters() => OrderBy = "name";
 
         public string? searchTerm { get; set; }
     }

@@ -1,5 +1,8 @@
 ﻿using Contexts;
 using Entities.DAOs;
+using Entities.DTOs.TimetableCreation;
+using Entities.RequestFeatures;
+using Microsoft.EntityFrameworkCore;
 using Services.Abstraction.IApplicationServices;
 
 namespace Services.Implementation
@@ -8,70 +11,100 @@ namespace Services.Implementation
     {
         private readonly HsmsDbContext _context = context;
 
-        public Timetable Create(
-            List<Guid> classIds,
-            List<string> doublePeriodSubjectShortNames,
-            List<TimetableUnit> fixedTimetableUnits,
-            List<TimetableUnit> busyUnits,
-            int maxEmptyPeriodCount,
-            List<(Guid, int, int)> maxMinPeriodCount,
-            bool?[,] timetableFlag,
-            int startYear,
-            int endYear,
-            int semester)
+        public Timetable Create(TimetableParameters parameters)
         {
-            //// Khởi tạo các biến
+            // Khởi tạo các biến
+            var classes = new List<ClassTCDTO>();
+            var teachers = new List<TeacherTCDTO>();
+            var subjects = new List<SubjectTCDTO>();
+            var assignments = new List<AssignmentTCDTO>();
+            var timetableUnits = new List<TimetableUnitTCDTO>();
 
-            ///* Khởi tạo danh sách các lớp học được chọn để xếp tkb */
-            //var classesFromDb = _context.Classes
-            //    .Where(c => classIds.Contains(c.Id) && c.StartYear == startYear && c.EndYear == endYear)
-            //    .Include(c => c.SubjectClasses)
-            //    .Include(c => c.Assignments.Where(a => a.Semester == semester))
-            //    .ThenInclude(a => a.Teacher)
-            //    .OrderBy(c => c.Name)
-            //    .AsNoTracking()
-            //    .ToList();
+            // Lấy dữ liệu từ database
+            {
+                var classesDb = _context.Classes
+                    .Where(c => parameters.ClassIds.Contains(c.Id) &&
+                                c.StartYear == parameters.StartYear &&
+                                c.EndYear == parameters.EndYear)
+                    .Include(c => c.SubjectClasses)
+                        .ThenInclude(sc => sc.Subject)
+                    .OrderBy(c => c.Name)
+                    .AsNoTracking()
+                    .ToList()
+                    ?? throw new Exception();
+                foreach (var @class in classesDb)
+                    classes.Add(new ClassTCDTO(@class));
 
-            ///* Khởi tạo danh sách các phân công của các lớp */
-            //var assignmentsFromDb = new List<Assignment>();
-            //classesFromDb.ForEach(c => assignmentsFromDb.AddRange(c.Assignments));
+                var subjectsDb = _context.Subjects.AsNoTracking().ToList();
+                foreach (var subject in subjectsDb)
+                    subjects.Add(new SubjectTCDTO(subject));
 
-            ///* Khởi tạo danh sách giáo viên được phân công */
-            //var teachersFromDb = new List<Teacher>();
-            //assignmentsFromDb.ForEach(a =>
-            //{ if (!teachersFromDb.Select(t => t.Id).Contains(a.TeacherId)) teachersFromDb.Add(a.Teacher); });
+                var assignmentsDb = _context.Assignments
+                    //.Where(a => a.StartYear == parameters.StartYear &&
+                    //            a.EndYear == parameters.EndYear &&
+                    //            a.Semester == parameters.Semester)
+                    .AsNoTracking()
+                    .ToList()
+                    ?? throw new Exception();
 
-            ///* Khởi tạo danh sách môn học */
-            //var subjects = _context.Subjects.AsNoTracking().ToList();
+                var teacherIds = assignmentsDb.Select(a => a.TeacherId).Distinct().ToList();
+                var teachersDb = _context.Teachers
+                    .Where(t => teacherIds.Contains(t.Id))
+                    .OrderBy(c => c.LastName)
+                    .AsNoTracking()
+                    .ToList()
+                    ?? throw new Exception();
+                foreach (var teacher in teachersDb)
+                    teachers.Add(new TeacherTCDTO(teacher));
 
-            ///* Khởi tạo danh sách thời khóa biểu của lớp và giáo viên */
-            //var classTimetables = new List<ClassTimetable>();
-            //var teacherTimetables = new List<TeacherTimetable>();
+                foreach (var assignment in assignmentsDb)
+                {
+                    var teacher = teachers.First(t => t.Id == assignment.TeacherId);
+                    var @class = classes.First(c => c.Id == assignment.ClassId);
+                    var subject = subjects.First(s => s.Id == assignment.SubjectId);
+                    assignments.Add(new AssignmentTCDTO(assignment, teacher, @class, subject));
+                }
 
-            ///* Xếp các phân công vào lớp và giáo viên tương ứng */
-            //teachersFromDb.ForEach(teacher =>
-            //{
-            //    teacherTimetables.Add(new TeacherTimetable { Teacher = teacher });
-            //    teacher.Assignments = [.. assignmentsFromDb.Where(assignment => assignment.TeacherId == teacher.Id)];
-            //});
-            //classesFromDb.ForEach(@class =>
-            //{
-            //    classTimetables.Add(new ClassTimetable { Class = @class });
-            //    @class.Assignments = [.. assignmentsFromDb.Where(assignment => assignment.ClassId == @class.Id)];
-            //});
+                // Kiểm tra xem tất cả các lớp đã được phân công đầy đủ hay chưa
 
-            //// Kiểm tra xem tất cả các lớp đã được phân công đầy đủ hay chưa
+                //foreach (var c in classesDb)
+                //{
+                //    foreach (var sc in c.SubjectClasses)
+                //    {
+                //        var assignment = assignmentsDb.FirstOrDefault(a => a.SubjectId == sc.SubjectId && a.ClassId == sc.ClassId)
+                //            ?? throw new Exception($"Class: {c.Name}, Subject: {subjects.First(s => s.Id == sc.SubjectId).ShortName}");
+                //        if (assignment.PeriodCount != sc.PeriodCount || assignment.TeacherId == Guid.Empty)
+                //            throw new Exception();
+                //    }
+                //}
 
-            //foreach (var c in classesFromDb)
-            //{
-            //    foreach (var sc in c.SubjectClasses)
-            //    {
-            //        var assignment = assignmentsFromDb.FirstOrDefault(a => a.SubjectId == sc.SubjectId && a.ClassId == sc.ClassId)
-            //            ?? throw new Exception($"Class: {c.Name}, Subject: {sc.SubjectId}");
-            //        if (assignment.PeriodCount != sc.PeriodCount || assignment.TeacherId == null)
-            //            throw new Exception();
-            //    }
-            //}
+                foreach (var c in classesDb)
+                {
+                    foreach (var sc in c.SubjectClasses)
+                    {
+                        var assignmentDb = assignmentsDb
+                            .FirstOrDefault(a => a.SubjectId == sc.SubjectId &&
+                                        a.ClassId == sc.ClassId);
+                        if (assignmentDb == null)
+                        {
+                            assignmentDb = new Assignment
+                            {
+                                Id = new Guid(),
+                                SubjectId = sc.SubjectId,
+                                ClassId = sc.ClassId,
+                                TeacherId = c.HomeroomTeacherId == null ? Guid.Empty : (Guid)c.HomeroomTeacherId,
+                                PeriodCount = sc.PeriodCount,
+                                StartYear = 2023,
+                                EndYear = 2024,
+                                SchoolShift = (Entities.Common.ESchoolShift)c.SchoolShift!,
+                                Semester = 1,
+                            };
+                            _context.Add(assignmentDb);
+                        }
+                    }
+                }
+                _context.SaveChanges();
+            }
 
             //// Tạo các timetableUnit ứng với mỗi Assignment và thêm vào tkb
 

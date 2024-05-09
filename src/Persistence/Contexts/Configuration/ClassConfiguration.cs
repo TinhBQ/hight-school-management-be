@@ -25,6 +25,7 @@ namespace Persistence.Contexts.Configuration
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .IsRequired(false);
 
+
             entity.HasData
                 (
                 new Class

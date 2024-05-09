@@ -2,8 +2,8 @@
 {
     public class ClassParameters : RequestParameters
     {
-        public ClassParameters() => orderBy = "name";
+        public ClassParameters() => OrderBy = "name";
 
-        public string? searchTerm { get; set; }
+        public string? SearchTerm { get; set; }
     }
 }

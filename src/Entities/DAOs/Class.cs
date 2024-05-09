@@ -6,7 +6,7 @@ namespace Entities.DAOs
     {
         public string Name { get; set; } = null!;
         public int Grade { get; set; }
-        public ESchoolShift? SchoolShift { get; set; }
+        public ESchoolShift SchoolShift { get; set; }
         public int StartYear { get; set; }
         public int EndYear { get; set; }
         public int? PeriodCount { get; set; }

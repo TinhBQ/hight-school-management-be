@@ -2,17 +2,10 @@
 
 namespace Entities.DTOs.TimetableCreation
 {
-    public record SubjectTCDTO
+    public class SubjectTCDTO(Subject subject)
     {
-        public Guid Id { get; init; }
-        public string Name { get; init; }
-        public string ShortName { get; init; }
-
-        public SubjectTCDTO(Subject subject)
-        {
-            Id = subject.Id;
-            Name = subject.Name;
-            ShortName = subject.ShortName;
-        }
+        public Guid Id { get; init; } = subject.Id;
+        public string Name { get; init; } = subject.Name;
+        public string ShortName { get; init; } = subject.ShortName;
     }
 }

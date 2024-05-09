@@ -12,7 +12,6 @@ namespace Entities.DAOs
         public string LastName { get; set; } = null!;
         public string ShortName { get; set; } = null!;
         public int PeriodCount { get; set; }
-
         public Guid? ClassId { get; set; }
         public Class Class { get; set; } = null!;
 

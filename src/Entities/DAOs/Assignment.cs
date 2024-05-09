@@ -10,7 +10,7 @@ namespace Entities.DAOs
         public int StartYear { get; set; }
         public int EndYear { get; set; }
 
-        public Guid TeacherId { get; set; }
+        public Guid? TeacherId { get; set; }
         public Teacher Teacher { get; set; } = null!;
 
         public Guid SubjectId { get; set; }

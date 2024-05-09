@@ -17,14 +17,14 @@ namespace Persistence.Repositories
         {
             var subjectes = await FindAll(trackChanges)
                 .Search(subjectParameters.searchTerm ?? "")
-                .Sort(subjectParameters.orderBy ?? "name")
-                .Skip((subjectParameters.pageNumber - 1) * subjectParameters.pageSize)
-                .Take(subjectParameters.pageSize)
+                .Sort(subjectParameters.OrderBy ?? "name")
+                .Skip((subjectParameters.PageNumber - 1) * subjectParameters.PageSize)
+                .Take(subjectParameters.PageSize)
                 .ToListAsync();
 
             var count = await FindAll(trackChanges).CountAsync();
 
-            return new PagedList<Subject>(subjectes, count, subjectParameters.pageNumber, subjectParameters.pageSize);
+            return new PagedList<Subject>(subjectes, count, subjectParameters.PageNumber, subjectParameters.PageSize);
         }
 
         public async Task<Subject?> GetSubjectAsync(Guid SubjectId, bool trackChanges) =>

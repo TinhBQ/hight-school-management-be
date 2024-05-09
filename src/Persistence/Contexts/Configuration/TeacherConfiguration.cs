@@ -9,7 +9,6 @@ namespace Persistence.Contexts.Configuration
         public void Configure(EntityTypeBuilder<Teacher> entity)
         {
             entity.HasKey(e => e.Id);
-            entity.Property(e => e.Id);
             entity.Property(e => e.Username).IsRequired(false);
             entity.Property(e => e.Hash).IsRequired(false);
             entity.Property(e => e.Salt).IsRequired(false);
