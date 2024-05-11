@@ -5,7 +5,9 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{25DFFC1F-33E7-4487-8497-D3330A0A893A}"
 	ProjectSection(SolutionItems) = preProject
+		Assignment.csv = Assignment.csv
 		README.md = README.md
+		TimetableFlag.csv = TimetableFlag.csv
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "API", "src\API\API.csproj", "{2434D91E-4D5C-44E1-94DB-CFF4E2328DEE}"

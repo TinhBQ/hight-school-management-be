@@ -3,13 +3,29 @@ using Entities.DAOs;
 
 namespace Entities.DTOs.TimetableCreation
 {
-    public class AssignmentTCDTO(Assignment assignment, TeacherTCDTO teacher, ClassTCDTO @class, SubjectTCDTO subject)
+    public class AssignmentTCDTO
     {
-        public Guid Id { get; init; } = assignment.Id;
-        public int PeriodCount { get; init; } = assignment.PeriodCount;
-        public ESchoolShift SchoolShift { get; init; } = assignment.SchoolShift;
-        public TeacherTCDTO Teacher { get; init; } = teacher;
-        public SubjectTCDTO Subject { get; init; } = subject;
-        public ClassTCDTO Class { get; init; } = @class;
+        public Guid Id { get; init; } = Guid.Empty;
+        public int PeriodCount { get; init; }
+        public ESchoolShift SchoolShift { get; init; } = ESchoolShift.Morning;
+        public TeacherTCDTO Teacher { get; init; } = null!;
+        public SubjectTCDTO Subject { get; init; } = null!;
+        public ClassTCDTO Class { get; init; } = null!;
+
+        public AssignmentTCDTO(ClassTCDTO @class)
+        {
+            SchoolShift = (ESchoolShift)@class.SchoolShift!;
+            Class = @class;
+        }
+
+        public AssignmentTCDTO(Assignment assignment, TeacherTCDTO teacher, ClassTCDTO @class, SubjectTCDTO subject)
+        {
+            Id = assignment.Id;
+            PeriodCount = assignment.PeriodCount;
+            SchoolShift = assignment.SchoolShift;
+            Teacher = teacher;
+            Subject = subject;
+            Class = @class;
+        }
     }
 }
