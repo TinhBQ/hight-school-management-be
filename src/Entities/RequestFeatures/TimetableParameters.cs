@@ -1,11 +1,12 @@
-﻿using Entities.DTOs.TimetableCreation;
+﻿using Entities.DAOs;
+using Entities.DTOs.TimetableCreation;
 
 namespace Entities.RequestFeatures
 {
     public class TimetableParameters
     {
         public List<Guid> ClassIds { get; set; } = [];
-        public List<Guid> DoublePeriodSubjectIds { get; set; } = [];
+        public List<Subject> DoublePeriodSubjects { get; set; } = [];
         public List<TimetableUnitTCDTO> FixedTimetableUnits { get; set; } = [];
         public List<TimetableUnitTCDTO> FreeTimetableUnits { get; set; } = [];
         public List<TimetableUnitTCDTO> BusyTimetableUnits { get; set; } = [];
