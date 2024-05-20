@@ -1,4 +1,5 @@
 ﻿using Contexts;
+using Entities.Common;
 using Entities.DTOs.TimetableCreation;
 using Entities.RequestFeatures;
 using Microsoft.AspNetCore.Mvc;
@@ -26,11 +27,11 @@ namespace API.Controllers
             var classes = _context.Classes
                 .Where(c => classNames.Contains(c.Name))
                 .AsNoTracking().ToList();
-            var parameters = new TimetableParameters
+            var tParameters = new TimetableParameters
             {
                 ClassIds = [.. classes.Select(c => c.Id)],
                 DoublePeriodSubjects = [.. _context.Subjects
-                .Where(s => s.ShortName == "TOAN" || s.ShortName == "VAN")],
+                .Where(s => s.ShortName == "TOAN" || s.ShortName == "VAN" || s.ShortName == "NN")],
                 MaxPeriodPerDay = 5,
                 MinPeriodPerDay = 0,
                 Semester = 1,
@@ -41,43 +42,44 @@ namespace API.Controllers
                 .Where(s => s.ShortName == "SH" || s.ShortName == "TN&HN" || s.ShortName == "CC")
                 .ToList();
             var fixedAssignments = _context.Assignments
-                .Where(a => parameters.ClassIds.Contains(a.ClassId) &&
+                .Where(a => tParameters.ClassIds.Contains(a.ClassId) &&
                             fixedSubjects.Select(s => s.Id).Contains(a.SubjectId))
                 .Include(a => a.Subject)
                 .ToList();
             foreach (var assignment in fixedAssignments)
             {
-                var startAt = assignment.SchoolShift == Entities.Common.ESchoolShift.Morning ? 0 : 5;
+                var startAt = assignment.SchoolShift == ESchoolShift.Morning ? 0 : 5;
                 if (assignment.Subject.ShortName == "SH")
                     startAt += 55;
                 else if (assignment.Subject.ShortName == "TN&HN")
                     startAt += 54;
                 else if (assignment.Subject.ShortName == "CC")
-                    startAt = assignment.SchoolShift == Entities.Common.ESchoolShift.Morning ? 1 : 10;
+                    startAt = assignment.SchoolShift == ESchoolShift.Morning ? 1 : 10;
                 var timetableUnit = new TimetableUnitTCDTO()
                 {
-                    Priority = Entities.Common.EPriority.Fixed,
+                    Priority = EPriority.Fixed,
                     StartAt = startAt,
                     AssignmentId = assignment.Id
                 };
-                parameters.FixedTimetableUnits.Add(timetableUnit);
+                tParameters.FixedTimetableUnits.Add(timetableUnit);
             }
             foreach (var @class in classes)
             {
                 var count = 30 - @class.PeriodCount;
                 if (count > 5) throw new Exception();
-                var a = @class.SchoolShift == Entities.Common.ESchoolShift.Morning ? 0 : 5;
+                var a = @class.SchoolShift == ESchoolShift.Morning ? 0 : 5;
                 var startAts = new List<int>() { 35 + a, 34 + a, 33 + a, 45 + a, 44 + a };
                 for (int i = 0; i < 5 - count; i++)
                     startAts.RemoveAt(startAts.Count - 1);
                 foreach (var startAt in startAts)
-                    parameters.FreeTimetableUnits.Add(new TimetableUnitTCDTO()
+                    tParameters.FreeTimetableUnits.Add(new TimetableUnitTCDTO()
                     {
                         ClassName = @class.Name,
                         StartAt = startAt,
                     });
             }
-            _timetableService.Create(parameters);
+            var tcParameters = new TimetableCreatorParameters();
+            _timetableService.Create(tParameters, tcParameters);
             return Ok();
         }
 
@@ -106,16 +108,16 @@ namespace API.Controllers
                 .ToList();
             foreach (var assignment in fixedAssignments)
             {
-                var startAt = assignment.SchoolShift == Entities.Common.ESchoolShift.Morning ? 0 : 5;
+                var startAt = assignment.SchoolShift == ESchoolShift.Morning ? 0 : 5;
                 if (assignment.Subject.ShortName == "SH")
                     startAt += 55;
                 else if (assignment.Subject.ShortName == "TN&HN")
                     startAt += 54;
                 else if (assignment.Subject.ShortName == "CC")
-                    startAt = assignment.SchoolShift == Entities.Common.ESchoolShift.Morning ? 1 : 10;
+                    startAt = assignment.SchoolShift == ESchoolShift.Morning ? 1 : 10;
                 var timetableUnit = new TimetableUnitTCDTO()
                 {
-                    Priority = Entities.Common.EPriority.Fixed,
+                    Priority = EPriority.Fixed,
                     StartAt = startAt,
                     AssignmentId = assignment.Id
                 };
@@ -125,7 +127,7 @@ namespace API.Controllers
             {
                 var count = 30 - @class.PeriodCount;
                 if (count > 5) throw new Exception();
-                var a = @class.SchoolShift == Entities.Common.ESchoolShift.Morning ? 0 : 5;
+                var a = @class.SchoolShift == ESchoolShift.Morning ? 0 : 5;
                 var startAts = new List<int>() { 35 + a, 34 + a, 33 + a, 45 + a, 44 + a };
                 for (int i = 0; i < 5 - count; i++)
                     startAts.RemoveAt(startAts.Count - 1);
@@ -136,7 +138,20 @@ namespace API.Controllers
                         StartAt = startAt,
                     });
             }
-            _timetableService.Create(parameters);
+            var tcParameters = new TimetableCreatorParameters();
+            _timetableService.Create(parameters, tcParameters);
+            return Ok();
+        }
+
+        [HttpGet("demo2")]
+        public IActionResult GetClassAssignment()
+        {
+            var subjectClasses = _context.SubjectClasses.FromSqlRaw(
+                "SELECT * FROM SubjectClasses "
+                //+ "RIGHT JOIN Subjects ON SubjectClasses.SubjectId = Subjects.Id "
+                //+ "RIGHT JOIN Classes ON SubjectClasses.ClassId = Classes.Id"
+                )
+                .ToList();
             return Ok();
         }
     }

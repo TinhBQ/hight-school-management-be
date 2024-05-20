@@ -9,7 +9,7 @@ namespace Entities.DAOs
         public ESchoolShift SchoolShift { get; set; }
         public int StartYear { get; set; }
         public int EndYear { get; set; }
-        public int? PeriodCount { get; set; }
+        public int PeriodCount { get; set; }
 
         public Guid? HomeroomTeacherId { get; set; }
         public Teacher HomeroomTeacher { get; set; } = null!;

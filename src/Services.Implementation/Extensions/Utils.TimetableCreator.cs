@@ -145,12 +145,27 @@ namespace Services.Implementation.Extensions
                     timetableUnits.Add(new TimetableUnitTCDTO(assignments[i]));
             }
 
+            /* Tạo danh sách các tiết đôi */
+            for (var i = 0; i < classes.Count; i++)
+            {
+                var classTimetableUnits = timetableUnits.Where(u => u.ClassName == classes[i].Name).ToList();
+                for (var j = 0; j < parameters.DoublePeriodSubjects.Count; j++)
+                {
+                    var dPeriods = classTimetableUnits
+                        .Where(u => parameters.DoublePeriodSubjects[j].ShortName == u.SubjectName).Take(2).ToList();
+                    for (var k = 0; k < dPeriods.Count; k++)
+                    {
+                        dPeriods[k].Priority = EPriority.Double;
+                    }
+                }
+            }
+
             timetableUnits = [.. timetableUnits.OrderBy(u => u.ClassName)];
 
             return new TimetableRootIndividual(timetableFlags, timetableUnits, classes, teachers);
         }
 
-        internal static TimetableIndividual Clone(this TimetableRootIndividual src)
+        internal static TimetableIndividual Clone(this TimetableIndividual src)
         {
             var classCount = src.TimetableFlag.GetLength(0);
             var periodCount = src.TimetableFlag.GetLength(1);
@@ -162,10 +177,10 @@ namespace Services.Implementation.Extensions
             var timetableUnits = new List<TimetableUnitTCDTO>();
             for (var i = 0; i < src.TimetableUnits.Count; i++)
                 timetableUnits.Add(src.TimetableUnits[i] with { });
-            return new TimetableIndividual(timetableFlag, timetableUnits, src.Classes, src.Teachers) { Age = 1, Longevity = rand.Next(30, 100) };
+            return new TimetableIndividual(timetableFlag, timetableUnits, src.Classes, src.Teachers) { Age = 1, Longevity = rand.Next(1, 5) };
         }
 
-        internal static void RandomlyAssign(this TimetableIndividual src)
+        internal static void RandomlyAssign(this TimetableIndividual src, TimetableParameters parameters)
         {
             for (var i = 0; i < src.TimetableFlag.GetLength(0); i++)
             {
@@ -173,80 +188,245 @@ namespace Services.Implementation.Extensions
                 for (var j = 1; j < src.TimetableFlag.GetLength(1); j++)
                     if (src.TimetableFlag[i, j] == ETimetableFlag.Unfilled)
                         startAts.Add(j);
+                var consecs = new List<(int, int)>();
+                for (var index = 0; index < startAts.Count - 1; index++)
+                    if (startAts[index + 1] - startAts[index] == 1)
+                        consecs.Add((startAts[index], startAts[index + 1]));
+
+                for (var j = 0; j < parameters.DoublePeriodSubjects.Count; j++)
+                {
+                    var periods = src.TimetableUnits
+                        .Where(u => u.ClassName == src.Classes[i].Name &&
+                                    u.SubjectName == parameters.DoublePeriodSubjects[j].ShortName &&
+                                    u.Priority == EPriority.Double)
+                        .Take(2)
+                        .ToList();
+
+                    var randConsecIndex = consecs.IndexOf(consecs.Shuffle().First());
+                    periods[0].StartAt = consecs[randConsecIndex].Item1;
+                    periods[1].StartAt = consecs[randConsecIndex].Item2;
+                    src.TimetableFlag[i, periods[0].StartAt] = ETimetableFlag.Filled;
+                    src.TimetableFlag[i, periods[1].StartAt] = ETimetableFlag.Filled;
+
+                    if (randConsecIndex > 0 && randConsecIndex < consecs.Count - 1)
+                        consecs.RemoveRange(randConsecIndex - 1, 3);
+                    else if (randConsecIndex == consecs.Count - 1)
+                        consecs.RemoveRange(randConsecIndex - 1, 2);
+                    else
+                        consecs.RemoveRange(randConsecIndex, 2);
+                    startAts.Remove(periods[0].StartAt);
+                    startAts.Remove(periods[1].StartAt);
+                }
+
                 var timetableUnits = src.TimetableUnits
                     .Where(u => u.ClassName == src.Classes[i].Name && u.StartAt == 0)
-                    .OrderBy(u => new Random().Next())
+                    .Shuffle()
                     .ToList();
+                startAts = startAts.Shuffle().ToList();
                 if (startAts.Count != timetableUnits.Count) throw new Exception();
                 for (var j = 0; j < timetableUnits.Count; j++)
                     timetableUnits[j].StartAt = startAts[j];
             }
+
+            src.ToCsv();
+            src.TimetableFlag.ToCsv(src.Classes);
         }
 
         #region Crossover Methods
         internal static List<TimetableIndividual> Crossover(
             this TimetableRootIndividual root,
-            TimetableIndividual parent1,
-            TimetableIndividual parent2,
-            TimetableParameters parameters,
-            int method)
+            List<TimetableIndividual> parents,
+            TimetableParameters tParameters,
+            TimetableCreatorParameters tcParameters)
         {
-            return method switch
+            var children = new List<TimetableIndividual> { root.Clone(), root.Clone() };
+            children[0] = root.Clone();
+            children[1] = root.Clone();
+
+            switch (tcParameters.CrossoverMethod)
             {
-                (int)ETimetableCreator.CrossoverUsingClassChromosome
-                    => CrossoverUsingClassChromosome(root, parent1, parent2, parameters),
-                _ => throw new NotImplementedException(),
-            };
-        }
-
-        private static List<TimetableIndividual> CrossoverUsingClassChromosome(
-            TimetableRootIndividual root, TimetableIndividual parent1, TimetableIndividual parent2, TimetableParameters parameters)
-        {
-            var child1 = root.Clone();
-            var child2 = root.Clone();
-
-            var randClassCount = rand.Next(1, root.Classes.Count / 2);
-            var randClassNames = root.Classes.Select(c => c.Name).Shuffle().Take(randClassCount).ToList();
-            var randClassName = root.Classes[rand.Next(1, root.Classes.Count - 1)].Name;
-
-            for (var i = 0; i < root.TimetableUnits.Count; i++)
-            {
-                child1.TimetableUnits[i].StartAt = randClassNames.Contains(root.TimetableUnits[i].ClassName)
-                    ? parent1.TimetableUnits[i].StartAt : parent2.TimetableUnits[i].StartAt;
-                child2.TimetableUnits[i].StartAt = !randClassNames.Contains(root.TimetableUnits[i].ClassName)
-                    ? parent1.TimetableUnits[i].StartAt : parent2.TimetableUnits[i].StartAt;
+                case ECrossoverMethod.SinglePoint:
+                    parents.SinglePointCrossover(children, EChromosomeType.ClassChromosome);
+                    break;
+                default:
+                    throw new NotImplementedException();
             }
+
+
+            // Đánh dấu lại timetableFlags
+            children[0].RemarkTimetableFlag();
+            children[1].RemarkTimetableFlag();
 
             // Đột biến
-            if (rand.Next(0, 100) < 50)
+            children.Mutate(EChromosomeType.ClassChromosome, 0.5f);
+
+            // Tính toán độ thích nghi
+            children[0].CalculateAdaptability(tParameters);
+            children[1].CalculateAdaptability(tParameters);
+
+            return [children[0], children[1]];
+        }
+
+        private static List<TimetableIndividual> SinglePointCrossover(
+            this List<TimetableIndividual> parents,
+            List<TimetableIndividual> children,
+            EChromosomeType chromosomeType)
+        {
+            var startIndex = 0;
+            var endIndex = 0;
+            switch (chromosomeType)
             {
-                var ClassName = root.Classes[rand.Next(0, root.Classes.Count)].Name;
-                var timetableUnits = child1.TimetableUnits
-                    .Where(u => u.ClassName == ClassName && u.Priority != EPriority.Fixed).ToList();
-                var randNumList = Enumerable.Range(0, timetableUnits.Count).Shuffle().ToList();
-                for (var i = 0; i < randNumList.Count - rand.Next(0, randNumList.Count - 1); i++)
-                    Swap(timetableUnits[randNumList[i]], timetableUnits[randNumList[i + 1]]);
+                case EChromosomeType.ClassChromosome:
+                    children[0].SortChromosome(EChromosomeType.ClassChromosome);
+                    children[1].SortChromosome(EChromosomeType.ClassChromosome);
+                    parents[0].SortChromosome(EChromosomeType.ClassChromosome);
+                    parents[1].SortChromosome(EChromosomeType.ClassChromosome);
+                    var className = parents[0].Classes[rand.Next(parents[0].Classes.Count)].Name;
+                    startIndex = parents[0].TimetableUnits.IndexOf(parents[0].TimetableUnits.First(u => u.ClassName == className));
+                    endIndex = startIndex + parents[0].Classes.First(c => c.Name == className).PeriodCount - 1;
+                    break;
+                case EChromosomeType.TeacherChromosome:
+                    break;
+                default:
+                    throw new NotImplementedException();
             }
-            if (rand.Next(0, 100) < 50)
+            // var randIndex = /*rand.Next(0, parents[0].TimetableUnits.Count)*/ parents[0].TimetableUnits.Count / 2;
+
+            for (var i = 0; i < parents[0].TimetableUnits.Count; i++)
             {
-                var ClassName = root.Classes[rand.Next(0, root.Classes.Count)].Name;
-                var timetableUnits = child2.TimetableUnits
-                    .Where(u => u.ClassName == ClassName && u.Priority != EPriority.Fixed).ToList();
-                var randNumList = Enumerable.Range(0, timetableUnits.Count).Shuffle().ToList();
-                for (var i = 0; i < randNumList.Count - rand.Next(0, randNumList.Count - 1); i++)
-                    Swap(timetableUnits[randNumList[i]], timetableUnits[randNumList[i + 1]]);
+                if (i < startIndex || i > endIndex)
+                    for (var j = 0; j < children.Count; j++)
+                    {
+                        children[j].TimetableUnits[i].StartAt = parents[j].TimetableUnits[i].StartAt;
+                        children[j].TimetableUnits[i].Priority = parents[j].TimetableUnits[i].Priority;
+                    }
+                else
+                    for (var j = 0; j < children.Count; j++)
+                    {
+                        children[j].TimetableUnits[i].StartAt = parents[children.Count - 1 - j].TimetableUnits[i].StartAt;
+                        children[j].TimetableUnits[i].Priority = parents[children.Count - 1 - j].TimetableUnits[i].Priority;
+                    }
             }
 
-            child1.CalculateAdaptability(parameters);
-            child2.CalculateAdaptability(parameters);
-
-            return [child1, child2];
+            return children;
         }
 
         private static void Swap(TimetableUnitTCDTO a, TimetableUnitTCDTO b)
         {
             (a.StartAt, b.StartAt) = (b.StartAt, a.StartAt);
         }
+        #endregion
+
+        #region Enhance Solution
+
+        private readonly struct Move(int step, string className, int startAt1, int startAt2)
+        {
+            public int Step { get; } = step;
+            public string ClassName { get; } = className;
+            public int StartAt1 { get; } = startAt1;
+            public int StartAt2 { get; } = startAt2;
+        }
+
+        internal static void TabuSearch(this TimetableIndividual src, TimetableParameters parameters)
+        {
+            var tabu = new List<Move>();
+            var candidates = new List<TimetableIndividual>();
+            var classes = src.Classes.Shuffle().Take(rand.Next(1, src.Classes.Count / 2)).ToList();
+            for (var i = 0; i < classes.Count; i++)
+            {
+                var timetableUnits = src.TimetableUnits.Where(u => u.ClassName == src.Classes[i].Name).Shuffle().ToList();
+                for (var j = 0; j < timetableUnits.Count - 1; j += 2)
+                {
+                    var candidate = src.Clone();
+                    var unit1 = candidate.TimetableUnits.First(u => u.Id == timetableUnits[j].Id);
+                    var unit2 = candidate.TimetableUnits.First(u => u.Id == timetableUnits[j + 1].Id);
+                    Swap(unit1, unit2);
+                    candidate.CalculateAdaptability(parameters);
+                    candidates.Add(candidate);
+                }
+            }
+            candidates = candidates.Where(c => c.Adaptability < src.Adaptability).ToList();
+            if (candidates.Count > 0)
+                src = candidates.Shuffle().First();
+        }
+
+        #endregion
+
+        #region TimetableFlag Remark
+
+        private static void RemarkTimetableFlag(this TimetableIndividual src)
+        {
+            for (var i = 0; i < src.Classes.Count; i++)
+                for (var j = 0; j < 61; j++)
+                    if (src.TimetableFlag[i, j] != ETimetableFlag.None)
+                        src.TimetableFlag[i, j] = ETimetableFlag.Unfilled;
+
+            for (var i = 0; i < src.TimetableUnits.Count; i++)
+            {
+                var classIndex = src.Classes.IndexOf(src.Classes.First(c => c.Name == src.TimetableUnits[i].ClassName));
+                if (src.TimetableUnits[i].Priority == EPriority.Fixed)
+                    src.TimetableFlag[classIndex, src.TimetableUnits[i].StartAt] = ETimetableFlag.Fixed;
+                else
+                    src.TimetableFlag[classIndex, src.TimetableUnits[i].StartAt] = ETimetableFlag.Filled;
+            }
+        }
+
+        #endregion
+
+        #region Sort TimetableUnits by ChromosomeType
+
+        private static void SortChromosome(this TimetableIndividual src, EChromosomeType type)
+        {
+            src.TimetableUnits = type switch
+            {
+                EChromosomeType.ClassChromosome => [.. src.TimetableUnits.OrderBy(u => u.ClassName)],
+                EChromosomeType.TeacherChromosome => [.. src.TimetableUnits.OrderBy(u => u.TeacherName)],
+                _ => throw new NotImplementedException(),
+            };
+        }
+
+        #endregion
+
+        #region Mutation
+
+        private static void Mutate(this List<TimetableIndividual> individuals, EChromosomeType type, float mutationRate)
+        {
+            for (var i = 0; i < individuals.Count; i++)
+            {
+                if (rand.Next(0, 100) > mutationRate * 100)
+                    continue;
+
+                var className = "";
+                var teacherName = "";
+                List<int> randNumList = null!;
+                List<TimetableUnitTCDTO> timetableUnits = null!;
+
+                switch (type)
+                {
+                    case EChromosomeType.ClassChromosome:
+                        className = individuals[i].Classes[rand.Next(0, individuals[i].Classes.Count)].Name;
+                        timetableUnits = individuals[i].TimetableUnits
+                            .Where(u => u.ClassName == className && u.Priority != EPriority.Fixed).ToList();
+                        randNumList = Enumerable.Range(0, timetableUnits.Count).Shuffle().ToList();
+                        Swap(timetableUnits[randNumList[0]], timetableUnits[randNumList[1]]);
+                        //for (var j = 0; j < randNumList.Count - rand.Next(1, randNumList.Count - 1); j++)
+                        //    Swap(timetableUnits[randNumList[j]], timetableUnits[randNumList[j + 1]]);
+                        break;
+                    case EChromosomeType.TeacherChromosome:
+                        teacherName = individuals[i].Teachers[rand.Next(0, individuals[i].Teachers.Count)].ShortName;
+                        timetableUnits = individuals[i].TimetableUnits
+                            .Where(u => u.TeacherName == teacherName && u.Priority != EPriority.Fixed).ToList();
+                        randNumList = Enumerable.Range(0, timetableUnits.Count).Shuffle().ToList();
+
+                        for (var j = 0; j < randNumList.Count - rand.Next(1, randNumList.Count - 1); j++)
+                            Swap(timetableUnits[randNumList[j]], timetableUnits[randNumList[j + 1]]);
+                        break;
+                }
+
+
+            }
+        }
+
         #endregion
 
         #region Fitness Function
@@ -384,39 +564,6 @@ namespace Services.Implementation.Extensions
                     count++;
             }
             return count;
-        }
-
-        #endregion
-
-        #region LocalSeach
-
-        private readonly struct Move(int step, string className, int startAt1, int startAt2)
-        {
-            public int Step { get; } = step;
-            public string ClassName { get; } = className;
-            public int StartAt1 { get; } = startAt1;
-            public int StartAt2 { get; } = startAt2;
-        }
-
-        internal static void TabuSearch(this TimetableIndividual src)
-        {
-            var tabuList = new List<Move>();
-            for (var i = 0; i < 100; i++)
-            {
-                var candidateMoves = new List<Move>();
-                for (var j = 0; j < 100; j++)
-                {
-                    var randClassName = src.Classes.Shuffle().First().Name;
-                    var randStartAts = src.TimetableUnits
-                        .Where(u => u.ClassName == randClassName)
-                        .Select(u => u.StartAt)
-                        .Shuffle()
-                        .Take(2)
-                        .ToList();
-                    candidateMoves.Add(new Move(i, randClassName, randStartAts[0], randStartAts[1]));
-                }
-
-            }
         }
 
         #endregion
