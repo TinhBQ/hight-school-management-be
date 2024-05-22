@@ -17,13 +17,20 @@ namespace API.Controllers
         [HttpGet("test")]
         public IActionResult CreateTimetableTest()
         {
-            var classes = _context.Classes.AsNoTracking().ToList();
+            var classNames = new List<string>()
+            {
+                "10B1", "10B3", "10B5", "10B7", "10B8",
+                "11A2", "11A4", "11A6", "11A8", "11A9",
+                "12C1", "12C3", "12C5", "12C6", "12C7"
+            };
+            var classes = _context.Classes
+                .Where(c => classNames.Contains(c.Name))
+                .AsNoTracking().ToList();
             var parameters = new TimetableParameters
             {
                 ClassIds = [.. classes.Select(c => c.Id)],
-                DoublePeriodSubjectIds = [.. _context.Subjects
-                .Where(s => s.ShortName == "TOAN" || s.ShortName == "VAN" || s.ShortName == "NN")
-                .Select(s => s.Id)],
+                DoublePeriodSubjects = [.. _context.Subjects
+                .Where(s => s.ShortName == "TOAN" || s.ShortName == "VAN")],
                 MaxPeriodPerDay = 5,
                 MinPeriodPerDay = 0,
                 Semester = 1,
@@ -67,7 +74,6 @@ namespace API.Controllers
                     parameters.FreeTimetableUnits.Add(new TimetableUnitTCDTO()
                     {
                         ClassName = @class.Name,
-                        Assignment = new AssignmentTCDTO(new ClassTCDTO(@class)),
                         StartAt = startAt,
                     });
             }
@@ -82,9 +88,8 @@ namespace API.Controllers
             var parameters = new TimetableParameters
             {
                 ClassIds = [.. classes.Select(c => c.Id)],
-                DoublePeriodSubjectIds = [.. _context.Subjects
-                .Where(s => s.ShortName == "TOAN" || s.ShortName == "VAN" || s.ShortName == "NN")
-                .Select(s => s.Id)],
+                DoublePeriodSubjects = [.. _context.Subjects
+                .Where(s => s.ShortName == "TOAN" || s.ShortName == "VAN" || s.ShortName == "NN")],
                 MaxPeriodPerDay = 5,
                 MinPeriodPerDay = 0,
                 Semester = 1,
@@ -128,7 +133,6 @@ namespace API.Controllers
                     parameters.FreeTimetableUnits.Add(new TimetableUnitTCDTO()
                     {
                         ClassName = @class.Name,
-                        Assignment = new AssignmentTCDTO(new ClassTCDTO(@class)),
                         StartAt = startAt,
                     });
             }
