@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Entities.DAOs;
 using Entities.DTOs.CRUD;
+using Entities.DTOs.TimetableCreation;
 
 
 namespace Services.Implementation.Extensions
@@ -20,6 +21,9 @@ namespace Services.Implementation.Extensions
             CreateMap<Teacher, TeacherDTO>();
             CreateMap<TeacherForCreationDTO, Teacher>();
             CreateMap<TeacherForUpdateDTO, Teacher>();
+
+            CreateMap<TimetableUnitTCDTO, TimetableUnit>();
+            CreateMap<TimetableUnit, TimetableUnitTCDTO>();
         }
     }
 }

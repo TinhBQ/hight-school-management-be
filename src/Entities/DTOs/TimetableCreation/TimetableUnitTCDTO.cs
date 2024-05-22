@@ -11,7 +11,6 @@ namespace Entities.DTOs.TimetableCreation
         public string SubjectName { get; init; } = null!;
         public int StartAt { get; set; }
         public Guid AssignmentId { get; set; } = Guid.Empty;
-
         public TimetableUnitTCDTO() { }
 
         public TimetableUnitTCDTO(AssignmentTCDTO assignment)
