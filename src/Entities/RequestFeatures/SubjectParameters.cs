@@ -4,6 +4,6 @@
     {
         public SubjectParameters() => OrderBy = "name";
 
-        public string? searchTerm { get; set; }
+        public string? SearchTerm { get; set; }
     }
 }

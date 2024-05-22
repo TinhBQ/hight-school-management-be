@@ -13,10 +13,10 @@ namespace Persistence.Repositories
         {
         }
 
-        public async Task<PagedList<Subject>> GetAllSubjectsAsync(SubjectParameters subjectParameters, bool trackChanges)
+        public async Task<PagedList<Subject>> GetAllSubjectWithPagedList(SubjectParameters subjectParameters, bool trackChanges)
         {
             var subjectes = await FindAll(trackChanges)
-                .Search(subjectParameters.searchTerm ?? "")
+                .Search(subjectParameters.SearchTerm ?? "")
                 .Sort(subjectParameters.OrderBy ?? "name")
                 .Skip((subjectParameters.PageNumber - 1) * subjectParameters.PageSize)
                 .Take(subjectParameters.PageSize)
@@ -27,6 +27,11 @@ namespace Persistence.Repositories
             return new PagedList<Subject>(subjectes, count, subjectParameters.PageNumber, subjectParameters.PageSize);
         }
 
+        public async Task<IEnumerable<Subject>> GetSubjects(bool trackChanges)
+        {
+            return await FindAll(trackChanges).ToListAsync();
+        }
+
         public async Task<Subject?> GetSubjectAsync(Guid SubjectId, bool trackChanges) =>
             await FindByCondition(c => c.Id.Equals(SubjectId), trackChanges)
             .SingleOrDefaultAsync();
@@ -35,7 +40,7 @@ namespace Persistence.Repositories
             await FindByCondition(x => ids.Contains(x.Id), trackChanges)
             .ToListAsync();
 
-        public void CreateSubject(Subject subject) => Create(subject);
+        public  void CreateSubject(Subject subject) => Create(subject);
 
         public void DeleteSubject(Subject subject) => Delete(subject);
     }

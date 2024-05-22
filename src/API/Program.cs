@@ -4,6 +4,7 @@ using NLog;
 using Services.Abstraction.IApplicationServices;
 using Services.Abstraction.ILoggerServices;
 using Services.Implementation;
+using System.Text.Json.Serialization;
 
 namespace API
 {
@@ -26,7 +27,14 @@ namespace API
             builder.Services.AddAutoMapper();
 
             builder.Services.AddControllers()
-                .AddApplicationPart(typeof(AssemblyReference).Assembly);
+                .AddApplicationPart(typeof(AssemblyReference).Assembly)
+                .AddJsonOptions(x =>
+                x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
+
+
+
+
+
             builder.Services.AddScoped<ITimetableService, TimetableService>();
             builder.Services.AddScoped<IAssignmentServiceTemp, AssignmentServiceTemp>();
 

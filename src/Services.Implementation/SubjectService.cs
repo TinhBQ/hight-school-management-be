@@ -19,13 +19,32 @@ namespace Services.Implementation
         public async Task<(IEnumerable<SubjectDTO> subjects, MetaData metaData)> GetAllSubjectsAsync(SubjectParameters subjectParameters, bool trackChanges)
         {
 
-            var subjectesWithMetaData = await _repository.SubjectRepository.GetAllSubjectsAsync(subjectParameters, trackChanges);
+            var subjectesWithMetaData = await _repository.SubjectRepository.GetAllSubjectWithPagedList(subjectParameters, trackChanges);
 
             var subjectesDTO = _mapper.Map<IEnumerable<SubjectDTO>>(subjectesWithMetaData);
 
 
             return (subjects: subjectesDTO, metaData: subjectesWithMetaData.metaData);
 
+        }
+
+        public async Task<IEnumerable<SubjectDTO>> GetUnassignedSubjectsByClassId(Guid classId, bool trackChanges)
+        {
+            await GetClassAndCheckIfItExists(classId, trackChanges);
+            var d = await _repository.SubjectClassRepository.GetSubjectClassByClassId(classId, trackChanges);
+            var s = await _repository.SubjectRepository.GetSubjects(trackChanges);
+            var k = s.ToList().Where(s => !d.ToList().Select(x => x.SubjectId).Distinct().Contains(s.Id));
+            var subjectesDTO = _mapper.Map<IEnumerable<SubjectDTO>>(k);
+
+            return subjectesDTO;
+        }
+
+        public async Task<IEnumerable<SubjectDTO>> GetAssignedSubjectsByClassId(Guid classId, bool trackChanges)
+        {
+            await GetClassAndCheckIfItExists(classId, trackChanges);
+            var subjectClasses = await _repository.SubjectClassRepository.GetSubjectClassByClassId(classId, trackChanges);
+            var subjectDTOs = _mapper.Map<IEnumerable<SubjectDTO>>(subjectClasses.ToList().Select(x => x.Subject));
+            return subjectDTOs;
         }
 
         public async Task<SubjectDTO?> GetSubjectAsync(Guid subjectId, bool trackChanges)
@@ -126,6 +145,11 @@ namespace Services.Implementation
             return subject is null ? throw new SubjectNotFoundException(subjectId) : subject;
         }
 
+        private async Task<Class> GetClassAndCheckIfItExists(Guid classId, bool trackChanges)
+        {
+            var klass = await _repository.ClassRepository.GetClassAsync(classId, trackChanges);
 
+            return klass is null ? throw new ClassNotFoundException(classId) : klass;
+        }
     }
 }

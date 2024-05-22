@@ -9,9 +9,10 @@ namespace Persistence.Repositories
 {
     public class ClassRepository(HsmsDbContext repositoryContext) : RepositoryBase<Class>(repositoryContext), IClassRepository
     {
-        public async Task<PagedList<Class>> GetAllClassesAsync(ClassParameters classParameters, bool trackChanges)
+        public async Task<PagedList<Class>> GetAllClassWithPagedList(ClassParameters classParameters, bool trackChanges)
         {
             var classes = await FindAll(trackChanges)
+                .FilterClasses(classParameters.StartYear, classParameters.EndYear)
                 .Search(classParameters.SearchTerm ?? "")
                 .Sort(classParameters.OrderBy ?? "name")
                 .Skip((classParameters.PageNumber - 1) * classParameters.PageSize)
@@ -21,6 +22,11 @@ namespace Persistence.Repositories
             var count = await FindAll(trackChanges).CountAsync();
 
             return new PagedList<Class>(classes, count, classParameters.PageNumber, classParameters.PageSize);
+        }
+
+        public async Task<IEnumerable<Class>> GetClasses(bool trackChanges)
+        {
+            return await FindAll(trackChanges).ToListAsync();
         }
 
         public async Task<Class?> GetClassAsync(Guid classId, bool trackChanges) =>
