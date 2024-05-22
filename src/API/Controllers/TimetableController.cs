@@ -148,7 +148,8 @@ namespace API.Controllers
             }
             var tcParameters = new TimetableCreatorParameters();
             var result = _timetableService.CreateDemo(parameters, tcParameters);
-            return Ok();
+            _context.Add(result);
+            return Ok(result);
         }
 
         [HttpGet("demo2")]

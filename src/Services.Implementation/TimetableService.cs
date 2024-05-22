@@ -221,10 +221,10 @@ namespace Services.Implementation
                 timetablePopulation.AddRange(timetableChildren);
                 timetablePopulation = timetablePopulation.OrderBy(i => i.Adaptability).Take(100).ToList();
                 Console.WriteLine(
-                        $"step {step}, " +
-                        $"best score {timetablePopulation.Min(i => i.Adaptability)}, " +
-                        $"worst score {timetablePopulation.Max(i => i.Adaptability)}, " +
-                        $"population {timetablePopulation.Count}");
+                    $"step {step}, " +
+                    $"best score {timetablePopulation.Min(i => i.Adaptability)}, " +
+                    $"worst score {timetablePopulation.Max(i => i.Adaptability)}, " +
+                    $"population {timetablePopulation.Count}");
             }
 
             // timetablePopulation.OrderBy(i => i.Adaptability).First().ToCsv();
