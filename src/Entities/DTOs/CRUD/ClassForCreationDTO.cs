@@ -7,7 +7,6 @@ namespace Entities.DTOs.CRUD
         ESchoolShift SchoolShift,
         string Name,
         int StartYear,
-        int EndYear,
-        int PeriodCount
+        int EndYear
     );
 }

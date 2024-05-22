@@ -1,4 +1,5 @@
-﻿using Entities.DTOs.CRUD;
+﻿using Entities.DAOs;
+using Entities.DTOs.CRUD;
 using Entities.RequestFeatures;
 
 namespace Services.Abstraction.IApplicationServices
@@ -6,6 +7,10 @@ namespace Services.Abstraction.IApplicationServices
     public interface ISubjectService
     {
         Task<(IEnumerable<SubjectDTO> subjects, MetaData metaData)> GetAllSubjectsAsync(SubjectParameters subjectParameters, bool trackChanges);
+
+        Task<IEnumerable<SubjectDTO>> GetUnassignedSubjectsByClassId(Guid classId, bool trackChanges);
+
+        Task<IEnumerable<SubjectDTO>> GetAssignedSubjectsByClassId(Guid classId, bool trackChanges);
 
         Task<SubjectDTO?> GetSubjectAsync(Guid subjectId, bool trackChanges);
 

@@ -5,9 +5,11 @@ namespace Services.Abstraction.IRepositoryServices
 {
     public interface IClassRepository
     {
-        Task<PagedList<Class>> GetAllClassesAsync(ClassParameters classParameters, bool trackChanges);
+        Task<PagedList<Class>> GetAllClassWithPagedList(ClassParameters classParameters, bool trackChanges);
 
-        Task<Class?> GetClassAsync(Guid classId, bool trackChanges);
+        Task<IEnumerable<Class>> GetClasses(bool trackChanges);
+
+         Task<Class?> GetClassAsync(Guid classId, bool trackChanges);
 
         void CreateClass(Class klass);
 

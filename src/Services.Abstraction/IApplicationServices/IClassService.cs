@@ -7,6 +7,8 @@ namespace Services.Abstraction.IApplicationServices
     {
         Task<(IEnumerable<ClassDTO> classes, MetaData metaData)> GetAllClassesAsync(ClassParameters classParameters, bool trackChanges);
 
+        Task<(IEnumerable<ClassYearDTO> classes, MetaData metaData)> GetYearsAsync(ClassParameters classParameters, bool trackChanges);
+
         Task<ClassDTO?> GetClassAsync(Guid classId, bool trackChanges);
 
         Task<IEnumerable<ClassDTO?>> GetByIdsAsync(IEnumerable<Guid> ids, bool trackChanges);

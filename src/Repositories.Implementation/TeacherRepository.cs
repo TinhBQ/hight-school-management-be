@@ -12,7 +12,7 @@ namespace Persistence.Repositories
         public async Task<PagedList<Teacher>> GetAllTeachersAsync(TeacherParameters teacherParameters, bool trackChanges)
         {
             var teacheres = await FindAll(trackChanges)
-                .Search(teacherParameters.searchTerm ?? "")
+                .Search(teacherParameters.SearchTerm ?? "")
                 .Sort(teacherParameters.OrderBy ?? "firstName")
                 .Skip((teacherParameters.PageNumber - 1) * teacherParameters.PageSize)
                 .Take(teacherParameters.PageSize)

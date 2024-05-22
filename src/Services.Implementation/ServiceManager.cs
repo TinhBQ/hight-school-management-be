@@ -11,10 +11,14 @@ namespace Services.Implementation
         private readonly Lazy<ISubjectService> _subjectService = new(() => new SubjectService(repositoryManager, logger, mapper));
         private readonly Lazy<ITeacherService> _teacherService = new(() => new TeacherService(repositoryManager, logger, mapper));
 
+        private readonly Lazy<ISubjectClassService> _subjectClassService = new(() => new SubjectClassService(repositoryManager, logger, mapper));
+
         public IClassService ClassService => _classService.Value;
 
         public ISubjectService SubjectService => _subjectService.Value;
 
         public ITeacherService TeacherService => _teacherService.Value;
+
+        public ISubjectClassService SubjectClassService => _subjectClassService.Value;
     }
 }

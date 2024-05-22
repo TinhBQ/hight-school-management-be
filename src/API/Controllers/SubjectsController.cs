@@ -1,6 +1,9 @@
 ﻿using API.ModelBinders;
+using DomainModel.Responses;
+using Entities.DAOs;
 using Entities.DTOs.CRUD;
 using Entities.RequestFeatures;
+using Entities.Responses;
 using Microsoft.AspNetCore.Mvc;
 using Services.Abstraction.IApplicationServices;
 using System.Text.Json;
@@ -19,7 +22,41 @@ namespace API.Presentation.Controllers
             var (subjects, metaData) = await _service.SubjectService.GetAllSubjectsAsync(subjectParameters, trackChanges: false);
             Response.Headers["X-Pagination"] = JsonSerializer.Serialize(metaData);
 
-            return Ok(subjects);
+            var response = new ResponseBase<IEnumerable<SubjectDTO>>
+            {
+                Data = subjects,
+                Message = ResponseMessage.GetSubjectsSuccess,
+            };
+
+            return Ok(response);
+        }
+
+        [HttpGet("unassigned-by-class")]
+        public async Task<IActionResult> GetUnassignedSubjectsByClassId([FromQuery] Guid classId)
+        {
+            var subjects = await _service.SubjectService.GetUnassignedSubjectsByClassId(classId, trackChanges: false);
+
+            var response = new ResponseBase<IEnumerable<SubjectDTO>>
+            {
+                Data = subjects,
+                Message = ResponseMessage.GetSubjectsSuccess,
+            };
+
+            return Ok(response);
+        }
+
+        [HttpGet("assigned-by-class")]
+        public async Task<IActionResult> GetAssignedSubjectsByClassId([FromQuery] Guid classId)
+        {
+            var subjects = await _service.SubjectService.GetAssignedSubjectsByClassId(classId, trackChanges: false);
+
+            var response = new ResponseBase<IEnumerable<SubjectDTO>>
+            {
+                Data = subjects,
+                Message = ResponseMessage.GetSubjectsSuccess,
+            };
+
+            return Ok(response);
         }
 
         [HttpGet("{id:guid}", Name = "SubjectById")]
@@ -76,7 +113,7 @@ namespace API.Presentation.Controllers
 
         [HttpDelete("collection/({ids})")]
 
-        public async Task<IActionResult> DeleteSubjectCollection(IEnumerable<Guid> ids)
+        public async Task<IActionResult> DeleteSubjectCollection([ModelBinder(BinderType = typeof(ArrayModelBinder))] IEnumerable<Guid> ids)
         {
             await _service.SubjectService.DeleteSubjectCollectionAsync(ids, trackChanges: false);
             return NoContent();

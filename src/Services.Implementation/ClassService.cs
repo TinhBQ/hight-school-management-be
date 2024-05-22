@@ -18,12 +18,21 @@ namespace Services.Implementation
         public async Task<(IEnumerable<ClassDTO> classes, MetaData metaData)> GetAllClassesAsync(ClassParameters classParameters, bool trackChanges)
         {
 
-            var classesWithMetaData = await _repository.ClassRepository.GetAllClassesAsync(classParameters, trackChanges);
+            var classesWithMetaData = await _repository.ClassRepository.GetAllClassWithPagedList(classParameters, trackChanges);
 
             var classesDTO = _mapper.Map<IEnumerable<ClassDTO>>(classesWithMetaData);
 
             return (classes: classesDTO, metaData: classesWithMetaData.metaData);
 
+        }
+
+        public async Task<(IEnumerable<ClassYearDTO> classes, MetaData metaData)> GetYearsAsync(ClassParameters classParameters, bool trackChanges)
+        {
+            var classesWithMetaData = await _repository.ClassRepository.GetAllClassWithPagedList(classParameters, trackChanges);
+
+            var classesDTO = _mapper.Map<IEnumerable<ClassYearDTO>>(classesWithMetaData);
+
+            return (classes: classesDTO.Distinct(), metaData: classesWithMetaData.metaData);
         }
 
         public async Task<ClassDTO?> GetClassAsync(Guid classId, bool trackChanges)
@@ -54,6 +63,7 @@ namespace Services.Implementation
             var classEntity = _mapper.Map<Class>(klass);
 
             _repository.ClassRepository.CreateClass(classEntity);
+
             await _repository.UnitOfWork.SaveAsync();
 
             var companyToReturn = _mapper.Map<ClassDTO>(classEntity);
@@ -123,7 +133,5 @@ namespace Services.Implementation
 
             return company is null ? throw new ClassNotFoundException(classId) : company;
         }
-
-
     }
 }
