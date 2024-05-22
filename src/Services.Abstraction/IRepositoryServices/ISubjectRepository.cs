@@ -5,7 +5,9 @@ namespace Services.Abstraction.IRepositoryServices
 {
     public interface ISubjectRepository
     {
-        Task<PagedList<Subject>> GetAllSubjectsAsync(SubjectParameters subjectParameters, bool trackChanges);
+        Task<PagedList<Subject>> GetAllSubjectWithPagedList(SubjectParameters subjectParameters, bool trackChanges);
+
+        Task<IEnumerable<Subject>> GetSubjects(bool trackChanges);
 
         Task<Subject?> GetSubjectAsync(Guid subjectId, bool trackChanges);
 

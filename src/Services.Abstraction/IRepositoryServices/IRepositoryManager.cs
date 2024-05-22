@@ -8,6 +8,8 @@
 
         ITeacherRepository TeacherRepository { get; }
 
+        ISubjectClassRepository SubjectClassRepository { get; }
+
         IUnitOfWork UnitOfWork { get; }
     }
 }

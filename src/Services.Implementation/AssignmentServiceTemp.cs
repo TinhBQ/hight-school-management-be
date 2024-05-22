@@ -19,7 +19,7 @@ namespace Services.Implementation
 
         public void Create()
         {
-            var path = "C:\\Users\\ponpy\\source\\repos\\KLTN\\10-be\\Assignment.csv";
+            var path = "D:\\Workspace\\dotnet-asp\\10-be\\Assignment.csv";
             var reader = new StreamReader(path);
             var teachers = _context.Teachers.Include(t => t.SubjectTeachers).AsNoTracking().ToList();
             var classes = _context.Classes.Include(c => c.SubjectClasses).AsNoTracking().ToList();

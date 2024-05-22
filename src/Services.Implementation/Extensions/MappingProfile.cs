@@ -11,6 +11,7 @@ namespace Services.Implementation.Extensions
         public MappingProfile()
         {
             CreateMap<Class, ClassDTO>();
+            CreateMap<Class, ClassYearDTO>();
             CreateMap<ClassForCreationDTO, Class>();
             CreateMap<ClassForUpdateDTO, Class>();
 
@@ -22,8 +23,9 @@ namespace Services.Implementation.Extensions
             CreateMap<TeacherForCreationDTO, Teacher>();
             CreateMap<TeacherForUpdateDTO, Teacher>();
 
-            CreateMap<TimetableUnitTCDTO, TimetableUnit>();
-            CreateMap<TimetableUnit, TimetableUnitTCDTO>();
+            CreateMap<SubjectClass, SubjectClassDTO>();
+            CreateMap<SubjectClassForCreationDTO, SubjectClass>();
+            CreateMap<SubjectClassForUpdateDTO, SubjectClass>();
         }
     }
 }

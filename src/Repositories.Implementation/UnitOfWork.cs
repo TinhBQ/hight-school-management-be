@@ -8,6 +8,6 @@ namespace Persistence.Repositories
 
         private readonly HsmsDbContext _hsmsDbContext = hsmsDbContext;
 
-        public Task SaveAsync() => _hsmsDbContext.SaveChangesAsync();
+        public async Task SaveAsync() => await _hsmsDbContext.SaveChangesAsync();
     }
 }

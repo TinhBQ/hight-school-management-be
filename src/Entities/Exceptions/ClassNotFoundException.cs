@@ -9,7 +9,7 @@ namespace Entities.Exceptions
 {
     public sealed class ClassNotFoundException : NotFoundException
     {
-        public ClassNotFoundException(Guid companyId) : base($"Lớp học {companyId}.")
+        public ClassNotFoundException(Guid classId) : base($"Lớp học {classId}.")
         {
         }
     }

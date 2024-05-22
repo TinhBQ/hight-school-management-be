@@ -31,6 +31,21 @@ namespace API.Presentation.Controllers
             return Ok(response);
         }
 
+        [HttpGet("years")]
+        public async Task<IActionResult> GetClassesYears([FromQuery] ClassParameters classParameters)
+        {
+            var (classes, metaData) = await _service.ClassService.GetYearsAsync(classParameters, trackChanges: false);
+            Response.Headers["X-Pagination"] = JsonSerializer.Serialize(metaData);
+
+            var response = new ResponseBase<IEnumerable<ClassYearDTO>>
+            {
+                Data = classes,
+                Message = ResponseMessage.GetClassesSuccess,
+            };
+
+            return Ok(response);
+        }
+
         [HttpGet("{id:guid}", Name = "ClassById")]
         public async Task<IActionResult> GetClass(Guid id)
         {
@@ -99,7 +114,7 @@ namespace API.Presentation.Controllers
 
         [HttpDelete("collection/({ids})")]
 
-        public async Task<IActionResult> DeleteClassCollection(IEnumerable<Guid> ids)
+        public async Task<IActionResult> DeleteClassCollection([ModelBinder(BinderType = typeof(ArrayModelBinder))] IEnumerable<Guid> ids)
         {
             await _service.ClassService.DeleteClassCollectionAsync(ids, trackChanges: false);
             return NoContent();
