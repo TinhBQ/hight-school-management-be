@@ -19,7 +19,7 @@ namespace API.Presentation.Controllers
         [HttpGet()]
         public async Task<IActionResult> GetClassesYears([FromQuery] ClassParameters classParameters)
         {
-            var (classes, metaData) = await _service.ClassService.GetYearsAsync(classParameters, trackChanges: false);
+            var (classes, metaData) = await _service.ClassService.GetYearsAsync(classParameters, trackChanges: false, isInclude: false);
             Response.Headers["X-Pagination"] = JsonSerializer.Serialize(metaData);
 
             var response = new ResponseBase<IEnumerable<ClassYearDTO>>

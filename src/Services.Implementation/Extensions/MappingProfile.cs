@@ -23,11 +23,16 @@ namespace Services.Implementation.Extensions
             CreateMap<ClassForCreationDTO, Class>();
             CreateMap<ClassForUpdateDTO, Class>();
 
+            CreateMap<Class, ClassToHomeroomAssignmentDTO>();
+            CreateMap<ClassToHomeroomAssignmentForUpdateDTO, Class>();
+
             CreateMap<Subject, SubjectDTO>();
             CreateMap<SubjectForCreationDTO, Subject>();
             CreateMap<SubjectForUpdateDTO, Subject>();
 
-            CreateMap<Teacher, TeacherDTO>();
+            CreateMap<Teacher, TeacherDTO>()
+                .ForMember(c => c.FullName,
+                                opt => opt.MapFrom(x => string.Join(' ', x.FirstName, x.MiddleName, x.LastName)));
             CreateMap<TeacherForCreationDTO, Teacher>();
             CreateMap<TeacherForUpdateDTO, Teacher>();
 

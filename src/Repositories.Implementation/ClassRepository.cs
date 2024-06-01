@@ -9,17 +9,25 @@ namespace Persistence.Repositories
 {
     public class ClassRepository(HsmsDbContext repositoryContext) : RepositoryBase<Class>(repositoryContext), IClassRepository
     {
-        public async Task<PagedList<Class>> GetAllClassWithPagedList(ClassParameters classParameters, bool trackChanges)
+        public async Task<PagedList<Class>> GetAllClassWithPagedList(ClassParameters classParameters, bool trackChanges, bool isInclude)
         {
             var classes = await FindAll(trackChanges)
                 .FilterClasses(classParameters.StartYear, classParameters.EndYear)
+                .FilterClassesWithGrade(classParameters.Grade)
+                .FilterClassesWithIsAssignedHomeroom(classParameters.IsAssignedHomeroom)
                 .Search(classParameters.SearchTerm ?? "")
                 .Sort(classParameters.OrderBy ?? "name")
                 .Skip((classParameters.PageNumber - 1) * classParameters.PageSize)
                 .Take(classParameters.PageSize)
+                .JoinTable(isInclude)
                 .ToListAsync();
 
-            var count = await FindAll(trackChanges).CountAsync();
+            var count = await FindAll(trackChanges)
+                .FilterClasses(classParameters.StartYear, classParameters.EndYear)
+                .FilterClassesWithGrade(classParameters.Grade)
+                .FilterClassesWithIsAssignedHomeroom(classParameters.IsAssignedHomeroom)
+                .Search(classParameters.SearchTerm ?? "")
+                .CountAsync();
 
             return new PagedList<Class>(classes, count, classParameters.PageNumber, classParameters.PageSize);
         }

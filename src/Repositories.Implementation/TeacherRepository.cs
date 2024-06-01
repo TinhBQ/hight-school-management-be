@@ -13,9 +13,12 @@ namespace Persistence.Repositories
         {
             var teacheres = await FindAll(trackChanges)
                 .Search(teacherParameters.SearchTerm ?? "")
+                .FilterTeachersWithIsAssignedHomeroom(teacherParameters.IsAssignedHomeroom)
                 .Sort(teacherParameters.OrderBy ?? "firstName")
                 .Skip((teacherParameters.PageNumber - 1) * teacherParameters.PageSize)
                 .Take(teacherParameters.PageSize)
+                .Include(c => c.SubjectTeachers)
+                .ThenInclude(c => c.Subject)
                 .ToListAsync();
 
             var count = await FindAll(trackChanges).CountAsync();

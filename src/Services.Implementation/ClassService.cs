@@ -15,10 +15,10 @@ namespace Services.Implementation
         private readonly ILoggerManager _logger = logger;
         private readonly IMapper _mapper = mapper;
 
-        public async Task<(IEnumerable<ClassDTO> classes, MetaData metaData)> GetAllClassesAsync(ClassParameters classParameters, bool trackChanges)
+        public async Task<(IEnumerable<ClassDTO> classes, MetaData metaData)> GetAllClassesAsync(ClassParameters classParameters, bool trackChanges, bool isInclude)
         {
 
-            var classesWithMetaData = await _repository.ClassRepository.GetAllClassWithPagedList(classParameters, trackChanges);
+            var classesWithMetaData = await _repository.ClassRepository.GetAllClassWithPagedList(classParameters, trackChanges, isInclude);
 
             var classesDTO = _mapper.Map<IEnumerable<ClassDTO>>(classesWithMetaData);
 
@@ -26,9 +26,18 @@ namespace Services.Implementation
 
         }
 
-        public async Task<(IEnumerable<ClassYearDTO> classes, MetaData metaData)> GetYearsAsync(ClassParameters classParameters, bool trackChanges)
+        public async Task<(IEnumerable<ClassToHomeroomAssignmentDTO> classDTOForHomeroomAssignment, MetaData metaData)> GetAllHomeroomAssignment(ClassParameters classParameters, bool trackChanges, bool isInclude)
         {
-            var classesWithMetaData = await _repository.ClassRepository.GetAllClassWithPagedList(classParameters, trackChanges);
+            var classesWithMetaData = await _repository.ClassRepository.GetAllClassWithPagedList(classParameters, trackChanges, isInclude);
+
+            var classForHomeroomAssignmentDTO = _mapper.Map<IEnumerable<ClassToHomeroomAssignmentDTO>>(classesWithMetaData);
+
+            return (classDTOForHomeroomAssignment: classForHomeroomAssignmentDTO, metaData: classesWithMetaData.metaData);
+        }
+
+        public async Task<(IEnumerable<ClassYearDTO> classes, MetaData metaData)> GetYearsAsync(ClassParameters classParameters, bool trackChanges, bool isInclude)
+        {
+            var classesWithMetaData = await _repository.ClassRepository.GetAllClassWithPagedList(classParameters, trackChanges, isInclude);
 
             var classesDTO = _mapper.Map<IEnumerable<ClassYearDTO>>(classesWithMetaData);
 
@@ -76,6 +85,15 @@ namespace Services.Implementation
             var klass = await GetClassAndCheckIfItExists(classId, trackChanges);
 
             _mapper.Map(classForUpdate, klass);
+
+            await _repository.UnitOfWork.SaveAsync();
+        }
+
+        public async Task UpdateClassToHomeroomAssignmentAsync(Guid classId, ClassToHomeroomAssignmentForUpdateDTO classToHomeroomAssignmentUpdate, bool trackChanges)
+        {
+            var klass = await GetClassAndCheckIfItExists(classId, trackChanges);
+
+            _mapper.Map(classToHomeroomAssignmentUpdate, klass);
 
             await _repository.UnitOfWork.SaveAsync();
         }
@@ -133,5 +151,7 @@ namespace Services.Implementation
 
             return company is null ? throw new ClassNotFoundException(classId) : company;
         }
+
+        
     }
 }
