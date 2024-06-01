@@ -10,6 +10,14 @@ namespace Services.Implementation.Extensions
     {
         public MappingProfile()
         {
+            CreateMap<Assignment, AssignmentDTO>()
+                .DisableCtorValidation()
+                .ForMember(des => des.TeacherName, opt => opt.MapFrom(src => $"{src.Teacher.FirstName} {src.Teacher.MiddleName} {src.Teacher.LastName}"))
+                .ForMember(des => des.TeacherShortName, opt => opt.MapFrom(src => src.Teacher.ShortName))
+                .ForMember(des => des.ClassName, opt => opt.MapFrom(src => src.Class.Name))
+                .ForMember(des => des.SubjectName, opt => opt.MapFrom(src => src.Subject.Name));
+            CreateMap<AssignmentDTO, Assignment>();
+
             CreateMap<Class, ClassDTO>();
             CreateMap<Class, ClassYearDTO>();
             CreateMap<ClassForCreationDTO, Class>();

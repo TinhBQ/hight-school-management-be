@@ -1,5 +1,4 @@
 ﻿using Entities.DAOs;
-using Entities.RequestFeatures;
 using Repositories.Implementation.Extensions.Utility;
 using System.Linq.Dynamic.Core;
 
@@ -8,8 +7,8 @@ namespace Repositories.Implementation.Extensions
     public static class RepositoryClassExtensions
     {
         public static IQueryable<Class> FilterClasses(this IQueryable<Class> classes, uint? startYear, uint? endYear) =>
-            startYear == null || endYear == null 
-            ? classes 
+            startYear == null || endYear == null
+            ? classes
             : classes.Where(e => (e.StartYear >= startYear && e.EndYear == endYear));
 
         public static IQueryable<Class> Search(this IQueryable<Class> classes, string searchTerm)
