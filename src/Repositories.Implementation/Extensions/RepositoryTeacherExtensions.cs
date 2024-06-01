@@ -6,9 +6,6 @@ namespace Repositories.Implementation.Extensions
 {
     public static class RepositoryTeacherExtensions
     {
-        /*public static IQueryable<Class> FilterEmployees(this IQueryable<Class> employees, uint minAge, uint maxAge) => 
-            employees.Where(e => (e.Age >= minAge && e.Age <= maxAge));*/
-
         public static IQueryable<Teacher> Search(this IQueryable<Teacher> teachers, string searchTerm)
         {
             if (string.IsNullOrWhiteSpace(searchTerm))
@@ -31,5 +28,12 @@ namespace Repositories.Implementation.Extensions
 
             return teachers.OrderBy(orderQuery);
         }
+
+        public static IQueryable<Teacher> FilterTeachersWithIsAssignedHomeroom(this IQueryable<Teacher> teachers, bool? isAssignedHomeroom) =>
+            isAssignedHomeroom == null
+            ? teachers
+            : isAssignedHomeroom == true
+                ? teachers.Where(e => (e.ClassId != null))
+                : teachers.Where(e => (e.ClassId == null));
     }
 }

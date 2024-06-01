@@ -1,13 +1,14 @@
-﻿namespace Entities.DTOs.CRUD
+﻿using Entities.DAOs;
+
+namespace Entities.DTOs.CRUD
 {
     public record TeacherDTO
-        (
-            Guid Id,
-            string FirstName,
-            string MiddleName,
-            string LastName,
-            string ShortName,
-            DateTime CreateAt,
-            DateTime UpdateAt
-        );
+    {
+        public Guid Id { get; init; }
+        public string? FullName { get; init; }
+        public string? ShortName { get; init; }
+        public IEnumerable<SubjectTeacherDTO>? SubjectTeachers { get; init; }
+        public DateTime CreateAt { get; init; }
+        public DateTime UpdateAt { get; init; }
+    }
 }

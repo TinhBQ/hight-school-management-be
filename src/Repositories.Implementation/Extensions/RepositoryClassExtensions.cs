@@ -1,5 +1,6 @@
 ﻿using Entities.DAOs;
 using Entities.RequestFeatures;
+using Microsoft.EntityFrameworkCore;
 using Repositories.Implementation.Extensions.Utility;
 using System.Linq.Dynamic.Core;
 
@@ -11,6 +12,23 @@ namespace Repositories.Implementation.Extensions
             startYear == null || endYear == null 
             ? classes 
             : classes.Where(e => (e.StartYear >= startYear && e.EndYear == endYear));
+
+        public static IQueryable<Class> FilterClassesWithGrade(this IQueryable<Class> classes, uint? grade) =>
+            grade == null
+            ? classes
+            : classes.Where(e => (e.Grade == grade));
+
+        public static IQueryable<Class> FilterClassesWithIsAssignedHomeroom(this IQueryable<Class> classes, bool? isAssignedHomeroom) =>
+            isAssignedHomeroom == null
+            ? classes
+            : isAssignedHomeroom == true 
+                ? classes.Where(e => (e.HomeroomTeacherId != null)) 
+                : classes.Where(e => (e.HomeroomTeacherId == null));
+
+        public static IQueryable<Class> JoinTable(this IQueryable<Class> classes, bool isInclude) =>
+            isInclude == false
+            ? classes
+            : classes.Include(c => c.HomeroomTeacher);
 
         public static IQueryable<Class> Search(this IQueryable<Class> classes, string searchTerm)
         {

@@ -86,7 +86,15 @@ namespace API.Controllers
         [HttpGet("demo")]
         public IActionResult CreateTimetableDemo()
         {
-            var classes = _context.Classes.AsNoTracking().ToList();
+            var classNames = new List<string>()
+            {
+                "10B1", "10B3", "10B5", "10B7", "10B8",
+                "11A2", "11A4", "11A6", "11A8", "11A9",
+                "12C1", "12C3", "12C5", "12C6", "12C7"
+            };
+            var classes = _context.Classes
+                .Where(c => classNames.Contains(c.Name))
+                .AsNoTracking().ToList();
             var parameters = new TimetableParameters
             {
                 ClassIds = [.. classes.Select(c => c.Id)],

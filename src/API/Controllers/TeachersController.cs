@@ -1,6 +1,9 @@
 ﻿using API.ModelBinders;
+using DomainModel.Responses;
+using Entities.DAOs;
 using Entities.DTOs.CRUD;
 using Entities.RequestFeatures;
+using Entities.Responses;
 using Microsoft.AspNetCore.Mvc;
 using Services.Abstraction.IApplicationServices;
 using System.Text.Json;
@@ -19,21 +22,41 @@ namespace API.Presentation.Controllers
             var (teachers, metaData) = await _service.TeacherService.GetAllTeachersAsync(teacherParameters, trackChanges: false);
             Response.Headers["X-Pagination"] = JsonSerializer.Serialize(metaData);
 
-            return Ok(teachers);
+            var response = new ResponseBase<IEnumerable<TeacherDTO>>
+            {
+                Data = teachers,
+                Message = ResponseMessage.GetClassesSuccess,
+            };
+
+            return Ok(response);
         }
 
         [HttpGet("{id:guid}", Name = "TeacherById")]
         public async Task<IActionResult> GetTeacher(Guid id)
         {
             var teacher = await _service.TeacherService.GetTeacherAsync(id, trackChanges: false);
-            return Ok(teacher);
+
+            var response = new ResponseBase<TeacherDTO>
+            {
+                Data = teacher,
+                Message = ResponseMessage.GetClassSuccess,
+            };
+
+            return Ok(response);
         }
 
         [HttpGet("collection/({ids})", Name = "TeacherCollection")]
         public async Task<IActionResult> GetTeacherCollection([ModelBinder(BinderType = typeof(ArrayModelBinder))] IEnumerable<Guid> ids)
         {
-            var teacher = await _service.TeacherService.GetByIdsAsync(ids, trackChanges: false);
-            return Ok(teacher);
+            var teachers = await _service.TeacherService.GetByIdsAsync(ids, trackChanges: false);
+
+            var response = new ResponseBase<IEnumerable<TeacherDTO?>?>
+            {
+                Data = teachers,
+                Message = ResponseMessage.GetClassSuccess,
+            };
+
+            return Ok(teachers);
         }
 
         [HttpPost("collection")]
@@ -76,7 +99,7 @@ namespace API.Presentation.Controllers
 
         [HttpDelete("collection/({ids})")]
 
-        public async Task<IActionResult> DeleteTeacherCollection(IEnumerable<Guid> ids)
+        public async Task<IActionResult> DeleteTeacherCollection([ModelBinder(BinderType = typeof(ArrayModelBinder))] IEnumerable<Guid> ids)
         {
             await _service.TeacherService.DeleteTeacherCollectionAsync(ids, trackChanges: false);
             return NoContent();

@@ -1,4 +1,5 @@
 ﻿using Entities.Common;
+using Entities.DAOs;
 
 namespace Entities.DTOs.CRUD
 {
@@ -10,6 +11,7 @@ namespace Entities.DTOs.CRUD
         int StartYear,
         int EndYear,
         int PeriodCount,
+        TeacherDTO HomeroomTeacher,
         DateTime CreateAt,
         DateTime UpdateAt
     );

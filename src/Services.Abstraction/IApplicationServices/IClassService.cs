@@ -5,9 +5,11 @@ namespace Services.Abstraction.IApplicationServices
 {
     public interface IClassService
     {
-        Task<(IEnumerable<ClassDTO> classes, MetaData metaData)> GetAllClassesAsync(ClassParameters classParameters, bool trackChanges);
+        Task<(IEnumerable<ClassDTO> classes, MetaData metaData)> GetAllClassesAsync(ClassParameters classParameters, bool trackChanges, bool isInclude);
 
-        Task<(IEnumerable<ClassYearDTO> classes, MetaData metaData)> GetYearsAsync(ClassParameters classParameters, bool trackChanges);
+        Task<(IEnumerable<ClassToHomeroomAssignmentDTO> classDTOForHomeroomAssignment, MetaData metaData)> GetAllHomeroomAssignment(ClassParameters classParameters, bool trackChanges, bool isInclude);
+
+        Task<(IEnumerable<ClassYearDTO> classes, MetaData metaData)> GetYearsAsync(ClassParameters classParameters, bool trackChanges, bool isInclude);
 
         Task<ClassDTO?> GetClassAsync(Guid classId, bool trackChanges);
 
@@ -18,6 +20,8 @@ namespace Services.Abstraction.IApplicationServices
         Task<ClassDTO> CreateClassAsync(ClassForCreationDTO klass);
 
         Task UpdateClassAsync(Guid classId, ClassForUpdateDTO classForUpdate, bool trackChanges);
+
+        Task UpdateClassToHomeroomAssignmentAsync(Guid classId, ClassToHomeroomAssignmentForUpdateDTO classToHomeroomAssignmentUpdate, bool trackChanges);
 
         Task DeleteClassAsync(Guid classId, bool trackChanges);
 

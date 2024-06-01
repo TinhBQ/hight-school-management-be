@@ -5,5 +5,7 @@
         public TeacherParameters() => OrderBy = "name";
 
         public string? SearchTerm { get; set; }
+
+        public bool? IsAssignedHomeroom { get; set; }
     }
 }

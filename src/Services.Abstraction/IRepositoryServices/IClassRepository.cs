@@ -5,7 +5,7 @@ namespace Services.Abstraction.IRepositoryServices
 {
     public interface IClassRepository
     {
-        Task<PagedList<Class>> GetAllClassWithPagedList(ClassParameters classParameters, bool trackChanges);
+        Task<PagedList<Class>> GetAllClassWithPagedList(ClassParameters classParameters, bool trackChanges, bool isInclude);
 
         Task<IEnumerable<Class>> GetClasses(bool trackChanges);
 
