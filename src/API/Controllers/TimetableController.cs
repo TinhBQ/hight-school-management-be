@@ -10,9 +10,9 @@ namespace API.Controllers
 {
     [Route("api/timetables")]
     [ApiController]
-    public class TimetableController(ITimetableService timetableService, HsmsDbContext context) : ControllerBase
+    public class TimetableController(ITimetableServiceTemp timetableService, HsmsDbContext context) : ControllerBase
     {
-        private readonly ITimetableService _timetableService = timetableService;
+        private readonly ITimetableServiceTemp _timetableService = timetableService;
         private readonly HsmsDbContext _context = context;
 
         [HttpGet("test")]

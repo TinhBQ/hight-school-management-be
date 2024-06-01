@@ -9,7 +9,7 @@ using Services.Implementation.Extensions;
 
 namespace Services.Implementation
 {
-    public class TimetableService(HsmsDbContext context, IMapper mapper) : ITimetableService
+    public class TimetableServiceTemp(HsmsDbContext context, IMapper mapper) : ITimetableServiceTemp
     {
         private readonly HsmsDbContext _context = context;
         private readonly IMapper _mapper = mapper;

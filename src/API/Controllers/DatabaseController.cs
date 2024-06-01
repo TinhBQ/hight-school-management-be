@@ -6,22 +6,29 @@ namespace API.Controllers
     [Route("api/database")]
     [ApiController]
     public class DatabaseController(
-        IAssignmentServiceTemp assignmentService)
+        IDatabaseService databaseService)
         : Controller
     {
-        private readonly IAssignmentServiceTemp _assignmentService = assignmentService;
+        private readonly IDatabaseService _databaseService = databaseService;
 
         [HttpGet("assignments/creation")]
         public IActionResult CreateAssignment()
         {
-            _assignmentService.Create();
+            _databaseService.CreateAssignments();
             return Ok();
         }
 
         [HttpDelete("assignments/deletion")]
         public IActionResult DeteleAssignment()
         {
-            _assignmentService.Delete();
+            _databaseService.CreateAssignments();
+            return Ok();
+        }
+
+        [HttpPost("teachers")]
+        public IActionResult UpdateHomeroomTeacher()
+        {
+            _databaseService.UpdateHomeroomTeacher();
             return Ok();
         }
     }

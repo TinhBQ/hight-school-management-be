@@ -1,0 +1,67 @@
+10B1, Diễm, NN, 52, CheckH05
+10B7, Diễm, NN, 52, CheckH05
+11A2, Hòa, TOAN, 7, CheckH05
+11A6, Hòa, TOAN, 7, CheckH05
+10B3, Hương, DIA, 25, CheckH05
+10B3, Hương, DIA, 41, CheckH05
+12C5, Hương, DIA, 25, CheckH05
+12C6, Hương, DIA, 41, CheckH05
+10B7, Tg.Linh, SU, 3, CheckH05
+12C3, Tg.Linh, SU, 3, CheckH05
+10B1, My, TOAN, 5, CheckH05
+10B5, My, TOAN, 5, CheckH05
+12C1, Nam, VAN, 4, CheckH05
+12C5, Nam, VAN, 4, CheckH05
+12C7, Nam, VAN, 4, CheckH05
+10B5, Ngọc, CN, 43, CheckH05
+10B8, Ngọc, LY, 43, CheckH05
+11A2, Nhi, TIN, 37, CheckH05
+11A9, Nhi, TIN, 37, CheckH05
+12C1, Nhi, TIN, 21, CheckH05
+12C6, Nhi, TIN, 21, CheckH05
+10B3, Oanh, NN, 42, CheckH05
+10B3, Oanh, NN, 31, CheckH05
+12C1, Oanh, NN, 42, CheckH05
+12C1, Oanh, NN, 31, CheckH05
+11A4, Thẩm, VAN, 29, CheckH05
+11A4, Thẩm, VAN, 26, CheckH05
+11A9, Thẩm, VAN, 29, CheckH05
+11A9, Thẩm, VAN, 26, CheckH05
+11A6, Thọ, KT&PL, 48, CheckH05
+11A6, Thọ, KT&PL, 9, CheckH05
+11A8, Thọ, KT&PL, 9, CheckH05
+11A8, Thọ, KT&PL, 48, CheckH05
+12C3, Thoa, NN, 12, CheckH05
+12C3, Thoa, NN, 52, CheckH05
+12C5, Thoa, NN, 12, CheckH05
+12C5, Thoa, NN, 52, CheckH05
+11A4, Thúy, SU, 37, CheckH05
+11A6, Thúy, SU, 37, CheckH05
+11A6, Thùy, VAN, 36, CheckH05
+11A8, Thùy, VAN, 36, CheckH05
+10B7, Trường, TOAN, 32, CheckH05
+12C3, Trường, TOAN, 32, CheckH05
+10B1, Trinh, HOA, 12, CheckH09
+10B1, Trinh, HOA, 13, CheckH09
+10B1, Phương(T), TIN, 22, CheckH09
+10B1, Phương(T), TIN, 24, CheckH09
+10B1, Lợi, LY, 41, CheckH09
+10B1, Lợi, LY, 42, CheckH09
+10B3, Tức, SU, 13, CheckH09
+10B3, Tức, SU, 15, CheckH09
+10B5, Thúy, SU, 11, CheckH09
+10B5, Thúy, SU, 15, CheckH09
+10B5, Tám, VAN, 21, CheckH09
+10B5, Tám, VAN, 22, CheckH09
+10B7, Hoa(M), MT, 22, CheckH09
+10B7, Hoa(M), MT, 25, CheckH09
+10B8, Đệ, VAN, 22, CheckH09
+10B8, Đệ, VAN, 24, CheckH09
+12C1, Loan, HOA, 13, CheckH09
+12C1, Loan, HOA, 14, CheckH09
+Huyền, CheckH11
+Tr-Linh, CheckH11
+Ngọc, CheckH11
+Phương(L), CheckH11
+Toàn, CheckH11
+Trường, CheckH11

@@ -1,19 +1,7 @@
-﻿using Entities.Common;
-using Entities.DAOs;
-using Entities.RequestFeatures;
-
-namespace Services.Abstraction.IApplicationServices
+﻿namespace Services.Abstraction.IApplicationServices
 {
     public interface ITimetableService
     {
-        public Timetable Create(TimetableParameters tParameters, TimetableCreatorParameters tcParameters);
-
-        public Timetable CreateDemo(TimetableParameters tParameters, TimetableCreatorParameters tcParameters);
-
-        public Timetable Get(string id);
-
-        public void Update(Timetable timetable);
-
-        public void Delete(string id);
+        //public Task<>
     }
 }

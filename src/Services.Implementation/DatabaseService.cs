@@ -7,7 +7,7 @@ using System.Globalization;
 
 namespace Services.Implementation
 {
-    public class AssignmentServiceTemp(HsmsDbContext context) : IAssignmentServiceTemp
+    public class DatabaseService(HsmsDbContext context) : IDatabaseService
     {
         private readonly HsmsDbContext _context = context;
         private class AssignmentCSV()
@@ -17,7 +17,7 @@ namespace Services.Implementation
             public string Class { get; set; } = null!;
         };
 
-        public void Create()
+        public void CreateAssignments()
         {
             var path = "D:\\Workspace\\dotnet-asp\\10-be\\Assignment.csv";
             var reader = new StreamReader(path);
@@ -65,21 +65,19 @@ namespace Services.Implementation
             _context.SaveChanges();
         }
 
-        public void Delete()
+        public void DeleteAssignments()
         {
             var assignments = _context.Assignments.ToList();
             _context.RemoveRange(assignments);
             _context.SaveChanges();
         }
 
-        public void Get()
+        public void UpdateHomeroomTeacher()
         {
-            throw new NotImplementedException();
-        }
-
-        public void Update()
-        {
-            throw new NotImplementedException();
+            var classes = _context.Classes.Include(c => c.HomeroomTeacher).ToList();
+            foreach (var @class in classes)
+                @class.HomeroomTeacher.ClassId = @class.Id;
+            _context.SaveChanges();
         }
     }
 }
