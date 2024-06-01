@@ -31,12 +31,9 @@ namespace API
                 .AddJsonOptions(x =>
                 x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 
-
-
-
-
             builder.Services.AddScoped<ITimetableService, TimetableService>();
             builder.Services.AddScoped<IAssignmentServiceTemp, AssignmentServiceTemp>();
+            builder.Services.AddScoped<IAssignmentService, AssignmentService>();
 
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

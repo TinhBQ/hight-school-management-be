@@ -8,6 +8,8 @@ namespace Services.Abstraction.IApplicationServices
     {
         public Timetable Create(TimetableParameters tParameters, TimetableCreatorParameters tcParameters);
 
+        public Timetable CreateDemo(TimetableParameters tParameters, TimetableCreatorParameters tcParameters);
+
         public Timetable Get(string id);
 
         public void Update(Timetable timetable);

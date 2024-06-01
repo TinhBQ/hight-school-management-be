@@ -3,6 +3,7 @@
 namespace Entities.DTOs.CRUD
 {
     public record AssignmentForUpdateDTO(
+        Guid Id,
         int PeriodCount,
         ESchoolShift SchoolShift,
         int Semester,

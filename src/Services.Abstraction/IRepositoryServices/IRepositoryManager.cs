@@ -2,6 +2,8 @@
 {
     public interface IRepositoryManager
     {
+        IAssignmentRepository AssignmentRepository { get; }
+
         IClassRepository ClassRepository { get; }
 
         ISubjectRepository SubjectRepository { get; }

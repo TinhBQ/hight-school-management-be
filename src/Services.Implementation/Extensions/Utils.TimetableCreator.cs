@@ -227,9 +227,6 @@ namespace Services.Implementation.Extensions
                 for (var j = 0; j < timetableUnits.Count; j++)
                     timetableUnits[j].StartAt = startAts[j];
             }
-
-            src.ToCsv();
-            src.TimetableFlag.ToCsv(src.Classes);
         }
 
         #region Crossover Methods
@@ -286,7 +283,8 @@ namespace Services.Implementation.Extensions
                     endIndex = startIndex + parents[0].Classes.First(c => c.Name == className).PeriodCount - 1;
                     break;
                 case EChromosomeType.TeacherChromosome:
-                    break;
+                    throw new NotImplementedException();
+                // break;
                 default:
                     throw new NotImplementedException();
             }
@@ -311,10 +309,74 @@ namespace Services.Implementation.Extensions
             return children;
         }
 
-        private static void Swap(TimetableUnitTCDTO a, TimetableUnitTCDTO b)
+        #endregion
+
+        #region Mutation
+
+        private static void Mutate(this List<TimetableIndividual> individuals, EChromosomeType type, float mutationRate)
         {
-            (a.StartAt, b.StartAt) = (b.StartAt, a.StartAt);
+            for (var i = 0; i < individuals.Count; i++)
+            {
+                if (rand.Next(0, 100) > mutationRate * 100)
+                    continue;
+
+                var className = "";
+                var teacherName = "";
+                List<int> randNumList = null!;
+                List<TimetableUnitTCDTO> timetableUnits = null!;
+
+                switch (type)
+                {
+                    case EChromosomeType.ClassChromosome:
+                        className = individuals[i].Classes[rand.Next(0, individuals[i].Classes.Count)].Name;
+                        timetableUnits = individuals[i].TimetableUnits
+                            .Where(u => u.ClassName == className && u.Priority != EPriority.Fixed).ToList();
+                        randNumList = Enumerable.Range(0, timetableUnits.Count).Shuffle().ToList();
+                        if (timetableUnits[randNumList[0]].Priority != EPriority.Double)
+                            Swap(timetableUnits[randNumList[0]], timetableUnits[randNumList[1]]);
+                        else
+                        {
+                            var doublePeriods = new List<TimetableUnitTCDTO>()
+                            {
+                                timetableUnits[randNumList[0]],
+                                timetableUnits.First(
+                                    u => u.SubjectName == timetableUnits[randNumList[0]].SubjectName &&
+                                         u.Priority == timetableUnits[randNumList[0]].Priority)
+                            };
+                            randNumList.Remove(timetableUnits.IndexOf(doublePeriods[0]));
+                            randNumList.Remove(timetableUnits.IndexOf(doublePeriods[1]));
+
+                            doublePeriods = [.. doublePeriods.OrderBy(p => p.StartAt)];
+
+                            var consecs = new List<(int, int)>();
+                            randNumList.Sort();
+                            for (var index = 0; index < randNumList.Count - 1; index++)
+                                if (randNumList[index + 1] - randNumList[index] == 1)
+                                    consecs.Add((randNumList[index], randNumList[index + 1]));
+
+                            var randConsecIndex = consecs.IndexOf(consecs.Shuffle().First());
+
+                            Swap(doublePeriods[0], timetableUnits[randConsecIndex]);
+                            Swap(doublePeriods[1], timetableUnits[randConsecIndex + 1]);
+                        }
+                        //for (var j = 0; j < randNumList.Count - rand.Next(1, randNumList.Count - 1); j++)
+                        //    Swap(timetableUnits[randNumList[j]], timetableUnits[randNumList[j + 1]]);
+                        break;
+                    case EChromosomeType.TeacherChromosome:
+                        teacherName = individuals[i].Teachers[rand.Next(0, individuals[i].Teachers.Count)].ShortName;
+                        timetableUnits = individuals[i].TimetableUnits
+                            .Where(u => u.TeacherName == teacherName && u.Priority != EPriority.Fixed).ToList();
+                        randNumList = Enumerable.Range(0, timetableUnits.Count).Shuffle().ToList();
+
+                        for (var j = 0; j < randNumList.Count - rand.Next(1, randNumList.Count - 1); j++)
+                            Swap(timetableUnits[randNumList[j]], timetableUnits[randNumList[j + 1]]);
+                        break;
+                }
+
+
+            }
         }
+
         #endregion
 
         #region Enhance Solution
@@ -387,58 +449,17 @@ namespace Services.Implementation.Extensions
 
         #endregion
 
-        #region Mutation
-
-        private static void Mutate(this List<TimetableIndividual> individuals, EChromosomeType type, float mutationRate)
-        {
-            for (var i = 0; i < individuals.Count; i++)
-            {
-                if (rand.Next(0, 100) > mutationRate * 100)
-                    continue;
-
-                var className = "";
-                var teacherName = "";
-                List<int> randNumList = null!;
-                List<TimetableUnitTCDTO> timetableUnits = null!;
-
-                switch (type)
-                {
-                    case EChromosomeType.ClassChromosome:
-                        className = individuals[i].Classes[rand.Next(0, individuals[i].Classes.Count)].Name;
-                        timetableUnits = individuals[i].TimetableUnits
-                            .Where(u => u.ClassName == className && u.Priority != EPriority.Fixed).ToList();
-                        randNumList = Enumerable.Range(0, timetableUnits.Count).Shuffle().ToList();
-                        Swap(timetableUnits[randNumList[0]], timetableUnits[randNumList[1]]);
-                        //for (var j = 0; j < randNumList.Count - rand.Next(1, randNumList.Count - 1); j++)
-                        //    Swap(timetableUnits[randNumList[j]], timetableUnits[randNumList[j + 1]]);
-                        break;
-                    case EChromosomeType.TeacherChromosome:
-                        teacherName = individuals[i].Teachers[rand.Next(0, individuals[i].Teachers.Count)].ShortName;
-                        timetableUnits = individuals[i].TimetableUnits
-                            .Where(u => u.TeacherName == teacherName && u.Priority != EPriority.Fixed).ToList();
-                        randNumList = Enumerable.Range(0, timetableUnits.Count).Shuffle().ToList();
-
-                        for (var j = 0; j < randNumList.Count - rand.Next(1, randNumList.Count - 1); j++)
-                            Swap(timetableUnits[randNumList[j]], timetableUnits[randNumList[j + 1]]);
-                        break;
-                }
-
-
-            }
-        }
-
-        #endregion
-
         #region Fitness Function
         internal static void CalculateAdaptability(this TimetableIndividual src, TimetableParameters parameters)
         {
+            src.Errors.Clear();
             src.Adaptability = (
                   src.CheckH01()
                 + src.CheckH02()
                 + src.CheckH03(parameters)
                 + src.CheckH05()
                 + src.CheckH06(parameters)
-                + src.CheckH09(parameters)
+                + src.CheckH09()
                 + src.CheckH11()
                 ) * 1000;
         }
@@ -449,8 +470,9 @@ namespace Services.Implementation.Extensions
             for (var i = 0; i < src.Classes.Count; i++)
             {
                 var timetableUnits = src.TimetableUnits.Where(u => u.ClassName == src.Classes[i].Name).ToList();
-                var uniqueUnitCount = timetableUnits.Select(u => u.StartAt).Distinct().Count();
-                count += (timetableUnits.Count - uniqueUnitCount);
+                for (var j = 0; j < timetableUnits.Count; j++)
+                    if (timetableUnits.Count(u => u.StartAt == timetableUnits[j].StartAt) > 1)
+                        src.Errors.GetErrorDescription(timetableUnits[j], "CheckH01");
             }
             return count * 2;
         }
@@ -460,7 +482,11 @@ namespace Services.Implementation.Extensions
             var count = 0;
             for (var i = 0; i < src.TimetableUnits.Count; i++)
                 if (src.TimetableUnits[i].StartAt == 0)
+                {
+                    src.Errors.GetErrorDescription(src.TimetableUnits[i], "CheckH02");
                     count++;
+                }
+
             return count;
         }
 
@@ -472,7 +498,10 @@ namespace Services.Implementation.Extensions
             for (var i = 0; i < fixedUnits.Count; i++)
                 if (!parameters.FixedTimetableUnits
                     .Any(u => u.AssignmentId == fixedUnits[i].AssignmentId && u.StartAt == fixedUnits[i].StartAt))
+                {
+                    src.Errors.GetErrorDescription(fixedUnits[i], "CheckH03");
                     count++;
+                }
             return count;
         }
 
@@ -484,8 +513,13 @@ namespace Services.Implementation.Extensions
             for (var i = 0; i < src.Teachers.Count; i++)
             {
                 var timetableUnits = src.TimetableUnits.Where(u => u.TeacherName == src.Teachers[i].ShortName).ToList();
-                var duplicatedUnitCount = timetableUnits.Select(u => u.StartAt).Distinct().Count();
-                count += (timetableUnits.Count - duplicatedUnitCount);
+
+                for (var j = 0; j < timetableUnits.Count; j++)
+                    if (timetableUnits.Count(u => u.StartAt == timetableUnits[j].StartAt) > 1)
+                    {
+                        src.Errors.GetErrorDescription(timetableUnits[j], "CheckH05");
+                        count++;
+                    }
             }
             return count;
         }
@@ -495,23 +529,20 @@ namespace Services.Implementation.Extensions
             var count = 0;
             for (var classIndex = 0; classIndex < src.Classes.Count; classIndex++)
             {
-                var doublePeriodUnits = new List<TimetableUnitTCDTO>();
+                var classTimetableUnits = src.TimetableUnits.Where(u => u.ClassName == src.Classes[classIndex].Name).ToList();
                 for (var subjectIndex = 0; subjectIndex < parameters.DoublePeriodSubjects.Count; subjectIndex++)
                 {
-                    var result = false;
-                    var timetableUnits = src.TimetableUnits
-                        .Where(u => u.ClassName == src.Classes[classIndex].Name &&
-                                    u.SubjectName == parameters.DoublePeriodSubjects[subjectIndex].Name)
+                    var doublePeriodUnits = classTimetableUnits
+                        .Where(u => u.SubjectName == parameters.DoublePeriodSubjects[subjectIndex].ShortName &&
+                                    u.Priority == EPriority.Double)
                         .OrderBy(u => u.StartAt)
                         .ToList();
-                    doublePeriodUnits.AddRange(timetableUnits);
-                    for (var i = 0; i < timetableUnits.Count - 1; i++)
-                        if (timetableUnits[i].StartAt == timetableUnits[i].StartAt - 1)
-                        {
-                            result = true;
-                            break;
-                        }
-                    count += result ? 0 : 1;
+                    if (doublePeriodUnits[0].StartAt != doublePeriodUnits[1].StartAt - 1)
+                    {
+                        src.Errors.GetErrorDescription(doublePeriodUnits[0], "CheckH06");
+                        src.Errors.GetErrorDescription(doublePeriodUnits[1], "CheckH06");
+                        count += 2;
+                    }
                 }
             }
             return count;
@@ -521,26 +552,36 @@ namespace Services.Implementation.Extensions
 
         private static void CheckH08(this TimetableIndividual src) { }
 
-        private static int CheckH09(this TimetableIndividual src, TimetableParameters parameters)
+        private static int CheckH09(this TimetableIndividual src)
         {
             var count = 0;
             for (var classIndex = 0; classIndex < src.Classes.Count; classIndex++)
             {
-                var doublePeriodUnits = new List<TimetableUnitTCDTO>();
-                for (var subjectIndex = 0; subjectIndex < parameters.DoublePeriodSubjects.Count; subjectIndex++)
-                    doublePeriodUnits.AddRange([.. src.TimetableUnits
-                        .Where(u => u.ClassName == src.Classes[classIndex].Name &&
-                                    u.SubjectName == parameters.DoublePeriodSubjects[subjectIndex].Name)
-                        .OrderBy(u => u.StartAt)]);
-
-                var singlePeriodUnits = src.TimetableUnits
-                    .Where(u => u.ClassName == src.Classes[classIndex].Name && !doublePeriodUnits.Contains(u))
+                var classSingleTimetableUnits = src.TimetableUnits
+                    .Where(u => u.ClassName == src.Classes[classIndex].Name && u.Priority != EPriority.Double)
                     .OrderBy(u => u.StartAt)
                     .ToList();
-                for (var i = 0; i < singlePeriodUnits.Count - 1; i++)
-                    if (singlePeriodUnits[i].StartAt == singlePeriodUnits[i + 1].StartAt - 1 &&
-                        singlePeriodUnits[i].SubjectName == singlePeriodUnits[i + 1].SubjectName)
-                        count++;
+                for (var day = 2; day <= 7; day++)
+                {
+                    var singlePeriodUnits = classSingleTimetableUnits
+                        .Where(u => u.StartAt >= (day - 2) * 10 + 1 &&
+                                    u.StartAt <= (day - 2) * 10 + 5 &&
+                                    u.Priority != EPriority.Double)
+                        .ToList();
+                    var doublePeriodUnits = classSingleTimetableUnits
+                        .Where(u => u.StartAt >= (day - 2) * 10 + 1 &&
+                                    u.StartAt <= (day - 2) * 10 + 5 &&
+                                    u.Priority == EPriority.Double)
+                        .ToList();
+                    for (var i = 0; i < singlePeriodUnits.Count; i++)
+                        if (singlePeriodUnits
+                            .Count(u => u.SubjectName == singlePeriodUnits[i].SubjectName) > 1 ||
+                            doublePeriodUnits.Select(s => s.SubjectName).Contains(singlePeriodUnits[i].SubjectName))
+                        {
+                            src.Errors.GetErrorDescription(singlePeriodUnits[i], "CheckH09");
+                            count += 1;
+                        }
+                }
             }
             return count;
         }
@@ -556,12 +597,16 @@ namespace Services.Implementation.Extensions
                     .Where(u => u.TeacherName == src.Teachers[i].ShortName)
                     .OrderBy(u => u.StartAt)
                     .ToList();
-                var count2 = 7;
+                var dayCount = 7;
                 for (var j = 1; j < 61; j += 10)
                     if (timetableUnits.Any(u => u.StartAt >= j && u.StartAt <= j + 9))
-                        count2--;
-                if (count < 2)
+                        dayCount--;
+                if (dayCount < 2)
+                {
+                    src.Errors.Add($"{src.Teachers[i].ShortName}, CheckH11");
                     count++;
+                }
+
             }
             return count;
         }
@@ -571,11 +616,12 @@ namespace Services.Implementation.Extensions
         #region ExportData
         public static void ToCsv(this TimetableIndividual src)
         {
-            var path = "D:\\Workspace\\dotnet-asp\\10-be\\Timetable.csv";
+            var path = "C:\\Users\\ponpy\\source\\repos\\KLTN\\10-be\\Timetable.csv";
+            var errorPath = "C:\\Users\\ponpy\\source\\repos\\KLTN\\10-be\\TimetableError.txt";
             var file = new StreamWriter(path);
             var columnCount = src.TimetableFlag.GetLength(0);
             var rowCount = src.TimetableFlag.GetLength(1);
-            file.Write("Tiết/Lớp,");
+            file.Write("Tiết,");
             for (var i = 0; i < src.Classes.Count; i++)
             {
                 file.Write("{0}", src.Classes[i].Name);
@@ -595,6 +641,11 @@ namespace Services.Implementation.Extensions
                 }
                 file.WriteLine();
             }
+            file.Close();
+
+            file = new StreamWriter(errorPath);
+            for (var i = 0; i < src.Errors.Count; i++)
+                file.WriteLine(src.Errors[i]);
             file.Close();
         }
 
@@ -626,5 +677,15 @@ namespace Services.Implementation.Extensions
             file.Close();
         }
         #endregion
+
+        private static void Swap(TimetableUnitTCDTO a, TimetableUnitTCDTO b)
+        {
+            (a.StartAt, b.StartAt) = (b.StartAt, a.StartAt);
+        }
+
+        private static void GetErrorDescription(this List<string> src, TimetableUnitTCDTO unit, string code)
+        {
+            src.Add($"{unit.ClassName}, {unit.TeacherName}, {unit.SubjectName}, {unit.StartAt}, {code}");
+        }
     }
 }
