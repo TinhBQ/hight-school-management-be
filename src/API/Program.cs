@@ -31,7 +31,7 @@ namespace API
                 .AddJsonOptions(x =>
                 x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 
-            builder.Services.AddScoped<ITimetableServiceTemp, TimetableServiceTemp>();
+            builder.Services.AddScoped<ITimetableService, TimetableService>();
             builder.Services.AddScoped<IDatabaseService, DatabaseService>();
             builder.Services.AddScoped<IAssignmentService, AssignmentService>();
 

@@ -1,4 +1,6 @@
-﻿using Entities.DAOs;
+﻿using Entities.Common;
+using Entities.DAOs;
+using Entities.DTOs.TimetableCreation;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -58,6 +60,11 @@ namespace Services.Implementation.Extensions
             }
         }
 
+        public static void Swap(TimetableUnitTCDTO a, TimetableUnitTCDTO b)
+        {
+            (a.StartAt, b.StartAt) = (b.StartAt, a.StartAt);
+        }
+
         public static IEnumerable<T> Shuffle<T>(this IEnumerable<T> source)
         {
             T[] elements = source.ToArray();
@@ -67,6 +74,69 @@ namespace Services.Implementation.Extensions
                 yield return elements[swapIndex];
                 elements[swapIndex] = elements[i];
             }
+        }
+
+        public static void ToCsv(this TimetableIndividual src)
+        {
+            var path = "C:\\Users\\ponpy\\source\\repos\\KLTN\\10-be\\Timetable.csv";
+            var errorPath = "C:\\Users\\ponpy\\source\\repos\\KLTN\\10-be\\TimetableError.txt";
+            var file = new StreamWriter(path);
+            var columnCount = src.TimetableFlag.GetLength(0);
+            var rowCount = src.TimetableFlag.GetLength(1);
+            file.Write("Tiết,");
+            for (var i = 0; i < src.Classes.Count; i++)
+            {
+                file.Write("{0}", src.Classes[i].Name);
+                file.Write(",");
+            }
+            file.WriteLine();
+
+            for (int row = 1; row < rowCount; row++)
+            {
+                file.Write("{0}", row);
+                file.Write(",");
+                for (int column = 0; column < columnCount; column++)
+                {
+                    var unit = src.TimetableUnits.FirstOrDefault(u => u.StartAt == row && u.ClassName == src.Classes[column].Name);
+                    file.Write($"{unit?.SubjectName} - {unit?.TeacherName}");
+                    file.Write(",");
+                }
+                file.WriteLine();
+            }
+            file.Close();
+
+            file = new StreamWriter(errorPath);
+            for (var i = 0; i < src.Errors.Count; i++)
+                file.WriteLine(src.Errors[i]);
+            file.Close();
+        }
+
+        public static void ToCsv(this ETimetableFlag[,] timetableFlag, List<ClassTCDTO> classes)
+        {
+            var path = "C:\\Users\\ponpy\\source\\repos\\KLTN\\10-be\\TimetableFlag.csv";
+            var file = new StreamWriter(path);
+            var columnCount = timetableFlag.GetLength(0);
+            var rowCount = timetableFlag.GetLength(1);
+            file.Write("Tiết/Lớp,");
+            for (var i = 0; i < classes.Count; i++)
+            {
+                file.Write("{0}", classes[i].Name);
+                file.Write(",");
+            }
+            file.WriteLine();
+
+            for (int row = 1; row < rowCount; row++)
+            {
+                file.Write("{0}", row);
+                file.Write(",");
+                for (int column = 0; column < columnCount; column++)
+                {
+                    file.Write("{0}", timetableFlag[column, row]);
+                    file.Write(",");
+                }
+                file.WriteLine();
+            }
+            file.Close();
         }
     }
 }

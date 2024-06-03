@@ -13,6 +13,7 @@ namespace Entities.DTOs.TimetableCreation
         public List<ClassTCDTO> Classes { get; init; } = classes;
         public List<TeacherTCDTO> Teachers { get; init; } = teachers;
         public List<string> Errors { get; set; } = [];
+        public List<string> Warning { get; set; } = [];
         public int Adaptability { get; set; }
         public int Age { get; set; }
         public int Longevity { get; set; }
