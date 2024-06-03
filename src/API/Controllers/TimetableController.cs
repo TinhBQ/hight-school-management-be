@@ -102,7 +102,7 @@ namespace API.Controllers
             return Ok(timetable);
         }
 
-        [HttpPost]
+        [HttpPatch]
         public IActionResult UpdateTimetable(TimetableDTO timetable)
         {
             _timetableService.Update(timetable);
