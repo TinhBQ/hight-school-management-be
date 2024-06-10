@@ -8,6 +8,11 @@ using Entities.RequestFeatures;
 using Microsoft.EntityFrameworkCore;
 using Services.Abstraction.IApplicationServices;
 using Services.Implementation.Extensions;
+using System.Diagnostics;
+
+/* NOTE
+ * dùng lại những hàm check cũ, rồi thêm phương thức lấy những tiết bị lỗi.
+ */
 
 namespace Services.Implementation
 {
@@ -17,11 +22,8 @@ namespace Services.Implementation
         private readonly IMapper _mapper = mapper;
         private readonly Random _random = new();
 
-        private readonly int NUMBER_OF_GENERATIONS = 1;
-        private readonly int ENVIRONMENTAL_CAPACITY = 200;
-        private readonly int INITIAL_NUMBER_OF_INDIVIDUALS = 100;
-        private readonly float BIRTH_RATE = 0.5f;
-        private readonly float CROSSOVER_RATE = 0.5f;
+        private readonly int NUMBER_OF_GENERATIONS = int.MaxValue;
+        private readonly int INITIAL_NUMBER_OF_INDIVIDUALS = 1000;
         private readonly float MUTATION_RATE = 0.1f;
         private readonly ESelectionMethod SELECTION_METHOD = ESelectionMethod.RankSelection;
         private readonly ECrossoverMethod CROSSOVER_METHOD = ECrossoverMethod.SinglePoint;
@@ -30,6 +32,10 @@ namespace Services.Implementation
 
         public TimetableDTO Generate(TimetableParameters parameters)
         {
+            Stopwatch sw = Stopwatch.StartNew();
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
+            Console.CursorVisible = false;
+
             var (classes, teachers, subjects, assignments, timetableFlags) = GetData(parameters);
 
             // Tạo cá thể gốc
@@ -38,7 +44,7 @@ namespace Services.Implementation
 
             // Tạo quần thể ban đầu và tính toán độ thích nghi
             var timetablePopulation = new List<TimetableIndividual>();
-            for (var count = 0; count < INITIAL_NUMBER_OF_INDIVIDUALS; count++)
+            for (var i = 0; i < INITIAL_NUMBER_OF_INDIVIDUALS; i++)
             {
                 var individual = Clone(root);
                 RandomlyAssign(individual, parameters);
@@ -51,7 +57,7 @@ namespace Services.Implementation
             // Tạo vòng lặp cho quá trình tiến hóa của quần thể
             for (var step = 1; step <= NUMBER_OF_GENERATIONS; step++)
             {
-                if (timetablePopulation.Min(i => i.Adaptability) < 1000)
+                if (timetablePopulation.First().Adaptability < 1000)
                     break;
 
                 // Lai tạo
@@ -60,7 +66,7 @@ namespace Services.Implementation
                 var tournamentList = new List<TimetableIndividual>();
 
                 for (var i = 0; i < timetablePopulation.Count; i++)
-                    tournamentList.Add(timetablePopulation.Shuffle().Take(2).OrderBy(i => i.Adaptability).First());
+                    tournamentList.Add(timetablePopulation.Shuffle().Take(10).OrderBy(i => i.Adaptability).First());
 
                 for (var k = 0; k < tournamentList.Count - 1; k += 2)
                 {
@@ -69,21 +75,28 @@ namespace Services.Implementation
 
                     var children = Crossover(root, [parent1, parent2], parameters);
 
-                    //for (var j = 0; j < children.Count; j++)
-                    //    children[j].TabuSearch(parameters);
-
                     timetableChildren.AddRange(children);
                 }
 
                 // Chọn lọc
                 timetablePopulation.AddRange(timetableChildren);
-                timetablePopulation = timetablePopulation.OrderBy(i => i.Adaptability).Take(100).ToList();
+                // TabuSearch(timetablePopulation[0], parameters);
+                timetablePopulation = timetablePopulation.Where(u => u.Age < u.Longevity).OrderBy(i => i.Adaptability).Take(100).ToList();
 
+                var best = timetablePopulation.First();
+                best.ConstraintErrors = [.. best.ConstraintErrors.OrderBy(e => e.Code)];
+
+                Console.SetCursorPosition(0, 0);
+                Console.Clear();
                 Console.WriteLine(
                     $"step {step}, " +
-                    $"best score {timetablePopulation.Min(i => i.Adaptability)}, " +
-                    $"worst score {timetablePopulation.Max(i => i.Adaptability)}, " +
-                    $"population {timetablePopulation.Count}");
+                    $"best score {best.Adaptability}\n" +
+                    $"errors: ");
+                foreach (var error in best.ConstraintErrors.Take(30))
+                    Console.WriteLine("  " + error.Description);
+                if (best.ConstraintErrors.Count > 30)
+                    Console.WriteLine("...");
+                Console.WriteLine("time: " + sw.Elapsed.ToString());
             }
 
             var timetableFirst = timetablePopulation.OrderBy(i => i.Adaptability).First();
@@ -103,17 +116,27 @@ namespace Services.Implementation
             _context.Add(timetableDb);
             _context.SaveChanges();
 
+            Console.WriteLine(sw.Elapsed.ToString());
+            sw.Stop();
+
             return result;
         }
 
-        public TimetableDTO Get(Guid id)
+        public TimetableDTO Get(Guid id, TimetableParameters parameters)
         {
-            var timetableDb = _context.Timetables.AsNoTracking().FirstOrDefault(t => t.Id == id)
+            var timetableDb = _context.Timetables
+                .Include(t => t.TimetableUnits)
+                .AsNoTracking()
+                .FirstOrDefault(t => t.Id == id)
                 ?? throw new Exception("Không tìm thấy thời khóa biểu");
+
+            var (classes, teachers, subjects, assignments, timetableFlags) = GetData(parameters);
+            var root = Clone(CreateRootIndividual(classes, teachers, assignments, timetableFlags, parameters));
+            root.TimetableUnits = _mapper.Map<TimetableDTO>(timetableDb).TimetableUnits;
+            CalculateAdaptability(root, parameters);
 
             return _mapper.Map<TimetableDTO>(timetableDb);
         }
-
         public TimetableDTO Check(TimetableDTO timetable)
         {
             throw new NotImplementedException();
@@ -365,38 +388,34 @@ namespace Services.Implementation
         #region Fitness Function
         private static void CalculateAdaptability(TimetableIndividual src, TimetableParameters parameters)
         {
-            src.Errors.Clear();
-            src.Adaptability = (
-                  CheckH01(src)
-                + CheckH02(src)
-                + CheckH03(src, parameters)
-                + CheckH05(src)
-                + CheckH06(src, parameters)
-                + CheckH09(src)
-                + CheckH11(src)
-                ) * 1000;
-        }
-
-        private static int CheckH01(TimetableIndividual src)
-        {
-            var count = 0;
-            for (var i = 0; i < src.Classes.Count; i++)
-            {
-                var timetableUnits = src.TimetableUnits.Where(u => u.ClassName == src.Classes[i].Name).ToList();
-                for (var j = 0; j < timetableUnits.Count; j++)
-                    if (timetableUnits.Count(u => u.StartAt == timetableUnits[j].StartAt) > 1)
-                        GetErrorDescription(src.Errors, timetableUnits[j], "CheckH01");
-            }
-            return count * 2;
+            src.TimetableUnits.ForEach(u => u.ConstraintErrors.Clear());
+            src.ConstraintErrors.Clear();
+            src.Adaptability =
+                  CheckH03(src, parameters) * 1000
+                + CheckH05(src) * 1000
+                + CheckH06(src, parameters) * 10000
+                + CheckH09(src) * 1000
+                + CheckH11(src) * 10000;
+            src.GetConstraintErrors();
         }
 
         private static int CheckH02(TimetableIndividual src)
         {
             var count = 0;
             for (var i = 0; i < src.TimetableUnits.Count; i++)
-                if (src.TimetableUnits[i].StartAt == 0)
+                if (src.TimetableUnits[i].StartAt <= 0)
                 {
-                    GetErrorDescription(src.Errors, src.TimetableUnits[i], "CheckH02");
+                    var errorMessage =
+                        $"Lớp {src.TimetableUnits[i].ClassName}: " +
+                        $"Môn {src.TimetableUnits[i].SubjectName} " +
+                        $"chưa được phân công";
+                    src.ConstraintErrors.Add(new()
+                    {
+                        Code = "H02",
+                        ClassName = src.TimetableUnits[i].ClassName,
+                        SubjectName = src.TimetableUnits[i].SubjectName,
+                        Description = errorMessage
+                    });
                     count++;
                 }
 
@@ -412,7 +431,18 @@ namespace Services.Implementation
                 if (!parameters.FixedTimetableUnits
                     .Any(u => u.AssignmentId == fixedUnits[i].AssignmentId && u.StartAt == fixedUnits[i].StartAt))
                 {
-                    GetErrorDescription(src.Errors, fixedUnits[i], "CheckH03");
+                    var errorMessage =
+                        $"Lớp {fixedUnits[i].ClassName}: " +
+                        $"Môn {fixedUnits[i].SubjectName} " +
+                        $"xếp không đúng vị trí được định sẵn";
+                    var error = new ConstraintError()
+                    {
+                        Code = "H03",
+                        ClassName = fixedUnits[i].ClassName,
+                        SubjectName = fixedUnits[i].SubjectName,
+                        Description = errorMessage
+                    };
+                    fixedUnits[i].ConstraintErrors.Add(error);
                     count++;
                 }
             return count;
@@ -424,11 +454,28 @@ namespace Services.Implementation
             for (var i = 0; i < src.Teachers.Count; i++)
             {
                 var timetableUnits = src.TimetableUnits.Where(u => u.TeacherName == src.Teachers[i].ShortName).ToList();
+                var errorMessage = "";
 
                 for (var j = 0; j < timetableUnits.Count; j++)
                     if (timetableUnits.Count(u => u.StartAt == timetableUnits[j].StartAt) > 1)
                     {
-                        GetErrorDescription(src.Errors, timetableUnits[j], "CheckH05");
+                        var units = timetableUnits
+                            .Where(u => u.StartAt == timetableUnits[j].StartAt)
+                            .OrderBy(u => u.SubjectName)
+                            .ToList();
+                        var (day, period) = GetDayAndPeriod(timetableUnits[j].StartAt);
+                        errorMessage =
+                            $"Giáo viên {timetableUnits[j].TeacherName}: " +
+                            $"dạy môn {string.Join(", ", units.Select(u => u.SubjectName))} " +
+                            $"cùng lúc tại tiết {period} vào thứ {day}";
+                        var error = new ConstraintError()
+                        {
+                            Code = "H05",
+                            TeacherName = timetableUnits[j].TeacherName,
+                            SubjectName = timetableUnits[j].SubjectName,
+                            Description = errorMessage
+                        };
+                        timetableUnits[j].ConstraintErrors.Add(error);
                         count++;
                     }
             }
@@ -450,8 +497,19 @@ namespace Services.Implementation
                         .ToList();
                     if (doublePeriodUnits[0].StartAt != doublePeriodUnits[1].StartAt - 1)
                     {
-                        GetErrorDescription(src.Errors, doublePeriodUnits[0], "CheckH06");
-                        GetErrorDescription(src.Errors, doublePeriodUnits[1], "CheckH06");
+                        var errorMessage =
+                            $"Lớp {doublePeriodUnits[0].ClassName}: " +
+                            $"Môn {doublePeriodUnits[0].SubjectName} " +
+                            $"chưa được phân công tiết đôi";
+                        var error = new ConstraintError()
+                        {
+                            Code = "H06",
+                            ClassName = doublePeriodUnits[0].ClassName,
+                            SubjectName = doublePeriodUnits[0].SubjectName,
+                            Description = errorMessage
+                        };
+                        doublePeriodUnits[0].ConstraintErrors.Add(error);
+                        doublePeriodUnits[1].ConstraintErrors.Add(error);
                         count += 2;
                     }
                 }
@@ -485,7 +543,18 @@ namespace Services.Implementation
                             .Count(u => u.SubjectName == singlePeriodUnits[i].SubjectName) > 1 ||
                             doublePeriodUnits.Select(s => s.SubjectName).Contains(singlePeriodUnits[i].SubjectName))
                         {
-                            GetErrorDescription(src.Errors, singlePeriodUnits[i], "CheckH09");
+                            var errorMessage =
+                            $"Lớp {singlePeriodUnits[i].ClassName}: " +
+                            $"Môn {singlePeriodUnits[i].SubjectName} " +
+                            $"chỉ được học một lần trong một buổi";
+                            var error = new ConstraintError()
+                            {
+                                Code = "H09",
+                                ClassName = singlePeriodUnits[i].ClassName,
+                                SubjectName = singlePeriodUnits[i].SubjectName,
+                                Description = errorMessage
+                            };
+                            singlePeriodUnits[i].ConstraintErrors.Add(error);
                             count += 1;
                         }
                 }
@@ -502,16 +571,45 @@ namespace Services.Implementation
                     .Where(u => u.TeacherName == src.Teachers[i].ShortName)
                     .OrderBy(u => u.StartAt)
                     .ToList();
+                //var sessionCount = 0;
+                //for (var j = 1; j < 61; j += 5)
+                //    if (timetableUnits.Any(u => u.StartAt >= j && u.StartAt <= j + 4))
+                //        sessionCount++;
+
+                //if (12 - sessionCount < 2)
+                //{
+                //    var errorMessage =
+                //        $"Giáo viên {src.Teachers[i].ShortName} " +
+                //        $"phải có tối thiểu 2 buổi nghỉ trong tuần";
+                //    var error = new ConstraintError()
+                //    {
+                //        Code = "H11",
+                //        TeacherName = src.Teachers[i].ShortName,
+                //        Description = errorMessage
+                //    };
+                //    src.ConstraintErrors.Add(error);
+                //    count++;
+                //}
+
                 var dayCount = 7;
                 for (var j = 1; j < 61; j += 10)
                     if (timetableUnits.Any(u => u.StartAt >= j && u.StartAt <= j + 9))
                         dayCount--;
+
                 if (dayCount < 2)
                 {
-                    src.Errors.Add($"{src.Teachers[i].ShortName}, CheckH11");
+                    var errorMessage =
+                        $"Giáo viên {src.Teachers[i].ShortName} " +
+                        $"phải có tối thiểu 1 ngày nghỉ trong tuần";
+                    var error = new ConstraintError()
+                    {
+                        Code = "H11",
+                        TeacherName = src.Teachers[i].ShortName,
+                        Description = errorMessage
+                    };
+                    src.ConstraintErrors.Add(error);
                     count++;
                 }
-
             }
             return count;
         }
@@ -667,12 +765,24 @@ namespace Services.Implementation
 
         #endregion
 
-        #region Utils
+        #region Enhance Solution
 
-        private static void GetErrorDescription(List<string> src, TimetableUnitTCDTO unit, string code)
+        /* Đừng có đổi 1 tiết 1 lần, đổi 1 mớ tiết 1 lần đi */
+        private List<TimetableIndividual> TabuSearch(TimetableIndividual src, TimetableParameters parameters, string code)
         {
-            src.Add($"{unit.ClassName}, {unit.TeacherName}, {unit.SubjectName}, {unit.StartAt}, {code}");
+            var solutions = new List<TimetableIndividual>();
+            switch (code)
+            {
+                case "H11":
+
+                    break;
+            }
+            return solutions;
         }
+
+        #endregion
+
+        #region Utils
 
         private static void SortChromosome(TimetableIndividual src, EChromosomeType type)
         {
@@ -699,6 +809,13 @@ namespace Services.Implementation
                 else
                     src.TimetableFlag[classIndex, src.TimetableUnits[i].StartAt] = ETimetableFlag.Filled;
             }
+        }
+
+        private static (int day, int period) GetDayAndPeriod(int startAt)
+        {
+            var day = startAt / 10 + 1;
+            var period = (startAt - 1) % 5 + 1;
+            return (day, period);
         }
 
         #endregion

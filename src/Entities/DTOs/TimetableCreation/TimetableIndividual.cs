@@ -12,11 +12,23 @@ namespace Entities.DTOs.TimetableCreation
         public List<TimetableUnitTCDTO> TimetableUnits { get; set; } = timetableUnits;
         public List<ClassTCDTO> Classes { get; init; } = classes;
         public List<TeacherTCDTO> Teachers { get; init; } = teachers;
-        public List<string> Errors { get; set; } = [];
-        public List<string> Warning { get; set; } = [];
+        public List<ConstraintError> ConstraintErrors { get; set; } = [];
         public int Adaptability { get; set; }
         public int Age { get; set; }
         public int Longevity { get; set; }
+
+        public void GetConstraintErrors()
+        {
+            if (TimetableUnits.Count == 0)
+                return;
+
+            foreach (var u in TimetableUnits)
+                ConstraintErrors.AddRange(u.ConstraintErrors);
+
+            ConstraintErrors = [.. ConstraintErrors
+                .DistinctBy(x => new { x.SubjectName, x.TeacherName, x.ClassName, x.Code })
+                .OrderBy(x => x.Age)];
+        }
     }
 
     public class TimetableRootIndividual(
@@ -33,5 +45,6 @@ namespace Entities.DTOs.TimetableCreation
         public new int Adaptability { get; init; }
         public new int Age { get; init; }
         public new int Longevity { get; init; }
+        public new List<ConstraintError> ConstraintErrors { get; init; } = [];
     }
 }

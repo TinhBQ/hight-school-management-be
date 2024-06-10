@@ -106,8 +106,11 @@ namespace Services.Implementation.Extensions
             file.Close();
 
             file = new StreamWriter(errorPath);
-            for (var i = 0; i < src.Errors.Count; i++)
-                file.WriteLine(src.Errors[i]);
+            for (var i = 0; i < src.ConstraintErrors.Count; i++)
+                if (src.ConstraintErrors[i].IsHardConstraint)
+                    file.WriteLine("Lỗi: " + src.ConstraintErrors[i].Description);
+                else
+                    file.WriteLine("Lưu ý: " + src.ConstraintErrors[i].Description);
             file.Close();
         }
 

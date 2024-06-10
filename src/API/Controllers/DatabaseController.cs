@@ -11,24 +11,10 @@ namespace API.Controllers
     {
         private readonly IDatabaseService _databaseService = databaseService;
 
-        [HttpGet("assignments/creation")]
-        public IActionResult CreateAssignment()
+        [HttpGet("data-initialization")]
+        public IActionResult InitData()
         {
-            _databaseService.CreateAssignments();
-            return Ok();
-        }
-
-        [HttpDelete("assignments/deletion")]
-        public IActionResult DeteleAssignment()
-        {
-            _databaseService.CreateAssignments();
-            return Ok();
-        }
-
-        [HttpPost("teachers")]
-        public IActionResult UpdateHomeroomTeacher()
-        {
-            _databaseService.UpdateHomeroomTeacher();
+            _databaseService.InitData();
             return Ok();
         }
     }
