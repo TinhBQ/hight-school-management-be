@@ -1,1 +1,52 @@
-Lỗi: Giáo viên Hương phải có tối thiểu 1 ngày nghỉ trong tuần
+10B3, Hương, DIA, 13, CheckH05
+10B3, Hương, DIA, 31, CheckH05
+12C3, Hương, DIA, 31, CheckH05
+12C5, Hương, DIA, 13, CheckH05
+12C6, Hương, DIA, 31, CheckH05
+10B1, Huyền, SINH, 22, CheckH05
+12C3, Huyền, SINH, 22, CheckH05
+10B1, My, TOAN, 32, CheckH05
+10B5, My, TOAN, 32, CheckH05
+12C1, Nam, VAN, 22, CheckH05
+12C5, Nam, VAN, 12, CheckH05
+12C7, Nam, VAN, 12, CheckH05
+12C7, Nam, VAN, 22, CheckH05
+10B5, Ngọc, CN, 23, CheckH05
+12C7, Ngọc, LY, 23, CheckH05
+10B5, Oanh, NN, 11, CheckH05
+12C1, Oanh, NN, 11, CheckH05
+10B1, Phương(T), TIN, 42, CheckH05
+10B8, Phương(T), TIN, 42, CheckH05
+12C7, Phương(T), TIN, 42, CheckH05
+12C3, Thoa, NN, 24, CheckH05
+12C5, Thoa, NN, 24, CheckH05
+11A6, Thùy, VAN, 9, CheckH05
+11A8, Thùy, VAN, 9, CheckH05
+12C1, Toàn, TOAN, 45, CheckH05
+12C6, Toàn, TOAN, 45, CheckH05
+10B1, Trinh, HOA, 11, CheckH05
+12C3, Trinh, HOA, 11, CheckH05
+10B3, Tức, SU, 12, CheckH09
+10B3, Tức, SU, 14, CheckH09
+10B5, Ngọc, LY, 22, CheckH09
+10B5, Ngọc, LY, 24, CheckH09
+10B7, Hoa(M), MT, 3, CheckH09
+10B7, Hoa(M), MT, 4, CheckH09
+10B7, Đệ, VAN, 11, CheckH09
+10B7, Đệ, VAN, 13, CheckH09
+10B7, Uyên, CN, 42, CheckH09
+10B7, Uyên, CN, 43, CheckH09
+12C3, Trinh, HOA, 11, CheckH09
+12C3, Trinh, HOA, 12, CheckH09
+12C3, Huyền, SINH, 21, CheckH09
+12C3, Huyền, SINH, 22, CheckH09
+12C5, Thúy, SU, 14, CheckH09
+12C5, Thúy, SU, 15, CheckH09
+12C7, Tân, TOAN, 41, CheckH09
+12C7, Tân, TOAN, 44, CheckH09
+Hương, CheckH11
+Nhân, CheckH11
+Nhi, CheckH11
+Phương(L), CheckH11
+Trường, CheckH11
+Xuân(S), CheckH11

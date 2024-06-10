@@ -3,7 +3,7 @@
 ## **1. Các ràng buộc cứng**
 
 ### __1.1. Ràng buộc đụng độ phân công (H1)*:__
-Các phân công của cùng một lớp thì không xếp vào cùng 1 vị trí tiết học của lớp đó.
+Trong một thời khóa biểu, các phân công không được xếp vào cùng một vị trí tiết học. Ràng buộc này có nghĩa là: Các phân công của một giáo viên thì không xếp vào cùng 1 vị trí tiết học, các phân công của cùng một lớp thì không xếp vào cùng 1 vị trí tiết học.
 
 ### __1.2. Ràng buộc tính đầy đủ của phân công (H2)*:__
 Tất cả các phân công phải được xếp vào thời khóa biểu.

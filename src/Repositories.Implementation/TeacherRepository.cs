@@ -21,12 +21,15 @@ namespace Persistence.Repositories
                 .ThenInclude(c => c.Subject)
                 .ToListAsync();
 
-            var count = await FindAll(trackChanges).CountAsync();
+            var count = await FindAll(trackChanges)
+                .Search(teacherParameters.SearchTerm ?? "")
+                .FilterTeachersWithIsAssignedHomeroom(teacherParameters.IsAssignedHomeroom)
+                .CountAsync();
 
             return new PagedList<Teacher>(teacheres, count, teacherParameters.PageNumber, teacherParameters.PageSize);
         }
 
-        public async Task<Teacher?> GetTeacherAsync(Guid TeacherId, bool trackChanges) =>
+        public async Task<Teacher?> GetTeacherAsync(Guid? TeacherId, bool trackChanges) =>
             await FindByCondition(c => c.Id.Equals(TeacherId), trackChanges)
             .SingleOrDefaultAsync();
 
