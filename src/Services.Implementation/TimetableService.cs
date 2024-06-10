@@ -616,12 +616,8 @@ namespace Services.Implementation.Extensions
         #region ExportData
         public static void ToCsv(this TimetableIndividual src)
         {
-            //var path = "C:\\Users\\ponpy\\source\\repos\\KLTN\\10-be\\Timetable.csv";
-            //var errorPath = "C:\\Users\\ponpy\\source\\repos\\KLTN\\10-be\\TimetableError.txt";
-
-            var path = "D:\\Workspace\\dotnet-asp\\10-be\\Timetable.csv";
-            var errorPath = "D:\\Workspace\\dotnet-asp\\10-be\\TimetableError.txt";
-
+            var path = "C:\\Users\\ponpy\\source\\repos\\KLTN\\10-be\\Timetable.csv";
+            var errorPath = "C:\\Users\\ponpy\\source\\repos\\KLTN\\10-be\\TimetableError.txt";
             var file = new StreamWriter(path);
             var columnCount = src.TimetableFlag.GetLength(0);
             var rowCount = src.TimetableFlag.GetLength(1);

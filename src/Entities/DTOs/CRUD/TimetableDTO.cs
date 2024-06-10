@@ -1,4 +1,4 @@
-﻿using Entities.DAOs;
+﻿using Entities.DTOs.TimetableCreation;
 
 namespace Entities.DTOs.CRUD
 {
@@ -9,6 +9,8 @@ namespace Entities.DTOs.CRUD
         public int StartYear { get; set; }
         public int EndYear { get; set; }
         public int Semester { get; set; }
-        public ICollection<TimetableUnit> TimetableUnits { get; set; } = null!;
+        public List<TimetableUnitTCDTO> TimetableUnits { get; set; } = [];
+        public List<ClassTCDTO> Classes { get; set; } = [];
+        public List<TeacherTCDTO> Teachers { get; set; } = [];
     }
 }

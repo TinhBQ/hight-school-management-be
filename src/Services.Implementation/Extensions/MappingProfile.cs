@@ -22,6 +22,7 @@ namespace Services.Implementation.Extensions
             CreateMap<Class, ClassYearDTO>();
             CreateMap<ClassForCreationDTO, Class>();
             CreateMap<ClassForUpdateDTO, Class>();
+            CreateMap<ClassTCDTO, ClassDTO>();
 
             CreateMap<Class, ClassToHomeroomAssignmentDTO>();
             CreateMap<ClassToHomeroomAssignmentForUpdateDTO, Class>();
@@ -30,6 +31,7 @@ namespace Services.Implementation.Extensions
             CreateMap<Subject, SubjectDTO>();
             CreateMap<SubjectForCreationDTO, Subject>();
             CreateMap<SubjectForUpdateDTO, Subject>();
+            CreateMap<SubjectTCDTO, SubjectDTO>();
 
             CreateMap<Teacher, TeacherDTO>()
                 .DisableCtorValidation()
@@ -37,12 +39,16 @@ namespace Services.Implementation.Extensions
                                 opt => opt.MapFrom(x => string.Join(' ', x.FirstName, x.MiddleName, x.LastName)));
             CreateMap<TeacherForCreationDTO, Teacher>();
             CreateMap<TeacherForUpdateDTO, Teacher>();
+            CreateMap<TeacherTCDTO, TeacherTCDTO>();
 
             CreateMap<SubjectClass, SubjectClassDTO>();
             CreateMap<SubjectClassForCreationDTO, SubjectClass>();
             CreateMap<SubjectClassForUpdateDTO, SubjectClass>();
 
             CreateMap<TimetableUnitTCDTO, TimetableUnit>();
+
+            CreateMap<TimetableIndividual, TimetableDTO>();
+            CreateMap<TimetableDTO, Timetable>();
         }
     }
 }
