@@ -1,4 +1,5 @@
 ﻿using Entities.Common;
+using System.Text.Json.Serialization;
 
 namespace Entities.DTOs.TimetableCreation
 {
@@ -13,9 +14,9 @@ namespace Entities.DTOs.TimetableCreation
         public Guid SubjectId { get; init; }
         public string SubjectName { get; init; } = string.Empty;
         public int StartAt { get; set; }
+        [JsonIgnore]
         public Guid AssignmentId { get; set; } = Guid.Empty;
-        public List<string> Errors { get; set; } = [];
-        public List<string> Warning { get; set; } = [];
+        public List<ConstraintError> ConstraintErrors { get; set; } = [];
 
         public TimetableUnitTCDTO() { }
 

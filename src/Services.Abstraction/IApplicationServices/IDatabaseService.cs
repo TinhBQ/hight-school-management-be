@@ -2,8 +2,6 @@
 {
     public interface IDatabaseService
     {
-        public void CreateAssignments();
-        public void DeleteAssignments();
-        public void UpdateHomeroomTeacher();
+        public void InitData();
     }
 }

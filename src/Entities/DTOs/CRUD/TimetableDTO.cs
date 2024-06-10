@@ -10,6 +10,7 @@ namespace Entities.DTOs.CRUD
         public int EndYear { get; set; }
         public int Semester { get; set; }
         public List<TimetableUnitTCDTO> TimetableUnits { get; set; } = [];
+        public List<ConstraintError> ConstraintErrors { get; set; } = [];
         public List<ClassTCDTO> Classes { get; set; } = [];
         public List<TeacherTCDTO> Teachers { get; set; } = [];
     }

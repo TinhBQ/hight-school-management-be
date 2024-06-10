@@ -6,7 +6,6 @@ using Entities.RequestFeatures;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Services.Abstraction.IApplicationServices;
-using System.Diagnostics;
 
 namespace API.Controllers
 {
@@ -20,20 +19,48 @@ namespace API.Controllers
         [HttpGet]
         public IActionResult Get([FromQuery] Guid id)
         {
-            return Ok(_timetableService.Get(id));
+            return Ok(_timetableService.Get(id, CreateParameters()));
         }
 
         [HttpPost("test")]
         public IActionResult CreateTimetableTest()
         {
-            /*var classNames = new List<string>()
-            {
-                "10B1", "10B3", "10B5", "10B7", "10B8",
-                "11A2", "11A4", "11A6", "11A8", "11A9",
-                "12C1", "12C3", "12C5", "12C6", "12C7"
-            };*/
+            var timetable = _timetableService.Generate(CreateParameters());
+            var id = timetable.Id;
+
+            return Ok(id);
+        }
+
+        [HttpPost]
+        public IActionResult CreateTimetable(TimetableParameters parameters)
+        {
+            var timetable = _timetableService.Generate(parameters);
+            return Ok(timetable);
+        }
+
+        [HttpPatch("checking")]
+        public IActionResult CheckTimetable(TimetableDTO timetable)
+        {
+            return Ok(_timetableService.Check(timetable));
+        }
+
+        [HttpPatch]
+        public IActionResult UpdateTimetable(TimetableDTO timetable)
+        {
+            _timetableService.Update(timetable);
+            return Ok();
+        }
+
+        [HttpDelete]
+        public IActionResult Delete([FromQuery] Guid id)
+        {
+            _timetableService.Delete(id);
+            return Ok();
+        }
+
+        private TimetableParameters CreateParameters()
+        {
             var classes = _context.Classes
-                //.Where(c => classNames.Contains(c.Name))
                 .AsNoTracking().ToList();
             var parameters = new TimetableParameters
             {
@@ -87,33 +114,7 @@ namespace API.Controllers
                         StartAt = startAt,
                     });
             }
-            Stopwatch sw = Stopwatch.StartNew();
-            var timetable = _timetableService.Generate(parameters);
-            Console.WriteLine(sw.Elapsed.ToString());
-            sw.Stop();
-
-            return Ok(timetable);
-        }
-
-        [HttpPost]
-        public IActionResult CreateTimetable(TimetableParameters parameters)
-        {
-            var timetable = _timetableService.Generate(parameters);
-            return Ok(timetable);
-        }
-
-        [HttpPost]
-        public IActionResult UpdateTimetable(TimetableDTO timetable)
-        {
-            _timetableService.Update(timetable);
-            return Ok();
-        }
-
-        [HttpDelete]
-        public IActionResult Delete([FromQuery] Guid id)
-        {
-            _timetableService.Delete(id);
-            return Ok();
+            return parameters;
         }
     }
 }
