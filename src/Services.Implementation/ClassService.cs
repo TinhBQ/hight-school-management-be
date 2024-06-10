@@ -93,7 +93,42 @@ namespace Services.Implementation
         {
             var klass = await GetClassAndCheckIfItExists(classId, trackChanges);
 
+            var teacher = await GetTeacherAndCheckIfItExists(klass.HomeroomTeacherId, trackChanges);
+
+            teacher.ClassId = null;
+
             _mapper.Map(classToHomeroomAssignmentUpdate, klass);
+
+            var newTecher = await GetTeacherAndCheckIfItExists(klass.HomeroomTeacherId, trackChanges);
+
+            newTecher.ClassId = klass.Id;
+
+            await _repository.UnitOfWork.SaveAsync();
+        }
+
+        public async Task UpdateClassToHomeroomAssignmentCollectionAsync(IEnumerable<ClassToHomeroomAssignmentForUpdateCollectionDTO> classToHomeroomAssignmentForUpdateCollection, bool trackChanges)
+        {
+            if (classToHomeroomAssignmentForUpdateCollection is null)
+                throw new ClassCollectionBadRequest();
+
+            foreach (var classToHomeroomAssignment in classToHomeroomAssignmentForUpdateCollection)
+            { 
+                Console.WriteLine(classToHomeroomAssignment.Id);
+                var klass = await GetClassAndCheckIfItExists(classToHomeroomAssignment.Id, trackChanges);
+
+                if (klass.HomeroomTeacherId != Guid.Empty && klass.HomeroomTeacherId != null)
+                {
+                    var teacher = await GetTeacherAndCheckIfItExists(klass.HomeroomTeacherId, trackChanges);
+
+                    teacher.ClassId = null;
+                } 
+
+                _mapper.Map(classToHomeroomAssignment, klass);
+
+                var newTecher = await GetTeacherAndCheckIfItExists(klass.HomeroomTeacherId, trackChanges);
+
+                newTecher.ClassId = klass.Id;
+            }
 
             await _repository.UnitOfWork.SaveAsync();
         }
@@ -152,6 +187,11 @@ namespace Services.Implementation
             return company is null ? throw new ClassNotFoundException(classId) : company;
         }
 
-        
+        private async Task<Teacher> GetTeacherAndCheckIfItExists(Guid? teacherId, bool trackChanges)
+        {
+            var teacher = await _repository.TeacherRepository.GetTeacherAsync(teacherId, trackChanges);
+
+            return teacher is null ? throw new TeacherNotFoundException(teacherId ?? Guid.Empty) : teacher;
+        }
     }
 }

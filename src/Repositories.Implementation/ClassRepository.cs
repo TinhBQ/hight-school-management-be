@@ -16,7 +16,7 @@ namespace Persistence.Repositories
                 .FilterClassesWithGrade(classParameters.Grade)
                 .FilterClassesWithIsAssignedHomeroom(classParameters.IsAssignedHomeroom)
                 .Search(classParameters.SearchTerm ?? "")
-                .Sort(classParameters.OrderBy ?? "name")
+                .Sort(classParameters.OrderBy ?? "name,homeroomTeacher.firstName")
                 .Skip((classParameters.PageNumber - 1) * classParameters.PageSize)
                 .Take(classParameters.PageSize)
                 .JoinTable(isInclude)

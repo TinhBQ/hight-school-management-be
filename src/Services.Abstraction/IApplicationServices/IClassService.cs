@@ -23,6 +23,8 @@ namespace Services.Abstraction.IApplicationServices
 
         Task UpdateClassToHomeroomAssignmentAsync(Guid classId, ClassToHomeroomAssignmentForUpdateDTO classToHomeroomAssignmentUpdate, bool trackChanges);
 
+        Task UpdateClassToHomeroomAssignmentCollectionAsync(IEnumerable<ClassToHomeroomAssignmentForUpdateCollectionDTO> classToHomeroomAssignmentUpdates, bool trackChanges);
+
         Task DeleteClassAsync(Guid classId, bool trackChanges);
 
         Task DeleteClassCollectionAsync(IEnumerable<Guid> ids, bool trackChanges);

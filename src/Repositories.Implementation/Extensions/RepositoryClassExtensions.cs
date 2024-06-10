@@ -37,7 +37,10 @@ namespace Repositories.Implementation.Extensions
 
             var lowerCaseTerm = searchTerm.Trim().ToLower();
 
-            return classes.Where(e => e.Name.ToLower().Contains(lowerCaseTerm));
+            return classes.Where(e => 
+                e.Name.ToLower().Contains(lowerCaseTerm) || 
+                (e.HomeroomTeacher.FirstName + " " + e.HomeroomTeacher.MiddleName + " " + e.HomeroomTeacher.LastName).ToLower().Contains(lowerCaseTerm)
+            );
         }
 
         public static IQueryable<Class> Sort(this IQueryable<Class> classes, string orderByQueryString)
@@ -46,6 +49,8 @@ namespace Repositories.Implementation.Extensions
                 return classes.OrderBy(e => e.Name);
 
             var orderQuery = OrderQueryBuilder.CreateOrderQuery<Class>(orderByQueryString);
+
+            Console.WriteLine(orderQuery);
 
             if (string.IsNullOrWhiteSpace(orderQuery))
                 return classes.OrderBy(e => e.Name);

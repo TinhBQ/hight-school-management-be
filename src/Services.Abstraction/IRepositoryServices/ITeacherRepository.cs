@@ -7,7 +7,7 @@ namespace Services.Abstraction.IRepositoryServices
     {
         Task<PagedList<Teacher>> GetAllTeachersAsync(TeacherParameters teacherParameters, bool trackChanges);
 
-        Task<Teacher?> GetTeacherAsync(Guid teacherId, bool trackChanges);
+        Task<Teacher?> GetTeacherAsync(Guid? teacherId, bool trackChanges);
 
         void CreateTeacher(Teacher teacher);
 

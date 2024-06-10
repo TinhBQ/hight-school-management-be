@@ -10,7 +10,7 @@ using System.Text.Json;
 
 namespace API.Presentation.Controllers
 {
-    [Route("api/homeroom-assignments")]
+    [Route("api/class-with-homeroom-teachers")]
     [ApiController]
     public class HomeroomAssignmentsController(IServiceManager service) : ControllerBase
     {
@@ -31,13 +31,24 @@ namespace API.Presentation.Controllers
             return Ok(response);
         }
 
-        [HttpPut("{id:guid}")]
-        public async Task<IActionResult> UpdateClass(Guid id, [FromBody] ClassToHomeroomAssignmentForUpdateDTO classToHomeroomAssignmentUpdate)
+        [HttpPut("{classId:guid}")]
+        public async Task<IActionResult> UpdateClass(Guid classId, [FromBody] ClassToHomeroomAssignmentForUpdateDTO classToHomeroomAssignmentUpdate)
         {
             if (classToHomeroomAssignmentUpdate is null)
                 return BadRequest("CompanyForUpdateDto object is null");
 
-            await _service.ClassService.UpdateClassToHomeroomAssignmentAsync(id, classToHomeroomAssignmentUpdate, trackChanges: true);
+            await _service.ClassService.UpdateClassToHomeroomAssignmentAsync(classId, classToHomeroomAssignmentUpdate, trackChanges: true);
+
+            return NoContent();
+        }
+
+        [HttpPut("collection")]
+        public async Task<IActionResult> UpdateClassCollection([FromBody] IEnumerable<ClassToHomeroomAssignmentForUpdateCollectionDTO> ClassToHomeroomAssignmentForUpdateCollection)
+        {
+            if (ClassToHomeroomAssignmentForUpdateCollection is null)
+                return BadRequest("CompanyForUpdateDto object is null");
+
+            await _service.ClassService.UpdateClassToHomeroomAssignmentCollectionAsync(ClassToHomeroomAssignmentForUpdateCollection, trackChanges: true);
 
             return NoContent();
         }
