@@ -10,6 +10,7 @@ namespace Entities.RequestFeatures
         public List<TimetableUnitTCDTO> FixedTimetableUnits { get; set; } = [];
         public List<TimetableUnitTCDTO> FreeTimetableUnits { get; set; } = [];
         public List<TimetableUnitTCDTO> BusyTimetableUnits { get; set; } = [];
+        public List<(Subject Subject, int RoomCount)> SubjectsWithPracticeRoom { get; set; } = [];
         public int MaxPeriodPerDay { get; set; } = 5;
         public int MinPeriodPerDay { get; set; } = 0;
         public int StartYear { get; set; }

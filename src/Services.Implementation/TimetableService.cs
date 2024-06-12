@@ -50,8 +50,6 @@ namespace Services.Implementation
                 RandomlyAssign(individual, parameters);
                 CalculateAdaptability(individual, parameters);
                 timetablePopulation.Add(individual);
-                //individual.ToCsv();
-                //individual.TimetableFlag.ToCsv(individual.Classes);
             }
 
             // Tạo vòng lặp cho quá trình tiến hóa của quần thể
@@ -392,6 +390,7 @@ namespace Services.Implementation
             src.ConstraintErrors.Clear();
             src.Adaptability =
                   CheckH03(src, parameters) * 1000
+                + CheckH04AndH08(src, parameters) * 1000
                 + CheckH05(src) * 1000
                 + CheckH06(src, parameters) * 10000
                 + CheckH09(src) * 1000
@@ -445,6 +444,26 @@ namespace Services.Implementation
                     fixedUnits[i].ConstraintErrors.Add(error);
                     count++;
                 }
+            return count;
+        }
+
+        private static int CheckH04AndH08(TimetableIndividual src, TimetableParameters parameters)
+        {
+            var count = 0;
+            for (var i = 0; i < parameters.SubjectsWithPracticeRoom.Count; i++)
+            {
+                var timetableUnits = src.TimetableUnits
+                    .Where(u => u.SubjectId == parameters.SubjectsWithPracticeRoom[i].Subject.Id)
+                    .ToList();
+                var group = timetableUnits
+                    .GroupBy(u => u.StartAt)
+                    .Select(g => new { StartAt = g.Key, Count = g.Count() })
+                    .OrderByDescending(x => x.Count)
+                    .ToList();
+                for (var j = 0; j < group.Count; j++)
+                    if (group[j].Count > parameters.SubjectsWithPracticeRoom[i].RoomCount)
+                        count += group[j].Count;
+            }
             return count;
         }
 
@@ -571,36 +590,16 @@ namespace Services.Implementation
                     .Where(u => u.TeacherName == src.Teachers[i].ShortName)
                     .OrderBy(u => u.StartAt)
                     .ToList();
-                //var sessionCount = 0;
-                //for (var j = 1; j < 61; j += 5)
-                //    if (timetableUnits.Any(u => u.StartAt >= j && u.StartAt <= j + 4))
-                //        sessionCount++;
+                var sessionCount = 0;
+                for (var j = 1; j < 61; j += 5)
+                    if (timetableUnits.Any(u => u.StartAt >= j && u.StartAt <= j + 4))
+                        sessionCount++;
 
-                //if (12 - sessionCount < 2)
-                //{
-                //    var errorMessage =
-                //        $"Giáo viên {src.Teachers[i].ShortName} " +
-                //        $"phải có tối thiểu 2 buổi nghỉ trong tuần";
-                //    var error = new ConstraintError()
-                //    {
-                //        Code = "H11",
-                //        TeacherName = src.Teachers[i].ShortName,
-                //        Description = errorMessage
-                //    };
-                //    src.ConstraintErrors.Add(error);
-                //    count++;
-                //}
-
-                var dayCount = 7;
-                for (var j = 1; j < 61; j += 10)
-                    if (timetableUnits.Any(u => u.StartAt >= j && u.StartAt <= j + 9))
-                        dayCount--;
-
-                if (dayCount < 2)
+                if (12 - sessionCount < 2)
                 {
                     var errorMessage =
                         $"Giáo viên {src.Teachers[i].ShortName} " +
-                        $"phải có tối thiểu 1 ngày nghỉ trong tuần";
+                        $"phải có tối thiểu 2 buổi nghỉ trong tuần";
                     var error = new ConstraintError()
                     {
                         Code = "H11",
@@ -610,6 +609,26 @@ namespace Services.Implementation
                     src.ConstraintErrors.Add(error);
                     count++;
                 }
+
+                //var dayCount = 7;
+                //for (var j = 1; j < 61; j += 10)
+                //    if (timetableUnits.Any(u => u.StartAt >= j && u.StartAt <= j + 9))
+                //        dayCount--;
+
+                //if (dayCount < 2)
+                //{
+                //    var errorMessage =
+                //        $"Giáo viên {src.Teachers[i].ShortName} " +
+                //        $"phải có tối thiểu 1 ngày nghỉ trong tuần";
+                //    var error = new ConstraintError()
+                //    {
+                //        Code = "H11",
+                //        TeacherName = src.Teachers[i].ShortName,
+                //        Description = errorMessage
+                //    };
+                //    src.ConstraintErrors.Add(error);
+                //    count++;
+                //}
             }
             return count;
         }

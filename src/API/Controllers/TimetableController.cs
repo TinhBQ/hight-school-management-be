@@ -114,6 +114,7 @@ namespace API.Controllers
                         StartAt = startAt,
                     });
             }
+            parameters.SubjectsWithPracticeRoom.Add((_context.Subjects.AsNoTracking().First(s => s.ShortName == "TIN"), 2));
             return parameters;
         }
     }
