@@ -1,5 +1,6 @@
 using API.Extensions;
 using Microsoft.AspNetCore.HttpOverrides;
+using Microsoft.AspNetCore.Mvc.Razor;
 using NLog;
 using Services.Abstraction.IApplicationServices;
 using Services.Abstraction.ILoggerServices;
@@ -34,6 +35,7 @@ namespace API
             builder.Services.AddScoped<ITimetableService, TimetableService>();
             builder.Services.AddScoped<IDatabaseService, DatabaseService>();
             builder.Services.AddScoped<IAssignmentService, AssignmentService>();
+            builder.Services.AddScoped<IHelperService, HelperService>();
 
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

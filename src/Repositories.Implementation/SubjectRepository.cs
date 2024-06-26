@@ -32,7 +32,7 @@ namespace Persistence.Repositories
             return await FindAll(trackChanges).ToListAsync();
         }
 
-        public async Task<Subject?> GetSubjectAsync(Guid SubjectId, bool trackChanges) =>
+        public async Task<Subject?> GetSubjectAsync(Guid? SubjectId, bool trackChanges) =>
             await FindByCondition(c => c.Id.Equals(SubjectId), trackChanges)
             .SingleOrDefaultAsync();
 

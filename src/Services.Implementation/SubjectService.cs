@@ -10,11 +10,12 @@ using Services.Abstraction.IRepositoryServices;
 
 namespace Services.Implementation
 {
-    internal sealed class SubjectService(IRepositoryManager repository, ILoggerManager logger, IMapper mapper) : ISubjectService
+    internal sealed class SubjectService(IRepositoryManager repository, ILoggerManager logger, IMapper mapper, IHelperService helperService) : ISubjectService
     {
         private readonly IRepositoryManager _repository = repository;
         private readonly ILoggerManager _logger = logger;
         private readonly IMapper _mapper = mapper;
+        private readonly IHelperService _helperService = helperService;
 
         public async Task<(IEnumerable<SubjectDTO> subjects, MetaData metaData)> GetAllSubjectsAsync(SubjectParameters subjectParameters, bool trackChanges)
         {
@@ -30,26 +31,59 @@ namespace Services.Implementation
 
         public async Task<IEnumerable<SubjectDTO>> GetUnassignedSubjectsByClassId(Guid classId, bool trackChanges)
         {
-            await GetClassAndCheckIfItExists(classId, trackChanges);
-            var d = await _repository.SubjectClassRepository.GetSubjectClassByClassId(classId, trackChanges);
-            var s = await _repository.SubjectRepository.GetSubjects(trackChanges);
-            var k = s.ToList().Where(s => !d.ToList().Select(x => x.SubjectId).Distinct().Contains(s.Id));
-            var subjectesDTO = _mapper.Map<IEnumerable<SubjectDTO>>(k);
+            await _helperService.GetClassAndCheckIfItExists(classId, trackChanges);
+
+            var subjectsByClassId = await _repository.SubjectClassRepository.GetSubjectClassByClassId(classId, trackChanges);
+
+            var subjects = await _repository.SubjectRepository.GetSubjects(trackChanges);
+
+            var result = subjects.ToList().Where(subject => !subjectsByClassId.ToList().Select(x => x.SubjectId).Distinct().Contains(subject.Id));
+
+            var subjectesDTO = _mapper.Map<IEnumerable<SubjectDTO>>(result);
 
             return subjectesDTO;
         }
 
         public async Task<IEnumerable<SubjectDTO>> GetAssignedSubjectsByClassId(Guid classId, bool trackChanges)
         {
-            await GetClassAndCheckIfItExists(classId, trackChanges);
+            await _helperService.GetClassAndCheckIfItExists(classId, trackChanges);
+
             var subjectClasses = await _repository.SubjectClassRepository.GetSubjectClassByClassId(classId, trackChanges);
+
             var subjectDTOs = _mapper.Map<IEnumerable<SubjectDTO>>(subjectClasses.ToList().Select(x => x.Subject));
+
+            return subjectDTOs;
+        }
+
+        public async Task<IEnumerable<SubjectDTO>> GetUnassignedSubjectsByTeacherId(Guid teacherId, bool trackChanges)
+        {
+            await _helperService.GetTeacherAndCheckIfItExists(teacherId, trackChanges);
+
+            var subjectsByTeacherId = await _repository.SubjectTeacherRepository.GetAllSubjectTeacherByTeacherId(teacherId, trackChanges, true);
+
+            var subjects = await _repository.SubjectRepository.GetSubjects(trackChanges);
+
+            var result = subjects.ToList().Where(subject => !subjectsByTeacherId.ToList().Select(x => x.SubjectId).Distinct().Contains(subject.Id));
+
+            var subjectesDTOs = _mapper.Map<IEnumerable<SubjectDTO>>(result);
+
+            return subjectesDTOs;
+        }
+
+        public async Task<IEnumerable<SubjectDTO>> GetAssignedSubjectsByTeacherId(Guid teacherId, bool trackChanges)
+        {
+            await _helperService.GetTeacherAndCheckIfItExists(teacherId, trackChanges);
+
+            var subjectClasses = await _repository.SubjectTeacherRepository.GetAllSubjectTeacherByTeacherId(teacherId, trackChanges, true);
+
+            var subjectDTOs = _mapper.Map<IEnumerable<SubjectDTO>>(subjectClasses.ToList().Select(x => x.Subject));
+
             return subjectDTOs;
         }
 
         public async Task<SubjectDTO?> GetSubjectAsync(Guid subjectId, bool trackChanges)
         {
-            var subject = await GetSubjectAndCheckIfItExists(subjectId, trackChanges);
+            var subject = await _helperService.GetSubjectAndCheckIfItExists(subjectId, trackChanges);
 
             var subjectDTO = _mapper.Map<SubjectDTO>(subject);
 
@@ -84,7 +118,7 @@ namespace Services.Implementation
 
         public async Task UpdateSubjectAsync(Guid subjectId, SubjectForUpdateDTO subjectForUpdate, bool trackChanges)
         {
-            var subject = await GetSubjectAndCheckIfItExists(subjectId, trackChanges);
+            var subject = await _helperService.GetSubjectAndCheckIfItExists(subjectId, trackChanges);
 
             _mapper.Map(subjectForUpdate, subject);
 
@@ -93,7 +127,7 @@ namespace Services.Implementation
 
         public async Task DeleteSubjectAsync(Guid subjectId, bool trackChanges)
         {
-            var subject = await GetSubjectAndCheckIfItExists(subjectId, trackChanges);
+            var subject = await _helperService.GetSubjectAndCheckIfItExists(subjectId, trackChanges);
             _repository.SubjectRepository.DeleteSubject(subject);
             await _repository.UnitOfWork.SaveAsync();
         }
@@ -136,20 +170,6 @@ namespace Services.Implementation
             }
 
             await _repository.UnitOfWork.SaveAsync();
-        }
-
-        private async Task<Subject> GetSubjectAndCheckIfItExists(Guid subjectId, bool trackChanges)
-        {
-            var subject = await _repository.SubjectRepository.GetSubjectAsync(subjectId, trackChanges);
-
-            return subject is null ? throw new SubjectNotFoundException(subjectId) : subject;
-        }
-
-        private async Task<Class> GetClassAndCheckIfItExists(Guid classId, bool trackChanges)
-        {
-            var klass = await _repository.ClassRepository.GetClassAsync(classId, trackChanges);
-
-            return klass is null ? throw new ClassNotFoundException(classId) : klass;
         }
     }
 }

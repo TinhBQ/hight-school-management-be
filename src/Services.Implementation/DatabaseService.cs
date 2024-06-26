@@ -1581,7 +1581,8 @@ namespace Services.Implementation
             }
 
             UpdateHomeroomTeacher();
-            CreateAssignments("C:\\Users\\ponpy\\source\\repos\\KLTN\\10-be\\Assignment.csv");
+            //CreateAssignments("C:\\Users\\ponpy\\source\\repos\\KLTN\\10-be\\Assignment.csv");
+            CreateAssignments("D:\\Workspace\\dotnet-asp\\fix\\10-be\\Assignment.csv");
             //CreateAssignments("C:\\Users\\ponpy\\source\\repos\\KLTN\\10-be\\Assignment_02.csv");
 
             Console.OutputEncoding = System.Text.Encoding.UTF8;

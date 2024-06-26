@@ -13,7 +13,7 @@ namespace Services.Abstraction.IRepositoryServices
 
         Task<IEnumerable<SubjectClass>> GetSubjectClassByClassId(Guid classId, bool trackChanges);
 
-        Task<SubjectClass?> GetSubjectClassAsync(Guid id, bool trackChanges);
+        Task<SubjectClass?> GetSubjectClassAsync(Guid? id, bool trackChanges);
         void CreateSubjectClass(SubjectClass subjectClass);
 
         Task<IEnumerable<SubjectClass>> GetByIdsAsync(IEnumerable<Guid> ids, bool trackChanges);

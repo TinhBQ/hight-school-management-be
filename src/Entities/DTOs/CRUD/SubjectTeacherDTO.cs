@@ -6,8 +6,8 @@ namespace Entities.DTOs.CRUD
         (
             Guid Id,
             bool IsMain,
-            SubjectDTO Subject,
-            TeacherDTO Teacher,
+            SubjectDTO? Subject,
+            TeacherDTO? Teacher,
             DateTime CreateAt,
             DateTime UpdateAt
         );

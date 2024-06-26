@@ -10,11 +10,12 @@ using Services.Abstraction.IRepositoryServices;
 
 namespace Services.Implementation
 {
-    internal sealed class SubjectClassService(IRepositoryManager repository, ILoggerManager logger, IMapper mapper) : ISubjectClassService
+    internal sealed class SubjectClassService(IRepositoryManager repository, ILoggerManager logger, IMapper mapper, IHelperService helperService) : ISubjectClassService
     {
         private readonly IRepositoryManager _repository = repository;
         private readonly ILoggerManager _logger = logger;
         private readonly IMapper _mapper = mapper;
+        private readonly IHelperService _helperService = helperService;
 
         public async Task<(IEnumerable<SubjectClassDTO> subjectClasses, MetaData metaData)> GetAllSubjectClassesAsync(SubjectClassParameters subjectClassParameters, bool trackChanges)
         {
@@ -28,7 +29,7 @@ namespace Services.Implementation
 
         public async Task<(IEnumerable<SubjectClassDTO> subjectClasses, MetaData metaData)> GetSubjectClasByClassId(SubjectsForClassParameters subjectsForClassParameters, bool trackChanges)
         {
-            await GetClassAndCheckIfItExists(subjectsForClassParameters.classId, trackChanges);
+            await _helperService.GetClassAndCheckIfItExists(subjectsForClassParameters.classId, trackChanges);
             var subjectClassWithMetaData = await _repository.SubjectClassRepository.GetSubjectClassByClassIdWithPagedList(subjectsForClassParameters, trackChanges);
             var subjectClassDTO = _mapper.Map<IEnumerable<SubjectClassDTO>>(subjectClassWithMetaData);
             return (subjectClasses: subjectClassDTO, metaData: subjectClassWithMetaData.metaData);
@@ -39,18 +40,6 @@ namespace Services.Implementation
             var classes = await _repository.ClassRepository.GetClasses(trackChanges);
             var subjects = await _repository.SubjectRepository.GetSubjects(trackChanges);
             var subjectClasses = await _repository.SubjectClassRepository.GetAllSubjectClass(trackChanges);
-
-        /*    var query = from subjectClass in subjectClasses
-                        join subject in subjects on subjectClass.SubjectId equals subject.Id into subjectGroup
-                        from subject in subjectGroup.DefaultIfEmpty()
-                        join classEntity in classes on subjectClass.ClassId equals classEntity.Id into classGroup
-                        from classEntity in classGroup.DefaultIfEmpty()
-                        select new
-                        {
-                            SubjectClass = subjectClass.Id,
-                            Subject = subject.Name,
-                            Class = classEntity.Name
-                        };*/
 
             var query = from subject in subjects
                         join subjectClass in subjectClasses on subject.Id equals subjectClass.SubjectId into subjectGroup
@@ -105,7 +94,7 @@ namespace Services.Implementation
         
         public async Task<SubjectClassDTO?> GetSubjectClassAsync(Guid id, bool trackChanges)
         {
-            var subjectClass = await GetSubjectClassAndCheckIfItExists(id, trackChanges);
+            var subjectClass = await _helperService.GetSubjectClassAndCheckIfItExists(id, trackChanges);
 
             var subjectClassDto = _mapper.Map<SubjectClassDTO>(subjectClass);
 
@@ -114,9 +103,9 @@ namespace Services.Implementation
 
         public async Task<SubjectClassDTO> CreateSubjectClassAsync(SubjectClassForCreationDTO subjectClass)
         {
-            await GetClassAndCheckIfItExists(subjectClass.ClassId, false);
+            await _helperService.GetClassAndCheckIfItExists(subjectClass.ClassId, false);
 
-            await GetSubjectAndCheckIfItExists(subjectClass.SubjectId, false);
+            await _helperService.GetSubjectAndCheckIfItExists(subjectClass.SubjectId, false);
 
             var subjectClassEntity = _mapper.Map<SubjectClass>(subjectClass);
 
@@ -152,9 +141,9 @@ namespace Services.Implementation
 
             foreach (var subjectClass in subjectClassEntities)
             {
-                await GetClassAndCheckIfItExists(subjectClass.ClassId, false);
+                await _helperService.GetClassAndCheckIfItExists(subjectClass.ClassId, false);
 
-                await GetSubjectAndCheckIfItExists(subjectClass.SubjectId, false);
+                await _helperService.GetSubjectAndCheckIfItExists(subjectClass.SubjectId, false);
 
                 _repository.SubjectClassRepository.CreateSubjectClass(subjectClass);
             }
@@ -170,7 +159,7 @@ namespace Services.Implementation
 
         public async Task UpdateSubjectClassAsync(Guid subjectClassId, SubjectClassForUpdateDTO subjectClassForUpdate, bool trackChanges)
         {
-            var subjectClass = await GetSubjectClassAndCheckIfItExists(subjectClassId, trackChanges);
+            var subjectClass = await _helperService.GetSubjectClassAndCheckIfItExists(subjectClassId, trackChanges);
 
             _mapper.Map(subjectClassForUpdate, subjectClass);
 
@@ -179,7 +168,7 @@ namespace Services.Implementation
 
         public async Task DeleteSubjectClassAsync(Guid subjectClassId, bool trackChanges)
         {
-            var subjectClass = await GetSubjectClassAndCheckIfItExists(subjectClassId, trackChanges);
+            var subjectClass = await _helperService.GetSubjectClassAndCheckIfItExists(subjectClassId, trackChanges);
             _repository.SubjectClassRepository.DeleteSubjectClass(subjectClass);
             await _repository.UnitOfWork.SaveAsync();
         }
@@ -200,27 +189,6 @@ namespace Services.Implementation
             }
 
             await _repository.UnitOfWork.SaveAsync();
-        }
-
-        private async Task<Class> GetClassAndCheckIfItExists(Guid classId, bool trackChanges)
-        {
-            var klass = await _repository.ClassRepository.GetClassAsync(classId, trackChanges);
-
-            return klass is null ? throw new ClassNotFoundException(classId) : klass;
-        }
-
-        private async Task<Subject> GetSubjectAndCheckIfItExists(Guid id, bool trackChanges)
-        {
-            var subject = await _repository.SubjectRepository.GetSubjectAsync(id, trackChanges);
-
-            return subject is null ? throw new ClassNotFoundException(id) : subject;
-        }
-
-        private async Task<SubjectClass> GetSubjectClassAndCheckIfItExists(Guid id, bool trackChanges)
-        {
-            var subjectClass = await _repository.SubjectClassRepository.GetSubjectClassAsync(id, trackChanges);
-
-            return subjectClass is null ? throw new ClassNotFoundException(id) : subjectClass;
         }
     }
 }

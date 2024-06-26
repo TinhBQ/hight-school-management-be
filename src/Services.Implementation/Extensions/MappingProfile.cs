@@ -45,6 +45,10 @@ namespace Services.Implementation.Extensions
             CreateMap<SubjectClassForCreationDTO, SubjectClass>();
             CreateMap<SubjectClassForUpdateDTO, SubjectClass>();
 
+            CreateMap<SubjectTeacher, SubjectTeacherDTO>();
+            CreateMap<SubjectTeacherForCreationDTO, SubjectTeacher>();
+            CreateMap<SubjectTeacherForUpdateDTO, SubjectTeacher>();
+
             CreateMap<TimetableUnitTCDTO, TimetableUnit>();
             CreateMap<TimetableUnit, TimetableUnitTCDTO>();
 

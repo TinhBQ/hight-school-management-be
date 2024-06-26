@@ -11,6 +11,7 @@ namespace Persistence.Repositories
         private readonly Lazy<ISubjectRepository> _subjectRepository = new(() => new SubjectRepository(hsmsDbContext));
         private readonly Lazy<ITeacherRepository> _teacherRepository = new(() => new TeacherRepository(hsmsDbContext));
         private readonly Lazy<ISubjectClassRepository> _subjectClassRepository = new(() => new SubjectClassRepository(hsmsDbContext));
+        private readonly Lazy<ISubjectTeacherRepository> _subjectTeacherRepository = new(() => new SubjectTeacherRepository(hsmsDbContext));
 
 
         private readonly Lazy<IUnitOfWork> _lazyUnitOfWork = new(() => new UnitOfWork(hsmsDbContext));
@@ -20,8 +21,9 @@ namespace Persistence.Repositories
         public ISubjectRepository SubjectRepository => _subjectRepository.Value;
         public ITeacherRepository TeacherRepository => _teacherRepository.Value;
         public ISubjectClassRepository SubjectClassRepository => _subjectClassRepository.Value;
+        public ISubjectTeacherRepository SubjectTeacherRepository => _subjectTeacherRepository.Value;
+
 
         public IUnitOfWork UnitOfWork => _lazyUnitOfWork.Value;
-
     }
 }

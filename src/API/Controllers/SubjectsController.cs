@@ -59,6 +59,34 @@ namespace API.Presentation.Controllers
             return Ok(response);
         }
 
+        [HttpGet("unassigned-by-teacher")]
+        public async Task<IActionResult> GetUnassignedSubjectsByTeacherId([FromQuery] Guid teacherId)
+        {
+            var subjects = await _service.SubjectService.GetUnassignedSubjectsByTeacherId(teacherId, trackChanges: false);
+
+            var response = new ResponseBase<IEnumerable<SubjectDTO>>
+            {
+                Data = subjects,
+                Message = ResponseMessage.GetSubjectsSuccess,
+            };
+
+            return Ok(response);
+        }
+
+        [HttpGet("assigned-by-teacher")]
+        public async Task<IActionResult> GetAssignedSubjectsByTeaherId([FromQuery] Guid teacherId)
+        {
+            var subjects = await _service.SubjectService.GetAssignedSubjectsByTeacherId(teacherId, trackChanges: false);
+
+            var response = new ResponseBase<IEnumerable<SubjectDTO>>
+            {
+                Data = subjects,
+                Message = ResponseMessage.GetSubjectsSuccess,
+            };
+
+            return Ok(response);
+        }
+
         [HttpGet("{id:guid}", Name = "SubjectById")]
         public async Task<IActionResult> GetSubject(Guid id)
         {
