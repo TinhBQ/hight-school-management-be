@@ -49,8 +49,11 @@ namespace Services.Implementation.Extensions
             CreateMap<TimetableUnit, TimetableUnitTCDTO>();
 
             CreateMap<TimetableIndividual, TimetableDTO>();
+            CreateMap<TimetableIndividual, Timetable>();
+            CreateMap<TimetableDTO, TimetableIndividual>();
             CreateMap<TimetableDTO, Timetable>();
             CreateMap<Timetable, TimetableDTO>();
+            CreateMap<Timetable, TimetableIndividual>();
         }
     }
 }

@@ -60,6 +60,13 @@ namespace Services.Implementation.Extensions
             }
         }
 
+        public static bool ScrambledEquals<T>(this IEnumerable<T> list1, IEnumerable<T> list2)
+        {
+            var deletedItems = list1.Except(list2).Any();
+            var newItems = list2.Except(list1).Any();
+            return !newItems && !deletedItems;
+        }
+
         public static void Swap(TimetableUnitTCDTO a, TimetableUnitTCDTO b)
         {
             (a.StartAt, b.StartAt) = (b.StartAt, a.StartAt);

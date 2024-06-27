@@ -47,7 +47,7 @@ Cặp phân công được chỉ định là tiết đôi được ưu tiên tr�
 Xếp các phân công sao cho số buổi dạy của giáo viên là ít nhất.
 
 ### **2.3. Ràng buộc về tiết trống của giáo viên trong trong một buổi học (S3):**
-Hạn chế tối đa tiết trống của giáo viên trong một buổi học, có tùy chỉnh số lượng tiết trống tối đa trong một buổi học.
+Hạn chế tối đa tiết trống của giáo viên trong một buổi học (nếu được thì có thể tùy chỉnh số lượng tiết trống tối đa trong một buổi học).
 
 ### **2.4. Ràng buộc về thời gian nghỉ giữa hai buổi của giáo viên (S4):**
 Đối với giáo viên dạy cả hai buổi trong một ngày, hạn chế việc xếp các phân công vào tiết cuối buổi sáng và tiết đầu buổi chiều.

@@ -30,6 +30,7 @@ namespace API
                 .AddApplicationPart(typeof(AssemblyReference).Assembly)
                 .AddJsonOptions(x =>
                 x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
+            builder.Services.AddControllers().AddNewtonsoftJson();
 
             builder.Services.AddScoped<ITimetableService, TimetableService>();
             builder.Services.AddScoped<IDatabaseService, DatabaseService>();

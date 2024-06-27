@@ -2,20 +2,35 @@
 
 namespace Entities.DTOs.TimetableCreation
 {
-    public class TimetableIndividual(
-        ETimetableFlag[,] timetableFlag,
-        List<TimetableUnitTCDTO> timetableUnits,
-        List<ClassTCDTO> classes,
-        List<TeacherTCDTO> teachers)
+    public class TimetableIndividual
     {
-        public ETimetableFlag[,] TimetableFlag { get; set; } = timetableFlag;
-        public List<TimetableUnitTCDTO> TimetableUnits { get; set; } = timetableUnits;
-        public List<ClassTCDTO> Classes { get; init; } = classes;
-        public List<TeacherTCDTO> Teachers { get; init; } = teachers;
+        public Guid Id { get; set; } = Guid.NewGuid();
+        public ETimetableFlag[,] TimetableFlag { get; set; } = null!;
+        public List<TimetableUnitTCDTO> TimetableUnits { get; set; } = [];
+        public List<ClassTCDTO> Classes { get; init; } = [];
+        public List<TeacherTCDTO> Teachers { get; init; } = [];
         public List<ConstraintError> ConstraintErrors { get; set; } = [];
         public int Adaptability { get; set; }
         public int Age { get; set; }
         public int Longevity { get; set; }
+        public int StartYear { get; set; }
+        public int EndYear { get; set; }
+        public int Semester { get; set; }
+        public string Name { get; set; } = string.Empty;
+
+        public TimetableIndividual() { }
+
+        public TimetableIndividual(
+        ETimetableFlag[,] timetableFlag,
+        List<TimetableUnitTCDTO> timetableUnits,
+        List<ClassTCDTO> classes,
+        List<TeacherTCDTO> teachers)
+        {
+            TimetableFlag = timetableFlag;
+            TimetableUnits = timetableUnits;
+            Classes = classes;
+            Teachers = teachers;
+        }
 
         public void GetConstraintErrors()
         {
