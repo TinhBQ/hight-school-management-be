@@ -1,6 +1,5 @@
 ﻿using Contexts;
 using Entities.Common;
-using Entities.DTOs.CRUD;
 using Entities.DTOs.TimetableCreation;
 using Entities.RequestFeatures;
 using Microsoft.AspNetCore.Mvc;
@@ -17,16 +16,22 @@ namespace API.Controllers
         private readonly HsmsDbContext _context = context;
 
         [HttpGet]
-        public IActionResult Get([FromQuery] Guid id)
+        public IActionResult Get()
         {
-            return Ok(_timetableService.Get(id, CreateParameters()));
+            return Ok(_context.Timetables.ToList());
+        }
+
+        [HttpGet("{id:guid}", Name = "TimetableById")]
+        public IActionResult GetTimetable(Guid id)
+        {
+            var result = _timetableService.Get(id, CreateParameters());
+            return Ok(result);
         }
 
         [HttpPost("test")]
         public IActionResult CreateTimetableTest()
         {
-            var timetable = _timetableService.Generate(CreateParameters());
-            var id = timetable.Id;
+            var id = _timetableService.Generate(CreateParameters()).Id;
 
             return Ok(id);
         }
@@ -39,13 +44,13 @@ namespace API.Controllers
         }
 
         [HttpPatch("checking")]
-        public IActionResult CheckTimetable(TimetableDTO timetable)
+        public IActionResult CheckTimetable(TimetableIndividual timetable)
         {
             return Ok(_timetableService.Check(timetable));
         }
 
         [HttpPatch]
-        public IActionResult UpdateTimetable(TimetableDTO timetable)
+        public IActionResult UpdateTimetable(TimetableIndividual timetable)
         {
             _timetableService.Update(timetable);
             return Ok();

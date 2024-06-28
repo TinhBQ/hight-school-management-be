@@ -1,14 +1,14 @@
-﻿using Entities.DTOs.CRUD;
+﻿using Entities.DTOs.TimetableCreation;
 using Entities.RequestFeatures;
 
 namespace Services.Abstraction.IApplicationServices
 {
     public interface ITimetableService
     {
-        public TimetableDTO Generate(TimetableParameters parameters);
-        public TimetableDTO Get(Guid id, TimetableParameters parameters);
-        public TimetableDTO Check(TimetableDTO timetable);
-        public void Update(TimetableDTO timetable);
+        public TimetableIndividual Generate(TimetableParameters parameters);
+        public TimetableIndividual Get(Guid id, TimetableParameters parameters);
+        public TimetableIndividual Check(TimetableIndividual timetable);
+        public void Update(TimetableIndividual timetable);
         public void Delete(Guid id);
     }
 }
