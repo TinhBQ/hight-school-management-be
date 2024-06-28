@@ -74,7 +74,7 @@ namespace Services.Implementation
         {
             var subjectTeacherEntity = await _helperService.GetSubjectTeacherAndCheckIfItExists(id, trackChanges);
 
-            _repository.SubjectTeacherRepository.DeleteSubjectTeacher(subjectTeacherEntity);
+            subjectTeacherEntity.IsDeleted = true;
 
             await _repository.UnitOfWork.SaveAsync();
         }
@@ -112,7 +112,7 @@ namespace Services.Implementation
 
             foreach (var subjectTeacherEntity in subjectTeacherEntities)
             {
-                _repository.SubjectTeacherRepository.DeleteSubjectTeacher(subjectTeacherEntity);
+                subjectTeacherEntity.IsDeleted = true;
             }
 
             await _repository.UnitOfWork.SaveAsync();

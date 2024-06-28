@@ -11,7 +11,7 @@ namespace Persistence.Repositories
     {
         public async Task<PagedList<Teacher>> GetAllTeachersAsync(TeacherParameters teacherParameters, bool trackChanges)
         {
-            var teacheres = await FindAll(trackChanges)
+            var teacheres = await FindByCondition(c => !c.IsDeleted, trackChanges)
                 .Search(teacherParameters.SearchTerm ?? "")
                 .FilterTeachersWithIsAssignedHomeroom(teacherParameters.IsAssignedHomeroom)
                 .Sort(teacherParameters.OrderBy ?? "firstName")
@@ -21,7 +21,7 @@ namespace Persistence.Repositories
                 .ThenInclude(c => c.Subject)
                 .ToListAsync();
 
-            var count = await FindAll(trackChanges)
+            var count = await FindByCondition(c => !c.IsDeleted, trackChanges)
                 .Search(teacherParameters.SearchTerm ?? "")
                 .FilterTeachersWithIsAssignedHomeroom(teacherParameters.IsAssignedHomeroom)
                 .CountAsync();
@@ -30,11 +30,11 @@ namespace Persistence.Repositories
         }
 
         public async Task<Teacher?> GetTeacherAsync(Guid? TeacherId, bool trackChanges) =>
-            await FindByCondition(c => c.Id.Equals(TeacherId), trackChanges)
+            await FindByCondition(c => !c.IsDeleted && c.Id.Equals(TeacherId), trackChanges)
             .SingleOrDefaultAsync();
 
         public async Task<IEnumerable<Teacher>> GetByIdsAsync(IEnumerable<Guid> ids, bool trackChanges) =>
-            await FindByCondition(x => ids.Contains(x.Id), trackChanges)
+            await FindByCondition(c => !c.IsDeleted && ids.Contains(c.Id), trackChanges)
             .ToListAsync();
 
         public void CreateTeacher(Teacher teacher) => Create(teacher);

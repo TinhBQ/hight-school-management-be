@@ -108,7 +108,7 @@ namespace API.Presentation.Controllers
         [HttpDelete("{id:guid}")]
         public async Task<IActionResult> DeleteClass(Guid id)
         {
-            await _service.ClassService.DeleteClassAsync(id, trackChanges: false);
+            await _service.ClassService.DeleteClassAsync(id, trackChanges: true);
             return NoContent();
         }
 
@@ -116,7 +116,7 @@ namespace API.Presentation.Controllers
 
         public async Task<IActionResult> DeleteClassCollection([ModelBinder(BinderType = typeof(ArrayModelBinder))] IEnumerable<Guid> ids)
         {
-            await _service.ClassService.DeleteClassCollectionAsync(ids, trackChanges: false);
+            await _service.ClassService.DeleteClassCollectionAsync(ids, trackChanges: true);
             return NoContent();
         }
     }

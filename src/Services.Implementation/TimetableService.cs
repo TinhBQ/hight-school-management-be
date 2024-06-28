@@ -43,7 +43,8 @@ namespace Services.Implementation
             /* Cá thể gốc là cá thể được tạo ra đầu tiên và là cá thể mang giá trị mặc định và bất biến*/
             var root = CreateRootIndividual(classes, teachers, assignments, timetableFlags, parameters);
 
-            var file = new StreamWriter("C:\\Users\\ponpy\\source\\repos\\KLTN\\10-be\\Temp.txt");
+            // var file = new StreamWriter("C:\\Users\\ponpy\\source\\repos\\KLTN\\10-be\\Temp.txt");
+            var file = new StreamWriter("D:\\Workspace\\dotnet-asp\\fix\\10-be\\Temp.txt");
 
             // Tạo quần thể ban đầu và tính toán độ thích nghi
             var timetablePopulation = CreateInitialPopulation(root, parameters);

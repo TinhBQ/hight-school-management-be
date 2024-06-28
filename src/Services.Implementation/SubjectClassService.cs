@@ -91,7 +91,6 @@ namespace Services.Implementation
             return query;
         }
 
-        
         public async Task<SubjectClassDTO?> GetSubjectClassAsync(Guid id, bool trackChanges)
         {
             var subjectClass = await _helperService.GetSubjectClassAndCheckIfItExists(id, trackChanges);
@@ -169,7 +168,9 @@ namespace Services.Implementation
         public async Task DeleteSubjectClassAsync(Guid subjectClassId, bool trackChanges)
         {
             var subjectClass = await _helperService.GetSubjectClassAndCheckIfItExists(subjectClassId, trackChanges);
-            _repository.SubjectClassRepository.DeleteSubjectClass(subjectClass);
+
+            subjectClass.IsDeleted = true;
+
             await _repository.UnitOfWork.SaveAsync();
         }
 
@@ -185,7 +186,7 @@ namespace Services.Implementation
 
             foreach (var subjectClass in subjectClassEntities)
             {
-                _repository.SubjectClassRepository.DeleteSubjectClass(subjectClass);
+                subjectClass.IsDeleted = true;
             }
 
             await _repository.UnitOfWork.SaveAsync();

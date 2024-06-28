@@ -137,7 +137,9 @@ namespace Services.Implementation
         public async Task DeleteClassAsync(Guid classId, bool trackChanges)
         {
             var klass = await _helperService.GetClassAndCheckIfItExists(classId, trackChanges);
-            _repository.ClassRepository.DeleteClass(klass);
+
+            klass.IsDeleted  = true;
+
             await _repository.UnitOfWork.SaveAsync();
         }
 
@@ -175,7 +177,8 @@ namespace Services.Implementation
 
             foreach (var klass in classEntities)
             {
-                _repository.ClassRepository.DeleteClass(klass);
+
+                klass.IsDeleted = true;
             }
 
             await _repository.UnitOfWork.SaveAsync();

@@ -11,7 +11,7 @@ namespace Persistence.Repositories
     {
         public async Task<PagedList<Class>> GetAllClassWithPagedList(ClassParameters classParameters, bool trackChanges, bool isInclude)
         {
-            var classes = await FindAll(trackChanges)
+            var classes = await FindByCondition(c => !c.IsDeleted, trackChanges)
                 .FilterClasses(classParameters.StartYear, classParameters.EndYear)
                 .FilterClassesWithGrade(classParameters.Grade)
                 .FilterClassesWithIsAssignedHomeroom(classParameters.IsAssignedHomeroom)
@@ -22,7 +22,7 @@ namespace Persistence.Repositories
                 .JoinTable(isInclude)
                 .ToListAsync();
 
-            var count = await FindAll(trackChanges)
+            var count = await FindByCondition(c => !c.IsDeleted, trackChanges)
                 .FilterClasses(classParameters.StartYear, classParameters.EndYear)
                 .FilterClassesWithGrade(classParameters.Grade)
                 .FilterClassesWithIsAssignedHomeroom(classParameters.IsAssignedHomeroom)
@@ -34,15 +34,15 @@ namespace Persistence.Repositories
 
         public async Task<IEnumerable<Class>> GetClasses(bool trackChanges)
         {
-            return await FindAll(trackChanges).ToListAsync();
+            return await FindByCondition(c => !c.IsDeleted, trackChanges).ToListAsync();
         }
 
         public async Task<Class?> GetClassAsync(Guid? classId, bool trackChanges) =>
-            await FindByCondition(c => c.Id.Equals(classId), trackChanges)
+            await FindByCondition(c => !c.IsDeleted && c.Id.Equals(classId), trackChanges)
             .SingleOrDefaultAsync();
 
         public async Task<IEnumerable<Class>> GetByIdsAsync(IEnumerable<Guid> ids, bool trackChanges) =>
-            await FindByCondition(x => ids.Contains(x.Id), trackChanges)
+            await FindByCondition(c => !c.IsDeleted && ids.Contains(c.Id), trackChanges)
             .ToListAsync();
 
         public void CreateClass(Class klass) => Create(klass);

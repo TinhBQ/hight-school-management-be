@@ -15,29 +15,31 @@ namespace Persistence.Repositories
 
         public async Task<PagedList<Subject>> GetAllSubjectWithPagedList(SubjectParameters subjectParameters, bool trackChanges)
         {
-            var subjectes = await FindAll(trackChanges)
+            var subjectes = await FindByCondition(c => !c.IsDeleted, trackChanges)
                 .Search(subjectParameters.SearchTerm ?? "")
                 .Sort(subjectParameters.OrderBy ?? "name")
                 .Skip((subjectParameters.PageNumber - 1) * subjectParameters.PageSize)
                 .Take(subjectParameters.PageSize)
                 .ToListAsync();
 
-            var count = await FindAll(trackChanges).CountAsync();
+            var count = await FindByCondition(c => !c.IsDeleted, trackChanges)
+                .Search(subjectParameters.SearchTerm ?? "")
+                .CountAsync();
 
             return new PagedList<Subject>(subjectes, count, subjectParameters.PageNumber, subjectParameters.PageSize);
         }
 
         public async Task<IEnumerable<Subject>> GetSubjects(bool trackChanges)
         {
-            return await FindAll(trackChanges).ToListAsync();
+            return await FindByCondition(c => !c.IsDeleted, trackChanges).ToListAsync();
         }
 
         public async Task<Subject?> GetSubjectAsync(Guid? SubjectId, bool trackChanges) =>
-            await FindByCondition(c => c.Id.Equals(SubjectId), trackChanges)
+            await FindByCondition(c => !c.IsDeleted && c.Id.Equals(SubjectId), trackChanges)
             .SingleOrDefaultAsync();
 
         public async Task<IEnumerable<Subject>> GetByIdsAsync(IEnumerable<Guid> ids, bool trackChanges) =>
-            await FindByCondition(x => ids.Contains(x.Id), trackChanges)
+            await FindByCondition(c => !c.IsDeleted && ids.Contains(c.Id), trackChanges)
             .ToListAsync();
 
         public  void CreateSubject(Subject subject) => Create(subject);

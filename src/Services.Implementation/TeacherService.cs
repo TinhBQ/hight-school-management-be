@@ -76,7 +76,9 @@ namespace Services.Implementation
         public async Task DeleteTeacherAsync(Guid teacherId, bool trackChanges)
         {
             var teacher = await _helperService.GetTeacherAndCheckIfItExists(teacherId, trackChanges);
-            _repository.TeacherRepository.DeleteTeacher(teacher);
+
+            teacher.IsDeleted = true;
+
             await _repository.UnitOfWork.SaveAsync();
         }
 
@@ -114,7 +116,7 @@ namespace Services.Implementation
 
             foreach (var teacher in teacherEntities)
             {
-                _repository.TeacherRepository.DeleteTeacher(teacher);
+                teacher.IsDeleted = true;
             }
 
             await _repository.UnitOfWork.SaveAsync();

@@ -93,7 +93,7 @@ namespace API.Presentation.Controllers
         [HttpDelete("{id:guid}")]
         public async Task<IActionResult> DeleteSubjectClass(Guid id)
         {
-            await _service.SubjectClassService.DeleteSubjectClassAsync(id, trackChanges: false);
+            await _service.SubjectClassService.DeleteSubjectClassAsync(id, trackChanges: true);
             return NoContent();
         }
 
@@ -101,7 +101,7 @@ namespace API.Presentation.Controllers
 
         public async Task<IActionResult> DeleteDeleteSubjectCollection([ModelBinder(BinderType = typeof(ArrayModelBinder))] IEnumerable<Guid> ids)
         {
-            await _service.SubjectClassService.DeleteSubjectClassCollectionAsync(ids, trackChanges: false);
+            await _service.SubjectClassService.DeleteSubjectClassCollectionAsync(ids, trackChanges: true);
             return NoContent();
         }
     }

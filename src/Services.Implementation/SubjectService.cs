@@ -128,7 +128,9 @@ namespace Services.Implementation
         public async Task DeleteSubjectAsync(Guid subjectId, bool trackChanges)
         {
             var subject = await _helperService.GetSubjectAndCheckIfItExists(subjectId, trackChanges);
-            _repository.SubjectRepository.DeleteSubject(subject);
+
+            subject.IsDeleted = true;
+
             await _repository.UnitOfWork.SaveAsync();
         }
 
@@ -166,7 +168,7 @@ namespace Services.Implementation
 
             foreach (var subject in subjectEntities)
             {
-                _repository.SubjectRepository.DeleteSubject(subject);
+                subject.IsDeleted = true;
             }
 
             await _repository.UnitOfWork.SaveAsync();
