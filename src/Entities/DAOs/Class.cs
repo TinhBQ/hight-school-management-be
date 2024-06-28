@@ -1,4 +1,5 @@
-﻿using Entities.Common;
+﻿
+using Entities.Common;
 
 namespace Entities.DAOs
 {

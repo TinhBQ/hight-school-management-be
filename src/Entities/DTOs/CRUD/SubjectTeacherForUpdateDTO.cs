@@ -3,7 +3,7 @@
     public record SubjectTeacherForUpdateDTO
         (
             Guid SubjectId,
-            Guid ClassId,
-            int PeriodCount
+            Guid TeacherId,
+            bool IsMain
         );
 }
