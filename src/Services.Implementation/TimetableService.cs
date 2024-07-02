@@ -476,31 +476,31 @@ namespace Services.Implementation
         private static int CheckH04AndH08(TimetableIndividual src, TimetableParameters parameters)
         {
             var count = 0;
-            for (var i = 0; i < parameters.SubjectsWithPracticeRoom.Count; i++)
-            {
-                var timetableUnits = src.TimetableUnits
-                    .Where(u => u.SubjectId == parameters.SubjectsWithPracticeRoom[i].Subject.Id)
-                    .ToList();
-                var group = timetableUnits
-                    .GroupBy(u => u.StartAt)
-                    .ToList();
-                for (var j = 0; j < group.Count; j++)
-                {
-                    var units = group[j].Select(g => g).ToList();
-                    if (units.Count > parameters.SubjectsWithPracticeRoom[i].RoomCount)
-                    {
-                        var (day, period) = GetDayAndPeriod(group[j].Key);
-                        units.ForEach(u => u.ConstraintErrors.Add(new ConstraintError()
-                        {
-                            Code = "H04&H08",
-                            ClassName = u.ClassName,
-                            SubjectName = u.SubjectName,
-                            Description = $"Không đủ phòng thực hành cho môn {u.SubjectName} tại tiết {period} vào thứ {day}"
-                        }));
-                        count += units.Count;
-                    }
-                }
-            }
+            //for (var i = 0; i < parameters.SubjectsWithPracticeRoom.Count; i++)
+            //{
+            //    var timetableUnits = src.TimetableUnits
+            //        .Where(u => u.SubjectId == parameters.SubjectsWithPracticeRoom[i].Subject.Id)
+            //        .ToList();
+            //    var group = timetableUnits
+            //        .GroupBy(u => u.StartAt)
+            //        .ToList();
+            //    for (var j = 0; j < group.Count; j++)
+            //    {
+            //        var units = group[j].Select(g => g).ToList();
+            //        if (units.Count > parameters.SubjectsWithPracticeRoom[i].RoomCount)
+            //        {
+            //            var (day, period) = GetDayAndPeriod(group[j].Key);
+            //            units.ForEach(u => u.ConstraintErrors.Add(new ConstraintError()
+            //            {
+            //                Code = "H04&H08",
+            //                ClassName = u.ClassName,
+            //                SubjectName = u.SubjectName,
+            //                Description = $"Không đủ phòng thực hành cho môn {u.SubjectName} tại tiết {period} vào thứ {day}"
+            //            }));
+            //            count += units.Count;
+            //        }
+            //    }
+            //}
             return count;
         }
 

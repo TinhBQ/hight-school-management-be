@@ -1,4 +1,5 @@
-﻿using Contexts;
+﻿using AutoMapper;
+using Contexts;
 using Entities.Common;
 using Entities.DTOs.TimetableCreation;
 using Entities.RequestFeatures;
@@ -10,9 +11,10 @@ namespace API.Controllers
 {
     [Route("api/timetables")]
     [ApiController]
-    public class TimetableController(ITimetableService timetableService, HsmsDbContext context) : ControllerBase
+    public class TimetableController(ITimetableService timetableService, IMapper mapper, HsmsDbContext context) : ControllerBase
     {
         private readonly ITimetableService _timetableService = timetableService;
+        private readonly IMapper _mapper = mapper;
         private readonly HsmsDbContext _context = context;
 
         [HttpGet]
@@ -66,12 +68,18 @@ namespace API.Controllers
         private TimetableParameters CreateParameters()
         {
             var classes = _context.Classes
-                .AsNoTracking().ToList();
+                .AsNoTracking()
+                .ToList();
+            var dSubjects = new List<SubjectTCDTO>();
+            _context.Subjects
+                .Where(s => s.ShortName == "TOAN" || s.ShortName == "VAN" || s.ShortName == "NN")
+                .AsNoTracking()
+                .ToList()
+                .ForEach(s => dSubjects.Add(new(s)));
             var parameters = new TimetableParameters
             {
                 ClassIds = [.. classes.Select(c => c.Id)],
-                DoublePeriodSubjects = [.. _context.Subjects
-                .Where(s => s.ShortName == "TOAN" || s.ShortName == "VAN" || s.ShortName == "NN")],
+                DoublePeriodSubjects = dSubjects,
                 MaxPeriodPerDay = 5,
                 MinPeriodPerDay = 0,
                 Semester = 1,
@@ -85,6 +93,9 @@ namespace API.Controllers
                 .Where(a => parameters.ClassIds.Contains(a.ClassId) &&
                             fixedSubjects.Select(s => s.Id).Contains(a.SubjectId))
                 .Include(a => a.Subject)
+                .Include(a => a.Teacher)
+                .Include(a => a.Class)
+                .AsNoTracking()
                 .ToList();
             foreach (var assignment in fixedAssignments)
             {
@@ -100,6 +111,12 @@ namespace API.Controllers
                     Id = Guid.NewGuid(),
                     Priority = EPriority.Fixed,
                     StartAt = startAt,
+                    TeacherId = assignment.TeacherId == null ? Guid.Empty : (Guid)assignment.TeacherId,
+                    TeacherName = assignment.Teacher.ShortName,
+                    ClassId = assignment.ClassId,
+                    ClassName = assignment.Class.Name,
+                    SubjectId = assignment.Subject.Id,
+                    SubjectName = assignment.Subject.ShortName,
                     AssignmentId = assignment.Id
                 };
                 parameters.FixedTimetableUnits.Add(timetableUnit);
@@ -115,11 +132,17 @@ namespace API.Controllers
                 foreach (var startAt in startAts)
                     parameters.FreeTimetableUnits.Add(new TimetableUnitTCDTO()
                     {
+                        Id = Guid.NewGuid(),
+                        ClassId = @class.Id,
                         ClassName = @class.Name,
                         StartAt = startAt,
+                        Priority = EPriority.High,
                     });
             }
-            parameters.SubjectsWithPracticeRoom.Add((_context.Subjects.AsNoTracking().First(s => s.ShortName == "TIN"), 2));
+            var subjectsWithPracticeRoom = _context.Subjects.AsNoTracking().First(s => s.ShortName == "TIN");
+            parameters.SubjectsWithPracticeRoom.Add(subjectsWithPracticeRoom.Id, 2);
+            // parameters.JsonOutput();
+
             return parameters;
         }
     }
