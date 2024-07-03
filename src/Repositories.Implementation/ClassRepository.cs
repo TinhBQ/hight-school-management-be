@@ -37,7 +37,7 @@ namespace Persistence.Repositories
             return await FindAll(trackChanges).ToListAsync();
         }
 
-        public async Task<Class?> GetClassAsync(Guid classId, bool trackChanges) =>
+        public async Task<Class?> GetClassAsync(Guid? classId, bool trackChanges) =>
             await FindByCondition(c => c.Id.Equals(classId), trackChanges)
             .SingleOrDefaultAsync();
 

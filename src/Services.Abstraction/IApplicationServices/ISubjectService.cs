@@ -12,6 +12,10 @@ namespace Services.Abstraction.IApplicationServices
 
         Task<IEnumerable<SubjectDTO>> GetAssignedSubjectsByClassId(Guid classId, bool trackChanges);
 
+        Task<IEnumerable<SubjectDTO>> GetUnassignedSubjectsByTeacherId(Guid teacherId, bool trackChanges);
+
+        Task<IEnumerable<SubjectDTO>> GetAssignedSubjectsByTeacherId(Guid teacherId, bool trackChanges);
+
         Task<SubjectDTO?> GetSubjectAsync(Guid subjectId, bool trackChanges);
 
         Task<IEnumerable<SubjectDTO?>> GetByIdsAsync(IEnumerable<Guid> ids, bool trackChanges);

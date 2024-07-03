@@ -9,11 +9,12 @@ using Services.Abstraction.IRepositoryServices;
 
 namespace Services.Implementation
 {
-    internal sealed class ClassService(IRepositoryManager repository, ILoggerManager logger, IMapper mapper) : IClassService
+    internal sealed class ClassService(IRepositoryManager repository, ILoggerManager logger, IMapper mapper, IHelperService helperService) : IClassService
     {
         private readonly IRepositoryManager _repository = repository;
         private readonly ILoggerManager _logger = logger;
         private readonly IMapper _mapper = mapper;
+        private readonly IHelperService _helperService = helperService;
 
         public async Task<(IEnumerable<ClassDTO> classes, MetaData metaData)> GetAllClassesAsync(ClassParameters classParameters, bool trackChanges, bool isInclude)
         {
@@ -46,7 +47,7 @@ namespace Services.Implementation
 
         public async Task<ClassDTO?> GetClassAsync(Guid classId, bool trackChanges)
         {
-            var klass = await GetClassAndCheckIfItExists(classId, trackChanges);
+            var klass = await _helperService.GetClassAndCheckIfItExists(classId, trackChanges);
 
             var companyDto = _mapper.Map<ClassDTO>(klass);
 
@@ -82,7 +83,7 @@ namespace Services.Implementation
 
         public async Task UpdateClassAsync(Guid classId, ClassForUpdateDTO classForUpdate, bool trackChanges)
         {
-            var klass = await GetClassAndCheckIfItExists(classId, trackChanges);
+            var klass = await _helperService.GetClassAndCheckIfItExists(classId, trackChanges);
 
             _mapper.Map(classForUpdate, klass);
 
@@ -91,15 +92,15 @@ namespace Services.Implementation
 
         public async Task UpdateClassToHomeroomAssignmentAsync(Guid classId, ClassToHomeroomAssignmentForUpdateDTO classToHomeroomAssignmentUpdate, bool trackChanges)
         {
-            var klass = await GetClassAndCheckIfItExists(classId, trackChanges);
+            var klass = await _helperService.GetClassAndCheckIfItExists(classId, trackChanges);
 
-            var teacher = await GetTeacherAndCheckIfItExists(klass.HomeroomTeacherId, trackChanges);
+            var teacher = await _helperService.GetTeacherAndCheckIfItExists(klass.HomeroomTeacherId, trackChanges);
 
             teacher.ClassId = null;
 
             _mapper.Map(classToHomeroomAssignmentUpdate, klass);
 
-            var newTecher = await GetTeacherAndCheckIfItExists(klass.HomeroomTeacherId, trackChanges);
+            var newTecher = await _helperService.GetTeacherAndCheckIfItExists(klass.HomeroomTeacherId, trackChanges);
 
             newTecher.ClassId = klass.Id;
 
@@ -114,18 +115,18 @@ namespace Services.Implementation
             foreach (var classToHomeroomAssignment in classToHomeroomAssignmentForUpdateCollection)
             { 
                 Console.WriteLine(classToHomeroomAssignment.Id);
-                var klass = await GetClassAndCheckIfItExists(classToHomeroomAssignment.Id, trackChanges);
+                var klass = await _helperService.GetClassAndCheckIfItExists(classToHomeroomAssignment.Id, trackChanges);
 
                 if (klass.HomeroomTeacherId != Guid.Empty && klass.HomeroomTeacherId != null)
                 {
-                    var teacher = await GetTeacherAndCheckIfItExists(klass.HomeroomTeacherId, trackChanges);
+                    var teacher = await _helperService.GetTeacherAndCheckIfItExists(klass.HomeroomTeacherId, trackChanges);
 
                     teacher.ClassId = null;
                 } 
 
                 _mapper.Map(classToHomeroomAssignment, klass);
 
-                var newTecher = await GetTeacherAndCheckIfItExists(klass.HomeroomTeacherId, trackChanges);
+                var newTecher = await _helperService.GetTeacherAndCheckIfItExists(klass.HomeroomTeacherId, trackChanges);
 
                 newTecher.ClassId = klass.Id;
             }
@@ -135,7 +136,7 @@ namespace Services.Implementation
 
         public async Task DeleteClassAsync(Guid classId, bool trackChanges)
         {
-            var klass = await GetClassAndCheckIfItExists(classId, trackChanges);
+            var klass = await _helperService.GetClassAndCheckIfItExists(classId, trackChanges);
             _repository.ClassRepository.DeleteClass(klass);
             await _repository.UnitOfWork.SaveAsync();
         }
@@ -178,20 +179,6 @@ namespace Services.Implementation
             }
 
             await _repository.UnitOfWork.SaveAsync();
-        }
-
-        private async Task<Class> GetClassAndCheckIfItExists(Guid classId, bool trackChanges)
-        {
-            var company = await _repository.ClassRepository.GetClassAsync(classId, trackChanges);
-
-            return company is null ? throw new ClassNotFoundException(classId) : company;
-        }
-
-        private async Task<Teacher> GetTeacherAndCheckIfItExists(Guid? teacherId, bool trackChanges)
-        {
-            var teacher = await _repository.TeacherRepository.GetTeacherAsync(teacherId, trackChanges);
-
-            return teacher is null ? throw new TeacherNotFoundException(teacherId ?? Guid.Empty) : teacher;
         }
     }
 }

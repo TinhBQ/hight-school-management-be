@@ -24,7 +24,11 @@ namespace Repositories.Implementation
                 .Skip((assignmentParameters.PageNumber - 1) * assignmentParameters.PageSize)
                 .Take(assignmentParameters.PageSize)
                 .ToListAsync();
-            var count = await FindAll(trackChanges).CountAsync();
+
+            var count = await FindAll(trackChanges)
+                .FilterAssignments(assignmentParameters.StartYear, assignmentParameters.EndYear)
+                .CountAsync();
+
             return new PagedList<Assignment>(assignments, count, assignmentParameters.PageNumber, assignmentParameters.PageSize);
         }
 

@@ -12,6 +12,8 @@
 
         ISubjectClassRepository SubjectClassRepository { get; }
 
+        ISubjectTeacherRepository SubjectTeacherRepository { get; }
+
         IUnitOfWork UnitOfWork { get; }
     }
 }

@@ -22,7 +22,9 @@ namespace Persistence.Repositories
                 .Include(s => s.Subject)
                 .ToListAsync();
 
-            var count = await FindAll(trackChanges).CountAsync();
+            var count = await FindAll(trackChanges)
+                .Search(subjectClassParameters.SearchTerm ?? "")
+                .CountAsync();
 
             return new PagedList<SubjectClass>(subjectClasses, count, subjectClassParameters.PageNumber, subjectClassParameters.PageSize);
         }
@@ -39,7 +41,8 @@ namespace Persistence.Repositories
                 .ToListAsync();
 
             var count = await FindByCondition(x => x.ClassId.Equals(subjectsForClassParameters.classId), trackChanges)
-                .Include(s => s.Class).Include(s => s.Subject).CountAsync();
+                .Search(subjectsForClassParameters.SearchTerm ?? "")
+                .CountAsync();
 
             return new PagedList<SubjectClass>(subjectClasses, count, subjectsForClassParameters.PageNumber, subjectsForClassParameters.PageSize);
         }
@@ -57,7 +60,7 @@ namespace Persistence.Repositories
                 .ToListAsync();
         }
 
-        public async Task<SubjectClass?> GetSubjectClassAsync(Guid id, bool trackChanges) =>
+        public async Task<SubjectClass?> GetSubjectClassAsync(Guid? id, bool trackChanges) =>
             await FindByCondition(c => c.Id.Equals(id), trackChanges)
             .Include(s => s.Class)
             .Include(s => s.Subject)

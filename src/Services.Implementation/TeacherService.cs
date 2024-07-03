@@ -10,11 +10,12 @@ using Services.Abstraction.IRepositoryServices;
 
 namespace Services.Implementation
 {
-    internal sealed class TeacherService(IRepositoryManager repository, ILoggerManager logger, IMapper mapper) : ITeacherService
+    internal sealed class TeacherService(IRepositoryManager repository, ILoggerManager logger, IMapper mapper, IHelperService helperService) : ITeacherService
     {
         private readonly IRepositoryManager _repository = repository;
         private readonly ILoggerManager _logger = logger;
         private readonly IMapper _mapper = mapper;
+        private readonly IHelperService _helperService = helperService;
 
         public async Task<(IEnumerable<TeacherDTO> teachers, MetaData metaData)> GetAllTeachersAsync(TeacherParameters teacherParameters, bool trackChanges)
         {
@@ -30,7 +31,7 @@ namespace Services.Implementation
 
         public async Task<TeacherDTO?> GetTeacherAsync(Guid teacherId, bool trackChanges)
         {
-            var teacher = await GetTeacherAndCheckIfItExists(teacherId, trackChanges);
+            var teacher = await _helperService.GetTeacherAndCheckIfItExists(teacherId, trackChanges);
 
             var teacherDTO = _mapper.Map<TeacherDTO>(teacher);
 
@@ -65,7 +66,7 @@ namespace Services.Implementation
 
         public async Task UpdateTeacherAsync(Guid teacherId, TeacherForUpdateDTO teacherForUpdate, bool trackChanges)
         {
-            var teacher = await GetTeacherAndCheckIfItExists(teacherId, trackChanges);
+            var teacher = await _helperService.GetTeacherAndCheckIfItExists(teacherId, trackChanges);
 
             _mapper.Map(teacherForUpdate, teacher);
 
@@ -74,7 +75,7 @@ namespace Services.Implementation
 
         public async Task DeleteTeacherAsync(Guid teacherId, bool trackChanges)
         {
-            var teacher = await GetTeacherAndCheckIfItExists(teacherId, trackChanges);
+            var teacher = await _helperService.GetTeacherAndCheckIfItExists(teacherId, trackChanges);
             _repository.TeacherRepository.DeleteTeacher(teacher);
             await _repository.UnitOfWork.SaveAsync();
         }
@@ -118,14 +119,5 @@ namespace Services.Implementation
 
             await _repository.UnitOfWork.SaveAsync();
         }
-
-        private async Task<Teacher> GetTeacherAndCheckIfItExists(Guid teacherId, bool trackChanges)
-        {
-            var teacher = await _repository.TeacherRepository.GetTeacherAsync(teacherId, trackChanges);
-
-            return teacher is null ? throw new TeacherNotFoundException(teacherId) : teacher;
-        }
-
-
     }
 }
