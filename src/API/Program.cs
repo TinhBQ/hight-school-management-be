@@ -1,6 +1,8 @@
 using API.Extensions;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Mvc.Razor;
+using Newtonsoft.Json.Serialization;
+using Newtonsoft.Json;
 using NLog;
 using Services.Abstraction.IApplicationServices;
 using Services.Abstraction.ILoggerServices;
@@ -31,7 +33,12 @@ namespace API
                 .AddApplicationPart(typeof(AssemblyReference).Assembly)
                 .AddJsonOptions(x =>
                 x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
-            builder.Services.AddControllers().AddNewtonsoftJson();
+            //builder.Services.AddControllers().AddNewtonsoftJson();
+            builder.Services.AddControllers().AddNewtonsoftJson(options =>
+            {
+                options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+                options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+            });
 
             builder.Services.AddScoped<ITimetableService, TimetableService>();
             builder.Services.AddScoped<IDatabaseService, DatabaseService>();
