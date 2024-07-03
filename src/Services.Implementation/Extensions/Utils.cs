@@ -5,6 +5,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using System.Text.Json;
 
 namespace Services.Implementation.Extensions
 {
@@ -151,6 +152,16 @@ namespace Services.Implementation.Extensions
                 }
                 file.WriteLine();
             }
+            file.Close();
+        }
+
+        public static void JsonOutput(this object obj, string fileName = "JsonOutput")
+        {
+            JsonSerializerOptions jso = new JsonSerializerOptions();
+            jso.Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping;
+            var json = JsonSerializer.Serialize(obj, jso);
+            var file = new StreamWriter($"C:\\Users\\ponpy\\source\\repos\\KLTN\\10-be\\{fileName}.json");
+            file.Write(json);
             file.Close();
         }
     }

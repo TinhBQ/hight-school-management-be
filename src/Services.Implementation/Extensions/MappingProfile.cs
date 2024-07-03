@@ -29,6 +29,7 @@ namespace Services.Implementation.Extensions
             CreateMap<ClassToHomeroomAssignmentForUpdateCollectionDTO, Class>();
 
             CreateMap<Subject, SubjectDTO>();
+            CreateMap<Subject, SubjectTCDTO>();
             CreateMap<SubjectForCreationDTO, Subject>();
             CreateMap<SubjectForUpdateDTO, Subject>();
             CreateMap<SubjectTCDTO, SubjectDTO>();

@@ -7,7 +7,7 @@ namespace Services.Abstraction.IApplicationServices
     {
         public TimetableIndividual Generate(TimetableParameters parameters);
         public TimetableIndividual Get(Guid id, TimetableParameters parameters);
-        public TimetableIndividual Check(TimetableIndividual timetable);
+        public TimetableIndividual Check(Guid timetableId, TimetableParameters parameters);
         public void Update(TimetableIndividual timetable);
         public void Delete(Guid id);
     }
