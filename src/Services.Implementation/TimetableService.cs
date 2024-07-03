@@ -43,7 +43,7 @@ namespace Services.Implementation
             /* Cá thể gốc là cá thể được tạo ra đầu tiên và là cá thể mang giá trị mặc định và bất biến*/
             var root = CreateRootIndividual(classes, teachers, assignments, timetableFlags, parameters);
 
-            var file = new StreamWriter("C:\\Users\\ponpy\\source\\repos\\KLTN\\10-be\\Temp.txt");
+            //var file = new StreamWriter("C:\\Users\\ponpy\\source\\repos\\KLTN\\10-be\\Temp.txt");
 
             // Tạo quần thể ban đầu và tính toán độ thích nghi
             var timetablePopulation = CreateInitialPopulation(root, parameters);
@@ -90,16 +90,22 @@ namespace Services.Implementation
                     $"step {step}, " +
                     $"best score {best.Adaptability}\n" +
                     $"errors: ");
-                foreach (var error in best.ConstraintErrors.Take(30))
+                var errors = best.ConstraintErrors.Where(error => error.IsHardConstraint == true).ToList();
+                foreach (var error in errors.Take(20))
                     Console.WriteLine("  " + error.Description);
-
-                if (best.ConstraintErrors.Count > 30)
+                if (errors.Count > 20)
+                    Console.WriteLine("  ...");
+                Console.WriteLine("warning: ");
+                var warnings = best.ConstraintErrors.Where(error => error.IsHardConstraint == false).ToList();
+                foreach (var error in warnings.Take(20))
+                    Console.WriteLine("  " + error.Description);
+                if (warnings.Count > 20)
                     Console.WriteLine("  ...");
 
                 if (timetableIdBacklog == best.Id)
                 {
                     backlogCount++;
-                    if (backlogCount > 500)
+                    if (backlogCount > 200)
                     {
                         timetablePopulation = CreateInitialPopulation(root, parameters);
                         backlogCount = 0;
@@ -115,8 +121,6 @@ namespace Services.Implementation
                 Console.WriteLine($"backlog count:  {backlogCount}\t max: {backlogCountMax}");
                 Console.WriteLine("time: " + sw.Elapsed.ToString());
             }
-
-            Console.WriteLine(sw.Elapsed.ToString() + ", " + backlogCountMax);
 
             var timetableFirst = timetablePopulation.OrderBy(i => i.Adaptability).First();
             timetableFirst.ToCsv();
@@ -134,6 +138,9 @@ namespace Services.Implementation
             _context.SaveChanges();
 
             sw.Stop();
+            Console.SetCursorPosition(0, 0);
+            Console.Clear();
+            Console.WriteLine(sw.Elapsed.ToString() + ", " + backlogCountMax);
 
             return timetableFirst;
         }
@@ -149,15 +156,45 @@ namespace Services.Implementation
             var (classes, teachers, subjects, assignments, timetableFlags) = GetData(parameters);
             var root = Clone(CreateRootIndividual(classes, teachers, assignments, timetableFlags, parameters));
             root.TimetableUnits = _mapper.Map<TimetableDTO>(timetableDb).TimetableUnits;
+            foreach (var unit in root.TimetableUnits)
+            {
+                var assigment = assignments
+                    .First(a => a.Teacher.Id == unit.TeacherId &&
+                                a.Class.Id == unit.ClassId &&
+                                a.Subject.Id == unit.SubjectId);
+                unit.AssignmentId = assigment.Id;
+            };
             RemarkTimetableFlag(root);
             CalculateAdaptability(root, parameters);
 
             return root;
         }
-        public TimetableIndividual Check(TimetableIndividual timetable)
+
+        public TimetableIndividual Check(Guid timetableId, TimetableParameters parameters)
         {
-            var timetableDb = _context.Timetables.First(t => t.Id == timetable.Id);
-            var result = _mapper.Map<TimetableIndividual>(timetableDb);
+            var timetableDb = _context.Timetables
+                .Include(t => t.TimetableUnits)
+                .AsNoTracking()
+                .First(t => t.Id == timetableId);
+            var temp = _mapper.Map<TimetableIndividual>(timetableDb);
+            var (classes, teachers, subjects, assignments, timetableFlags) = GetData(parameters);
+            var root = new TimetableRootIndividual(timetableFlags, temp.TimetableUnits, classes, teachers);
+            var result = Clone(root);
+            result.StartYear = timetableDb.StartYear;
+            result.EndYear = timetableDb.EndYear;
+            result.Semester = timetableDb.Semester;
+            result.Name = timetableDb.Name;
+            foreach (var unit in result.TimetableUnits)
+            {
+                var assigment = assignments
+                    .First(a => a.Teacher.Id == unit.TeacherId &&
+                                a.Class.Id == unit.ClassId &&
+                                a.Subject.Id == unit.SubjectId);
+                unit.AssignmentId = assigment.Id;
+            };
+            RemarkTimetableFlag(result);
+            CalculateAdaptability(result, parameters);
+            result.GetConstraintErrors();
             return result;
         }
 
@@ -291,16 +328,17 @@ namespace Services.Implementation
             /* Tạo danh sách timetableUnit và thêm các tiết được xếp sẵn trước*/
             var timetableUnits = new List<TimetableUnitTCDTO>();
 
-            for (var i = 0; i < parameters.FixedTimetableUnits.Count; i++)
-            {
-                var newUnit = new TimetableUnitTCDTO(assignments.First(a => a.Id == parameters.FixedTimetableUnits[i].AssignmentId))
-                {
-                    Id = parameters.FixedTimetableUnits[i].Id,
-                    StartAt = parameters.FixedTimetableUnits[i].StartAt,
-                    Priority = parameters.FixedTimetableUnits[i].Priority,
-                };
-                timetableUnits.Add(newUnit);
-            }
+            timetableUnits.AddRange(parameters.FixedTimetableUnits);
+            //for (var i = 0; i < parameters.FixedTimetableUnits.Count; i++)
+            //{
+            //    var newUnit = new TimetableUnitTCDTO(assignments.First(a => a.Id == parameters.FixedTimetableUnits[i].AssignmentId))
+            //    {
+            //        Id = parameters.FixedTimetableUnits[i].Id,
+            //        StartAt = parameters.FixedTimetableUnits[i].StartAt,
+            //        Priority = parameters.FixedTimetableUnits[i].Priority,
+            //    };
+            //    timetableUnits.Add(newUnit);
+            //}
 
             /* Đánh dấu các tiết này vào timetableFlags */
             for (var i = 0; i < timetableUnits.Count; i++)
@@ -996,7 +1034,7 @@ namespace Services.Implementation
         private static void RemarkTimetableFlag(TimetableIndividual src)
         {
             for (var i = 0; i < src.Classes.Count; i++)
-                for (var j = 0; j < 61; j++)
+                for (var j = 1; j < 61; j++)
                     if (src.TimetableFlag[i, j] != ETimetableFlag.None)
                         src.TimetableFlag[i, j] = ETimetableFlag.Unfilled;
 

@@ -26,29 +26,36 @@ namespace API.Controllers
         [HttpGet("{id:guid}", Name = "TimetableById")]
         public IActionResult GetTimetable(Guid id)
         {
-            var result = _timetableService.Get(id, CreateParameters());
+            var parameters = CreateParameters();
+            ValidateTimetableParameters(parameters);
+            var result = _timetableService.Get(id, parameters);
             return Ok(result);
         }
 
         [HttpPost("test")]
         public IActionResult CreateTimetableTest()
         {
-            var id = _timetableService.Generate(CreateParameters()).Id;
+            var timetable = _timetableService.Generate(CreateParameters());
 
-            return Ok(id);
+            return Ok(timetable);
         }
 
         [HttpPost]
-        public IActionResult CreateTimetable(TimetableParameters parameters)
+        public IActionResult CreateTimetable(TimetableParameters? parameters)
         {
+            parameters ??= CreateParameters();
+            ValidateTimetableParameters(parameters);
             var timetable = _timetableService.Generate(parameters);
             return Ok(timetable);
         }
 
         [HttpPatch("checking")]
-        public IActionResult CheckTimetable(TimetableIndividual timetable)
+        public IActionResult CheckTimetable(Guid timetableId, TimetableParameters? parameters = null)
         {
-            return Ok(_timetableService.Check(timetable));
+            parameters ??= CreateParameters();
+            ValidateTimetableParameters(parameters);
+            var result = _timetableService.Check(timetableId, parameters);
+            return Ok(result);
         }
 
         [HttpPatch]
@@ -144,6 +151,14 @@ namespace API.Controllers
             // parameters.JsonOutput();
 
             return parameters;
+        }
+
+        private void ValidateTimetableParameters(TimetableParameters parameters)
+        {
+            if (parameters.ClassIds.Count < 1)
+                throw new Exception();
+            if (parameters.FixedTimetableUnits.Any(u => u.AssignmentId == Guid.Empty))
+                throw new Exception();
         }
     }
 }
