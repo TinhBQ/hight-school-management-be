@@ -6,6 +6,7 @@ using Entities.RequestFeatures;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Services.Abstraction.IApplicationServices;
+using Services.Implementation.Extensions;
 
 namespace API.Controllers
 {
@@ -147,13 +148,17 @@ namespace API.Controllers
                     });
             }
             var subjectsWithPracticeRoom = _context.Subjects.AsNoTracking().First(s => s.ShortName == "TIN");
-            parameters.SubjectsWithPracticeRoom.Add(subjectsWithPracticeRoom.Id, 2);
-            // parameters.JsonOutput();
+            parameters.SubjectsWithPracticeRoom.Add(new()
+            {
+                SubjectId = subjectsWithPracticeRoom.Id,
+                RoomCount = 2,
+            });
+            parameters.JsonOutput();
 
             return parameters;
         }
 
-        private void ValidateTimetableParameters(TimetableParameters parameters)
+        private static void ValidateTimetableParameters(TimetableParameters parameters)
         {
             if (parameters.ClassIds.Count < 1)
                 throw new Exception();

@@ -23,7 +23,7 @@ namespace Services.Implementation
 
             var classesDTO = _mapper.Map<IEnumerable<ClassDTO>>(classesWithMetaData);
 
-            return (classes: classesDTO, metaData: classesWithMetaData.metaData);
+            return (classes: classesDTO, classesWithMetaData.metaData);
 
         }
 
@@ -113,7 +113,7 @@ namespace Services.Implementation
                 throw new ClassCollectionBadRequest();
 
             foreach (var classToHomeroomAssignment in classToHomeroomAssignmentForUpdateCollection)
-            { 
+            {
                 Console.WriteLine(classToHomeroomAssignment.Id);
                 var klass = await _helperService.GetClassAndCheckIfItExists(classToHomeroomAssignment.Id, trackChanges);
 
@@ -122,7 +122,7 @@ namespace Services.Implementation
                     var teacher = await _helperService.GetTeacherAndCheckIfItExists(klass.HomeroomTeacherId, trackChanges);
 
                     teacher.ClassId = null;
-                } 
+                }
 
                 _mapper.Map(classToHomeroomAssignment, klass);
 
@@ -138,7 +138,7 @@ namespace Services.Implementation
         {
             var klass = await _helperService.GetClassAndCheckIfItExists(classId, trackChanges);
 
-            klass.IsDeleted  = true;
+            klass.IsDeleted = true;
 
             await _repository.UnitOfWork.SaveAsync();
         }
