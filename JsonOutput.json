@@ -1,1 +1,2599 @@
-{"ClassIds":["0cb456a0-c788-468f-ba51-103cf6cef5f3","1055c01e-47b0-4314-8141-112d528d82eb","6a0e3bb6-c513-48f9-b7b9-1208dac116fd","99dd07b4-0450-4efc-a70a-192d81577ced","ccf8e5a7-4301-447b-8825-3335b520dffc","750463ed-ab81-4a4e-8d49-382084f39ad7","d5725d2e-d7d8-4831-a35e-3ca107bed73f","e2ce2775-b86a-4990-9d7c-44580df938b5","feb2d51a-8ad1-4c18-8449-4e658ad02334","bb1c4f4d-a4fa-4d2e-abcb-6bf7164ae2dc","f6123108-6be8-496d-9c60-7753f313368f","a159920c-504f-498a-b225-79844ad120ae","c637c086-455b-4537-a1e2-988cf0256f0f","b70f1908-aea3-4303-9d50-a0bfae418459","aebd2111-a72b-41d8-b488-a59cc0a814ae","ad0fd2a4-e653-47bc-adb3-a70b61e20e3a","d5259f06-9165-450f-9eab-b39c609416d7","853a31a6-f92d-450f-9b42-b445bb04cc18","1ae1937b-c8fc-4ee7-9641-b5d0909c54aa","00ab2b62-8c9c-4693-8f3f-b7517f12604e","0df218c3-e2fa-4896-adc5-be7b4edddd68","eaeea2ab-abc7-4aba-b48e-c97aa4c8559d","57064b4d-c018-4d87-a14a-d6412713cdf6","499be294-43cb-4c41-8c83-e2737065ee76","86db94ad-fa83-4759-9e04-f0cc617f8952"],"DoublePeriodSubjects":[{"Id":"1289697a-0e3b-4f69-98ed-8b58f4f71c69","Name":"Toán học","ShortName":"TOAN"},{"Id":"6b941b7e-f715-43a6-a7fc-dcc807fb37cb","Name":"Ngoại ngữ","ShortName":"NN"},{"Id":"c8647f07-10d0-44c0-a9ed-fe0b9f2fca87","Name":"Ngữ văn","ShortName":"VAN"}],"FixedTimetableUnits":[{"Id":"2c8997bd-fbf5-4e71-83b9-00e8eff5ebc4","Priority":0,"ClassId":"00ab2b62-8c9c-4693-8f3f-b7517f12604e","ClassName":"10B8","TeacherId":"67174939-7dbf-44b7-a94d-42f3cc73457a","TeacherName":"Cẩm","SubjectId":"ebb67e3f-fdbd-430f-9441-64c0c7ceda9a","SubjectName":"CC","StartAt":1,"AssignmentId":"84816471-00d5-4bbe-af7c-083c18d4738d","ConstraintErrors":[]},{"Id":"4b472520-d7f8-422a-bb3f-99e869cac142","Priority":0,"ClassId":"ad0fd2a4-e653-47bc-adb3-a70b61e20e3a","ClassName":"11A7","TeacherId":"4986a2cc-8233-4a41-93ac-43e35e250c1a","TeacherName":"Tân","SubjectId":"37a192e0-d40f-4781-95c2-3b86707d026e","SubjectName":"TN&HN","StartAt":59,"AssignmentId":"72fabace-5c86-4cba-8af4-0894af2b615c","ConstraintErrors":[]},{"Id":"7ce2a80d-19e7-4f97-a0d2-d552daa69f84","Priority":0,"ClassId":"499be294-43cb-4c41-8c83-e2737065ee76","ClassName":"10B1","TeacherId":"6749a629-6964-43f4-bc38-2173b963413c","TeacherName":"Lợi","SubjectId":"2e66193f-1903-49e9-a575-383024ede8d8","SubjectName":"SH","StartAt":55,"AssignmentId":"50eaacdd-2228-4646-a01f-09e6abebf668","ConstraintErrors":[]},{"Id":"df1749c7-0a75-4aa4-9ac1-a002fe571e76","Priority":0,"ClassId":"499be294-43cb-4c41-8c83-e2737065ee76","ClassName":"10B1","TeacherId":"6749a629-6964-43f4-bc38-2173b963413c","TeacherName":"Lợi","SubjectId":"37a192e0-d40f-4781-95c2-3b86707d026e","SubjectName":"TN&HN","StartAt":54,"AssignmentId":"23d51e0a-0f16-4c7b-8d3e-0b2ea096ddc4","ConstraintErrors":[]},{"Id":"20a9e697-43c9-4f95-975b-69de337b9782","Priority":0,"ClassId":"6a0e3bb6-c513-48f9-b7b9-1208dac116fd","ClassName":"10B5","TeacherId":"e936ed8e-b9ff-448c-b641-2cede0b5c9da","TeacherName":"My","SubjectId":"37a192e0-d40f-4781-95c2-3b86707d026e","SubjectName":"TN&HN","StartAt":54,"AssignmentId":"4e7b98ba-0c6b-4ce6-9a26-0e856793d037","ConstraintErrors":[]},{"Id":"beb002ae-433a-4f93-9fae-448e85213370","Priority":0,"ClassId":"b70f1908-aea3-4303-9d50-a0bfae418459","ClassName":"12C7","TeacherId":"b7adecee-f4d7-4a2d-8457-e5d27a427278","TeacherName":"Ánh","SubjectId":"2e66193f-1903-49e9-a575-383024ede8d8","SubjectName":"SH","StartAt":55,"AssignmentId":"4b035b3e-0d3f-4336-b311-0f87012f6a4d","ConstraintErrors":[]},{"Id":"c8a0ffb2-9f0d-4d57-a158-f56d5ee69cac","Priority":0,"ClassId":"b70f1908-aea3-4303-9d50-a0bfae418459","ClassName":"12C7","TeacherId":"b7adecee-f4d7-4a2d-8457-e5d27a427278","TeacherName":"Ánh","SubjectId":"ebb67e3f-fdbd-430f-9441-64c0c7ceda9a","SubjectName":"CC","StartAt":1,"AssignmentId":"fa1eabc2-e798-46d5-bae4-15fecf0c1fd0","ConstraintErrors":[]},{"Id":"4aace94b-44de-4771-9966-a742f0a8c877","Priority":0,"ClassId":"750463ed-ab81-4a4e-8d49-382084f39ad7","ClassName":"11A3","TeacherId":"9f09c5a3-7799-40ed-911c-c5161c05cabc","TeacherName":"Hằng","SubjectId":"37a192e0-d40f-4781-95c2-3b86707d026e","SubjectName":"TN&HN","StartAt":59,"AssignmentId":"c74732ad-2cd4-46b4-a1a5-1a728214ed5e","ConstraintErrors":[]},{"Id":"f7a62954-4929-439a-b7b2-ab9acc1cea9c","Priority":0,"ClassId":"e2ce2775-b86a-4990-9d7c-44580df938b5","ClassName":"12C6","TeacherId":"0c6c9e47-e7c5-4d30-9945-65672be86dfc","TeacherName":"Trâm","SubjectId":"37a192e0-d40f-4781-95c2-3b86707d026e","SubjectName":"TN&HN","StartAt":54,"AssignmentId":"bdca1a90-06e9-403b-93ca-1e4e5f0fb3e4","ConstraintErrors":[]},{"Id":"3d6fdf69-d9ff-48ec-adc6-dbc9dc38b8b4","Priority":0,"ClassId":"0cb456a0-c788-468f-ba51-103cf6cef5f3","ClassName":"12C3","TeacherId":"1a4e58d0-5e19-42c2-b73f-ac0d7b6988f1","TeacherName":"Trường","SubjectId":"ebb67e3f-fdbd-430f-9441-64c0c7ceda9a","SubjectName":"CC","StartAt":1,"AssignmentId":"57074fc1-2125-4ba2-b470-20be2bc31095","ConstraintErrors":[]},{"Id":"50098c2c-734c-4f2f-b704-31a853ed598d","Priority":0,"ClassId":"bb1c4f4d-a4fa-4d2e-abcb-6bf7164ae2dc","ClassName":"10B4","TeacherId":"e7dc5f6e-0671-48ec-a298-9bd7ab8ffbf1","TeacherName":"Tiến","SubjectId":"2e66193f-1903-49e9-a575-383024ede8d8","SubjectName":"SH","StartAt":55,"AssignmentId":"4a0e6c70-f9dd-448d-9d87-2186fead7d80","ConstraintErrors":[]},{"Id":"f3ae9c88-47a6-4b72-a138-c669364775c6","Priority":0,"ClassId":"57064b4d-c018-4d87-a14a-d6412713cdf6","ClassName":"12C2","TeacherId":"df6cc373-ae5c-4cce-b000-c48af3fe3e2b","TeacherName":"Nhã","SubjectId":"ebb67e3f-fdbd-430f-9441-64c0c7ceda9a","SubjectName":"CC","StartAt":1,"AssignmentId":"2aed7fe6-a527-450b-9efc-3045f89d8057","ConstraintErrors":[]},{"Id":"cefd59f0-119f-4162-a832-d4570bbbf747","Priority":0,"ClassId":"feb2d51a-8ad1-4c18-8449-4e658ad02334","ClassName":"11A5","TeacherId":"5fe80a00-fa41-476c-a915-0238a70672cc","TeacherName":"Trang(S)","SubjectId":"37a192e0-d40f-4781-95c2-3b86707d026e","SubjectName":"TN&HN","StartAt":59,"AssignmentId":"50ace271-788d-4a7a-8a4c-350f266f3556","ConstraintErrors":[]},{"Id":"cd151401-7354-482c-bbe7-bac9af1d60f1","Priority":0,"ClassId":"0df218c3-e2fa-4896-adc5-be7b4edddd68","ClassName":"10B6","TeacherId":"dae59f4a-9ee2-4995-8034-fd78c18d99bf","TeacherName":"Duy(L)","SubjectId":"ebb67e3f-fdbd-430f-9441-64c0c7ceda9a","SubjectName":"CC","StartAt":1,"AssignmentId":"e205361f-9e42-4d3e-a261-3521984d059f","ConstraintErrors":[]},{"Id":"1534a786-38f9-479d-85cc-61532d28018f","Priority":0,"ClassId":"853a31a6-f92d-450f-9b42-b445bb04cc18","ClassName":"11A1","TeacherId":"647c4458-ab3e-45b5-9b71-7e109bfffdb5","TeacherName":"Công","SubjectId":"ebb67e3f-fdbd-430f-9441-64c0c7ceda9a","SubjectName":"CC","StartAt":10,"AssignmentId":"10931f86-4d0a-44f3-9cab-35c73442f9c7","ConstraintErrors":[]},{"Id":"d90f2390-1604-40c0-b90d-d505d913024f","Priority":0,"ClassId":"57064b4d-c018-4d87-a14a-d6412713cdf6","ClassName":"12C2","TeacherId":"df6cc373-ae5c-4cce-b000-c48af3fe3e2b","TeacherName":"Nhã","SubjectId":"37a192e0-d40f-4781-95c2-3b86707d026e","SubjectName":"TN&HN","StartAt":54,"AssignmentId":"21731015-62db-4edf-b43a-4150aecc647c","ConstraintErrors":[]},{"Id":"1cba2a9e-4f30-44f5-ae5b-6603770c2f04","Priority":0,"ClassId":"e2ce2775-b86a-4990-9d7c-44580df938b5","ClassName":"12C6","TeacherId":"0c6c9e47-e7c5-4d30-9945-65672be86dfc","TeacherName":"Trâm","SubjectId":"ebb67e3f-fdbd-430f-9441-64c0c7ceda9a","SubjectName":"CC","StartAt":1,"AssignmentId":"54f52076-07c0-46a4-a973-45b25c65346a","ConstraintErrors":[]},{"Id":"5d8ffecc-63de-44b9-a973-da70b47126b6","Priority":0,"ClassId":"86db94ad-fa83-4759-9e04-f0cc617f8952","ClassName":"11A4","TeacherId":"fbcb8e24-1905-40fb-b49c-d27ff9ce20a2","TeacherName":"Tuấn(L)","SubjectId":"37a192e0-d40f-4781-95c2-3b86707d026e","SubjectName":"TN&HN","StartAt":59,"AssignmentId":"a733929d-f912-404e-8278-4b8c383dfc34","ConstraintErrors":[]},{"Id":"0fbeeec2-d37e-4beb-acdd-acc6fadfbc5d","Priority":0,"ClassId":"b70f1908-aea3-4303-9d50-a0bfae418459","ClassName":"12C7","TeacherId":"b7adecee-f4d7-4a2d-8457-e5d27a427278","TeacherName":"Ánh","SubjectId":"37a192e0-d40f-4781-95c2-3b86707d026e","SubjectName":"TN&HN","StartAt":54,"AssignmentId":"af26cdcd-4c36-4a37-9368-4f95c5981c01","ConstraintErrors":[]},{"Id":"1f358fdf-6dff-4020-af84-00f01a3b2356","Priority":0,"ClassId":"99dd07b4-0450-4efc-a70a-192d81577ced","ClassName":"10B2","TeacherId":"f6a2d0e1-fcdc-4ea0-9c40-ffea09fd9490","TeacherName":"Uyên","SubjectId":"ebb67e3f-fdbd-430f-9441-64c0c7ceda9a","SubjectName":"CC","StartAt":1,"AssignmentId":"41725324-67a2-4353-b130-526f6c0a673e","ConstraintErrors":[]},{"Id":"6ffb054f-6dce-40d6-b756-d8baac410ff6","Priority":0,"ClassId":"d5725d2e-d7d8-4831-a35e-3ca107bed73f","ClassName":"11A8","TeacherId":"5e80e258-35bd-42b3-a6a5-cd46794565a9","TeacherName":"Hoa(M)","SubjectId":"ebb67e3f-fdbd-430f-9441-64c0c7ceda9a","SubjectName":"CC","StartAt":10,"AssignmentId":"005e4a24-c525-44d6-af4f-593445fe5ead","ConstraintErrors":[]},{"Id":"f434b965-1f8d-4d12-95e3-047e1abfea5c","Priority":0,"ClassId":"aebd2111-a72b-41d8-b488-a59cc0a814ae","ClassName":"11A6","TeacherId":"c1f9b122-383b-42bd-9a04-10964679b550","TeacherName":"Hòa","SubjectId":"37a192e0-d40f-4781-95c2-3b86707d026e","SubjectName":"TN&HN","StartAt":59,"AssignmentId":"fac9c496-016f-49dc-b326-594789048be4","ConstraintErrors":[]},{"Id":"a94c2a4b-9ec5-4a3c-8202-97ecf6703f20","Priority":0,"ClassId":"bb1c4f4d-a4fa-4d2e-abcb-6bf7164ae2dc","ClassName":"10B4","TeacherId":"e7dc5f6e-0671-48ec-a298-9bd7ab8ffbf1","TeacherName":"Tiến","SubjectId":"37a192e0-d40f-4781-95c2-3b86707d026e","SubjectName":"TN&HN","StartAt":54,"AssignmentId":"9cd9a2c2-18b8-4064-8e1d-6855f1d4aa72","ConstraintErrors":[]},{"Id":"9d5a4963-b66c-4e30-be59-db72fae6e9fe","Priority":0,"ClassId":"853a31a6-f92d-450f-9b42-b445bb04cc18","ClassName":"11A1","TeacherId":"647c4458-ab3e-45b5-9b71-7e109bfffdb5","TeacherName":"Công","SubjectId":"37a192e0-d40f-4781-95c2-3b86707d026e","SubjectName":"TN&HN","StartAt":59,"AssignmentId":"c442de22-3a26-4a75-8598-697a58e58356","ConstraintErrors":[]},{"Id":"2888fcb8-0f78-41e9-adbd-c8ac4ab98d79","Priority":0,"ClassId":"853a31a6-f92d-450f-9b42-b445bb04cc18","ClassName":"11A1","TeacherId":"647c4458-ab3e-45b5-9b71-7e109bfffdb5","TeacherName":"Công","SubjectId":"2e66193f-1903-49e9-a575-383024ede8d8","SubjectName":"SH","StartAt":60,"AssignmentId":"b754f98c-f296-471b-83a8-69ac84fe8541","ConstraintErrors":[]},{"Id":"d67572de-dd00-49f6-ac24-8b26adf8e9b1","Priority":0,"ClassId":"aebd2111-a72b-41d8-b488-a59cc0a814ae","ClassName":"11A6","TeacherId":"c1f9b122-383b-42bd-9a04-10964679b550","TeacherName":"Hòa","SubjectId":"2e66193f-1903-49e9-a575-383024ede8d8","SubjectName":"SH","StartAt":60,"AssignmentId":"772d7338-f7b6-47cd-8146-6e21541779a3","ConstraintErrors":[]},{"Id":"a39076df-32e7-407f-a892-e496b2f32e56","Priority":0,"ClassId":"750463ed-ab81-4a4e-8d49-382084f39ad7","ClassName":"11A3","TeacherId":"9f09c5a3-7799-40ed-911c-c5161c05cabc","TeacherName":"Hằng","SubjectId":"2e66193f-1903-49e9-a575-383024ede8d8","SubjectName":"SH","StartAt":60,"AssignmentId":"54189c48-0dd2-474e-a95e-6fc9be4f8991","ConstraintErrors":[]},{"Id":"ce5274e5-d9cf-46c9-99c6-09237f1322a9","Priority":0,"ClassId":"1055c01e-47b0-4314-8141-112d528d82eb","ClassName":"12C4","TeacherId":"8a557738-6e34-43c5-9ec9-3b45ac4fdea5","TeacherName":"Sơn(H)","SubjectId":"37a192e0-d40f-4781-95c2-3b86707d026e","SubjectName":"TN&HN","StartAt":54,"AssignmentId":"0e0189a9-b93d-441f-aec4-7355068d3195","ConstraintErrors":[]},{"Id":"56beb38a-bad6-4406-a0e4-ea59df7488bc","Priority":0,"ClassId":"bb1c4f4d-a4fa-4d2e-abcb-6bf7164ae2dc","ClassName":"10B4","TeacherId":"e7dc5f6e-0671-48ec-a298-9bd7ab8ffbf1","TeacherName":"Tiến","SubjectId":"ebb67e3f-fdbd-430f-9441-64c0c7ceda9a","SubjectName":"CC","StartAt":1,"AssignmentId":"d4f2be7c-dd6b-430c-bf34-75e43583e542","ConstraintErrors":[]},{"Id":"d919056a-2e61-4057-9750-790c4854c08a","Priority":0,"ClassId":"a159920c-504f-498a-b225-79844ad120ae","ClassName":"10B7","TeacherId":"e57f2e3e-6335-4fb4-bb4a-c12a73b5d7cd","TeacherName":"Kỷ","SubjectId":"ebb67e3f-fdbd-430f-9441-64c0c7ceda9a","SubjectName":"CC","StartAt":1,"AssignmentId":"135b88f4-97f6-4020-bc54-760a4ca0f759","ConstraintErrors":[]},{"Id":"01e035c1-0dab-43a5-ae29-50ebd30b1f49","Priority":0,"ClassId":"99dd07b4-0450-4efc-a70a-192d81577ced","ClassName":"10B2","TeacherId":"f6a2d0e1-fcdc-4ea0-9c40-ffea09fd9490","TeacherName":"Uyên","SubjectId":"2e66193f-1903-49e9-a575-383024ede8d8","SubjectName":"SH","StartAt":55,"AssignmentId":"99ad690a-ba2c-43f9-80c3-7d7e153f9684","ConstraintErrors":[]},{"Id":"9dc967cc-b225-4b92-b965-17d00c9c3b6b","Priority":0,"ClassId":"a159920c-504f-498a-b225-79844ad120ae","ClassName":"10B7","TeacherId":"e57f2e3e-6335-4fb4-bb4a-c12a73b5d7cd","TeacherName":"Kỷ","SubjectId":"37a192e0-d40f-4781-95c2-3b86707d026e","SubjectName":"TN&HN","StartAt":54,"AssignmentId":"8f673289-f4b3-4d5a-a721-7e7b47f2e724","ConstraintErrors":[]},{"Id":"6441d576-5651-400c-8490-b7dc5788cc78","Priority":0,"ClassId":"ccf8e5a7-4301-447b-8825-3335b520dffc","ClassName":"12C5","TeacherId":"4f2b309b-1b10-4204-b627-7d376533ea15","TeacherName":"Xuân(S)","SubjectId":"37a192e0-d40f-4781-95c2-3b86707d026e","SubjectName":"TN&HN","StartAt":54,"AssignmentId":"c8719639-5dfb-4600-9358-7eb857e66e69","ConstraintErrors":[]},{"Id":"246a01fa-e23a-4147-8071-521da3c98fa8","Priority":0,"ClassId":"d5725d2e-d7d8-4831-a35e-3ca107bed73f","ClassName":"11A8","TeacherId":"5e80e258-35bd-42b3-a6a5-cd46794565a9","TeacherName":"Hoa(M)","SubjectId":"2e66193f-1903-49e9-a575-383024ede8d8","SubjectName":"SH","StartAt":60,"AssignmentId":"8d0fd08c-e90b-435d-b529-82c23ec035ad","ConstraintErrors":[]},{"Id":"1bfc7f30-ec55-4be3-823b-8abeb2f6d6f6","Priority":0,"ClassId":"eaeea2ab-abc7-4aba-b48e-c97aa4c8559d","ClassName":"12C1","TeacherId":"cb45fd82-caf7-49b3-8afa-07ad739cba97","TeacherName":"Loan","SubjectId":"2e66193f-1903-49e9-a575-383024ede8d8","SubjectName":"SH","StartAt":55,"AssignmentId":"9f946a7a-0d8f-45a4-b5a2-83ec771bcb63","ConstraintErrors":[]},{"Id":"028c9630-e5cd-41b9-bca9-ba137fbaefb9","Priority":0,"ClassId":"ad0fd2a4-e653-47bc-adb3-a70b61e20e3a","ClassName":"11A7","TeacherId":"4986a2cc-8233-4a41-93ac-43e35e250c1a","TeacherName":"Tân","SubjectId":"ebb67e3f-fdbd-430f-9441-64c0c7ceda9a","SubjectName":"CC","StartAt":10,"AssignmentId":"c2e4fb6d-eedd-4ef2-9749-8446378d2f12","ConstraintErrors":[]},{"Id":"4d5a630f-3d4c-4ad0-988f-caad319b6572","Priority":0,"ClassId":"a159920c-504f-498a-b225-79844ad120ae","ClassName":"10B7","TeacherId":"e57f2e3e-6335-4fb4-bb4a-c12a73b5d7cd","TeacherName":"Kỷ","SubjectId":"2e66193f-1903-49e9-a575-383024ede8d8","SubjectName":"SH","StartAt":55,"AssignmentId":"0a351995-997d-49a7-8747-847bf7f616ea","ConstraintErrors":[]},{"Id":"3df9a5db-2648-4153-95a2-5c742547f3ab","Priority":0,"ClassId":"d5725d2e-d7d8-4831-a35e-3ca107bed73f","ClassName":"11A8","TeacherId":"5e80e258-35bd-42b3-a6a5-cd46794565a9","TeacherName":"Hoa(M)","SubjectId":"37a192e0-d40f-4781-95c2-3b86707d026e","SubjectName":"TN&HN","StartAt":59,"AssignmentId":"164d01e9-c04e-4ddc-a369-90d99856b3fb","ConstraintErrors":[]},{"Id":"11cf765f-a9d6-4cf2-ba8f-431c3c412e82","Priority":0,"ClassId":"f6123108-6be8-496d-9c60-7753f313368f","ClassName":"12C8","TeacherId":"fb1a4dad-e5a9-416c-aad1-f0c98e394e49","TeacherName":"Phụng","SubjectId":"2e66193f-1903-49e9-a575-383024ede8d8","SubjectName":"SH","StartAt":55,"AssignmentId":"1fd87c1c-70fb-4e5f-993d-925fb4e07411","ConstraintErrors":[]},{"Id":"b1456170-006a-4838-aaa5-0e1e0b4ad004","Priority":0,"ClassId":"eaeea2ab-abc7-4aba-b48e-c97aa4c8559d","ClassName":"12C1","TeacherId":"cb45fd82-caf7-49b3-8afa-07ad739cba97","TeacherName":"Loan","SubjectId":"37a192e0-d40f-4781-95c2-3b86707d026e","SubjectName":"TN&HN","StartAt":54,"AssignmentId":"6386faf9-6e02-42d3-91b9-96e56fb20eca","ConstraintErrors":[]},{"Id":"9dcac416-f328-4c7a-8fa1-03f1acbb510b","Priority":0,"ClassId":"feb2d51a-8ad1-4c18-8449-4e658ad02334","ClassName":"11A5","TeacherId":"5fe80a00-fa41-476c-a915-0238a70672cc","TeacherName":"Trang(S)","SubjectId":"2e66193f-1903-49e9-a575-383024ede8d8","SubjectName":"SH","StartAt":60,"AssignmentId":"330ff929-b311-49c4-ad06-97bc7e7a75c2","ConstraintErrors":[]},{"Id":"b3d975a7-583d-4f01-8edc-f7857245814b","Priority":0,"ClassId":"c637c086-455b-4537-a1e2-988cf0256f0f","ClassName":"11A2","TeacherId":"7f392915-ee09-4dcf-91ec-17d94ec39563","TeacherName":"Trang(H)","SubjectId":"2e66193f-1903-49e9-a575-383024ede8d8","SubjectName":"SH","StartAt":60,"AssignmentId":"0fcb6d19-ac81-43ba-bd8e-9912d6435741","ConstraintErrors":[]},{"Id":"83a7ca1d-c569-4e35-b50f-b5db386a9932","Priority":0,"ClassId":"86db94ad-fa83-4759-9e04-f0cc617f8952","ClassName":"11A4","TeacherId":"fbcb8e24-1905-40fb-b49c-d27ff9ce20a2","TeacherName":"Tuấn(L)","SubjectId":"2e66193f-1903-49e9-a575-383024ede8d8","SubjectName":"SH","StartAt":60,"AssignmentId":"9311dcf6-d9ea-4a63-8b76-994e07fdba45","ConstraintErrors":[]},{"Id":"50fc670a-90b8-4b87-93ba-0972004e0bf4","Priority":0,"ClassId":"99dd07b4-0450-4efc-a70a-192d81577ced","ClassName":"10B2","TeacherId":"f6a2d0e1-fcdc-4ea0-9c40-ffea09fd9490","TeacherName":"Uyên","SubjectId":"37a192e0-d40f-4781-95c2-3b86707d026e","SubjectName":"TN&HN","StartAt":54,"AssignmentId":"c2e5f7d4-d204-4bec-9fa3-9a87d0391bd9","ConstraintErrors":[]},{"Id":"98f09604-2d56-496f-ad29-125f40f99ce3","Priority":0,"ClassId":"1055c01e-47b0-4314-8141-112d528d82eb","ClassName":"12C4","TeacherId":"8a557738-6e34-43c5-9ec9-3b45ac4fdea5","TeacherName":"Sơn(H)","SubjectId":"2e66193f-1903-49e9-a575-383024ede8d8","SubjectName":"SH","StartAt":55,"AssignmentId":"71ad1705-eca8-4aa9-97ab-9ff83de46144","ConstraintErrors":[]},{"Id":"bb7d4a13-f322-4623-b829-c567b29cd77f","Priority":0,"ClassId":"d5259f06-9165-450f-9eab-b39c609416d7","ClassName":"10B3","TeacherId":"a1a9f708-9a48-42fd-9308-3a106f9be31f","TeacherName":"Tuấn(S)","SubjectId":"2e66193f-1903-49e9-a575-383024ede8d8","SubjectName":"SH","StartAt":55,"AssignmentId":"54f1daa3-7d79-42f5-9582-a300a88df8a6","ConstraintErrors":[]},{"Id":"05ab01e4-8e5a-443d-93db-f6cb3408ec6f","Priority":0,"ClassId":"499be294-43cb-4c41-8c83-e2737065ee76","ClassName":"10B1","TeacherId":"6749a629-6964-43f4-bc38-2173b963413c","TeacherName":"Lợi","SubjectId":"ebb67e3f-fdbd-430f-9441-64c0c7ceda9a","SubjectName":"CC","StartAt":1,"AssignmentId":"ac592803-97ef-410d-9cf4-a9bea1d7b39e","ConstraintErrors":[]},{"Id":"3e81efbd-483c-4612-84b5-b1dd7fafa939","Priority":0,"ClassId":"1ae1937b-c8fc-4ee7-9641-b5d0909c54aa","ClassName":"11A9","TeacherId":"475b148d-8c8f-42a3-beae-f81c4f01ae3a","TeacherName":"Tr-Linh","SubjectId":"37a192e0-d40f-4781-95c2-3b86707d026e","SubjectName":"TN&HN","StartAt":59,"AssignmentId":"1042e9d8-4758-48c4-8bad-abb15a628cf3","ConstraintErrors":[]},{"Id":"c212b15c-fe4c-4840-baac-d4fc71b3885d","Priority":0,"ClassId":"eaeea2ab-abc7-4aba-b48e-c97aa4c8559d","ClassName":"12C1","TeacherId":"cb45fd82-caf7-49b3-8afa-07ad739cba97","TeacherName":"Loan","SubjectId":"ebb67e3f-fdbd-430f-9441-64c0c7ceda9a","SubjectName":"CC","StartAt":1,"AssignmentId":"e1133991-e50d-492e-8790-ac7b192d0c9a","ConstraintErrors":[]},{"Id":"d5b00a33-d16b-4835-9792-9af66946020a","Priority":0,"ClassId":"6a0e3bb6-c513-48f9-b7b9-1208dac116fd","ClassName":"10B5","TeacherId":"e936ed8e-b9ff-448c-b641-2cede0b5c9da","TeacherName":"My","SubjectId":"ebb67e3f-fdbd-430f-9441-64c0c7ceda9a","SubjectName":"CC","StartAt":1,"AssignmentId":"67344e12-7d33-4658-be19-ae25a0c417f3","ConstraintErrors":[]},{"Id":"6931e4ee-8a02-4327-9e33-936b56b0ef2e","Priority":0,"ClassId":"00ab2b62-8c9c-4693-8f3f-b7517f12604e","ClassName":"10B8","TeacherId":"67174939-7dbf-44b7-a94d-42f3cc73457a","TeacherName":"Cẩm","SubjectId":"37a192e0-d40f-4781-95c2-3b86707d026e","SubjectName":"TN&HN","StartAt":54,"AssignmentId":"5d991cb2-12fc-409c-842a-b3c2a2134790","ConstraintErrors":[]},{"Id":"96362230-5b56-4805-acfe-b2ff5a6d56b3","Priority":0,"ClassId":"f6123108-6be8-496d-9c60-7753f313368f","ClassName":"12C8","TeacherId":"fb1a4dad-e5a9-416c-aad1-f0c98e394e49","TeacherName":"Phụng","SubjectId":"ebb67e3f-fdbd-430f-9441-64c0c7ceda9a","SubjectName":"CC","StartAt":1,"AssignmentId":"9d9bf5ce-caa0-4a23-ba06-bbad7fc280c0","ConstraintErrors":[]},{"Id":"6d46624e-1df0-47d8-9e60-5d6a0a829e36","Priority":0,"ClassId":"ad0fd2a4-e653-47bc-adb3-a70b61e20e3a","ClassName":"11A7","TeacherId":"4986a2cc-8233-4a41-93ac-43e35e250c1a","TeacherName":"Tân","SubjectId":"2e66193f-1903-49e9-a575-383024ede8d8","SubjectName":"SH","StartAt":60,"AssignmentId":"8994d7c1-61ef-460d-8610-bcd865459048","ConstraintErrors":[]},{"Id":"3b0f443c-435b-42f8-a7cd-3cfbff0b594b","Priority":0,"ClassId":"d5259f06-9165-450f-9eab-b39c609416d7","ClassName":"10B3","TeacherId":"a1a9f708-9a48-42fd-9308-3a106f9be31f","TeacherName":"Tuấn(S)","SubjectId":"ebb67e3f-fdbd-430f-9441-64c0c7ceda9a","SubjectName":"CC","StartAt":1,"AssignmentId":"55dc0645-7274-46a6-a72d-be27332bc71a","ConstraintErrors":[]},{"Id":"d371e2f2-b166-480a-8a6e-def0db126105","Priority":0,"ClassId":"0df218c3-e2fa-4896-adc5-be7b4edddd68","ClassName":"10B6","TeacherId":"dae59f4a-9ee2-4995-8034-fd78c18d99bf","TeacherName":"Duy(L)","SubjectId":"37a192e0-d40f-4781-95c2-3b86707d026e","SubjectName":"TN&HN","StartAt":54,"AssignmentId":"51dcbfd6-2c90-4bd3-8351-c67fcc7d28e5","ConstraintErrors":[]},{"Id":"57d0f5a7-ca81-4d3d-8808-44016b31f3e4","Priority":0,"ClassId":"f6123108-6be8-496d-9c60-7753f313368f","ClassName":"12C8","TeacherId":"fb1a4dad-e5a9-416c-aad1-f0c98e394e49","TeacherName":"Phụng","SubjectId":"37a192e0-d40f-4781-95c2-3b86707d026e","SubjectName":"TN&HN","StartAt":54,"AssignmentId":"3631af35-6847-4a68-b444-caf0ea3b806b","ConstraintErrors":[]},{"Id":"beac2a27-a90d-4400-99fc-f6bdb32b762f","Priority":0,"ClassId":"c637c086-455b-4537-a1e2-988cf0256f0f","ClassName":"11A2","TeacherId":"7f392915-ee09-4dcf-91ec-17d94ec39563","TeacherName":"Trang(H)","SubjectId":"37a192e0-d40f-4781-95c2-3b86707d026e","SubjectName":"TN&HN","StartAt":59,"AssignmentId":"9d100615-4596-41b6-9cbe-d08575de4fe3","ConstraintErrors":[]},{"Id":"2e5872d2-0d2e-4377-a268-eb1713a1e164","Priority":0,"ClassId":"d5259f06-9165-450f-9eab-b39c609416d7","ClassName":"10B3","TeacherId":"a1a9f708-9a48-42fd-9308-3a106f9be31f","TeacherName":"Tuấn(S)","SubjectId":"37a192e0-d40f-4781-95c2-3b86707d026e","SubjectName":"TN&HN","StartAt":54,"AssignmentId":"50bbb06b-b6b4-4e49-a5c9-d36b8be413a3","ConstraintErrors":[]},{"Id":"be3975c8-8b6e-418f-bcb0-6b28c81cd0ae","Priority":0,"ClassId":"0cb456a0-c788-468f-ba51-103cf6cef5f3","ClassName":"12C3","TeacherId":"1a4e58d0-5e19-42c2-b73f-ac0d7b6988f1","TeacherName":"Trường","SubjectId":"37a192e0-d40f-4781-95c2-3b86707d026e","SubjectName":"TN&HN","StartAt":54,"AssignmentId":"5ab6c7b6-15b7-46cd-8178-d822f5fe2e9a","ConstraintErrors":[]},{"Id":"f16da07d-a036-4448-b4c2-d687b6928d0c","Priority":0,"ClassId":"1055c01e-47b0-4314-8141-112d528d82eb","ClassName":"12C4","TeacherId":"8a557738-6e34-43c5-9ec9-3b45ac4fdea5","TeacherName":"Sơn(H)","SubjectId":"ebb67e3f-fdbd-430f-9441-64c0c7ceda9a","SubjectName":"CC","StartAt":1,"AssignmentId":"a8d3045f-0911-450c-9e6a-d8f003f068c3","ConstraintErrors":[]},{"Id":"a6075f5c-16b0-440f-b939-ca6e51c22b91","Priority":0,"ClassId":"750463ed-ab81-4a4e-8d49-382084f39ad7","ClassName":"11A3","TeacherId":"9f09c5a3-7799-40ed-911c-c5161c05cabc","TeacherName":"Hằng","SubjectId":"ebb67e3f-fdbd-430f-9441-64c0c7ceda9a","SubjectName":"CC","StartAt":10,"AssignmentId":"9ae93dd5-faec-4bce-92e4-dc138a225904","ConstraintErrors":[]},{"Id":"49112b89-4c7e-4e6e-87cc-ef3242866c25","Priority":0,"ClassId":"c637c086-455b-4537-a1e2-988cf0256f0f","ClassName":"11A2","TeacherId":"7f392915-ee09-4dcf-91ec-17d94ec39563","TeacherName":"Trang(H)","SubjectId":"ebb67e3f-fdbd-430f-9441-64c0c7ceda9a","SubjectName":"CC","StartAt":10,"AssignmentId":"a435e990-e261-403f-96e6-dee1ded6389e","ConstraintErrors":[]},{"Id":"a80c8f56-838e-4b8d-89d7-78fb0de237ed","Priority":0,"ClassId":"aebd2111-a72b-41d8-b488-a59cc0a814ae","ClassName":"11A6","TeacherId":"c1f9b122-383b-42bd-9a04-10964679b550","TeacherName":"Hòa","SubjectId":"ebb67e3f-fdbd-430f-9441-64c0c7ceda9a","SubjectName":"CC","StartAt":10,"AssignmentId":"20a3906e-de45-447a-a51a-e43ccbe233bd","ConstraintErrors":[]},{"Id":"ee584099-caaf-4d44-9c55-e12a6f705463","Priority":0,"ClassId":"0cb456a0-c788-468f-ba51-103cf6cef5f3","ClassName":"12C3","TeacherId":"1a4e58d0-5e19-42c2-b73f-ac0d7b6988f1","TeacherName":"Trường","SubjectId":"2e66193f-1903-49e9-a575-383024ede8d8","SubjectName":"SH","StartAt":55,"AssignmentId":"1a828897-fddb-40e8-8d73-ebcbdf866141","ConstraintErrors":[]},{"Id":"d3bc120b-766e-460a-96d1-423adb762a04","Priority":0,"ClassId":"1ae1937b-c8fc-4ee7-9641-b5d0909c54aa","ClassName":"11A9","TeacherId":"475b148d-8c8f-42a3-beae-f81c4f01ae3a","TeacherName":"Tr-Linh","SubjectId":"ebb67e3f-fdbd-430f-9441-64c0c7ceda9a","SubjectName":"CC","StartAt":10,"AssignmentId":"1702b1cf-fe6e-4794-b370-ee6fb75735ae","ConstraintErrors":[]},{"Id":"25602eab-82f1-428c-9d24-56a602c94ce9","Priority":0,"ClassId":"1ae1937b-c8fc-4ee7-9641-b5d0909c54aa","ClassName":"11A9","TeacherId":"475b148d-8c8f-42a3-beae-f81c4f01ae3a","TeacherName":"Tr-Linh","SubjectId":"2e66193f-1903-49e9-a575-383024ede8d8","SubjectName":"SH","StartAt":60,"AssignmentId":"373fb01d-4bdf-4d33-9ebb-f22187732dfe","ConstraintErrors":[]},{"Id":"9d72fccb-17d2-47ee-a816-3b17b699b04f","Priority":0,"ClassId":"ccf8e5a7-4301-447b-8825-3335b520dffc","ClassName":"12C5","TeacherId":"4f2b309b-1b10-4204-b627-7d376533ea15","TeacherName":"Xuân(S)","SubjectId":"ebb67e3f-fdbd-430f-9441-64c0c7ceda9a","SubjectName":"CC","StartAt":1,"AssignmentId":"c15a0f2b-efa7-4fc3-b5ec-f2477068b048","ConstraintErrors":[]},{"Id":"39b4a6eb-a90c-4c67-8019-2255f604e275","Priority":0,"ClassId":"57064b4d-c018-4d87-a14a-d6412713cdf6","ClassName":"12C2","TeacherId":"df6cc373-ae5c-4cce-b000-c48af3fe3e2b","TeacherName":"Nhã","SubjectId":"2e66193f-1903-49e9-a575-383024ede8d8","SubjectName":"SH","StartAt":55,"AssignmentId":"a44760ef-fe98-49f8-b424-f2c43b5024f6","ConstraintErrors":[]},{"Id":"674c2b0e-909f-4035-bd8f-5b9f8428990d","Priority":0,"ClassId":"e2ce2775-b86a-4990-9d7c-44580df938b5","ClassName":"12C6","TeacherId":"0c6c9e47-e7c5-4d30-9945-65672be86dfc","TeacherName":"Trâm","SubjectId":"2e66193f-1903-49e9-a575-383024ede8d8","SubjectName":"SH","StartAt":55,"AssignmentId":"7888d244-a71e-4e6e-a94f-f34ba6766b61","ConstraintErrors":[]},{"Id":"9d80a31a-2266-47ba-bcd8-af59a1575ac3","Priority":0,"ClassId":"6a0e3bb6-c513-48f9-b7b9-1208dac116fd","ClassName":"10B5","TeacherId":"e936ed8e-b9ff-448c-b641-2cede0b5c9da","TeacherName":"My","SubjectId":"2e66193f-1903-49e9-a575-383024ede8d8","SubjectName":"SH","StartAt":55,"AssignmentId":"8fb53dd2-8b89-4637-b4ab-f4148a27ccb3","ConstraintErrors":[]},{"Id":"3a5db19c-b2df-48ba-bf24-ff277bb2c068","Priority":0,"ClassId":"ccf8e5a7-4301-447b-8825-3335b520dffc","ClassName":"12C5","TeacherId":"4f2b309b-1b10-4204-b627-7d376533ea15","TeacherName":"Xuân(S)","SubjectId":"2e66193f-1903-49e9-a575-383024ede8d8","SubjectName":"SH","StartAt":55,"AssignmentId":"8f02c634-e672-4359-9d56-f7ee84ffd680","ConstraintErrors":[]},{"Id":"a41b491e-ce65-4726-86b7-a94198ebfdb5","Priority":0,"ClassId":"86db94ad-fa83-4759-9e04-f0cc617f8952","ClassName":"11A4","TeacherId":"fbcb8e24-1905-40fb-b49c-d27ff9ce20a2","TeacherName":"Tuấn(L)","SubjectId":"ebb67e3f-fdbd-430f-9441-64c0c7ceda9a","SubjectName":"CC","StartAt":10,"AssignmentId":"1c32af2b-853c-4797-8749-f9a2e74e75ed","ConstraintErrors":[]},{"Id":"cc6cc08a-1b56-4197-b367-5d1fe916b1f2","Priority":0,"ClassId":"0df218c3-e2fa-4896-adc5-be7b4edddd68","ClassName":"10B6","TeacherId":"dae59f4a-9ee2-4995-8034-fd78c18d99bf","TeacherName":"Duy(L)","SubjectId":"2e66193f-1903-49e9-a575-383024ede8d8","SubjectName":"SH","StartAt":55,"AssignmentId":"32e25c7a-4ce3-4a51-9b13-f9c7f0bd5020","ConstraintErrors":[]},{"Id":"1573fbf5-08db-4773-9b03-e8967abd4fa1","Priority":0,"ClassId":"feb2d51a-8ad1-4c18-8449-4e658ad02334","ClassName":"11A5","TeacherId":"5fe80a00-fa41-476c-a915-0238a70672cc","TeacherName":"Trang(S)","SubjectId":"ebb67e3f-fdbd-430f-9441-64c0c7ceda9a","SubjectName":"CC","StartAt":10,"AssignmentId":"3f84f4e1-6a2b-43ba-94a1-fd801bb3aa64","ConstraintErrors":[]},{"Id":"96a51af8-972a-44f2-86a4-ef1d794a78b2","Priority":0,"ClassId":"00ab2b62-8c9c-4693-8f3f-b7517f12604e","ClassName":"10B8","TeacherId":"67174939-7dbf-44b7-a94d-42f3cc73457a","TeacherName":"Cẩm","SubjectId":"2e66193f-1903-49e9-a575-383024ede8d8","SubjectName":"SH","StartAt":55,"AssignmentId":"ace9c4fd-86ff-4dc1-beac-ff9b1dd80ae8","ConstraintErrors":[]}],"FreeTimetableUnits":[{"Id":"3d4b3dcb-f231-449d-87de-0533242559fb","Priority":2,"ClassId":"0cb456a0-c788-468f-ba51-103cf6cef5f3","ClassName":"12C3","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":35,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"e92ddfd0-bd65-4d69-a8c1-fcb0fa8a8def","Priority":2,"ClassId":"0cb456a0-c788-468f-ba51-103cf6cef5f3","ClassName":"12C3","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":34,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"40552b1b-7d17-4755-bf03-a7d559143cee","Priority":2,"ClassId":"1055c01e-47b0-4314-8141-112d528d82eb","ClassName":"12C4","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":35,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"2b22240b-a088-4864-8dfd-fb6825f96b66","Priority":2,"ClassId":"1055c01e-47b0-4314-8141-112d528d82eb","ClassName":"12C4","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":34,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"9380d502-99b8-4725-a8f1-cd08b1b9a022","Priority":2,"ClassId":"1055c01e-47b0-4314-8141-112d528d82eb","ClassName":"12C4","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":33,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"7ece5409-f214-40eb-abdb-59280107fa05","Priority":2,"ClassId":"6a0e3bb6-c513-48f9-b7b9-1208dac116fd","ClassName":"10B5","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":35,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"51387f91-aab4-4099-91c7-497ef103bbd8","Priority":2,"ClassId":"6a0e3bb6-c513-48f9-b7b9-1208dac116fd","ClassName":"10B5","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":34,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"7754d3e2-d7ed-4d0d-a889-0b952e63bb7c","Priority":2,"ClassId":"6a0e3bb6-c513-48f9-b7b9-1208dac116fd","ClassName":"10B5","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":33,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"ee5a8897-4af1-4963-8d6b-151f2586faa6","Priority":2,"ClassId":"6a0e3bb6-c513-48f9-b7b9-1208dac116fd","ClassName":"10B5","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":45,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"4d213fce-9db7-47ff-afc7-351f76358ec1","Priority":2,"ClassId":"6a0e3bb6-c513-48f9-b7b9-1208dac116fd","ClassName":"10B5","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":44,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"9a967258-64ed-4dfb-b541-93bb3e9e1a1a","Priority":2,"ClassId":"99dd07b4-0450-4efc-a70a-192d81577ced","ClassName":"10B2","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":35,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"c1b7ef5f-be17-4e2e-8ba2-9a08608fe276","Priority":2,"ClassId":"99dd07b4-0450-4efc-a70a-192d81577ced","ClassName":"10B2","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":34,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"ff7a4243-ca89-4778-a564-370a5e84bd34","Priority":2,"ClassId":"99dd07b4-0450-4efc-a70a-192d81577ced","ClassName":"10B2","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":33,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"ba6b3993-a2e3-4498-ba40-0e83535b9c03","Priority":2,"ClassId":"99dd07b4-0450-4efc-a70a-192d81577ced","ClassName":"10B2","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":45,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"851e7f0e-fffd-44c1-bd9f-113c704b0c15","Priority":2,"ClassId":"99dd07b4-0450-4efc-a70a-192d81577ced","ClassName":"10B2","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":44,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"53a690a2-2e3a-4010-8a47-59b1ac0c42fc","Priority":2,"ClassId":"ccf8e5a7-4301-447b-8825-3335b520dffc","ClassName":"12C5","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":35,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"51754dda-efd5-40a4-a766-d0a03abe8650","Priority":2,"ClassId":"ccf8e5a7-4301-447b-8825-3335b520dffc","ClassName":"12C5","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":34,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"eeb03b81-2164-48bb-a261-9b15c8d687d2","Priority":2,"ClassId":"ccf8e5a7-4301-447b-8825-3335b520dffc","ClassName":"12C5","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":33,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"c6e84bed-4b55-4a73-afbb-a2e2514a4a9c","Priority":2,"ClassId":"750463ed-ab81-4a4e-8d49-382084f39ad7","ClassName":"11A3","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":40,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"d1af21b6-99d1-4f1d-b5f4-d684a556a504","Priority":2,"ClassId":"750463ed-ab81-4a4e-8d49-382084f39ad7","ClassName":"11A3","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":39,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"4fd69173-0c77-4e5e-8406-3868a654cb40","Priority":2,"ClassId":"750463ed-ab81-4a4e-8d49-382084f39ad7","ClassName":"11A3","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":38,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"9f064fd0-3805-41cd-b2e9-744df152a5d9","Priority":2,"ClassId":"750463ed-ab81-4a4e-8d49-382084f39ad7","ClassName":"11A3","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":50,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"aaf8b626-40a2-4d55-89f1-880ae3e1d08e","Priority":2,"ClassId":"750463ed-ab81-4a4e-8d49-382084f39ad7","ClassName":"11A3","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":49,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"779e6819-2c96-4ada-8228-16509386bc59","Priority":2,"ClassId":"d5725d2e-d7d8-4831-a35e-3ca107bed73f","ClassName":"11A8","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":40,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"30fb7831-303e-4fa2-b72e-1a7dd41a69de","Priority":2,"ClassId":"d5725d2e-d7d8-4831-a35e-3ca107bed73f","ClassName":"11A8","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":39,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"254f5cd4-cf0b-4d8f-a04a-c6f12a05e52f","Priority":2,"ClassId":"d5725d2e-d7d8-4831-a35e-3ca107bed73f","ClassName":"11A8","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":38,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"57c450b9-d57a-4ce8-9f73-059c72409252","Priority":2,"ClassId":"d5725d2e-d7d8-4831-a35e-3ca107bed73f","ClassName":"11A8","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":50,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"3ddebb62-20a7-4d25-bc25-dd5f6c6da9af","Priority":2,"ClassId":"d5725d2e-d7d8-4831-a35e-3ca107bed73f","ClassName":"11A8","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":49,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"bfc528d3-930b-459f-afeb-99240f074c4a","Priority":2,"ClassId":"e2ce2775-b86a-4990-9d7c-44580df938b5","ClassName":"12C6","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":35,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"0de36c88-efa6-424c-9d51-25b8bb3e2f98","Priority":2,"ClassId":"e2ce2775-b86a-4990-9d7c-44580df938b5","ClassName":"12C6","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":34,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"4761f6ae-cf89-4e28-a441-0409ddd36aba","Priority":2,"ClassId":"e2ce2775-b86a-4990-9d7c-44580df938b5","ClassName":"12C6","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":33,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"b36573aa-0ef2-4b2f-9157-35d54a0034b1","Priority":2,"ClassId":"feb2d51a-8ad1-4c18-8449-4e658ad02334","ClassName":"11A5","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":40,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"50be4540-6dfa-4fe3-a36c-b76a898116ae","Priority":2,"ClassId":"feb2d51a-8ad1-4c18-8449-4e658ad02334","ClassName":"11A5","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":39,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"b4e6f9bc-b734-4918-ba99-da77b4900e47","Priority":2,"ClassId":"feb2d51a-8ad1-4c18-8449-4e658ad02334","ClassName":"11A5","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":38,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"9e7a9533-0b3d-4aad-933a-fdb289dd531b","Priority":2,"ClassId":"feb2d51a-8ad1-4c18-8449-4e658ad02334","ClassName":"11A5","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":50,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"d746fbbd-1f58-42ca-9856-702b5187f62a","Priority":2,"ClassId":"feb2d51a-8ad1-4c18-8449-4e658ad02334","ClassName":"11A5","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":49,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"81dc5704-b9cc-40cd-991c-910a49ee176c","Priority":2,"ClassId":"bb1c4f4d-a4fa-4d2e-abcb-6bf7164ae2dc","ClassName":"10B4","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":35,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"59a31508-ca3d-4d81-9914-62c43b4e5f8f","Priority":2,"ClassId":"bb1c4f4d-a4fa-4d2e-abcb-6bf7164ae2dc","ClassName":"10B4","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":34,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"839ec20a-2b30-4018-bf53-37a5619b7e23","Priority":2,"ClassId":"bb1c4f4d-a4fa-4d2e-abcb-6bf7164ae2dc","ClassName":"10B4","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":33,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"da4123b5-a483-4cf6-b35a-0b0e8210cba4","Priority":2,"ClassId":"bb1c4f4d-a4fa-4d2e-abcb-6bf7164ae2dc","ClassName":"10B4","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":45,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"75fc7ab7-e3c6-4820-9eee-be58042c378c","Priority":2,"ClassId":"bb1c4f4d-a4fa-4d2e-abcb-6bf7164ae2dc","ClassName":"10B4","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":44,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"6bc20510-410d-4fb7-8c85-354de8d09f46","Priority":2,"ClassId":"f6123108-6be8-496d-9c60-7753f313368f","ClassName":"12C8","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":35,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"dd14eff7-f2e3-46b7-a7fb-9ac4b5d430e2","Priority":2,"ClassId":"f6123108-6be8-496d-9c60-7753f313368f","ClassName":"12C8","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":34,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"859c8443-6d82-4e0b-934d-5dd09ebca9dc","Priority":2,"ClassId":"f6123108-6be8-496d-9c60-7753f313368f","ClassName":"12C8","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":33,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"dc0bb637-f919-42f2-803f-3ec310733cb5","Priority":2,"ClassId":"a159920c-504f-498a-b225-79844ad120ae","ClassName":"10B7","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":35,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"78f96822-c2e4-402a-bfb4-9daf954d72b6","Priority":2,"ClassId":"a159920c-504f-498a-b225-79844ad120ae","ClassName":"10B7","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":34,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"e51fc082-149b-49b2-a9ac-9c9db1e841ca","Priority":2,"ClassId":"a159920c-504f-498a-b225-79844ad120ae","ClassName":"10B7","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":33,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"6a277284-f05b-499e-a937-7392a23dc5c8","Priority":2,"ClassId":"a159920c-504f-498a-b225-79844ad120ae","ClassName":"10B7","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":45,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"1a839564-6015-4986-a691-0d179ee5b4ca","Priority":2,"ClassId":"a159920c-504f-498a-b225-79844ad120ae","ClassName":"10B7","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":44,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"2e8fd708-d7f7-4523-8709-89331581778c","Priority":2,"ClassId":"c637c086-455b-4537-a1e2-988cf0256f0f","ClassName":"11A2","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":40,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"ed6ce5e9-d8a7-48cb-b986-9139746c4593","Priority":2,"ClassId":"c637c086-455b-4537-a1e2-988cf0256f0f","ClassName":"11A2","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":39,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"07795ec8-1070-4569-9590-eb3b4e124c25","Priority":2,"ClassId":"c637c086-455b-4537-a1e2-988cf0256f0f","ClassName":"11A2","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":38,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"ab121314-85fd-4616-bb50-6a8de49b1814","Priority":2,"ClassId":"c637c086-455b-4537-a1e2-988cf0256f0f","ClassName":"11A2","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":50,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"459c5ffe-a38b-4fe8-afb5-1a3aa0b6b6c3","Priority":2,"ClassId":"c637c086-455b-4537-a1e2-988cf0256f0f","ClassName":"11A2","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":49,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"81d81b60-445f-4a4b-a908-4217167f61f5","Priority":2,"ClassId":"b70f1908-aea3-4303-9d50-a0bfae418459","ClassName":"12C7","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":35,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"ea4620cd-f323-4248-af71-c7bb9e905393","Priority":2,"ClassId":"b70f1908-aea3-4303-9d50-a0bfae418459","ClassName":"12C7","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":34,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"e5fdc8de-b1bb-4bac-b340-94c485c16345","Priority":2,"ClassId":"b70f1908-aea3-4303-9d50-a0bfae418459","ClassName":"12C7","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":33,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"ca1c5217-20ae-45cf-a549-1a95f26dd838","Priority":2,"ClassId":"aebd2111-a72b-41d8-b488-a59cc0a814ae","ClassName":"11A6","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":40,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"394fcbe3-d209-4968-88b1-b38d2af0e7e5","Priority":2,"ClassId":"aebd2111-a72b-41d8-b488-a59cc0a814ae","ClassName":"11A6","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":39,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"7b360bd3-5c74-44e9-8a0b-9acc4d857956","Priority":2,"ClassId":"aebd2111-a72b-41d8-b488-a59cc0a814ae","ClassName":"11A6","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":38,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"724a8815-2a46-4179-8d06-6849c07c8fd6","Priority":2,"ClassId":"aebd2111-a72b-41d8-b488-a59cc0a814ae","ClassName":"11A6","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":50,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"c76e22cd-e817-40ad-926a-5c552935a7fe","Priority":2,"ClassId":"aebd2111-a72b-41d8-b488-a59cc0a814ae","ClassName":"11A6","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":49,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"eb46063b-0beb-4b04-8e24-35edfde36545","Priority":2,"ClassId":"ad0fd2a4-e653-47bc-adb3-a70b61e20e3a","ClassName":"11A7","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":40,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"49208f5d-b041-4057-b304-c9c042e6dc88","Priority":2,"ClassId":"ad0fd2a4-e653-47bc-adb3-a70b61e20e3a","ClassName":"11A7","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":39,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"03bc4a55-7296-4078-9778-effe42de53ad","Priority":2,"ClassId":"ad0fd2a4-e653-47bc-adb3-a70b61e20e3a","ClassName":"11A7","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":38,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"e036ffb0-539d-429a-83a8-d4794874c9aa","Priority":2,"ClassId":"ad0fd2a4-e653-47bc-adb3-a70b61e20e3a","ClassName":"11A7","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":50,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"2599e1dc-6b8a-4ca2-b8f4-32a8d1548e3d","Priority":2,"ClassId":"ad0fd2a4-e653-47bc-adb3-a70b61e20e3a","ClassName":"11A7","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":49,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"15e67818-d6ba-4af1-818d-2183898e5b11","Priority":2,"ClassId":"d5259f06-9165-450f-9eab-b39c609416d7","ClassName":"10B3","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":35,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"c4d8aa2c-2f49-455c-a2d7-9d9f2929eb1a","Priority":2,"ClassId":"d5259f06-9165-450f-9eab-b39c609416d7","ClassName":"10B3","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":34,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"49208cea-7ffa-4df9-bba7-3dcd5733061f","Priority":2,"ClassId":"d5259f06-9165-450f-9eab-b39c609416d7","ClassName":"10B3","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":33,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"646285fa-c839-40b4-b85c-97cbb0411d93","Priority":2,"ClassId":"d5259f06-9165-450f-9eab-b39c609416d7","ClassName":"10B3","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":45,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"57c9ca29-839e-4920-897b-a02385e5bfde","Priority":2,"ClassId":"d5259f06-9165-450f-9eab-b39c609416d7","ClassName":"10B3","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":44,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"c826802a-d873-4b61-ac8f-34b6aca78059","Priority":2,"ClassId":"853a31a6-f92d-450f-9b42-b445bb04cc18","ClassName":"11A1","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":40,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"b4bf0d34-7819-425a-b5fb-8d8b4c04abe8","Priority":2,"ClassId":"853a31a6-f92d-450f-9b42-b445bb04cc18","ClassName":"11A1","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":39,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"8ce1e895-8689-4ea1-aade-485d71624fd6","Priority":2,"ClassId":"853a31a6-f92d-450f-9b42-b445bb04cc18","ClassName":"11A1","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":38,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"afaa5eda-c253-486d-8f81-f47b04ab8e06","Priority":2,"ClassId":"853a31a6-f92d-450f-9b42-b445bb04cc18","ClassName":"11A1","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":50,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"56d541f1-683b-458a-9fe6-941b3bf65e95","Priority":2,"ClassId":"853a31a6-f92d-450f-9b42-b445bb04cc18","ClassName":"11A1","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":49,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"b1f74523-593f-41bb-b91a-7f74b2768b79","Priority":2,"ClassId":"1ae1937b-c8fc-4ee7-9641-b5d0909c54aa","ClassName":"11A9","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":40,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"d0af05f2-54a2-4478-96eb-bf1f64a1c57a","Priority":2,"ClassId":"1ae1937b-c8fc-4ee7-9641-b5d0909c54aa","ClassName":"11A9","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":39,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"a322d848-528c-4fc1-aff1-edaf9473f2d8","Priority":2,"ClassId":"1ae1937b-c8fc-4ee7-9641-b5d0909c54aa","ClassName":"11A9","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":38,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"dc4c1e01-4f1a-4b62-8099-c8b2022729ab","Priority":2,"ClassId":"1ae1937b-c8fc-4ee7-9641-b5d0909c54aa","ClassName":"11A9","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":50,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"221540e0-9ce8-4d2c-aacd-c3b6943b9fab","Priority":2,"ClassId":"1ae1937b-c8fc-4ee7-9641-b5d0909c54aa","ClassName":"11A9","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":49,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"ec5c1bdc-b211-43bb-8cb0-8b2f55bb07ca","Priority":2,"ClassId":"00ab2b62-8c9c-4693-8f3f-b7517f12604e","ClassName":"10B8","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":35,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"b8e87882-ae60-4396-b47e-7d1622e87635","Priority":2,"ClassId":"00ab2b62-8c9c-4693-8f3f-b7517f12604e","ClassName":"10B8","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":34,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"ea99b8ea-8c02-402f-b44e-4b27a08fc5d1","Priority":2,"ClassId":"00ab2b62-8c9c-4693-8f3f-b7517f12604e","ClassName":"10B8","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":33,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"6389ee7a-75c3-4454-8ac0-014a03ef8d67","Priority":2,"ClassId":"00ab2b62-8c9c-4693-8f3f-b7517f12604e","ClassName":"10B8","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":45,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"8aeb5cc1-6949-4842-88ec-3697f3bb36b4","Priority":2,"ClassId":"00ab2b62-8c9c-4693-8f3f-b7517f12604e","ClassName":"10B8","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":44,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"206c11a3-6524-4686-aa52-44e80e5b38b6","Priority":2,"ClassId":"0df218c3-e2fa-4896-adc5-be7b4edddd68","ClassName":"10B6","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":35,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"c4ad29b4-cf90-49a7-af33-bc5efdc818f6","Priority":2,"ClassId":"0df218c3-e2fa-4896-adc5-be7b4edddd68","ClassName":"10B6","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":34,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"5d9a0614-f708-405f-b172-898672544648","Priority":2,"ClassId":"0df218c3-e2fa-4896-adc5-be7b4edddd68","ClassName":"10B6","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":33,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"75c57bdd-b8ab-4970-b666-14568ccaffbc","Priority":2,"ClassId":"0df218c3-e2fa-4896-adc5-be7b4edddd68","ClassName":"10B6","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":45,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"18474dcf-03e5-4e31-b836-aede1c612484","Priority":2,"ClassId":"0df218c3-e2fa-4896-adc5-be7b4edddd68","ClassName":"10B6","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":44,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"c90bf28f-4a32-4dd1-8ff4-08318fcb4fda","Priority":2,"ClassId":"eaeea2ab-abc7-4aba-b48e-c97aa4c8559d","ClassName":"12C1","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":35,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"fa64fcc4-6f1b-44e8-a608-de44c4b1e55a","Priority":2,"ClassId":"eaeea2ab-abc7-4aba-b48e-c97aa4c8559d","ClassName":"12C1","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":34,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"7ddcc9a3-694b-4f11-8709-1e801116e9e3","Priority":2,"ClassId":"57064b4d-c018-4d87-a14a-d6412713cdf6","ClassName":"12C2","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":35,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"1214675d-78b7-4d8f-b9f7-45ca3a833e52","Priority":2,"ClassId":"57064b4d-c018-4d87-a14a-d6412713cdf6","ClassName":"12C2","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":34,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"f6719d60-01c3-4b1d-bb66-e4f890a8ddd2","Priority":2,"ClassId":"499be294-43cb-4c41-8c83-e2737065ee76","ClassName":"10B1","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":35,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"8ee136de-748c-4c6f-a667-10d0da22b7a4","Priority":2,"ClassId":"499be294-43cb-4c41-8c83-e2737065ee76","ClassName":"10B1","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":34,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"813832c3-d02a-4b25-a964-a7793143c562","Priority":2,"ClassId":"499be294-43cb-4c41-8c83-e2737065ee76","ClassName":"10B1","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":33,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"95f4e0ae-aacb-4805-a80a-f730405c37fc","Priority":2,"ClassId":"499be294-43cb-4c41-8c83-e2737065ee76","ClassName":"10B1","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":45,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"239f4582-fd71-45a6-8511-705d21f691d3","Priority":2,"ClassId":"499be294-43cb-4c41-8c83-e2737065ee76","ClassName":"10B1","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":44,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"9192c80c-f0a1-4260-938d-e85121cc6746","Priority":2,"ClassId":"86db94ad-fa83-4759-9e04-f0cc617f8952","ClassName":"11A4","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":40,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"bd565deb-e737-4503-a5dd-9ce4f470ed05","Priority":2,"ClassId":"86db94ad-fa83-4759-9e04-f0cc617f8952","ClassName":"11A4","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":39,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"5d5da363-a360-4be7-8dd2-f8caaa54f8de","Priority":2,"ClassId":"86db94ad-fa83-4759-9e04-f0cc617f8952","ClassName":"11A4","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":38,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"6fa5087f-8830-4b04-bd32-616e0f4dd310","Priority":2,"ClassId":"86db94ad-fa83-4759-9e04-f0cc617f8952","ClassName":"11A4","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":50,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]},{"Id":"a5431db2-7877-40cf-9798-3581edf9ca92","Priority":2,"ClassId":"86db94ad-fa83-4759-9e04-f0cc617f8952","ClassName":"11A4","TeacherId":"00000000-0000-0000-0000-000000000000","TeacherName":"","SubjectId":"00000000-0000-0000-0000-000000000000","SubjectName":"","StartAt":49,"AssignmentId":"00000000-0000-0000-0000-000000000000","ConstraintErrors":[]}],"NoAssignTimetableUnits":[],"BusyTimetableUnits":[],"SubjectsWithPracticeRoom":{"c30a4784-1394-45a7-a287-77cd660f4f02":2},"MaxPeriodPerDay":5,"MinPeriodPerDay":0,"StartYear":2023,"EndYear":2024,"Semester":1}
+{
+  "ClassIds": [
+    "0cb456a0-c788-468f-ba51-103cf6cef5f3",
+    "1055c01e-47b0-4314-8141-112d528d82eb",
+    "6a0e3bb6-c513-48f9-b7b9-1208dac116fd",
+    "99dd07b4-0450-4efc-a70a-192d81577ced",
+    "ccf8e5a7-4301-447b-8825-3335b520dffc",
+    "750463ed-ab81-4a4e-8d49-382084f39ad7",
+    "d5725d2e-d7d8-4831-a35e-3ca107bed73f",
+    "e2ce2775-b86a-4990-9d7c-44580df938b5",
+    "feb2d51a-8ad1-4c18-8449-4e658ad02334",
+    "bb1c4f4d-a4fa-4d2e-abcb-6bf7164ae2dc",
+    "f6123108-6be8-496d-9c60-7753f313368f",
+    "a159920c-504f-498a-b225-79844ad120ae",
+    "c637c086-455b-4537-a1e2-988cf0256f0f",
+    "b70f1908-aea3-4303-9d50-a0bfae418459",
+    "aebd2111-a72b-41d8-b488-a59cc0a814ae",
+    "ad0fd2a4-e653-47bc-adb3-a70b61e20e3a",
+    "d5259f06-9165-450f-9eab-b39c609416d7",
+    "853a31a6-f92d-450f-9b42-b445bb04cc18",
+    "1ae1937b-c8fc-4ee7-9641-b5d0909c54aa",
+    "00ab2b62-8c9c-4693-8f3f-b7517f12604e",
+    "0df218c3-e2fa-4896-adc5-be7b4edddd68",
+    "eaeea2ab-abc7-4aba-b48e-c97aa4c8559d",
+    "57064b4d-c018-4d87-a14a-d6412713cdf6",
+    "499be294-43cb-4c41-8c83-e2737065ee76",
+    "86db94ad-fa83-4759-9e04-f0cc617f8952"
+  ],
+  "DoublePeriodSubjects": [
+    {
+      "Id": "1289697a-0e3b-4f69-98ed-8b58f4f71c69",
+      "Name": "Toán học",
+      "ShortName": "TOAN"
+    },
+    {
+      "Id": "6b941b7e-f715-43a6-a7fc-dcc807fb37cb",
+      "Name": "Ngoại ngữ",
+      "ShortName": "NN"
+    },
+    {
+      "Id": "c8647f07-10d0-44c0-a9ed-fe0b9f2fca87",
+      "Name": "Ngữ văn",
+      "ShortName": "VAN"
+    }
+  ],
+  "FixedTimetableUnits": [
+    {
+      "Id": "2a8ecc62-1700-4ece-ae22-35afbb28a98d",
+      "Priority": 0,
+      "ClassId": "00ab2b62-8c9c-4693-8f3f-b7517f12604e",
+      "ClassName": "10B8",
+      "TeacherId": "67174939-7dbf-44b7-a94d-42f3cc73457a",
+      "TeacherName": "Cẩm",
+      "SubjectId": "ebb67e3f-fdbd-430f-9441-64c0c7ceda9a",
+      "SubjectName": "CC",
+      "StartAt": 1,
+      "AssignmentId": "84816471-00d5-4bbe-af7c-083c18d4738d",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "24c3e3be-1850-47a4-8790-ac68544fd483",
+      "Priority": 0,
+      "ClassId": "ad0fd2a4-e653-47bc-adb3-a70b61e20e3a",
+      "ClassName": "11A7",
+      "TeacherId": "4986a2cc-8233-4a41-93ac-43e35e250c1a",
+      "TeacherName": "Tân",
+      "SubjectId": "37a192e0-d40f-4781-95c2-3b86707d026e",
+      "SubjectName": "TN&HN",
+      "StartAt": 59,
+      "AssignmentId": "72fabace-5c86-4cba-8af4-0894af2b615c",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "bba74d5c-d2b3-45ce-bdcb-7ca4f6e83569",
+      "Priority": 0,
+      "ClassId": "499be294-43cb-4c41-8c83-e2737065ee76",
+      "ClassName": "10B1",
+      "TeacherId": "6749a629-6964-43f4-bc38-2173b963413c",
+      "TeacherName": "Lợi",
+      "SubjectId": "2e66193f-1903-49e9-a575-383024ede8d8",
+      "SubjectName": "SH",
+      "StartAt": 55,
+      "AssignmentId": "50eaacdd-2228-4646-a01f-09e6abebf668",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "deeae6dc-94e1-408c-9935-56b706cd25f9",
+      "Priority": 0,
+      "ClassId": "499be294-43cb-4c41-8c83-e2737065ee76",
+      "ClassName": "10B1",
+      "TeacherId": "6749a629-6964-43f4-bc38-2173b963413c",
+      "TeacherName": "Lợi",
+      "SubjectId": "37a192e0-d40f-4781-95c2-3b86707d026e",
+      "SubjectName": "TN&HN",
+      "StartAt": 54,
+      "AssignmentId": "23d51e0a-0f16-4c7b-8d3e-0b2ea096ddc4",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "1dc0c75e-95d7-47a1-a612-63f089aabe25",
+      "Priority": 0,
+      "ClassId": "6a0e3bb6-c513-48f9-b7b9-1208dac116fd",
+      "ClassName": "10B5",
+      "TeacherId": "e936ed8e-b9ff-448c-b641-2cede0b5c9da",
+      "TeacherName": "My",
+      "SubjectId": "37a192e0-d40f-4781-95c2-3b86707d026e",
+      "SubjectName": "TN&HN",
+      "StartAt": 54,
+      "AssignmentId": "4e7b98ba-0c6b-4ce6-9a26-0e856793d037",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "2394b605-4f76-4d46-a784-16f124998393",
+      "Priority": 0,
+      "ClassId": "b70f1908-aea3-4303-9d50-a0bfae418459",
+      "ClassName": "12C7",
+      "TeacherId": "b7adecee-f4d7-4a2d-8457-e5d27a427278",
+      "TeacherName": "Ánh",
+      "SubjectId": "2e66193f-1903-49e9-a575-383024ede8d8",
+      "SubjectName": "SH",
+      "StartAt": 55,
+      "AssignmentId": "4b035b3e-0d3f-4336-b311-0f87012f6a4d",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "2c8ff006-a760-4eab-b4e8-b0c8ea3359df",
+      "Priority": 0,
+      "ClassId": "b70f1908-aea3-4303-9d50-a0bfae418459",
+      "ClassName": "12C7",
+      "TeacherId": "b7adecee-f4d7-4a2d-8457-e5d27a427278",
+      "TeacherName": "Ánh",
+      "SubjectId": "ebb67e3f-fdbd-430f-9441-64c0c7ceda9a",
+      "SubjectName": "CC",
+      "StartAt": 1,
+      "AssignmentId": "fa1eabc2-e798-46d5-bae4-15fecf0c1fd0",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "48ccb5bb-a2e2-4291-93e9-c1c4007add14",
+      "Priority": 0,
+      "ClassId": "750463ed-ab81-4a4e-8d49-382084f39ad7",
+      "ClassName": "11A3",
+      "TeacherId": "9f09c5a3-7799-40ed-911c-c5161c05cabc",
+      "TeacherName": "Hằng",
+      "SubjectId": "37a192e0-d40f-4781-95c2-3b86707d026e",
+      "SubjectName": "TN&HN",
+      "StartAt": 59,
+      "AssignmentId": "c74732ad-2cd4-46b4-a1a5-1a728214ed5e",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "fd8ee31e-5a5a-4946-af12-9aadc1eb4afb",
+      "Priority": 0,
+      "ClassId": "e2ce2775-b86a-4990-9d7c-44580df938b5",
+      "ClassName": "12C6",
+      "TeacherId": "0c6c9e47-e7c5-4d30-9945-65672be86dfc",
+      "TeacherName": "Trâm",
+      "SubjectId": "37a192e0-d40f-4781-95c2-3b86707d026e",
+      "SubjectName": "TN&HN",
+      "StartAt": 54,
+      "AssignmentId": "bdca1a90-06e9-403b-93ca-1e4e5f0fb3e4",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "3fdfd8e6-bc84-43b0-8cfc-87b4bced17bf",
+      "Priority": 0,
+      "ClassId": "0cb456a0-c788-468f-ba51-103cf6cef5f3",
+      "ClassName": "12C3",
+      "TeacherId": "1a4e58d0-5e19-42c2-b73f-ac0d7b6988f1",
+      "TeacherName": "Trường",
+      "SubjectId": "ebb67e3f-fdbd-430f-9441-64c0c7ceda9a",
+      "SubjectName": "CC",
+      "StartAt": 1,
+      "AssignmentId": "57074fc1-2125-4ba2-b470-20be2bc31095",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "8a3d8a7a-7750-4bb5-9a5d-6be1cba38bb5",
+      "Priority": 0,
+      "ClassId": "bb1c4f4d-a4fa-4d2e-abcb-6bf7164ae2dc",
+      "ClassName": "10B4",
+      "TeacherId": "e7dc5f6e-0671-48ec-a298-9bd7ab8ffbf1",
+      "TeacherName": "Tiến",
+      "SubjectId": "2e66193f-1903-49e9-a575-383024ede8d8",
+      "SubjectName": "SH",
+      "StartAt": 55,
+      "AssignmentId": "4a0e6c70-f9dd-448d-9d87-2186fead7d80",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "d2fd4a5c-27b8-46d9-9f60-147ea71697ea",
+      "Priority": 0,
+      "ClassId": "57064b4d-c018-4d87-a14a-d6412713cdf6",
+      "ClassName": "12C2",
+      "TeacherId": "df6cc373-ae5c-4cce-b000-c48af3fe3e2b",
+      "TeacherName": "Nhã",
+      "SubjectId": "ebb67e3f-fdbd-430f-9441-64c0c7ceda9a",
+      "SubjectName": "CC",
+      "StartAt": 1,
+      "AssignmentId": "2aed7fe6-a527-450b-9efc-3045f89d8057",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "3a735786-1463-4f7d-b21c-bd9bfb365abc",
+      "Priority": 0,
+      "ClassId": "feb2d51a-8ad1-4c18-8449-4e658ad02334",
+      "ClassName": "11A5",
+      "TeacherId": "5fe80a00-fa41-476c-a915-0238a70672cc",
+      "TeacherName": "Trang(S)",
+      "SubjectId": "37a192e0-d40f-4781-95c2-3b86707d026e",
+      "SubjectName": "TN&HN",
+      "StartAt": 59,
+      "AssignmentId": "50ace271-788d-4a7a-8a4c-350f266f3556",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "d54e7fa9-a261-4007-8cf3-f871f2ce8564",
+      "Priority": 0,
+      "ClassId": "0df218c3-e2fa-4896-adc5-be7b4edddd68",
+      "ClassName": "10B6",
+      "TeacherId": "dae59f4a-9ee2-4995-8034-fd78c18d99bf",
+      "TeacherName": "Duy(L)",
+      "SubjectId": "ebb67e3f-fdbd-430f-9441-64c0c7ceda9a",
+      "SubjectName": "CC",
+      "StartAt": 1,
+      "AssignmentId": "e205361f-9e42-4d3e-a261-3521984d059f",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "d3f3ab4e-035a-48e1-ae3b-89babae18b38",
+      "Priority": 0,
+      "ClassId": "853a31a6-f92d-450f-9b42-b445bb04cc18",
+      "ClassName": "11A1",
+      "TeacherId": "647c4458-ab3e-45b5-9b71-7e109bfffdb5",
+      "TeacherName": "Công",
+      "SubjectId": "ebb67e3f-fdbd-430f-9441-64c0c7ceda9a",
+      "SubjectName": "CC",
+      "StartAt": 10,
+      "AssignmentId": "10931f86-4d0a-44f3-9cab-35c73442f9c7",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "06795a5d-cdba-4a01-ade3-84f254907899",
+      "Priority": 0,
+      "ClassId": "57064b4d-c018-4d87-a14a-d6412713cdf6",
+      "ClassName": "12C2",
+      "TeacherId": "df6cc373-ae5c-4cce-b000-c48af3fe3e2b",
+      "TeacherName": "Nhã",
+      "SubjectId": "37a192e0-d40f-4781-95c2-3b86707d026e",
+      "SubjectName": "TN&HN",
+      "StartAt": 54,
+      "AssignmentId": "21731015-62db-4edf-b43a-4150aecc647c",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "3f50f51c-5936-45e5-b24d-a971641ab9ee",
+      "Priority": 0,
+      "ClassId": "e2ce2775-b86a-4990-9d7c-44580df938b5",
+      "ClassName": "12C6",
+      "TeacherId": "0c6c9e47-e7c5-4d30-9945-65672be86dfc",
+      "TeacherName": "Trâm",
+      "SubjectId": "ebb67e3f-fdbd-430f-9441-64c0c7ceda9a",
+      "SubjectName": "CC",
+      "StartAt": 1,
+      "AssignmentId": "54f52076-07c0-46a4-a973-45b25c65346a",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "b73b096e-dbc8-41aa-83c6-67c0e0fb8253",
+      "Priority": 0,
+      "ClassId": "86db94ad-fa83-4759-9e04-f0cc617f8952",
+      "ClassName": "11A4",
+      "TeacherId": "fbcb8e24-1905-40fb-b49c-d27ff9ce20a2",
+      "TeacherName": "Tuấn(L)",
+      "SubjectId": "37a192e0-d40f-4781-95c2-3b86707d026e",
+      "SubjectName": "TN&HN",
+      "StartAt": 59,
+      "AssignmentId": "a733929d-f912-404e-8278-4b8c383dfc34",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "0af52fe3-1b8e-4879-ae6b-a7cbd5ef1864",
+      "Priority": 0,
+      "ClassId": "b70f1908-aea3-4303-9d50-a0bfae418459",
+      "ClassName": "12C7",
+      "TeacherId": "b7adecee-f4d7-4a2d-8457-e5d27a427278",
+      "TeacherName": "Ánh",
+      "SubjectId": "37a192e0-d40f-4781-95c2-3b86707d026e",
+      "SubjectName": "TN&HN",
+      "StartAt": 54,
+      "AssignmentId": "af26cdcd-4c36-4a37-9368-4f95c5981c01",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "f6d2590b-e3e4-441b-80ca-4154a9e72416",
+      "Priority": 0,
+      "ClassId": "99dd07b4-0450-4efc-a70a-192d81577ced",
+      "ClassName": "10B2",
+      "TeacherId": "f6a2d0e1-fcdc-4ea0-9c40-ffea09fd9490",
+      "TeacherName": "Uyên",
+      "SubjectId": "ebb67e3f-fdbd-430f-9441-64c0c7ceda9a",
+      "SubjectName": "CC",
+      "StartAt": 1,
+      "AssignmentId": "41725324-67a2-4353-b130-526f6c0a673e",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "d7cfbf54-0e1d-4238-8b74-984538927191",
+      "Priority": 0,
+      "ClassId": "d5725d2e-d7d8-4831-a35e-3ca107bed73f",
+      "ClassName": "11A8",
+      "TeacherId": "5e80e258-35bd-42b3-a6a5-cd46794565a9",
+      "TeacherName": "Hoa(M)",
+      "SubjectId": "ebb67e3f-fdbd-430f-9441-64c0c7ceda9a",
+      "SubjectName": "CC",
+      "StartAt": 10,
+      "AssignmentId": "005e4a24-c525-44d6-af4f-593445fe5ead",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "396262ac-7cdf-48c7-9197-fa73f4a56a8c",
+      "Priority": 0,
+      "ClassId": "aebd2111-a72b-41d8-b488-a59cc0a814ae",
+      "ClassName": "11A6",
+      "TeacherId": "c1f9b122-383b-42bd-9a04-10964679b550",
+      "TeacherName": "Hòa",
+      "SubjectId": "37a192e0-d40f-4781-95c2-3b86707d026e",
+      "SubjectName": "TN&HN",
+      "StartAt": 59,
+      "AssignmentId": "fac9c496-016f-49dc-b326-594789048be4",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "1b4f0f3b-34a6-46ec-bd2d-af32302d8dfe",
+      "Priority": 0,
+      "ClassId": "bb1c4f4d-a4fa-4d2e-abcb-6bf7164ae2dc",
+      "ClassName": "10B4",
+      "TeacherId": "e7dc5f6e-0671-48ec-a298-9bd7ab8ffbf1",
+      "TeacherName": "Tiến",
+      "SubjectId": "37a192e0-d40f-4781-95c2-3b86707d026e",
+      "SubjectName": "TN&HN",
+      "StartAt": 54,
+      "AssignmentId": "9cd9a2c2-18b8-4064-8e1d-6855f1d4aa72",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "34cefd8f-0687-4ba6-932d-8c74544396c5",
+      "Priority": 0,
+      "ClassId": "853a31a6-f92d-450f-9b42-b445bb04cc18",
+      "ClassName": "11A1",
+      "TeacherId": "647c4458-ab3e-45b5-9b71-7e109bfffdb5",
+      "TeacherName": "Công",
+      "SubjectId": "37a192e0-d40f-4781-95c2-3b86707d026e",
+      "SubjectName": "TN&HN",
+      "StartAt": 59,
+      "AssignmentId": "c442de22-3a26-4a75-8598-697a58e58356",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "157f3908-27df-4dd4-b1bd-3194b6e25487",
+      "Priority": 0,
+      "ClassId": "853a31a6-f92d-450f-9b42-b445bb04cc18",
+      "ClassName": "11A1",
+      "TeacherId": "647c4458-ab3e-45b5-9b71-7e109bfffdb5",
+      "TeacherName": "Công",
+      "SubjectId": "2e66193f-1903-49e9-a575-383024ede8d8",
+      "SubjectName": "SH",
+      "StartAt": 60,
+      "AssignmentId": "b754f98c-f296-471b-83a8-69ac84fe8541",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "0114c061-b88c-4f0e-9537-18e40bbd2d8f",
+      "Priority": 0,
+      "ClassId": "aebd2111-a72b-41d8-b488-a59cc0a814ae",
+      "ClassName": "11A6",
+      "TeacherId": "c1f9b122-383b-42bd-9a04-10964679b550",
+      "TeacherName": "Hòa",
+      "SubjectId": "2e66193f-1903-49e9-a575-383024ede8d8",
+      "SubjectName": "SH",
+      "StartAt": 60,
+      "AssignmentId": "772d7338-f7b6-47cd-8146-6e21541779a3",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "24b0c589-35a0-4bc3-b0ff-c7a11f6f410d",
+      "Priority": 0,
+      "ClassId": "750463ed-ab81-4a4e-8d49-382084f39ad7",
+      "ClassName": "11A3",
+      "TeacherId": "9f09c5a3-7799-40ed-911c-c5161c05cabc",
+      "TeacherName": "Hằng",
+      "SubjectId": "2e66193f-1903-49e9-a575-383024ede8d8",
+      "SubjectName": "SH",
+      "StartAt": 60,
+      "AssignmentId": "54189c48-0dd2-474e-a95e-6fc9be4f8991",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "b39a0d4b-57fd-4c60-95c3-ba801e42bd42",
+      "Priority": 0,
+      "ClassId": "1055c01e-47b0-4314-8141-112d528d82eb",
+      "ClassName": "12C4",
+      "TeacherId": "8a557738-6e34-43c5-9ec9-3b45ac4fdea5",
+      "TeacherName": "Sơn(H)",
+      "SubjectId": "37a192e0-d40f-4781-95c2-3b86707d026e",
+      "SubjectName": "TN&HN",
+      "StartAt": 54,
+      "AssignmentId": "0e0189a9-b93d-441f-aec4-7355068d3195",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "37fa7c7f-15f9-43e0-a1c2-5c04e94f296a",
+      "Priority": 0,
+      "ClassId": "bb1c4f4d-a4fa-4d2e-abcb-6bf7164ae2dc",
+      "ClassName": "10B4",
+      "TeacherId": "e7dc5f6e-0671-48ec-a298-9bd7ab8ffbf1",
+      "TeacherName": "Tiến",
+      "SubjectId": "ebb67e3f-fdbd-430f-9441-64c0c7ceda9a",
+      "SubjectName": "CC",
+      "StartAt": 1,
+      "AssignmentId": "d4f2be7c-dd6b-430c-bf34-75e43583e542",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "d8e70f4f-81ed-4cb6-8de7-e38a7455e47d",
+      "Priority": 0,
+      "ClassId": "a159920c-504f-498a-b225-79844ad120ae",
+      "ClassName": "10B7",
+      "TeacherId": "e57f2e3e-6335-4fb4-bb4a-c12a73b5d7cd",
+      "TeacherName": "Kỷ",
+      "SubjectId": "ebb67e3f-fdbd-430f-9441-64c0c7ceda9a",
+      "SubjectName": "CC",
+      "StartAt": 1,
+      "AssignmentId": "135b88f4-97f6-4020-bc54-760a4ca0f759",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "206e9ac6-e7a5-467b-bc13-efd3b5bacef8",
+      "Priority": 0,
+      "ClassId": "99dd07b4-0450-4efc-a70a-192d81577ced",
+      "ClassName": "10B2",
+      "TeacherId": "f6a2d0e1-fcdc-4ea0-9c40-ffea09fd9490",
+      "TeacherName": "Uyên",
+      "SubjectId": "2e66193f-1903-49e9-a575-383024ede8d8",
+      "SubjectName": "SH",
+      "StartAt": 55,
+      "AssignmentId": "99ad690a-ba2c-43f9-80c3-7d7e153f9684",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "cafe4e28-e942-4056-806e-618796d3ecf3",
+      "Priority": 0,
+      "ClassId": "a159920c-504f-498a-b225-79844ad120ae",
+      "ClassName": "10B7",
+      "TeacherId": "e57f2e3e-6335-4fb4-bb4a-c12a73b5d7cd",
+      "TeacherName": "Kỷ",
+      "SubjectId": "37a192e0-d40f-4781-95c2-3b86707d026e",
+      "SubjectName": "TN&HN",
+      "StartAt": 54,
+      "AssignmentId": "8f673289-f4b3-4d5a-a721-7e7b47f2e724",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "685a6a38-1394-48e8-9c27-ca63a30e3d32",
+      "Priority": 0,
+      "ClassId": "ccf8e5a7-4301-447b-8825-3335b520dffc",
+      "ClassName": "12C5",
+      "TeacherId": "4f2b309b-1b10-4204-b627-7d376533ea15",
+      "TeacherName": "Xuân(S)",
+      "SubjectId": "37a192e0-d40f-4781-95c2-3b86707d026e",
+      "SubjectName": "TN&HN",
+      "StartAt": 54,
+      "AssignmentId": "c8719639-5dfb-4600-9358-7eb857e66e69",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "c3c04d38-4785-489e-9de7-02ac6bcc5be0",
+      "Priority": 0,
+      "ClassId": "d5725d2e-d7d8-4831-a35e-3ca107bed73f",
+      "ClassName": "11A8",
+      "TeacherId": "5e80e258-35bd-42b3-a6a5-cd46794565a9",
+      "TeacherName": "Hoa(M)",
+      "SubjectId": "2e66193f-1903-49e9-a575-383024ede8d8",
+      "SubjectName": "SH",
+      "StartAt": 60,
+      "AssignmentId": "8d0fd08c-e90b-435d-b529-82c23ec035ad",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "93bae902-90fb-4d7f-9bf6-73ce44aecf2f",
+      "Priority": 0,
+      "ClassId": "eaeea2ab-abc7-4aba-b48e-c97aa4c8559d",
+      "ClassName": "12C1",
+      "TeacherId": "cb45fd82-caf7-49b3-8afa-07ad739cba97",
+      "TeacherName": "Loan",
+      "SubjectId": "2e66193f-1903-49e9-a575-383024ede8d8",
+      "SubjectName": "SH",
+      "StartAt": 55,
+      "AssignmentId": "9f946a7a-0d8f-45a4-b5a2-83ec771bcb63",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "2f7d869e-d524-4df1-b2f2-a27bedab9522",
+      "Priority": 0,
+      "ClassId": "ad0fd2a4-e653-47bc-adb3-a70b61e20e3a",
+      "ClassName": "11A7",
+      "TeacherId": "4986a2cc-8233-4a41-93ac-43e35e250c1a",
+      "TeacherName": "Tân",
+      "SubjectId": "ebb67e3f-fdbd-430f-9441-64c0c7ceda9a",
+      "SubjectName": "CC",
+      "StartAt": 10,
+      "AssignmentId": "c2e4fb6d-eedd-4ef2-9749-8446378d2f12",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "0fc56c46-7428-4f9a-b172-18a9da33d769",
+      "Priority": 0,
+      "ClassId": "a159920c-504f-498a-b225-79844ad120ae",
+      "ClassName": "10B7",
+      "TeacherId": "e57f2e3e-6335-4fb4-bb4a-c12a73b5d7cd",
+      "TeacherName": "Kỷ",
+      "SubjectId": "2e66193f-1903-49e9-a575-383024ede8d8",
+      "SubjectName": "SH",
+      "StartAt": 55,
+      "AssignmentId": "0a351995-997d-49a7-8747-847bf7f616ea",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "c5d42967-c54b-4477-b674-968f1721e765",
+      "Priority": 0,
+      "ClassId": "d5725d2e-d7d8-4831-a35e-3ca107bed73f",
+      "ClassName": "11A8",
+      "TeacherId": "5e80e258-35bd-42b3-a6a5-cd46794565a9",
+      "TeacherName": "Hoa(M)",
+      "SubjectId": "37a192e0-d40f-4781-95c2-3b86707d026e",
+      "SubjectName": "TN&HN",
+      "StartAt": 59,
+      "AssignmentId": "164d01e9-c04e-4ddc-a369-90d99856b3fb",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "033a62f4-8a54-478b-931c-7b2ad8f8de40",
+      "Priority": 0,
+      "ClassId": "f6123108-6be8-496d-9c60-7753f313368f",
+      "ClassName": "12C8",
+      "TeacherId": "fb1a4dad-e5a9-416c-aad1-f0c98e394e49",
+      "TeacherName": "Phụng",
+      "SubjectId": "2e66193f-1903-49e9-a575-383024ede8d8",
+      "SubjectName": "SH",
+      "StartAt": 55,
+      "AssignmentId": "1fd87c1c-70fb-4e5f-993d-925fb4e07411",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "e095cf8b-c08c-4413-a251-b2cae5ec74a8",
+      "Priority": 0,
+      "ClassId": "eaeea2ab-abc7-4aba-b48e-c97aa4c8559d",
+      "ClassName": "12C1",
+      "TeacherId": "cb45fd82-caf7-49b3-8afa-07ad739cba97",
+      "TeacherName": "Loan",
+      "SubjectId": "37a192e0-d40f-4781-95c2-3b86707d026e",
+      "SubjectName": "TN&HN",
+      "StartAt": 54,
+      "AssignmentId": "6386faf9-6e02-42d3-91b9-96e56fb20eca",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "7aa6c774-d818-44f6-96e7-ab172607cd7c",
+      "Priority": 0,
+      "ClassId": "feb2d51a-8ad1-4c18-8449-4e658ad02334",
+      "ClassName": "11A5",
+      "TeacherId": "5fe80a00-fa41-476c-a915-0238a70672cc",
+      "TeacherName": "Trang(S)",
+      "SubjectId": "2e66193f-1903-49e9-a575-383024ede8d8",
+      "SubjectName": "SH",
+      "StartAt": 60,
+      "AssignmentId": "330ff929-b311-49c4-ad06-97bc7e7a75c2",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "0ad21fa3-489f-47dd-93f4-643e057fdefc",
+      "Priority": 0,
+      "ClassId": "c637c086-455b-4537-a1e2-988cf0256f0f",
+      "ClassName": "11A2",
+      "TeacherId": "7f392915-ee09-4dcf-91ec-17d94ec39563",
+      "TeacherName": "Trang(H)",
+      "SubjectId": "2e66193f-1903-49e9-a575-383024ede8d8",
+      "SubjectName": "SH",
+      "StartAt": 60,
+      "AssignmentId": "0fcb6d19-ac81-43ba-bd8e-9912d6435741",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "e382d6ee-8438-496e-8f29-a6c8965bbae0",
+      "Priority": 0,
+      "ClassId": "86db94ad-fa83-4759-9e04-f0cc617f8952",
+      "ClassName": "11A4",
+      "TeacherId": "fbcb8e24-1905-40fb-b49c-d27ff9ce20a2",
+      "TeacherName": "Tuấn(L)",
+      "SubjectId": "2e66193f-1903-49e9-a575-383024ede8d8",
+      "SubjectName": "SH",
+      "StartAt": 60,
+      "AssignmentId": "9311dcf6-d9ea-4a63-8b76-994e07fdba45",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "1dfe2d58-ccd0-4968-a42e-ffe20ab4809f",
+      "Priority": 0,
+      "ClassId": "99dd07b4-0450-4efc-a70a-192d81577ced",
+      "ClassName": "10B2",
+      "TeacherId": "f6a2d0e1-fcdc-4ea0-9c40-ffea09fd9490",
+      "TeacherName": "Uyên",
+      "SubjectId": "37a192e0-d40f-4781-95c2-3b86707d026e",
+      "SubjectName": "TN&HN",
+      "StartAt": 54,
+      "AssignmentId": "c2e5f7d4-d204-4bec-9fa3-9a87d0391bd9",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "760a0e6d-a154-40a4-a3db-e6976e073252",
+      "Priority": 0,
+      "ClassId": "1055c01e-47b0-4314-8141-112d528d82eb",
+      "ClassName": "12C4",
+      "TeacherId": "8a557738-6e34-43c5-9ec9-3b45ac4fdea5",
+      "TeacherName": "Sơn(H)",
+      "SubjectId": "2e66193f-1903-49e9-a575-383024ede8d8",
+      "SubjectName": "SH",
+      "StartAt": 55,
+      "AssignmentId": "71ad1705-eca8-4aa9-97ab-9ff83de46144",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "727a9855-068b-481a-8096-191515fafdb5",
+      "Priority": 0,
+      "ClassId": "d5259f06-9165-450f-9eab-b39c609416d7",
+      "ClassName": "10B3",
+      "TeacherId": "a1a9f708-9a48-42fd-9308-3a106f9be31f",
+      "TeacherName": "Tuấn(S)",
+      "SubjectId": "2e66193f-1903-49e9-a575-383024ede8d8",
+      "SubjectName": "SH",
+      "StartAt": 55,
+      "AssignmentId": "54f1daa3-7d79-42f5-9582-a300a88df8a6",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "139582ea-1cd8-4dd1-ab7b-08aa19654a71",
+      "Priority": 0,
+      "ClassId": "499be294-43cb-4c41-8c83-e2737065ee76",
+      "ClassName": "10B1",
+      "TeacherId": "6749a629-6964-43f4-bc38-2173b963413c",
+      "TeacherName": "Lợi",
+      "SubjectId": "ebb67e3f-fdbd-430f-9441-64c0c7ceda9a",
+      "SubjectName": "CC",
+      "StartAt": 1,
+      "AssignmentId": "ac592803-97ef-410d-9cf4-a9bea1d7b39e",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "9c3753fa-ebdf-485e-a893-c12a9f11230d",
+      "Priority": 0,
+      "ClassId": "1ae1937b-c8fc-4ee7-9641-b5d0909c54aa",
+      "ClassName": "11A9",
+      "TeacherId": "475b148d-8c8f-42a3-beae-f81c4f01ae3a",
+      "TeacherName": "Tr-Linh",
+      "SubjectId": "37a192e0-d40f-4781-95c2-3b86707d026e",
+      "SubjectName": "TN&HN",
+      "StartAt": 59,
+      "AssignmentId": "1042e9d8-4758-48c4-8bad-abb15a628cf3",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "756332d5-e444-4661-837e-5f2b3f5396f6",
+      "Priority": 0,
+      "ClassId": "eaeea2ab-abc7-4aba-b48e-c97aa4c8559d",
+      "ClassName": "12C1",
+      "TeacherId": "cb45fd82-caf7-49b3-8afa-07ad739cba97",
+      "TeacherName": "Loan",
+      "SubjectId": "ebb67e3f-fdbd-430f-9441-64c0c7ceda9a",
+      "SubjectName": "CC",
+      "StartAt": 1,
+      "AssignmentId": "e1133991-e50d-492e-8790-ac7b192d0c9a",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "131e0c73-d716-4310-b431-575af5768465",
+      "Priority": 0,
+      "ClassId": "6a0e3bb6-c513-48f9-b7b9-1208dac116fd",
+      "ClassName": "10B5",
+      "TeacherId": "e936ed8e-b9ff-448c-b641-2cede0b5c9da",
+      "TeacherName": "My",
+      "SubjectId": "ebb67e3f-fdbd-430f-9441-64c0c7ceda9a",
+      "SubjectName": "CC",
+      "StartAt": 1,
+      "AssignmentId": "67344e12-7d33-4658-be19-ae25a0c417f3",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "44868d0c-5631-44e6-89a9-33d956343397",
+      "Priority": 0,
+      "ClassId": "00ab2b62-8c9c-4693-8f3f-b7517f12604e",
+      "ClassName": "10B8",
+      "TeacherId": "67174939-7dbf-44b7-a94d-42f3cc73457a",
+      "TeacherName": "Cẩm",
+      "SubjectId": "37a192e0-d40f-4781-95c2-3b86707d026e",
+      "SubjectName": "TN&HN",
+      "StartAt": 54,
+      "AssignmentId": "5d991cb2-12fc-409c-842a-b3c2a2134790",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "c58538a7-154e-40b5-aaef-aa3d255ec37c",
+      "Priority": 0,
+      "ClassId": "f6123108-6be8-496d-9c60-7753f313368f",
+      "ClassName": "12C8",
+      "TeacherId": "fb1a4dad-e5a9-416c-aad1-f0c98e394e49",
+      "TeacherName": "Phụng",
+      "SubjectId": "ebb67e3f-fdbd-430f-9441-64c0c7ceda9a",
+      "SubjectName": "CC",
+      "StartAt": 1,
+      "AssignmentId": "9d9bf5ce-caa0-4a23-ba06-bbad7fc280c0",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "55f87f21-175d-4da5-88a5-e7bce6de9e55",
+      "Priority": 0,
+      "ClassId": "ad0fd2a4-e653-47bc-adb3-a70b61e20e3a",
+      "ClassName": "11A7",
+      "TeacherId": "4986a2cc-8233-4a41-93ac-43e35e250c1a",
+      "TeacherName": "Tân",
+      "SubjectId": "2e66193f-1903-49e9-a575-383024ede8d8",
+      "SubjectName": "SH",
+      "StartAt": 60,
+      "AssignmentId": "8994d7c1-61ef-460d-8610-bcd865459048",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "5ced2159-cf72-43c2-9bd5-96fe638988fe",
+      "Priority": 0,
+      "ClassId": "d5259f06-9165-450f-9eab-b39c609416d7",
+      "ClassName": "10B3",
+      "TeacherId": "a1a9f708-9a48-42fd-9308-3a106f9be31f",
+      "TeacherName": "Tuấn(S)",
+      "SubjectId": "ebb67e3f-fdbd-430f-9441-64c0c7ceda9a",
+      "SubjectName": "CC",
+      "StartAt": 1,
+      "AssignmentId": "55dc0645-7274-46a6-a72d-be27332bc71a",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "7ef788f4-0412-4014-ac9d-e79f46296d6f",
+      "Priority": 0,
+      "ClassId": "0df218c3-e2fa-4896-adc5-be7b4edddd68",
+      "ClassName": "10B6",
+      "TeacherId": "dae59f4a-9ee2-4995-8034-fd78c18d99bf",
+      "TeacherName": "Duy(L)",
+      "SubjectId": "37a192e0-d40f-4781-95c2-3b86707d026e",
+      "SubjectName": "TN&HN",
+      "StartAt": 54,
+      "AssignmentId": "51dcbfd6-2c90-4bd3-8351-c67fcc7d28e5",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "64f2743e-ced8-49f3-abc5-f3e4a4e26b16",
+      "Priority": 0,
+      "ClassId": "f6123108-6be8-496d-9c60-7753f313368f",
+      "ClassName": "12C8",
+      "TeacherId": "fb1a4dad-e5a9-416c-aad1-f0c98e394e49",
+      "TeacherName": "Phụng",
+      "SubjectId": "37a192e0-d40f-4781-95c2-3b86707d026e",
+      "SubjectName": "TN&HN",
+      "StartAt": 54,
+      "AssignmentId": "3631af35-6847-4a68-b444-caf0ea3b806b",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "eedcce15-cf84-49ce-814b-a483c2cbded7",
+      "Priority": 0,
+      "ClassId": "c637c086-455b-4537-a1e2-988cf0256f0f",
+      "ClassName": "11A2",
+      "TeacherId": "7f392915-ee09-4dcf-91ec-17d94ec39563",
+      "TeacherName": "Trang(H)",
+      "SubjectId": "37a192e0-d40f-4781-95c2-3b86707d026e",
+      "SubjectName": "TN&HN",
+      "StartAt": 59,
+      "AssignmentId": "9d100615-4596-41b6-9cbe-d08575de4fe3",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "3b6d56e3-d0ed-43e0-956a-0cce74e981e1",
+      "Priority": 0,
+      "ClassId": "d5259f06-9165-450f-9eab-b39c609416d7",
+      "ClassName": "10B3",
+      "TeacherId": "a1a9f708-9a48-42fd-9308-3a106f9be31f",
+      "TeacherName": "Tuấn(S)",
+      "SubjectId": "37a192e0-d40f-4781-95c2-3b86707d026e",
+      "SubjectName": "TN&HN",
+      "StartAt": 54,
+      "AssignmentId": "50bbb06b-b6b4-4e49-a5c9-d36b8be413a3",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "b2a7e3e0-73ee-461a-822b-815f8e7f8cd2",
+      "Priority": 0,
+      "ClassId": "0cb456a0-c788-468f-ba51-103cf6cef5f3",
+      "ClassName": "12C3",
+      "TeacherId": "1a4e58d0-5e19-42c2-b73f-ac0d7b6988f1",
+      "TeacherName": "Trường",
+      "SubjectId": "37a192e0-d40f-4781-95c2-3b86707d026e",
+      "SubjectName": "TN&HN",
+      "StartAt": 54,
+      "AssignmentId": "5ab6c7b6-15b7-46cd-8178-d822f5fe2e9a",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "90cc0e74-a843-46f2-9fb4-40735f0b55b6",
+      "Priority": 0,
+      "ClassId": "1055c01e-47b0-4314-8141-112d528d82eb",
+      "ClassName": "12C4",
+      "TeacherId": "8a557738-6e34-43c5-9ec9-3b45ac4fdea5",
+      "TeacherName": "Sơn(H)",
+      "SubjectId": "ebb67e3f-fdbd-430f-9441-64c0c7ceda9a",
+      "SubjectName": "CC",
+      "StartAt": 1,
+      "AssignmentId": "a8d3045f-0911-450c-9e6a-d8f003f068c3",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "185cc241-b0dc-4d09-8555-e66a75b3b4c2",
+      "Priority": 0,
+      "ClassId": "750463ed-ab81-4a4e-8d49-382084f39ad7",
+      "ClassName": "11A3",
+      "TeacherId": "9f09c5a3-7799-40ed-911c-c5161c05cabc",
+      "TeacherName": "Hằng",
+      "SubjectId": "ebb67e3f-fdbd-430f-9441-64c0c7ceda9a",
+      "SubjectName": "CC",
+      "StartAt": 10,
+      "AssignmentId": "9ae93dd5-faec-4bce-92e4-dc138a225904",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "b8be504c-1840-4d8c-b354-e1f461349f51",
+      "Priority": 0,
+      "ClassId": "c637c086-455b-4537-a1e2-988cf0256f0f",
+      "ClassName": "11A2",
+      "TeacherId": "7f392915-ee09-4dcf-91ec-17d94ec39563",
+      "TeacherName": "Trang(H)",
+      "SubjectId": "ebb67e3f-fdbd-430f-9441-64c0c7ceda9a",
+      "SubjectName": "CC",
+      "StartAt": 10,
+      "AssignmentId": "a435e990-e261-403f-96e6-dee1ded6389e",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "30fb9269-2e71-4fb4-9bc6-10b5ae238aa1",
+      "Priority": 0,
+      "ClassId": "aebd2111-a72b-41d8-b488-a59cc0a814ae",
+      "ClassName": "11A6",
+      "TeacherId": "c1f9b122-383b-42bd-9a04-10964679b550",
+      "TeacherName": "Hòa",
+      "SubjectId": "ebb67e3f-fdbd-430f-9441-64c0c7ceda9a",
+      "SubjectName": "CC",
+      "StartAt": 10,
+      "AssignmentId": "20a3906e-de45-447a-a51a-e43ccbe233bd",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "9be6bd36-532e-4a6d-a478-b95ff76af5e6",
+      "Priority": 0,
+      "ClassId": "0cb456a0-c788-468f-ba51-103cf6cef5f3",
+      "ClassName": "12C3",
+      "TeacherId": "1a4e58d0-5e19-42c2-b73f-ac0d7b6988f1",
+      "TeacherName": "Trường",
+      "SubjectId": "2e66193f-1903-49e9-a575-383024ede8d8",
+      "SubjectName": "SH",
+      "StartAt": 55,
+      "AssignmentId": "1a828897-fddb-40e8-8d73-ebcbdf866141",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "515955ca-f82a-4662-99aa-8b141590750f",
+      "Priority": 0,
+      "ClassId": "1ae1937b-c8fc-4ee7-9641-b5d0909c54aa",
+      "ClassName": "11A9",
+      "TeacherId": "475b148d-8c8f-42a3-beae-f81c4f01ae3a",
+      "TeacherName": "Tr-Linh",
+      "SubjectId": "ebb67e3f-fdbd-430f-9441-64c0c7ceda9a",
+      "SubjectName": "CC",
+      "StartAt": 10,
+      "AssignmentId": "1702b1cf-fe6e-4794-b370-ee6fb75735ae",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "a5b416f8-e818-4aeb-81dc-6831f6248ee1",
+      "Priority": 0,
+      "ClassId": "1ae1937b-c8fc-4ee7-9641-b5d0909c54aa",
+      "ClassName": "11A9",
+      "TeacherId": "475b148d-8c8f-42a3-beae-f81c4f01ae3a",
+      "TeacherName": "Tr-Linh",
+      "SubjectId": "2e66193f-1903-49e9-a575-383024ede8d8",
+      "SubjectName": "SH",
+      "StartAt": 60,
+      "AssignmentId": "373fb01d-4bdf-4d33-9ebb-f22187732dfe",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "f1adacee-8358-4247-8ab5-11258098dc18",
+      "Priority": 0,
+      "ClassId": "ccf8e5a7-4301-447b-8825-3335b520dffc",
+      "ClassName": "12C5",
+      "TeacherId": "4f2b309b-1b10-4204-b627-7d376533ea15",
+      "TeacherName": "Xuân(S)",
+      "SubjectId": "ebb67e3f-fdbd-430f-9441-64c0c7ceda9a",
+      "SubjectName": "CC",
+      "StartAt": 1,
+      "AssignmentId": "c15a0f2b-efa7-4fc3-b5ec-f2477068b048",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "0a164acd-9a01-4fe7-b030-b5d929defac4",
+      "Priority": 0,
+      "ClassId": "57064b4d-c018-4d87-a14a-d6412713cdf6",
+      "ClassName": "12C2",
+      "TeacherId": "df6cc373-ae5c-4cce-b000-c48af3fe3e2b",
+      "TeacherName": "Nhã",
+      "SubjectId": "2e66193f-1903-49e9-a575-383024ede8d8",
+      "SubjectName": "SH",
+      "StartAt": 55,
+      "AssignmentId": "a44760ef-fe98-49f8-b424-f2c43b5024f6",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "19deb884-d504-4f9b-97ac-08784fd04c53",
+      "Priority": 0,
+      "ClassId": "e2ce2775-b86a-4990-9d7c-44580df938b5",
+      "ClassName": "12C6",
+      "TeacherId": "0c6c9e47-e7c5-4d30-9945-65672be86dfc",
+      "TeacherName": "Trâm",
+      "SubjectId": "2e66193f-1903-49e9-a575-383024ede8d8",
+      "SubjectName": "SH",
+      "StartAt": 55,
+      "AssignmentId": "7888d244-a71e-4e6e-a94f-f34ba6766b61",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "1e5f93c4-b1f4-4bf2-ab34-13571eb289c8",
+      "Priority": 0,
+      "ClassId": "6a0e3bb6-c513-48f9-b7b9-1208dac116fd",
+      "ClassName": "10B5",
+      "TeacherId": "e936ed8e-b9ff-448c-b641-2cede0b5c9da",
+      "TeacherName": "My",
+      "SubjectId": "2e66193f-1903-49e9-a575-383024ede8d8",
+      "SubjectName": "SH",
+      "StartAt": 55,
+      "AssignmentId": "8fb53dd2-8b89-4637-b4ab-f4148a27ccb3",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "a44e09ca-634d-46fa-9307-ec2f2bf061e2",
+      "Priority": 0,
+      "ClassId": "ccf8e5a7-4301-447b-8825-3335b520dffc",
+      "ClassName": "12C5",
+      "TeacherId": "4f2b309b-1b10-4204-b627-7d376533ea15",
+      "TeacherName": "Xuân(S)",
+      "SubjectId": "2e66193f-1903-49e9-a575-383024ede8d8",
+      "SubjectName": "SH",
+      "StartAt": 55,
+      "AssignmentId": "8f02c634-e672-4359-9d56-f7ee84ffd680",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "edd4cecd-5b63-4512-9b48-0248ab4b409d",
+      "Priority": 0,
+      "ClassId": "86db94ad-fa83-4759-9e04-f0cc617f8952",
+      "ClassName": "11A4",
+      "TeacherId": "fbcb8e24-1905-40fb-b49c-d27ff9ce20a2",
+      "TeacherName": "Tuấn(L)",
+      "SubjectId": "ebb67e3f-fdbd-430f-9441-64c0c7ceda9a",
+      "SubjectName": "CC",
+      "StartAt": 10,
+      "AssignmentId": "1c32af2b-853c-4797-8749-f9a2e74e75ed",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "d49beaf6-4379-4735-83cf-debdc5fc2672",
+      "Priority": 0,
+      "ClassId": "0df218c3-e2fa-4896-adc5-be7b4edddd68",
+      "ClassName": "10B6",
+      "TeacherId": "dae59f4a-9ee2-4995-8034-fd78c18d99bf",
+      "TeacherName": "Duy(L)",
+      "SubjectId": "2e66193f-1903-49e9-a575-383024ede8d8",
+      "SubjectName": "SH",
+      "StartAt": 55,
+      "AssignmentId": "32e25c7a-4ce3-4a51-9b13-f9c7f0bd5020",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "494adfc3-ec69-437a-bd4a-ba10fff23cc2",
+      "Priority": 0,
+      "ClassId": "feb2d51a-8ad1-4c18-8449-4e658ad02334",
+      "ClassName": "11A5",
+      "TeacherId": "5fe80a00-fa41-476c-a915-0238a70672cc",
+      "TeacherName": "Trang(S)",
+      "SubjectId": "ebb67e3f-fdbd-430f-9441-64c0c7ceda9a",
+      "SubjectName": "CC",
+      "StartAt": 10,
+      "AssignmentId": "3f84f4e1-6a2b-43ba-94a1-fd801bb3aa64",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "2d2807d8-0884-4e06-ab05-0fe42d2d2fba",
+      "Priority": 0,
+      "ClassId": "00ab2b62-8c9c-4693-8f3f-b7517f12604e",
+      "ClassName": "10B8",
+      "TeacherId": "67174939-7dbf-44b7-a94d-42f3cc73457a",
+      "TeacherName": "Cẩm",
+      "SubjectId": "2e66193f-1903-49e9-a575-383024ede8d8",
+      "SubjectName": "SH",
+      "StartAt": 55,
+      "AssignmentId": "ace9c4fd-86ff-4dc1-beac-ff9b1dd80ae8",
+      "ConstraintErrors": [
+      ]
+    }
+  ],
+  "FreeTimetableUnits": [
+    {
+      "Id": "3695fdf4-323d-4cfc-bf7c-300e335bb79a",
+      "Priority": 2,
+      "ClassId": "0cb456a0-c788-468f-ba51-103cf6cef5f3",
+      "ClassName": "12C3",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 35,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "ff3b4e7c-ef99-4055-a606-f313fa029b38",
+      "Priority": 2,
+      "ClassId": "0cb456a0-c788-468f-ba51-103cf6cef5f3",
+      "ClassName": "12C3",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 34,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "d0af314e-2737-45a5-bb9a-80dfe732e880",
+      "Priority": 2,
+      "ClassId": "1055c01e-47b0-4314-8141-112d528d82eb",
+      "ClassName": "12C4",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 35,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "4c1dca2d-964c-4464-a06c-c900ec077fcf",
+      "Priority": 2,
+      "ClassId": "1055c01e-47b0-4314-8141-112d528d82eb",
+      "ClassName": "12C4",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 34,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "6669f40a-6416-4645-8502-a54ff6b3634d",
+      "Priority": 2,
+      "ClassId": "1055c01e-47b0-4314-8141-112d528d82eb",
+      "ClassName": "12C4",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 33,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "2c21184b-0a2d-4b52-bb52-87d470ecf8f0",
+      "Priority": 2,
+      "ClassId": "6a0e3bb6-c513-48f9-b7b9-1208dac116fd",
+      "ClassName": "10B5",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 35,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "4bff85f7-f47e-47f0-87a7-e681ec22562e",
+      "Priority": 2,
+      "ClassId": "6a0e3bb6-c513-48f9-b7b9-1208dac116fd",
+      "ClassName": "10B5",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 34,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "1d12123a-f0d6-4190-90f9-98cdd4c75ef2",
+      "Priority": 2,
+      "ClassId": "6a0e3bb6-c513-48f9-b7b9-1208dac116fd",
+      "ClassName": "10B5",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 33,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "564e1741-08d0-4606-80fa-99057d29aa3c",
+      "Priority": 2,
+      "ClassId": "6a0e3bb6-c513-48f9-b7b9-1208dac116fd",
+      "ClassName": "10B5",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 45,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "1fe973ec-9202-4c55-91ef-56726e913b57",
+      "Priority": 2,
+      "ClassId": "6a0e3bb6-c513-48f9-b7b9-1208dac116fd",
+      "ClassName": "10B5",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 44,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "667f8c25-a43b-4d38-94cf-d36fb79004a8",
+      "Priority": 2,
+      "ClassId": "99dd07b4-0450-4efc-a70a-192d81577ced",
+      "ClassName": "10B2",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 35,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "86e752fa-e882-48bd-8c2c-32e693ee0700",
+      "Priority": 2,
+      "ClassId": "99dd07b4-0450-4efc-a70a-192d81577ced",
+      "ClassName": "10B2",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 34,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "1a655af9-9da4-4cfe-afc9-225ac928f0b0",
+      "Priority": 2,
+      "ClassId": "99dd07b4-0450-4efc-a70a-192d81577ced",
+      "ClassName": "10B2",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 33,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "6f9124c0-3541-4065-9e83-1bf0726e3a5b",
+      "Priority": 2,
+      "ClassId": "99dd07b4-0450-4efc-a70a-192d81577ced",
+      "ClassName": "10B2",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 45,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "ca9a90b1-23ee-4cd8-b51d-3d82048f5eed",
+      "Priority": 2,
+      "ClassId": "99dd07b4-0450-4efc-a70a-192d81577ced",
+      "ClassName": "10B2",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 44,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "92b5c3a6-f4ef-4513-9301-9fbd07988279",
+      "Priority": 2,
+      "ClassId": "ccf8e5a7-4301-447b-8825-3335b520dffc",
+      "ClassName": "12C5",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 35,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "fb8d568b-a96b-42ca-ae65-be5ce0edb134",
+      "Priority": 2,
+      "ClassId": "ccf8e5a7-4301-447b-8825-3335b520dffc",
+      "ClassName": "12C5",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 34,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "4b5aa400-c832-46ef-ada7-57630d9940da",
+      "Priority": 2,
+      "ClassId": "ccf8e5a7-4301-447b-8825-3335b520dffc",
+      "ClassName": "12C5",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 33,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "3ef45162-24df-4419-a2fc-ee01f575403c",
+      "Priority": 2,
+      "ClassId": "750463ed-ab81-4a4e-8d49-382084f39ad7",
+      "ClassName": "11A3",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 40,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "2441737f-22ea-4a17-ab3b-cad5a644384e",
+      "Priority": 2,
+      "ClassId": "750463ed-ab81-4a4e-8d49-382084f39ad7",
+      "ClassName": "11A3",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 39,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "caa64389-b250-4d71-9eec-6714d7815b38",
+      "Priority": 2,
+      "ClassId": "750463ed-ab81-4a4e-8d49-382084f39ad7",
+      "ClassName": "11A3",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 38,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "80e92492-45ec-44e5-bb90-f7383cc8f03e",
+      "Priority": 2,
+      "ClassId": "750463ed-ab81-4a4e-8d49-382084f39ad7",
+      "ClassName": "11A3",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 50,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "f12ecbbc-0ad1-41b6-bc23-9e430beac28e",
+      "Priority": 2,
+      "ClassId": "750463ed-ab81-4a4e-8d49-382084f39ad7",
+      "ClassName": "11A3",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 49,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "36a10853-09ad-4694-98f3-2c380e8636e7",
+      "Priority": 2,
+      "ClassId": "d5725d2e-d7d8-4831-a35e-3ca107bed73f",
+      "ClassName": "11A8",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 40,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "df0813e7-5bde-4184-bf84-ef01cc8608b7",
+      "Priority": 2,
+      "ClassId": "d5725d2e-d7d8-4831-a35e-3ca107bed73f",
+      "ClassName": "11A8",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 39,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "bcafa66a-68bc-403d-87fb-11c61c7da1e9",
+      "Priority": 2,
+      "ClassId": "d5725d2e-d7d8-4831-a35e-3ca107bed73f",
+      "ClassName": "11A8",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 38,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "bdadb823-403d-46ce-a0a0-590e7bce42d0",
+      "Priority": 2,
+      "ClassId": "d5725d2e-d7d8-4831-a35e-3ca107bed73f",
+      "ClassName": "11A8",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 50,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "2e40aab5-24e2-4373-bf40-03cd9ec8f74c",
+      "Priority": 2,
+      "ClassId": "d5725d2e-d7d8-4831-a35e-3ca107bed73f",
+      "ClassName": "11A8",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 49,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "683fa766-2e25-464c-a959-ff1998fbf9b8",
+      "Priority": 2,
+      "ClassId": "e2ce2775-b86a-4990-9d7c-44580df938b5",
+      "ClassName": "12C6",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 35,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "287af4b0-d56c-429c-b447-4b0240980b6a",
+      "Priority": 2,
+      "ClassId": "e2ce2775-b86a-4990-9d7c-44580df938b5",
+      "ClassName": "12C6",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 34,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "14980d7e-7c93-43de-b758-5d7b398b690e",
+      "Priority": 2,
+      "ClassId": "e2ce2775-b86a-4990-9d7c-44580df938b5",
+      "ClassName": "12C6",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 33,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "97174394-1ec6-4d2e-9e3c-0b60f92233b4",
+      "Priority": 2,
+      "ClassId": "feb2d51a-8ad1-4c18-8449-4e658ad02334",
+      "ClassName": "11A5",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 40,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "1f8f7332-3692-45c7-aa71-e3ecb0d9b573",
+      "Priority": 2,
+      "ClassId": "feb2d51a-8ad1-4c18-8449-4e658ad02334",
+      "ClassName": "11A5",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 39,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "48941cbc-892f-41ee-9f16-88a1a6d95304",
+      "Priority": 2,
+      "ClassId": "feb2d51a-8ad1-4c18-8449-4e658ad02334",
+      "ClassName": "11A5",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 38,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "52827013-4d5f-4ac3-b3c9-e90b2d11e790",
+      "Priority": 2,
+      "ClassId": "feb2d51a-8ad1-4c18-8449-4e658ad02334",
+      "ClassName": "11A5",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 50,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "0503d69f-dcb6-4197-878d-40de37ac9cc3",
+      "Priority": 2,
+      "ClassId": "feb2d51a-8ad1-4c18-8449-4e658ad02334",
+      "ClassName": "11A5",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 49,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "f790911d-0026-4052-99a7-44832d7f583e",
+      "Priority": 2,
+      "ClassId": "bb1c4f4d-a4fa-4d2e-abcb-6bf7164ae2dc",
+      "ClassName": "10B4",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 35,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "b4ebec20-e260-4fcf-8144-a24dd71aa564",
+      "Priority": 2,
+      "ClassId": "bb1c4f4d-a4fa-4d2e-abcb-6bf7164ae2dc",
+      "ClassName": "10B4",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 34,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "3bbf95a9-218b-47dc-abc7-a13f48b94bc2",
+      "Priority": 2,
+      "ClassId": "bb1c4f4d-a4fa-4d2e-abcb-6bf7164ae2dc",
+      "ClassName": "10B4",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 33,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "f760d202-f55d-4ba9-b8e3-b2f7b2515986",
+      "Priority": 2,
+      "ClassId": "bb1c4f4d-a4fa-4d2e-abcb-6bf7164ae2dc",
+      "ClassName": "10B4",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 45,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "165be593-0c74-41ed-bffc-138eb884dc15",
+      "Priority": 2,
+      "ClassId": "bb1c4f4d-a4fa-4d2e-abcb-6bf7164ae2dc",
+      "ClassName": "10B4",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 44,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "d1f67108-a6a3-40f6-b057-2aa0df454e82",
+      "Priority": 2,
+      "ClassId": "f6123108-6be8-496d-9c60-7753f313368f",
+      "ClassName": "12C8",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 35,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "115c0ec5-0aaa-406e-aedd-355166f30b13",
+      "Priority": 2,
+      "ClassId": "f6123108-6be8-496d-9c60-7753f313368f",
+      "ClassName": "12C8",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 34,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "e66a3dcb-da65-4b0b-b42c-dc760ab456f6",
+      "Priority": 2,
+      "ClassId": "f6123108-6be8-496d-9c60-7753f313368f",
+      "ClassName": "12C8",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 33,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "aae05356-853c-4f48-81a1-2d844ae68c79",
+      "Priority": 2,
+      "ClassId": "a159920c-504f-498a-b225-79844ad120ae",
+      "ClassName": "10B7",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 35,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "9ac625b0-d712-4fca-93a1-0a66042aad69",
+      "Priority": 2,
+      "ClassId": "a159920c-504f-498a-b225-79844ad120ae",
+      "ClassName": "10B7",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 34,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "ceefb28a-6200-438b-a26e-80eb1640ecb8",
+      "Priority": 2,
+      "ClassId": "a159920c-504f-498a-b225-79844ad120ae",
+      "ClassName": "10B7",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 33,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "5390a533-7ce4-45e7-879e-b41f12903a57",
+      "Priority": 2,
+      "ClassId": "a159920c-504f-498a-b225-79844ad120ae",
+      "ClassName": "10B7",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 45,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "fe70b519-d555-4258-a97d-ee71ab1527d4",
+      "Priority": 2,
+      "ClassId": "a159920c-504f-498a-b225-79844ad120ae",
+      "ClassName": "10B7",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 44,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "357134b0-28a9-4e6b-9a6a-494c436b419f",
+      "Priority": 2,
+      "ClassId": "c637c086-455b-4537-a1e2-988cf0256f0f",
+      "ClassName": "11A2",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 40,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "8c89aa2d-c5e9-4896-a965-9564890f98c8",
+      "Priority": 2,
+      "ClassId": "c637c086-455b-4537-a1e2-988cf0256f0f",
+      "ClassName": "11A2",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 39,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "f03799c4-dc8e-4fb1-b8e9-c8ff8200a715",
+      "Priority": 2,
+      "ClassId": "c637c086-455b-4537-a1e2-988cf0256f0f",
+      "ClassName": "11A2",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 38,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "843cbd60-36f1-4b46-8d17-ed521f6ab6fc",
+      "Priority": 2,
+      "ClassId": "c637c086-455b-4537-a1e2-988cf0256f0f",
+      "ClassName": "11A2",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 50,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "6c8f6f73-20c3-403f-a6bd-d08f47f5fb1a",
+      "Priority": 2,
+      "ClassId": "c637c086-455b-4537-a1e2-988cf0256f0f",
+      "ClassName": "11A2",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 49,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "c9fed34f-9254-43cd-ab23-7dd4038b8375",
+      "Priority": 2,
+      "ClassId": "b70f1908-aea3-4303-9d50-a0bfae418459",
+      "ClassName": "12C7",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 35,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "f156fe33-6a14-4650-a13c-a7b655498884",
+      "Priority": 2,
+      "ClassId": "b70f1908-aea3-4303-9d50-a0bfae418459",
+      "ClassName": "12C7",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 34,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "37b7933c-f0c9-4fe5-9b01-e12c020b9a13",
+      "Priority": 2,
+      "ClassId": "b70f1908-aea3-4303-9d50-a0bfae418459",
+      "ClassName": "12C7",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 33,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "d5390a13-3442-4262-90b2-2d1b8dc8f169",
+      "Priority": 2,
+      "ClassId": "aebd2111-a72b-41d8-b488-a59cc0a814ae",
+      "ClassName": "11A6",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 40,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "2afada40-d144-4116-a996-905f732a3e8a",
+      "Priority": 2,
+      "ClassId": "aebd2111-a72b-41d8-b488-a59cc0a814ae",
+      "ClassName": "11A6",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 39,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "98da41b1-0321-4713-a364-7bb2a800ef93",
+      "Priority": 2,
+      "ClassId": "aebd2111-a72b-41d8-b488-a59cc0a814ae",
+      "ClassName": "11A6",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 38,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "1695d54b-2564-4995-9078-468a90714413",
+      "Priority": 2,
+      "ClassId": "aebd2111-a72b-41d8-b488-a59cc0a814ae",
+      "ClassName": "11A6",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 50,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "6eb644e2-9b68-4c48-b981-17543cd6d3c7",
+      "Priority": 2,
+      "ClassId": "aebd2111-a72b-41d8-b488-a59cc0a814ae",
+      "ClassName": "11A6",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 49,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "c9f26872-1afe-4b75-bf68-645754f6b998",
+      "Priority": 2,
+      "ClassId": "ad0fd2a4-e653-47bc-adb3-a70b61e20e3a",
+      "ClassName": "11A7",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 40,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "26fe65e6-6836-4c0b-bff2-4aeebaae0551",
+      "Priority": 2,
+      "ClassId": "ad0fd2a4-e653-47bc-adb3-a70b61e20e3a",
+      "ClassName": "11A7",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 39,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "37f69abb-e924-4fb3-9743-d74149faaccb",
+      "Priority": 2,
+      "ClassId": "ad0fd2a4-e653-47bc-adb3-a70b61e20e3a",
+      "ClassName": "11A7",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 38,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "bfd1706c-1512-432e-a791-570711995867",
+      "Priority": 2,
+      "ClassId": "ad0fd2a4-e653-47bc-adb3-a70b61e20e3a",
+      "ClassName": "11A7",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 50,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "59d11eb8-08ea-49a4-9094-49d0ef51f786",
+      "Priority": 2,
+      "ClassId": "ad0fd2a4-e653-47bc-adb3-a70b61e20e3a",
+      "ClassName": "11A7",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 49,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "ff5dbc1c-0dcd-410a-8154-492e7c503be6",
+      "Priority": 2,
+      "ClassId": "d5259f06-9165-450f-9eab-b39c609416d7",
+      "ClassName": "10B3",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 35,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "345d9312-6dd1-4be4-8f76-2d013d852264",
+      "Priority": 2,
+      "ClassId": "d5259f06-9165-450f-9eab-b39c609416d7",
+      "ClassName": "10B3",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 34,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "7e5cd8b7-968c-430a-bcfc-5b15c2c546a9",
+      "Priority": 2,
+      "ClassId": "d5259f06-9165-450f-9eab-b39c609416d7",
+      "ClassName": "10B3",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 33,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "a85f53d9-d78b-4a9d-83c4-93624003e218",
+      "Priority": 2,
+      "ClassId": "d5259f06-9165-450f-9eab-b39c609416d7",
+      "ClassName": "10B3",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 45,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "2ae32e92-51be-48f6-bc65-4c0178678f5b",
+      "Priority": 2,
+      "ClassId": "d5259f06-9165-450f-9eab-b39c609416d7",
+      "ClassName": "10B3",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 44,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "aa83b98e-4324-47d3-b44f-671293543e93",
+      "Priority": 2,
+      "ClassId": "853a31a6-f92d-450f-9b42-b445bb04cc18",
+      "ClassName": "11A1",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 40,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "340195c3-2e31-46cb-8521-4470999a05ac",
+      "Priority": 2,
+      "ClassId": "853a31a6-f92d-450f-9b42-b445bb04cc18",
+      "ClassName": "11A1",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 39,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "9ddd6b6c-5703-48ab-a28a-4982dc86df3d",
+      "Priority": 2,
+      "ClassId": "853a31a6-f92d-450f-9b42-b445bb04cc18",
+      "ClassName": "11A1",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 38,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "3a34d213-e1e8-4791-aadc-1cae3b0d2f50",
+      "Priority": 2,
+      "ClassId": "853a31a6-f92d-450f-9b42-b445bb04cc18",
+      "ClassName": "11A1",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 50,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "88f4d16a-a0b9-4f91-b830-388eb7c1b6cc",
+      "Priority": 2,
+      "ClassId": "853a31a6-f92d-450f-9b42-b445bb04cc18",
+      "ClassName": "11A1",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 49,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "2b3690b7-a1ab-468c-986d-e2a0b8769074",
+      "Priority": 2,
+      "ClassId": "1ae1937b-c8fc-4ee7-9641-b5d0909c54aa",
+      "ClassName": "11A9",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 40,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "b6736116-7327-45a7-a1d6-1cbcd53ac23c",
+      "Priority": 2,
+      "ClassId": "1ae1937b-c8fc-4ee7-9641-b5d0909c54aa",
+      "ClassName": "11A9",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 39,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "b9048a9a-e893-4e62-a3ea-bba86d9fb8b8",
+      "Priority": 2,
+      "ClassId": "1ae1937b-c8fc-4ee7-9641-b5d0909c54aa",
+      "ClassName": "11A9",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 38,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "33a8e790-d64a-4582-98b4-29a3aa001f2f",
+      "Priority": 2,
+      "ClassId": "1ae1937b-c8fc-4ee7-9641-b5d0909c54aa",
+      "ClassName": "11A9",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 50,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "66166a88-c5cc-4a06-9ca1-4520247d43c0",
+      "Priority": 2,
+      "ClassId": "1ae1937b-c8fc-4ee7-9641-b5d0909c54aa",
+      "ClassName": "11A9",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 49,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "1438990b-a9f9-4cae-8da2-00d0d35aae8b",
+      "Priority": 2,
+      "ClassId": "00ab2b62-8c9c-4693-8f3f-b7517f12604e",
+      "ClassName": "10B8",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 35,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "29172830-f08e-41e9-9294-b2311bc83842",
+      "Priority": 2,
+      "ClassId": "00ab2b62-8c9c-4693-8f3f-b7517f12604e",
+      "ClassName": "10B8",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 34,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "6234b0be-55b1-4d94-8ce2-669ce266d55c",
+      "Priority": 2,
+      "ClassId": "00ab2b62-8c9c-4693-8f3f-b7517f12604e",
+      "ClassName": "10B8",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 33,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "0c3e4850-8763-403e-99b3-3e86fa708bca",
+      "Priority": 2,
+      "ClassId": "00ab2b62-8c9c-4693-8f3f-b7517f12604e",
+      "ClassName": "10B8",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 45,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "241bf1f2-3e1d-4a5b-ba0e-0fdfd71f029b",
+      "Priority": 2,
+      "ClassId": "00ab2b62-8c9c-4693-8f3f-b7517f12604e",
+      "ClassName": "10B8",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 44,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "8e4504ef-33c9-4f10-bc0c-f9b90d884859",
+      "Priority": 2,
+      "ClassId": "0df218c3-e2fa-4896-adc5-be7b4edddd68",
+      "ClassName": "10B6",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 35,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "04a868a0-eb27-4a61-8c36-2e4f929efd5d",
+      "Priority": 2,
+      "ClassId": "0df218c3-e2fa-4896-adc5-be7b4edddd68",
+      "ClassName": "10B6",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 34,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "da521ce1-70d6-4f5b-bb8a-50a1fdcc1831",
+      "Priority": 2,
+      "ClassId": "0df218c3-e2fa-4896-adc5-be7b4edddd68",
+      "ClassName": "10B6",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 33,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "cd4218a2-6862-49e1-bc48-7f7976313583",
+      "Priority": 2,
+      "ClassId": "0df218c3-e2fa-4896-adc5-be7b4edddd68",
+      "ClassName": "10B6",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 45,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "8956380f-0ef0-453f-a621-eb280e998b80",
+      "Priority": 2,
+      "ClassId": "0df218c3-e2fa-4896-adc5-be7b4edddd68",
+      "ClassName": "10B6",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 44,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "07d5350d-79a8-4d74-8dc2-541ba5ec2ecb",
+      "Priority": 2,
+      "ClassId": "eaeea2ab-abc7-4aba-b48e-c97aa4c8559d",
+      "ClassName": "12C1",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 35,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "498a7cc8-5b7d-4e4b-b63e-a0d936aea52a",
+      "Priority": 2,
+      "ClassId": "eaeea2ab-abc7-4aba-b48e-c97aa4c8559d",
+      "ClassName": "12C1",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 34,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "fa22058f-234c-43ad-8340-4d654e247a2a",
+      "Priority": 2,
+      "ClassId": "57064b4d-c018-4d87-a14a-d6412713cdf6",
+      "ClassName": "12C2",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 35,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "a8e5a886-6985-4305-93ad-749374557e36",
+      "Priority": 2,
+      "ClassId": "57064b4d-c018-4d87-a14a-d6412713cdf6",
+      "ClassName": "12C2",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 34,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "7234ceb9-6810-4803-9a05-4c8e4e36a451",
+      "Priority": 2,
+      "ClassId": "499be294-43cb-4c41-8c83-e2737065ee76",
+      "ClassName": "10B1",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 35,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "f3f570fe-0e37-4996-a10d-282da1845d17",
+      "Priority": 2,
+      "ClassId": "499be294-43cb-4c41-8c83-e2737065ee76",
+      "ClassName": "10B1",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 34,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "1be412cd-4e6f-4ebc-a442-cfc075a2a283",
+      "Priority": 2,
+      "ClassId": "499be294-43cb-4c41-8c83-e2737065ee76",
+      "ClassName": "10B1",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 33,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "9f8c3cd6-e3f3-4d36-b297-bbc5dfde26ea",
+      "Priority": 2,
+      "ClassId": "499be294-43cb-4c41-8c83-e2737065ee76",
+      "ClassName": "10B1",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 45,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "6266f32a-9875-41e8-810c-acb9adb64328",
+      "Priority": 2,
+      "ClassId": "499be294-43cb-4c41-8c83-e2737065ee76",
+      "ClassName": "10B1",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 44,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "a139ec77-8aea-44d0-86a5-532d192aa6c3",
+      "Priority": 2,
+      "ClassId": "86db94ad-fa83-4759-9e04-f0cc617f8952",
+      "ClassName": "11A4",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 40,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "4b5c31c4-589e-485a-9ee5-8ed2a0f47b6f",
+      "Priority": 2,
+      "ClassId": "86db94ad-fa83-4759-9e04-f0cc617f8952",
+      "ClassName": "11A4",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 39,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "d9b893c7-6bfe-4df4-9ea5-4a744627d625",
+      "Priority": 2,
+      "ClassId": "86db94ad-fa83-4759-9e04-f0cc617f8952",
+      "ClassName": "11A4",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 38,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "90607f08-a87f-499b-aa18-bed7adc32fc3",
+      "Priority": 2,
+      "ClassId": "86db94ad-fa83-4759-9e04-f0cc617f8952",
+      "ClassName": "11A4",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 50,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    },
+    {
+      "Id": "ccd7741b-e7a3-4739-a248-c25d078319fc",
+      "Priority": 2,
+      "ClassId": "86db94ad-fa83-4759-9e04-f0cc617f8952",
+      "ClassName": "11A4",
+      "TeacherId": "00000000-0000-0000-0000-000000000000",
+      "TeacherName": "",
+      "SubjectId": "00000000-0000-0000-0000-000000000000",
+      "SubjectName": "",
+      "StartAt": 49,
+      "AssignmentId": "00000000-0000-0000-0000-000000000000",
+      "ConstraintErrors": [
+      ]
+    }
+  ],
+  "NoAssignTimetableUnits": [
+  ],
+  "BusyTimetableUnits": [
+  ],
+  "SubjectsWithPracticeRoom": [
+    {
+      "SubjectId": "c30a4784-1394-45a7-a287-77cd660f4f02",
+      "RoomCount": 2
+    }
+  ],
+  "MaxPeriodPerDay": 5,
+  "MinPeriodPerDay": 0,
+  "StartYear": 2023,
+  "EndYear": 2024,
+  "Semester": 1
+}
