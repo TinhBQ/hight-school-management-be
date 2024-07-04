@@ -1,8 +1,7 @@
 using API.Extensions;
 using Microsoft.AspNetCore.HttpOverrides;
-using Microsoft.AspNetCore.Mvc.Razor;
-using Newtonsoft.Json.Serialization;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using NLog;
 using Services.Abstraction.IApplicationServices;
 using Services.Abstraction.ILoggerServices;
@@ -44,7 +43,7 @@ namespace API
             builder.Services.AddScoped<IDatabaseService, DatabaseService>();
             builder.Services.AddScoped<IAssignmentService, AssignmentService>();
             builder.Services.AddScoped<IHelperService, HelperService>();
-
+            builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
