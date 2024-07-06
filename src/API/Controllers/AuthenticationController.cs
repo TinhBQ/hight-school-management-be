@@ -10,7 +10,7 @@ namespace API.Controllers
         private readonly IAuthenticationService _service = service;
 
         [HttpPost]
-        public async Task<IActionResult> Login()
+        public async Task<IActionResult> Login(string username, string password)
         {
 
             return Ok();
