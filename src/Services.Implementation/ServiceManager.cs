@@ -12,7 +12,8 @@ namespace Services.Implementation
         private readonly Lazy<ITeacherService> _teacherService = new(() => new TeacherService(repositoryManager, logger, mapper, helperService));
         private readonly Lazy<ISubjectClassService> _subjectClassService = new(() => new SubjectClassService(repositoryManager, logger, mapper, helperService));
         private readonly Lazy<ISubjectTeacherService> _subjectTeacherService = new(() => new SubjectTeacherService(repositoryManager, logger, mapper, helperService));
-        
+        private readonly Lazy<IAssignmentBQTService> _assignmentBQTService = new(() => new AssignmentBQTService(repositoryManager, logger, mapper, helperService));
+
         public IClassService ClassService => _classService.Value;
 
         public ISubjectService SubjectService => _subjectService.Value;
@@ -22,5 +23,7 @@ namespace Services.Implementation
         public ISubjectClassService SubjectClassService => _subjectClassService.Value;
 
         public ISubjectTeacherService SubjectTeacherService => _subjectTeacherService.Value;
+
+        public IAssignmentBQTService AssignmentBQTService => _assignmentBQTService.Value;
     }
 }

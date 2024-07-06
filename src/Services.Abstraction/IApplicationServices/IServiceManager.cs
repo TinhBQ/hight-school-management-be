@@ -7,5 +7,7 @@
         ITeacherService TeacherService { get; }
         ISubjectClassService SubjectClassService { get; }
         ISubjectTeacherService SubjectTeacherService { get; }
+
+        IAssignmentBQTService AssignmentBQTService { get; }
     }
 }
