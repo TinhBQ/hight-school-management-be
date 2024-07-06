@@ -150,7 +150,7 @@ namespace API.Controllers
             var subjectsWithPracticeRoom = _context.Subjects.AsNoTracking().First(s => s.ShortName == "TIN");
             parameters.SubjectsWithPracticeRoom.Add(new()
             {
-                SubjectId = subjectsWithPracticeRoom.Id,
+                Id = subjectsWithPracticeRoom.Id,
                 RoomCount = 2,
             });
             parameters.JsonOutput();

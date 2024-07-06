@@ -20,7 +20,7 @@ namespace Entities.RequestFeatures
 
     public class SubjectWithPracticeRoom
     {
-        public Guid SubjectId { get; set; }
+        public Guid Id { get; set; }
         public int RoomCount { get; set; } = 0;
     }
 }

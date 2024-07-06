@@ -2,12 +2,14 @@
 {
     public interface IAuthenticationService
     {
-        public bool Login();
+        public Task Login(string username, string password);
 
-        public bool Logout();
+        public Task Logout();
 
-        public bool Register();
+        public Task RenewToken();
 
-        public bool RenewToken();
+        public Task ChangePassword(Guid userId, string oldPassword, string newPassword);
+
+        public Task GenerateAccount(List<Guid> ids);
     }
 }
