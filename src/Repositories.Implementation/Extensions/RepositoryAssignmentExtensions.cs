@@ -5,10 +5,24 @@ namespace Repositories.Implementation.Extensions
 {
     public static class RepositoryAssignmentExtensions
     {
-        public static IQueryable<Assignment> FilterAssignments(this IQueryable<Assignment> assignments, uint? startYear, uint? endYear) =>
+        public static IQueryable<Assignment> FilterYears(this IQueryable<Assignment> assignments, uint? startYear, uint? endYear) =>
             startYear == null || endYear == null
             ? assignments
             : assignments.Where(e => (e.StartYear >= startYear && e.EndYear == endYear));
+
+
+        public static IQueryable<Assignment> FilterSemester(this IQueryable<Assignment> assignments, uint? semester) =>
+           semester == null
+           ? assignments
+           : assignments.Where(e => (e.Semester == semester));
+
+        public static IQueryable<Assignment> FilterClass(this IQueryable<Assignment> assignments, Guid? classId) =>
+           classId == null
+           ? assignments
+           : assignments.Where(e => (e.ClassId == classId));
+
+
+        
 
         public static IQueryable<Assignment> Search(this IQueryable<Assignment> assignments, string searchTerm)
         {

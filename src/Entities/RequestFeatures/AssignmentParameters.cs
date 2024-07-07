@@ -11,5 +11,7 @@
         public uint? EndYear { get; set; }
 
         public uint? Semester { get; set; }
+
+        public Guid? ClassId { get; set; }
     }
 }

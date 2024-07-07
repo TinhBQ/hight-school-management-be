@@ -7,13 +7,22 @@ namespace Services.Abstraction.IRepositoryServices
     {
         Task<PagedList<Assignment>> GetAllAssignmentWithPagedList(AssignmentParameters assignmentParameters, bool trackChanges);
 
-        Task<IEnumerable<Assignment>> GetAssignments(bool trackChanges);
 
-        Task<Assignment?> GetAssignmentAsync(Guid assignmentId, bool trackChanges);
+        Task<IEnumerable<Assignment>> GetAllAssignment(AssignmentParameters assignmentParameters, bool trackChanges);
+
+        Task<IEnumerable<Assignment>> GetAllAssignmentBySubjectId(Guid subjectId, AssignmentParameters assignmentParameters, bool trackChanges);
+
+        Task<IEnumerable<Class>> GetAssignmentWithClasses(AssignmentParameters assignmentParameters, bool trackChanges);
+
+        Task<IEnumerable<Teacher>> GetAssignmentWithTeahers(AssignmentParameters assignmentParameters, bool trackChanges);
+
+        Task<IEnumerable<Subject>> GetAssignmentWithSubjects(AssignmentParameters assignmentParameters, bool trackChanges);
+
+        Task<IEnumerable<Subject>> GetAssignmentWithSubjectsNotSameTeacher(AssignmentParameters assignmentParameters, bool trackChanges);
+
+        Task<IEnumerable<Class>> GetAssignmentWithClassesBySubjectId(Guid subjectId, AssignmentParameters assignmentParameters, bool trackChanges);
 
         void CreateAssignment(Assignment assignment);
-
-        Task<IEnumerable<Assignment>> GetByIdsAsync(IEnumerable<Guid> ids, bool trackChanges);
 
         void DeleteAssignment(Assignment assignment);
     }
