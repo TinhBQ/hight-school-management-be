@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Entities.Exceptions.BaseExceptions
+﻿namespace Entities.Exceptions.BaseExceptions
 {
     public abstract class NotFoundException : Exception
     {

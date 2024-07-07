@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Contexts;
 using Entities.Common;
+using Entities.DAOs;
 using Entities.DTOs.TimetableCreation;
 using Entities.RequestFeatures;
 using Microsoft.AspNetCore.Mvc;
@@ -19,17 +20,50 @@ namespace API.Controllers
         private readonly HsmsDbContext _context = context;
 
         [HttpGet]
-        public IActionResult Get()
+        public async Task<IActionResult> Get([FromQuery] TimetableReqParams parameters)
         {
-            return Ok(_context.Timetables.ToList());
+            var timetables = _context.Timetables.AsQueryable();
+            var count = timetables.Count();
+
+            timetables = parameters.StartYear == null ? timetables :
+                timetables.Where(a => a.StartYear == parameters.StartYear);
+
+            timetables = parameters.EndYear == null ? timetables :
+                timetables.Where(a => a.EndYear == parameters.EndYear);
+
+            timetables = parameters.Semester == null ? timetables :
+                timetables.Where(a => a.Semester == parameters.Semester);
+
+            timetables = parameters.SearchTerm == null ||
+                parameters.SearchTerm == string.Empty ? timetables :
+                timetables.Where(a => a.Name.ToLower().Contains(parameters.SearchTerm.ToLower()));
+
+            var p = parameters.OrderBy == null ? null : typeof(Timetable).GetProperty(parameters.OrderBy);
+
+            timetables = p == null ? timetables :
+                timetables.OrderBy(a => p.GetValue(timetables, null));
+
+            var result = await timetables
+                .Skip((parameters.PageNumber - 1) * parameters.PageSize)
+                .Take(parameters.PageSize)
+                .ToListAsync();
+
+            var metaData = new MetaData
+            {
+                totalCount = count,
+                pageSize = parameters.PageSize,
+                currentPage = parameters.PageNumber,
+                totalPages = (int)Math.Ceiling(count / (double)parameters.PageSize)
+            };
+
+            return Ok((result, metaData));
         }
 
         [HttpGet("{id:guid}", Name = "TimetableById")]
-        public IActionResult GetTimetable(Guid id)
+        public async Task<IActionResult> GetTimetable(Guid id)
         {
             var parameters = CreateParameters();
-            ValidateTimetableParameters(parameters);
-            var result = _timetableService.Get(id, parameters);
+            var result = await _timetableService.Get(id, parameters);
             return Ok(result);
         }
 
@@ -45,7 +79,6 @@ namespace API.Controllers
         public IActionResult CreateTimetable(TimetableParameters? parameters)
         {
             parameters ??= CreateParameters();
-            ValidateTimetableParameters(parameters);
             var timetable = _timetableService.Generate(parameters);
             return Ok(timetable);
         }
@@ -54,7 +87,6 @@ namespace API.Controllers
         public IActionResult CheckTimetable(Guid timetableId, TimetableParameters? parameters = null)
         {
             parameters ??= CreateParameters();
-            ValidateTimetableParameters(parameters);
             var result = _timetableService.Check(timetableId, parameters);
             return Ok(result);
         }
@@ -156,14 +188,6 @@ namespace API.Controllers
             parameters.JsonOutput();
 
             return parameters;
-        }
-
-        private static void ValidateTimetableParameters(TimetableParameters parameters)
-        {
-            if (parameters.ClassIds.Count < 1)
-                throw new Exception();
-            if (parameters.FixedTimetableUnits.Any(u => u.AssignmentId == Guid.Empty))
-                throw new Exception();
         }
     }
 }

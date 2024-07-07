@@ -1581,8 +1581,8 @@ namespace Services.Implementation
             }
 
             UpdateHomeroomTeacher();
-            //CreateAssignments("C:\\Users\\ponpy\\source\\repos\\KLTN\\10-be\\Assignment.csv");
-            CreateAssignments("D:\\Workspace\\dotnet-asp\\fix\\10-be\\Assignment.csv");
+            CreateAssignments("C:\\Users\\ponpy\\source\\repos\\KLTN\\10-be\\Assignment.csv");
+            //CreateAssignments("D:\\Workspace\\dotnet-asp\\fix\\10-be\\Assignment.csv");
             //CreateAssignments("C:\\Users\\ponpy\\source\\repos\\KLTN\\10-be\\Assignment_02.csv");
 
             Console.OutputEncoding = System.Text.Encoding.UTF8;
@@ -1594,7 +1594,7 @@ namespace Services.Implementation
         private void CreateAssignments(string path)
         {
             var reader = new StreamReader(path);
-            var teachers = _context.Teachers.Include(t => t.SubjectTeachers).AsNoTracking().ToList();
+            var teachers = _context.Teachers.Include(t => t.SubjectTeachers).ToList();
             var classes = _context.Classes.Include(c => c.SubjectClasses).AsNoTracking().ToList();
             var subjects = _context.Subjects.AsNoTracking().ToList();
             var assignments = new List<Assignment>();
@@ -1634,6 +1634,10 @@ namespace Services.Implementation
                     });
                 }
             }
+
+            foreach (var teacher in teachers)
+                teacher.PeriodCount = assignments.Count(a => a.TeacherId == teacher.Id);
+
             _context.AddRange(assignments);
             _context.SaveChanges();
         }
