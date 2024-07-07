@@ -13,5 +13,9 @@
         public uint? Semester { get; set; }
 
         public Guid? ClassId { get; set; }
+
+        public Guid? TeacherId { get; set; }
+
+        public Guid? SubjectId { get;}
     }
 }

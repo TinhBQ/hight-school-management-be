@@ -12,20 +12,15 @@ namespace Repositories.Implementation
 {
     public class AssignmentRepository(HsmsDbContext repositoryContext) : RepositoryBase<Assignment>(repositoryContext), IAssignmentRepository
     {
-        public void CreateAssignment(Assignment assignment) => Create(assignment);
-
-        public void DeleteAssignment(Assignment assignment) => Delete(assignment);
-
-        public async Task<IEnumerable<Assignment>> GetAllAssignment(AssignmentParameters assignmentParameters, bool trackChanges)
+        public async Task<IEnumerable<Assignment>> GetAllAssignment(AssignmentParameters assignmentParameters, bool trackChanges, bool isInclude)
         {
             return await FindByCondition(c => !c.IsDeleted, trackChanges)
-                .Include(a => a.Teacher)
-                .Include(a => a.Subject)
-                .Include(a => a.Class)
-                .ThenInclude(a => a.HomeroomTeacher)
                 .FilterYears(assignmentParameters.StartYear, assignmentParameters.EndYear)
                 .FilterClass(assignmentParameters.ClassId)
+                .FilterTeacher(assignmentParameters.TeacherId)
+                .FilterSubject(assignmentParameters.SubjectId)
                 .FilterSemester(assignmentParameters.Semester)
+                .JoinTable(isInclude)
                 .ToListAsync();
         }
 
@@ -41,15 +36,15 @@ namespace Repositories.Implementation
                 .ToListAsync();
         }
 
-        public async Task<PagedList<Assignment>> GetAllAssignmentWithPagedList(AssignmentParameters assignmentParameters, bool trackChanges)
+        public async Task<PagedList<Assignment>> GetAllAssignmentWithPagedList(AssignmentParameters assignmentParameters, bool trackChanges, bool isInclude)
         {
-            var assignments = await FindAll(trackChanges)
-                .Include(a => a.Teacher)
-                .Include(a => a.Class)
-                .Include(a => a.Subject)
+            var assignments = await FindByCondition(c => !c.IsDeleted, trackChanges)
                 .FilterYears(assignmentParameters.StartYear, assignmentParameters.EndYear)
                 .FilterClass(assignmentParameters.ClassId)
+                .FilterTeacher(assignmentParameters.TeacherId)
+                .FilterSubject(assignmentParameters.SubjectId)
                 .FilterSemester(assignmentParameters.Semester)
+                .JoinTable(isInclude)
                 .Skip((assignmentParameters.PageNumber - 1) * assignmentParameters.PageSize)
                 .Take(assignmentParameters.PageSize)
                 .ToListAsync();
@@ -57,101 +52,26 @@ namespace Repositories.Implementation
             var count = await FindAll(trackChanges)
                 .FilterYears(assignmentParameters.StartYear, assignmentParameters.EndYear)
                 .FilterClass(assignmentParameters.ClassId)
+                .FilterTeacher(assignmentParameters.TeacherId)
+                .FilterSubject(assignmentParameters.SubjectId)
                 .FilterSemester(assignmentParameters.Semester)
                 .CountAsync();
 
             return new PagedList<Assignment>(assignments, count, assignmentParameters.PageNumber, assignmentParameters.PageSize);
         }
 
-        public async Task<IEnumerable<Class>> GetAssignmentWithClasses(AssignmentParameters assignmentParameters, bool trackChanges)
+        public async Task<Assignment?> GetAssignmentAsync(Guid? id, bool trackChanges)
         {
-            var assignments = await FindByCondition(c => !c.IsDeleted, trackChanges)
-                .Include(a => a.Class)
-                .ThenInclude(a => a.HomeroomTeacher)
-                .FilterYears(assignmentParameters.StartYear, assignmentParameters.EndYear)
-                .FilterSemester(assignmentParameters.Semester)
-                .ToListAsync();
-
-            var distinctClass = assignments
-                .GroupBy(a => a.ClassId)
-                .Select(g => g.First().Class)
-                .ToList();
-
-            return distinctClass;
+            return await FindByCondition(c => !c.IsDeleted && c.Id.Equals(id), trackChanges).SingleOrDefaultAsync();
         }
 
-        public async Task<IEnumerable<Class>> GetAssignmentWithClassesBySubjectId(Guid subjectId, AssignmentParameters assignmentParameters, bool trackChanges)
+        public async Task<IEnumerable<Assignment>> GetByIdsAsync(IEnumerable<Guid> ids, bool trackChanges)
         {
-            var assignments = await FindByCondition(c => !c.IsDeleted && c.SubjectId == subjectId, trackChanges)
-                .Include(a => a.Class)
-                .FilterYears(assignmentParameters.StartYear, assignmentParameters.EndYear)
-                .FilterSemester(assignmentParameters.Semester)
-                .ToListAsync();
-
-            var distinctClass = assignments
-                .GroupBy(a => a.ClassId)
-                .Select(g => g.First().Class)
-                .ToList();
-
-            return distinctClass;
+           return await FindByCondition(c => !c.IsDeleted && ids.Contains(c.Id), trackChanges).ToListAsync();
         }
 
-        public async Task<IEnumerable<Subject>> GetAssignmentWithSubjects(AssignmentParameters assignmentParameters, bool trackChanges)
-        {
-            var assignments = await FindByCondition(c => !c.IsDeleted, trackChanges)
-                .Include(a => a.Subject)
-                .FilterYears(assignmentParameters.StartYear, assignmentParameters.EndYear)
-                .FilterSemester(assignmentParameters.Semester)
-                .ToListAsync();
+        public void CreateAssignment(Assignment assignment) => Create(assignment);
 
-            var distinctSubject = assignments
-                .GroupBy(a => a.SubjectId)
-                .Select(g => g.First().Subject)
-                .ToList();
-
-            return distinctSubject;
-        }
-
-        public async Task<IEnumerable<Subject>> GetAssignmentWithSubjectsNotSameTeacher(AssignmentParameters assignmentParameters, bool trackChanges)
-        {
-            List<Subject> result = new List<Subject>();
-            var subjects = await GetAssignmentWithSubjects(assignmentParameters, trackChanges);
-            var klasses = await GetAssignmentWithClasses(assignmentParameters, trackChanges);
-
-            foreach (var item in subjects)
-            {
-                var distinctTeachers = await FindByCondition(c => c.IsDeleted && c.SubjectId == item.Id, trackChanges)
-                    .Include(a => a.Teacher)
-                    .FilterYears(assignmentParameters.StartYear, assignmentParameters.EndYear)
-                    .FilterSemester(assignmentParameters.Semester)
-                    .Select(a => a.Teacher)
-                    .Distinct()
-                    .ToListAsync();
-
-                if (!distinctTeachers.Any())
-                {
-                    result.Add(item);
-                }
-            }
-
-            return result;
-        }
-
-
-        public async Task<IEnumerable<Teacher>> GetAssignmentWithTeahers(AssignmentParameters assignmentParameters, bool trackChanges)
-        {
-            var assignments = await FindByCondition(c => !c.IsDeleted, trackChanges)
-                .Include(a => a.Teacher)
-                .FilterYears(assignmentParameters.StartYear, assignmentParameters.EndYear)
-                .FilterSemester(assignmentParameters.Semester)
-                .ToListAsync();
-
-            var distinctTeachers = assignments
-                .GroupBy(a => a.TeacherId)
-                .Select(g => g.First().Teacher)
-                .ToList();
-
-            return distinctTeachers;
-        }
+        public void DeleteAssignment(Assignment assignment) => Delete(assignment);
     }
 }

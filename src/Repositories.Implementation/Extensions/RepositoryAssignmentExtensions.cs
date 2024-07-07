@@ -1,4 +1,6 @@
 ﻿using Entities.DAOs;
+using Entities.RequestFeatures;
+using Microsoft.EntityFrameworkCore;
 using System.Linq.Dynamic.Core;
 
 namespace Repositories.Implementation.Extensions
@@ -21,8 +23,26 @@ namespace Repositories.Implementation.Extensions
            ? assignments
            : assignments.Where(e => (e.ClassId == classId));
 
+        public static IQueryable<Assignment> FilterTeacher(this IQueryable<Assignment> assignments, Guid? teacherId) =>
+          teacherId == null
+          ? assignments
+          : assignments.Where(e => (e.TeacherId == teacherId));
 
-        
+
+        public static IQueryable<Assignment> FilterSubject(this IQueryable<Assignment> assignments, Guid? subjectId) =>
+          subjectId == null
+          ? assignments
+          : assignments.Where(e => (e.SubjectId == subjectId));
+
+        public static IQueryable<Assignment> JoinTable(this IQueryable<Assignment> assignments, bool isInclude) =>
+           isInclude == false
+           ? assignments
+           : assignments
+            .Include(a => a.Teacher)
+            .Include(a => a.Subject)
+            .Include(a => a.Class)
+            .ThenInclude(a => a.HomeroomTeacher);
+
 
         public static IQueryable<Assignment> Search(this IQueryable<Assignment> assignments, string searchTerm)
         {

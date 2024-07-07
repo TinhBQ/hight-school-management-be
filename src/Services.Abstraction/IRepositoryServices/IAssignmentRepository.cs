@@ -5,25 +5,18 @@ namespace Services.Abstraction.IRepositoryServices
 {
     public interface IAssignmentRepository
     {
-        Task<PagedList<Assignment>> GetAllAssignmentWithPagedList(AssignmentParameters assignmentParameters, bool trackChanges);
+        Task<PagedList<Assignment>> GetAllAssignmentWithPagedList(AssignmentParameters assignmentParameters, bool trackChanges, bool isInclude);
 
-
-        Task<IEnumerable<Assignment>> GetAllAssignment(AssignmentParameters assignmentParameters, bool trackChanges);
+        Task<IEnumerable<Assignment>> GetAllAssignment(AssignmentParameters assignmentParameters, bool trackChanges, bool isInclude);
 
         Task<IEnumerable<Assignment>> GetAllAssignmentBySubjectId(Guid subjectId, AssignmentParameters assignmentParameters, bool trackChanges);
 
-        Task<IEnumerable<Class>> GetAssignmentWithClasses(AssignmentParameters assignmentParameters, bool trackChanges);
-
-        Task<IEnumerable<Teacher>> GetAssignmentWithTeahers(AssignmentParameters assignmentParameters, bool trackChanges);
-
-        Task<IEnumerable<Subject>> GetAssignmentWithSubjects(AssignmentParameters assignmentParameters, bool trackChanges);
-
-        Task<IEnumerable<Subject>> GetAssignmentWithSubjectsNotSameTeacher(AssignmentParameters assignmentParameters, bool trackChanges);
-
-        Task<IEnumerable<Class>> GetAssignmentWithClassesBySubjectId(Guid subjectId, AssignmentParameters assignmentParameters, bool trackChanges);
+        Task<Assignment?> GetAssignmentAsync(Guid? id, bool trackChanges);
 
         void CreateAssignment(Assignment assignment);
 
         void DeleteAssignment(Assignment assignment);
+
+        Task<IEnumerable<Assignment>> GetByIdsAsync(IEnumerable<Guid> ids, bool trackChanges);
     }
 }

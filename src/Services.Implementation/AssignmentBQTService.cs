@@ -20,7 +20,7 @@ namespace Services.Implementation
 
         public async Task<IEnumerable<AssignmentDTO>> GetAllAssignmentsAsync(AssignmentParameters parameters, bool trackChanges)
         {
-            var assignments = await _repository.AssignmentRepository.GetAllAssignment(parameters, trackChanges);
+            var assignments = await _repository.AssignmentRepository.GetAllAssignment(parameters, trackChanges, true);
 
             var assignmentsDTO = _mapper.Map<IEnumerable<AssignmentDTO>>(assignments);
 
@@ -29,7 +29,7 @@ namespace Services.Implementation
 
         public async Task<(IEnumerable<AssignmentDTO>, MetaData)> GetAssignmentsAsync(AssignmentParameters parameters, bool trackChanges)
         {
-            var assignmentsWithMetaData = await _repository.AssignmentRepository.GetAllAssignmentWithPagedList(parameters, trackChanges);
+            var assignmentsWithMetaData = await _repository.AssignmentRepository.GetAllAssignmentWithPagedList(parameters, trackChanges, true);
 
             var assignmentsDTO = _mapper.Map<IEnumerable<AssignmentDTO>>(assignmentsWithMetaData);
 
@@ -39,7 +39,7 @@ namespace Services.Implementation
 
         public async Task<IEnumerable<ClassDTO>> GetAssignmentWithClasses(AssignmentParameters assignmentParameters, bool trackChanges)
         {
-            var assignments = await _repository.AssignmentRepository.GetAllAssignment(assignmentParameters, trackChanges);
+            var assignments = await _repository.AssignmentRepository.GetAllAssignment(assignmentParameters, trackChanges, true);
 
             var distinctClass = assignments
                                  .GroupBy(a => a.ClassId)
@@ -53,7 +53,7 @@ namespace Services.Implementation
 
         public async Task<IEnumerable<SubjectDTO>> GetAssignmentWithSubjects(AssignmentParameters assignmentParameters, bool trackChanges)
         {
-            var assignments = await _repository.AssignmentRepository.GetAllAssignment(assignmentParameters, trackChanges);
+            var assignments = await _repository.AssignmentRepository.GetAllAssignment(assignmentParameters, trackChanges, true);
 
             var distinctSubject = assignments
                                 .GroupBy(a => a.SubjectId)
@@ -68,7 +68,7 @@ namespace Services.Implementation
 
         public async Task<IEnumerable<AssignmentSubjectDTO>> GetAssignmentWithSubjectsNotSameTeacher(AssignmentParameters assignmentParameters, bool trackChanges)
         {
-            var assignments = await _repository.AssignmentRepository.GetAllAssignment(assignmentParameters, trackChanges);
+            var assignments = await _repository.AssignmentRepository.GetAllAssignment(assignmentParameters, trackChanges, true);
 
             List<Subject> resultSubjects = new List<Subject>();
 
@@ -132,7 +132,7 @@ namespace Services.Implementation
 
         public async Task<IEnumerable<TeacherDTO>> GetAssignmentWithTeahers(AssignmentParameters assignmentParameters, bool trackChanges)
         {
-            var assignments = await _repository.AssignmentRepository.GetAllAssignment(assignmentParameters, trackChanges);
+            var assignments = await _repository.AssignmentRepository.GetAllAssignment(assignmentParameters, trackChanges, true);
 
             var distinctTeachers = assignments
                                     .GroupBy(a => a.TeacherId)
