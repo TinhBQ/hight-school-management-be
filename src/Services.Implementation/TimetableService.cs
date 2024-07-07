@@ -6,9 +6,12 @@ using Entities.DTOs.CRUD;
 using Entities.DTOs.TimetableCreation;
 using Entities.RequestFeatures;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Services.Abstraction.IApplicationServices;
 using Services.Implementation.Extensions;
+using System.Collections.Immutable;
 using System.Diagnostics;
+using System.Text.Json;
 
 /* NOTE
  * dùng lại những hàm check cũ, rồi thêm phương thức lấy những tiết bị lỗi.
@@ -32,6 +35,7 @@ namespace Services.Implementation
 
         public TimetableIndividual Generate(TimetableParameters parameters)
         {
+            ValidateTimetableParameters(parameters);
             Stopwatch sw = Stopwatch.StartNew();
             Console.OutputEncoding = System.Text.Encoding.UTF8;
             Console.CursorVisible = false;
@@ -132,6 +136,9 @@ namespace Services.Implementation
             timetableFirst.Name = timetableDb.Name = "Thời khóa biểu mới";
             foreach (var unit in timetableDb.TimetableUnits)
                 unit.TimetableId = timetableDb.Id;
+            JsonSerializerOptions jso = new JsonSerializerOptions();
+            jso.Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping;
+            timetableDb.Parameters = JsonSerializer.Serialize(parameters, jso);
             _context.Add(timetableDb);
             _context.SaveChanges();
 
@@ -143,15 +150,16 @@ namespace Services.Implementation
             return timetableFirst;
         }
 
-        public TimetableIndividual Get(Guid id, TimetableParameters parameters)
+        public async Task<TimetableIndividual> Get(Guid id, TimetableParameters parameters)
         {
+            ValidateTimetableParameters(parameters);
             var timetableDb = _context.Timetables
                 .Include(t => t.TimetableUnits)
                 .AsNoTracking()
                 .FirstOrDefault(t => t.Id == id)
                 ?? throw new Exception("Không tìm thấy thời khóa biểu");
 
-            var (classes, teachers, subjects, assignments, timetableFlags) = GetData(parameters);
+            var (classes, teachers, subjects, assignments, timetableFlags) = await GetDataAsync(parameters);
             var root = Clone(CreateRootIndividual(classes, teachers, assignments, timetableFlags, parameters));
             root.TimetableUnits = _mapper.Map<TimetableDTO>(timetableDb).TimetableUnits;
             foreach (var unit in root.TimetableUnits)
@@ -168,14 +176,15 @@ namespace Services.Implementation
             return root;
         }
 
-        public TimetableIndividual Check(Guid timetableId, TimetableParameters parameters)
+        public async Task<TimetableIndividual> Check(Guid timetableId, Entities.RequestFeatures.TimetableParameters parameters)
         {
+            ValidateTimetableParameters(parameters);
             var timetableDb = _context.Timetables
                 .Include(t => t.TimetableUnits)
                 .AsNoTracking()
                 .First(t => t.Id == timetableId);
             var temp = _mapper.Map<TimetableIndividual>(timetableDb);
-            var (classes, teachers, subjects, assignments, timetableFlags) = GetData(parameters);
+            var (classes, teachers, subjects, assignments, timetableFlags) = await GetDataAsync(parameters);
             var root = new TimetableRootIndividual(timetableFlags, temp.TimetableUnits, classes, teachers);
             var result = Clone(root);
             result.StartYear = timetableDb.StartYear;
@@ -196,11 +205,11 @@ namespace Services.Implementation
             return result;
         }
 
-        public void Update(TimetableIndividual timetable)
+        public async Task Update(TimetableIndividual timetable)
         {
-            var timetableDb = _context.Timetables
+            var timetableDb = await _context.Timetables
                 .AsNoTracking()
-                .FirstOrDefault(t => t.Id == timetable.Id)
+                .FirstOrDefaultAsync(t => t.Id == timetable.Id)
                 ?? throw new Exception("Không tìm thấy thời khóa biểu");
 
             _mapper.Map(timetable, timetableDb);
@@ -209,14 +218,98 @@ namespace Services.Implementation
             _context.SaveChanges();
         }
 
-        public void Delete(Guid id)
+        public async Task Delete(Guid id)
         {
-            if (!_context.Timetables.Any(t => t.Id == id))
-                throw new Exception("Không tìm thấy thời khóa biểu");
+            var result = await _context.Timetables.AnyAsync(t => t.Id == id);
+            if (!result) throw new Exception("Không tìm thấy thời khóa biểu");
             _context.Timetables.Remove(_context.Timetables.First(t => t.Id == id));
+            await _context.SaveChangesAsync();
         }
 
         #region Timetable Creator
+
+        private async Task<(
+            List<ClassTCDTO>,
+            List<TeacherTCDTO>,
+            List<SubjectTCDTO>,
+            List<AssignmentTCDTO>,
+            ETimetableFlag[,]
+            )> GetDataAsync(TimetableParameters parameters)
+        {
+            // Khởi tạo các biến
+            var classes = new List<ClassTCDTO>();
+            var teachers = new List<TeacherTCDTO>();
+            var subjects = new List<SubjectTCDTO>();
+            var assignments = new List<AssignmentTCDTO>();
+            var timetableUnits = new List<TimetableUnitTCDTO>();
+            ETimetableFlag[,] timetableFlags = null!;
+
+            var classesDb = await _context.Classes
+                    .Where(c => parameters.ClassIds.Contains(c.Id) &&
+                                c.StartYear == parameters.StartYear &&
+                                c.EndYear == parameters.EndYear)
+                    .Include(c => c.SubjectClasses)
+                        .ThenInclude(sc => sc.Subject)
+                    .OrderBy(c => c.Name)
+                    .AsNoTracking()
+                    .ToListAsync()
+                    ?? throw new Exception();
+            for (var i = 0; i < classesDb.Count; i++)
+                classes.Add(new ClassTCDTO(classesDb[i]));
+            if (classes.Count != parameters.ClassIds.Count)
+                throw new Exception();
+
+            timetableFlags = new ETimetableFlag[classes.Count, 61];
+
+            var subjectsDb = await _context.Subjects.AsNoTracking().ToListAsync();
+            for (var i = 0; i < subjectsDb.Count; i++)
+                subjects.Add(new SubjectTCDTO(subjectsDb[i]));
+
+            var assignmentsDb = await _context.Assignments
+                .Where(a => a.StartYear == parameters.StartYear &&
+                            a.EndYear == parameters.EndYear &&
+                            a.Semester == parameters.Semester &&
+                            classesDb.Select(c => c.Id).Contains(a.ClassId))
+                .AsNoTracking()
+                .ToListAsync()
+                ?? throw new Exception();
+
+            var teacherIds = assignmentsDb.Select(a => a.TeacherId).Distinct().ToList();
+            var teachersDb = await _context.Teachers
+                .Where(t => teacherIds.Contains(t.Id))
+                .OrderBy(c => c.LastName)
+                .AsNoTracking()
+                .ToListAsync()
+                ?? throw new Exception();
+            for (var i = 0; i < teachersDb.Count; i++)
+                teachers.Add(new TeacherTCDTO(teachersDb[i]));
+
+            for (var i = 0; i < assignmentsDb.Count; i++)
+            {
+                var teacher = teachers.First(t => t.Id == assignmentsDb[i].TeacherId);
+                var @class = classes.First(c => c.Id == assignmentsDb[i].ClassId);
+                var subject = subjects.First(s => s.Id == assignmentsDb[i].SubjectId);
+                assignments.Add(new AssignmentTCDTO(assignmentsDb[i], teacher, @class, subject));
+            }
+
+            // Kiểm tra xem tất cả các lớp đã được phân công đầy đủ hay chưa
+            for (var i = 0; i < classesDb.Count; i++)
+            {
+                var periodCount = 0;
+                for (var j = 0; j < classesDb[i].SubjectClasses.Count; j++)
+                {
+                    var subjectClass = classesDb[i].SubjectClasses.ToList()[j];
+                    var assignment = assignmentsDb.FirstOrDefault(a => a.SubjectId == subjectClass.SubjectId && a.ClassId == subjectClass.ClassId)
+                        ?? throw new Exception($"Class: {classesDb[i].Name}, Subject: {subjects.First(s => s.Id == subjectClass.SubjectId).ShortName}");
+                    if (assignment.PeriodCount != subjectClass.PeriodCount || assignment.TeacherId == Guid.Empty)
+                        throw new Exception();
+                    periodCount += subjectClass.PeriodCount;
+                }
+                if (periodCount != classesDb[i].PeriodCount) throw new Exception();
+            }
+
+            return (classes, teachers, subjects, assignments, timetableFlags);
+        }
 
         private (
             List<ClassTCDTO>,
@@ -306,7 +399,7 @@ namespace Services.Implementation
             List<TeacherTCDTO> teachers,
             List<AssignmentTCDTO> assignments,
             ETimetableFlag[,] timetableFlags,
-            TimetableParameters parameters)
+            Entities.RequestFeatures.TimetableParameters parameters)
         {
             // Tạo các timetableUnit ứng với mỗi Assignment và thêm vào tkb
 
@@ -389,7 +482,7 @@ namespace Services.Implementation
             return new TimetableIndividual(timetableFlag, timetableUnits, src.Classes, src.Teachers) { Age = 1, Longevity = _random.Next(1, 5) };
         }
 
-        private static void RandomlyAssign(TimetableIndividual src, TimetableParameters parameters)
+        private static void RandomlyAssign(TimetableIndividual src, Entities.RequestFeatures.TimetableParameters parameters)
         {
             for (var i = 0; i < src.TimetableFlag.GetLength(0); i++)
             {
@@ -441,7 +534,7 @@ namespace Services.Implementation
         #endregion
 
         #region Fitness Function
-        private static void CalculateAdaptability(TimetableIndividual src, TimetableParameters parameters)
+        private static void CalculateAdaptability(TimetableIndividual src, Entities.RequestFeatures.TimetableParameters parameters)
         {
             src.TimetableUnits.ForEach(u => u.ConstraintErrors.Clear());
             src.ConstraintErrors.Clear();
@@ -483,7 +576,7 @@ namespace Services.Implementation
             return count;
         }
 
-        private static int CheckH03(TimetableIndividual src, TimetableParameters parameters)
+        private static int CheckH03(TimetableIndividual src, Entities.RequestFeatures.TimetableParameters parameters)
         {
             var count = 0;
             var fixedUnits = src.TimetableUnits.Where(u => u.Priority == EPriority.Fixed).ToList();
@@ -509,7 +602,7 @@ namespace Services.Implementation
             return count;
         }
 
-        private static int CheckH04AndH08(TimetableIndividual src, TimetableParameters parameters)
+        private static int CheckH04AndH08(TimetableIndividual src, Entities.RequestFeatures.TimetableParameters parameters)
         {
             var count = 0;
             //for (var i = 0; i < parameters.SubjectsWithPracticeRoom.Count; i++)
@@ -574,7 +667,7 @@ namespace Services.Implementation
             return count;
         }
 
-        private static int CheckH06(TimetableIndividual src, TimetableParameters parameters)
+        private static int CheckH06(TimetableIndividual src, Entities.RequestFeatures.TimetableParameters parameters)
         {
             var count = 0;
             for (var classIndex = 0; classIndex < src.Classes.Count; classIndex++)
@@ -654,7 +747,7 @@ namespace Services.Implementation
             return count;
         }
 
-        private static int CheckH10(TimetableIndividual src, TimetableParameters parameters)
+        private static int CheckH10(TimetableIndividual src, Entities.RequestFeatures.TimetableParameters parameters)
         {
             var count = 0;
             for (var i = 0; i < parameters.NoAssignTimetableUnits.Count; i++)
@@ -840,7 +933,7 @@ namespace Services.Implementation
         public List<TimetableIndividual> Crossover(
             TimetableRootIndividual root,
             List<TimetableIndividual> parents,
-            TimetableParameters parameters)
+            Entities.RequestFeatures.TimetableParameters parameters)
         {
             var children = new List<TimetableIndividual> { Clone(root), Clone(root) };
             children[0] = Clone(root);
@@ -988,7 +1081,7 @@ namespace Services.Implementation
         #region Enhance Solution
 
         /* Đừng có đổi 1 tiết 1 lần, đổi 1 mớ tiết 1 lần đi */
-        private List<TimetableIndividual> TabuSearch(TimetableIndividual src, TimetableParameters parameters, string code)
+        private List<TimetableIndividual> TabuSearch(TimetableIndividual src, Entities.RequestFeatures.TimetableParameters parameters, string code)
         {
             var solutions = new List<TimetableIndividual>();
             switch (code)
@@ -1004,9 +1097,40 @@ namespace Services.Implementation
 
         #region Utils
 
+        private void ValidateTimetableParameters(TimetableParameters parameters)
+        {
+            if (parameters.ClassIds.IsNullOrEmpty())
+                throw new Exception("Danh sách lớp học không được để trống");
+
+            var classesNotFound = new List<string>();
+            var classesDb = _context.Classes.AsNoTracking().ToList();
+            parameters.ClassIds.ForEach(id =>
+            {
+                if (!classesDb.Any(c => c.Id == id))
+                    classesNotFound.Add(id.ToString());
+            });
+            if (!classesNotFound.IsNullOrEmpty())
+                throw new Exception("Không tìm thấy lớp học: " + string.Join(", ", classesNotFound));
+
+            var unitNotAssigned = new List<string>();
+            var assignmentDb = _context.Assignments
+                .Where(a => a.StartYear == parameters.StartYear &&
+                            a.EndYear == parameters.EndYear &&
+                            a.Semester == parameters.Semester)
+                .AsNoTracking()
+                .ToList();
+            parameters.FixedTimetableUnits.ForEach(u =>
+            {
+                if (u.AssignmentId == Guid.Empty || !assignmentDb.Any(a => a.Id == u.AssignmentId))
+                    unitNotAssigned.Add($"{u.ClassName}: {u.SubjectName}");
+            });
+            if (!unitNotAssigned.IsNullOrEmpty())
+                throw new Exception("Không tìm thấy các tiết xếp sẵn này trong danh sách phân công: " + string.Join(", ", unitNotAssigned));
+        }
+
         private List<TimetableIndividual> CreateInitialPopulation(
             TimetableRootIndividual root,
-            TimetableParameters parameters)
+            Entities.RequestFeatures.TimetableParameters parameters)
         {
             var timetablePopulation = new List<TimetableIndividual>();
             for (var i = 0; i < INITIAL_NUMBER_OF_INDIVIDUALS; i++)

@@ -14,6 +14,7 @@ namespace Persistence.Contexts.Configuration
             entity.Property(e => e.StartYear).IsRequired();
             entity.Property(e => e.EndYear).IsRequired();
             entity.Property(e => e.Semester).IsRequired();
+            entity.Property(e => e.Parameters);
         }
     }
 }
