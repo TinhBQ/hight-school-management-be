@@ -1636,7 +1636,7 @@ namespace Services.Implementation
             }
 
             foreach (var teacher in teachers)
-                teacher.PeriodCount = assignments.Count(a => a.TeacherId == teacher.Id);
+                teacher.PeriodCount = assignments.Where(a => a.TeacherId == teacher.Id).Sum(a => a.PeriodCount);
 
             _context.AddRange(assignments);
             _context.SaveChanges();
