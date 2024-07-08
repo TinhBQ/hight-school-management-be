@@ -17,5 +17,14 @@ namespace Services.Abstraction.IApplicationServices
         Task<IEnumerable<SubjectDTO>> GetAssignmentWithSubjects(AssignmentParameters assignmentParameters, bool trackChanges);
 
         Task<IEnumerable<AssignmentSubjectDTO>> GetAssignmentWithSubjectsNotSameTeacher(AssignmentParameters assignmentParameters, bool trackChanges);
+
+        Task<AssignmentDTO?> GetAssignmentAsync(Guid id, bool trackChanges);
+
+
+        Task<AssignmentDTO> CreateAssignmentAsync(AssignmentForCreationDTO assignment);
+
+        Task DeleteAssignmentAsync(Guid id, bool trackChanges);
+
+        Task UpdateAssignmentAsync(Guid id, AssignmentForUpdateDTO assignment, bool trackChanges);
     }
 }

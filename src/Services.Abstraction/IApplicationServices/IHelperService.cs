@@ -11,5 +11,9 @@ namespace Services.Abstraction.IApplicationServices
         Task<Subject> GetSubjectAndCheckIfItExists(Guid? id, bool trackChanges);
         Task<SubjectClass> GetSubjectClassAndCheckIfItExists(Guid? id, bool trackChanges);
         Task<SubjectTeacher> GetSubjectTeacherAndCheckIfItExists(Guid? id, bool trackChanges);
+
+        Task<Assignment> GetAssignmentAndCheckIfItExists(Guid? id, bool trackChanges);
+
+        Task<Assignment?> GetAssignmentAndCheckIfItExists(Guid? classId, Guid? subjectId, bool trackChanges);
     }
 }

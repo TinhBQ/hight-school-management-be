@@ -16,6 +16,8 @@
 
         public Guid? TeacherId { get; set; }
 
-        public Guid? SubjectId { get;}
+        public Guid? SubjectId { get; set; }
+
+        public bool? IsNotAssigned { get; set; }
     }
 }

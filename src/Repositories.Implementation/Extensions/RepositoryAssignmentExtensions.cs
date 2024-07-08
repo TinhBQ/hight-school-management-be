@@ -18,6 +18,11 @@ namespace Repositories.Implementation.Extensions
            ? assignments
            : assignments.Where(e => (e.Semester == semester));
 
+        public static IQueryable<Assignment> FilterSemesterAssigned(this IQueryable<Assignment> assignments, bool? isNotAssigned) =>
+           isNotAssigned == null
+           ? assignments
+           : isNotAssigned == true ?  assignments.Where(e => (e.TeacherId == null)) : assignments.Where(e => (e.TeacherId != null));
+
         public static IQueryable<Assignment> FilterClass(this IQueryable<Assignment> assignments, Guid? classId) =>
            classId == null
            ? assignments

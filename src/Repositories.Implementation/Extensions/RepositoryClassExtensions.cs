@@ -28,7 +28,7 @@ namespace Repositories.Implementation.Extensions
         public static IQueryable<Class> JoinTable(this IQueryable<Class> classes, bool isInclude) =>
             isInclude == false
             ? classes
-            : classes.Include(c => c.HomeroomTeacher);
+            : classes.Include(c => c.HomeroomTeacher).Include(c => c.SubjectClasses).ThenInclude(c => c.Subject);
 
         public static IQueryable<Class> Search(this IQueryable<Class> classes, string searchTerm)
         {

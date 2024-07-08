@@ -13,6 +13,8 @@ namespace Services.Abstraction.IRepositoryServices
 
         Task<Assignment?> GetAssignmentAsync(Guid? id, bool trackChanges);
 
+        Task<Assignment?> GetAssignmentAsync(Guid? classId, Guid? subjectId, bool trackChanges);
+
         void CreateAssignment(Assignment assignment);
 
         void DeleteAssignment(Assignment assignment);

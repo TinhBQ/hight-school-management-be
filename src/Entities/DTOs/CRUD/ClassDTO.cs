@@ -12,6 +12,8 @@ namespace Entities.DTOs.CRUD
         public int EndYear { get; set; }
         public int PeriodCount { get; set; }
         public TeacherDTO HomeroomTeacher { get; set; } = null!;
+
+        public IEnumerable<SubjectClassDTO>? subjectClasses { get; set; }
         public DateTime CreateAt { get; set; }
         public DateTime UpdateAt { get; set; }
     };
