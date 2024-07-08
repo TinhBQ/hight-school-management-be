@@ -1,4 +1,5 @@
 ﻿using Entities.Common;
+using System.Runtime.Serialization;
 
 namespace Entities.DAOs
 {
@@ -10,6 +11,7 @@ namespace Entities.DAOs
         public int EndYear { get; set; }
         public int Semester { get; set; }
 
+        [IgnoreDataMember]
         public string Parameters { get; set; } = null!;
 
         public ICollection<TimetableUnit> TimetableUnits { get; set; } = null!;
