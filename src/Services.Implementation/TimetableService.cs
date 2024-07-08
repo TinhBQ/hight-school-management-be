@@ -125,8 +125,6 @@ namespace Services.Implementation
             }
 
             var timetableFirst = timetablePopulation.OrderBy(i => i.Adaptability).First();
-            timetableFirst.ToCsv();
-            timetableFirst.TimetableFlag.ToCsv(timetableFirst.Classes);
 
             var timetableDb = _mapper.Map<Timetable>(timetableFirst);
             timetableFirst.Id = timetableDb.Id = Guid.NewGuid();
@@ -146,6 +144,9 @@ namespace Services.Implementation
             Console.SetCursorPosition(0, 0);
             Console.Clear();
             Console.WriteLine(sw.Elapsed.ToString() + ", " + backlogCountMax);
+
+            //timetableFirst.ToCsv();
+            //timetableFirst.TimetableFlag.ToCsv(timetableFirst.Classes);
 
             return timetableFirst;
         }
