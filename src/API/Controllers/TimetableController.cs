@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Services.Abstraction.IApplicationServices;
 using Services.Implementation.Extensions;
+using System.Text.Json;
 
 namespace API.Controllers
 {
@@ -56,7 +57,8 @@ namespace API.Controllers
                 totalPages = (int)Math.Ceiling(count / (double)parameters.PageSize)
             };
 
-            return Ok((result, metaData));
+            Response.Headers["X-Pagination"] = JsonSerializer.Serialize(metaData);
+            return Ok(result);
         }
 
         [HttpGet("{id:guid}", Name = "TimetableById")]
