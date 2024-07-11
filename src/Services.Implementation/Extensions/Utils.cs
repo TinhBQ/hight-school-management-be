@@ -160,8 +160,8 @@ namespace Services.Implementation.Extensions
             JsonSerializerOptions jso = new JsonSerializerOptions();
             jso.Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping;
             var json = JsonSerializer.Serialize(obj, jso);
-            var file = new StreamWriter($"C:\\Users\\ponpy\\source\\repos\\KLTN\\10-be\\{fileName}.json");
-            //var file = new StreamWriter($"D:\\Workspace\\dotnet-asp\\fix\\10-be\\{fileName}.json");
+            //var file = new StreamWriter($"C:\\Users\\ponpy\\source\\repos\\KLTN\\10-be\\{fileName}.json");
+            var file = new StreamWriter($"D:\\Workspace\\dotnet-asp\\fix\\10-be\\{fileName}.json");
             file.Write(json);
             file.Close();
         }
