@@ -64,17 +64,8 @@ namespace API.Controllers
         [HttpGet("{id:guid}", Name = "TimetableById")]
         public async Task<IActionResult> GetTimetable(Guid id)
         {
-            var parameters = CreateParameters();
-            var result = await _timetableService.Get(id, parameters);
+            var result = await _timetableService.Get(id);
             return Ok(result);
-        }
-
-        [HttpPost("test")]
-        public IActionResult CreateTimetableTest()
-        {
-            var timetable = _timetableService.Generate(CreateParameters());
-
-            return Ok(timetable);
         }
 
         [HttpPost]
@@ -86,10 +77,9 @@ namespace API.Controllers
         }
 
         [HttpPatch("checking")]
-        public IActionResult CheckTimetable(Guid timetableId, TimetableParameters? parameters = null)
+        public IActionResult CheckTimetable(Guid timetableId)
         {
-            parameters ??= CreateParameters();
-            var result = _timetableService.Check(timetableId, parameters);
+            var result = _timetableService.Check(timetableId);
             return Ok(result);
         }
 

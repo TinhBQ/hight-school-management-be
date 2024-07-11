@@ -125,8 +125,6 @@ namespace Services.Implementation
             }
 
             var timetableFirst = timetablePopulation.OrderBy(i => i.Adaptability).First();
-            timetableFirst.ToCsv();
-            timetableFirst.TimetableFlag.ToCsv(timetableFirst.Classes);
 
             var timetableDb = _mapper.Map<Timetable>(timetableFirst);
             timetableFirst.Id = timetableDb.Id = Guid.NewGuid();
@@ -147,18 +145,23 @@ namespace Services.Implementation
             Console.Clear();
             Console.WriteLine(sw.Elapsed.ToString() + ", " + backlogCountMax);
 
+            //timetableFirst.ToCsv();
+            //timetableFirst.TimetableFlag.ToCsv(timetableFirst.Classes);
+
             return timetableFirst;
         }
 
-        public async Task<TimetableIndividual> Get(Guid id, TimetableParameters parameters)
+        public async Task<TimetableIndividual> Get(Guid id)
         {
-            ValidateTimetableParameters(parameters);
             var timetableDb = _context.Timetables
                 .Include(t => t.TimetableUnits)
                 .AsNoTracking()
                 .FirstOrDefault(t => t.Id == id)
                 ?? throw new Exception("Không tìm thấy thời khóa biểu");
-
+            JsonSerializerOptions jso = new JsonSerializerOptions();
+            jso.Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping;
+            var parameters = JsonSerializer.Deserialize<TimetableParameters>(timetableDb.Parameters, jso)
+                ?? throw new Exception("Không tìm thấy dữ liệu cài đặt của thời khóa biểu");
             var (classes, teachers, subjects, assignments, timetableFlags) = await GetDataAsync(parameters);
             var root = Clone(CreateRootIndividual(classes, teachers, assignments, timetableFlags, parameters));
             root.TimetableUnits = _mapper.Map<TimetableDTO>(timetableDb).TimetableUnits;
@@ -172,19 +175,22 @@ namespace Services.Implementation
             };
             RemarkTimetableFlag(root);
             CalculateAdaptability(root, parameters);
-
+            root.GetConstraintErrors();
             return root;
         }
 
-        public async Task<TimetableIndividual> Check(Guid timetableId, Entities.RequestFeatures.TimetableParameters parameters)
+        public async Task<TimetableIndividual> Check(Guid timetableId)
         {
-            ValidateTimetableParameters(parameters);
             var timetableDb = _context.Timetables
                 .Include(t => t.TimetableUnits)
                 .AsNoTracking()
                 .First(t => t.Id == timetableId);
+            JsonSerializerOptions jso = new JsonSerializerOptions();
+            jso.Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping;
+            var parameters = JsonSerializer.Deserialize<TimetableParameters>(timetableDb.Parameters, jso)
+                ?? throw new Exception("Không tìm thấy dữ liệu cài đặt của thời khóa biểu");
             var temp = _mapper.Map<TimetableIndividual>(timetableDb);
-            var (classes, teachers, subjects, assignments, timetableFlags) = await GetDataAsync(parameters);
+            var (classes, teachers, subjects, assignments, timetableFlags) = await GetDataAsync(parameters!);
             var root = new TimetableRootIndividual(timetableFlags, temp.TimetableUnits, classes, teachers);
             var result = Clone(root);
             result.StartYear = timetableDb.StartYear;
