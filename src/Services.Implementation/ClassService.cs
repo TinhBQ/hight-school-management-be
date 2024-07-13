@@ -96,13 +96,15 @@ namespace Services.Implementation
 
             var teacher = await _helperService.GetTeacherAndCheckIfItExists(classToHomeroomAssignmentUpdate.HomeroomTeacherId, trackChanges);
 
-            teacher.ClassId = null;
+            klass.HomeroomTeacherId = teacher.Id;
+
+           /* teacher.ClassId = null;
 
             _mapper.Map(classToHomeroomAssignmentUpdate, klass);
 
             var newTecher = await _helperService.GetTeacherAndCheckIfItExists(klass.HomeroomTeacherId, trackChanges);
 
-            newTecher.ClassId = klass.Id;
+            newTecher.Classes.Add(klass);*/
 
             await _repository.UnitOfWork.SaveAsync();
         }
