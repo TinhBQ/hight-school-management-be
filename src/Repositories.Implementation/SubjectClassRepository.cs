@@ -2,10 +2,8 @@
 using Entities.DAOs;
 using Entities.RequestFeatures;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Internal;
 using Repositories.Implementation.Extensions;
 using Services.Abstraction.IRepositoryServices;
-using System.Linq;
 
 namespace Persistence.Repositories
 {
@@ -61,7 +59,7 @@ namespace Persistence.Repositories
         }
 
         public async Task<SubjectClass?> GetSubjectClassAsync(Guid? id, bool trackChanges) =>
-            await FindByCondition(c => c.IsDeleted && c.Id.Equals(id), trackChanges)
+            await FindByCondition(c => !c.IsDeleted && c.Id.Equals(id), trackChanges)
             .Include(s => s.Class)
             .Include(s => s.Subject)
             .SingleOrDefaultAsync();

@@ -8,7 +8,7 @@ namespace Services.Implementation.Extensions
 {
     public static class JwtUtils
     {
-        private static readonly string _token = "token";
+        private static readonly string _token = "LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0tLS0KTUlJQklqQU5CZ2txaGtpRzl3MEJBUUVGQUFPQ0FROEFNSUlCQ2dLQ0FRRUEzZm9HMUJiSmVlMzAyWlFidlBnVgoyVDdqSVRNc3JqZXFKNnRFTjBTMWtxOHhmU0RlQno3c3luWFF4UEE5a3YxNDNKaUxGWU4zVGxqWit6TkducG5sCkNLQlFxTTQreVJscHpuVUdUR2tmMGNMOHZlU2RCV01Gc3Q4YjJuRG9FTHB2TDZscUVLYXZDanUveU9XSkkydTMKN2dKejg0bG9GWlg5cndLeUZ3Mnd0dUtpYWUyc3FrSXNVS2UraElCdlB5UW14T2VPcEROV25sWVp5VDN4UHdFTAp3RFUzU2NkbThIU3owNERBSUxVKzhiZStGOHJJdXFFbkZyakczM1pXT3lYdENlcmhzenprWTZlZzUwM09yUU5NCjdrMUJjZERUZXFXUVN3UDlHOWNwYzd3aHQ2am55WFJicFNyOG54bDZtUGtVc0dhdzFCalV2WWxzeVpxNW1RcVcKSndJREFRQUIKLS0tLS1FTkQgUFVCTElDIEtFWS0tLS0t";
 
         public static string GenerateToken(Teacher user)
         {
