@@ -65,7 +65,7 @@ namespace Persistence.Repositories
             .SingleOrDefaultAsync();
 
         public async Task<IEnumerable<SubjectClass>> GetByIdsAsync(IEnumerable<Guid> ids, bool trackChanges) =>
-            await FindByCondition(c => c.IsDeleted && ids.Contains(c.Id), trackChanges)
+            await FindByCondition(c => !c.IsDeleted && ids.Contains(c.Id), trackChanges)
             .ToListAsync();
 
         public void CreateSubjectClass(SubjectClass subjectClass) => Create(subjectClass);
