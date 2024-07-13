@@ -107,7 +107,7 @@ namespace Services.Implementation
                 if (timetableIdBacklog == best.Id)
                 {
                     backlogCount++;
-                    if (backlogCount > 200)
+                    if (backlogCount > 500)
                     {
                         timetablePopulation = CreateInitialPopulation(root, parameters);
                         backlogCount = 0;
@@ -546,16 +546,16 @@ namespace Services.Implementation
             src.ConstraintErrors.Clear();
             src.Adaptability =
                   CheckH03(src, parameters) * 1000
-                + CheckH04AndH08(src, parameters) * 2000
+                //+ CheckH04AndH08(src, parameters) * 2000
                 + CheckH05(src) * 1000
                 + CheckH06(src, parameters) * 10000
                 + CheckH09(src) * 1000
-                + CheckH10(src, parameters) * 1000
-                + CheckH11(src) * 1000
-                + CheckS01(src)
-                + CheckS02(src)
-                + CheckS03(src)
-                + CheckS04(src);
+                + CheckH10(src, parameters) * 1000;
+            //+ CheckH11(src) * 1000
+            //+ CheckS01(src)
+            //+ CheckS02(src)
+            //+ CheckS03(src)
+            //+ CheckS04(src);
             src.GetConstraintErrors();
         }
 
