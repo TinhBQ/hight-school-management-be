@@ -37,7 +37,7 @@ namespace Services.Implementation
             Parallel.ForEach(users, user =>
             {
                 user.Salt = GetSalt(5);
-                user.Hash = HashPassword(salt: user.Salt, password: "123456");
+                user.Hash = HashPassword(salt: user.Salt, password: "Tinh12345@");
                 user.Username = ConvertToUnsign($"{user.LastName}{user.Id.ToString()[..4]}".ToLower());
             });
             await _context.SaveChangesAsync();
