@@ -83,9 +83,15 @@ namespace Services.Implementation
 
         public async Task UpdateClassAsync(Guid classId, ClassForUpdateDTO classForUpdate, bool trackChanges)
         {
-            var klass = await _helperService.GetClassAndCheckIfItExists(classId, trackChanges);
-
+            var klass = await _helperService.GetClassAndCheckIfItExists(classId, trackChanges, true);
             _mapper.Map(classForUpdate, klass);
+
+            foreach (var assignment in klass.Assignments)
+            {
+                assignment.SchoolShift = klass.SchoolShift;
+                assignment.StartYear = klass.StartYear;
+                assignment.EndYear = klass.EndYear;
+            }
 
             await _repository.UnitOfWork.SaveAsync();
         }
@@ -98,13 +104,13 @@ namespace Services.Implementation
 
             klass.HomeroomTeacherId = teacher.Id;
 
-           /* teacher.ClassId = null;
+            /* teacher.ClassId = null;
 
-            _mapper.Map(classToHomeroomAssignmentUpdate, klass);
+             _mapper.Map(classToHomeroomAssignmentUpdate, klass);
 
-            var newTecher = await _helperService.GetTeacherAndCheckIfItExists(klass.HomeroomTeacherId, trackChanges);
+             var newTecher = await _helperService.GetTeacherAndCheckIfItExists(klass.HomeroomTeacherId, trackChanges);
 
-            newTecher.Classes.Add(klass);*/
+             newTecher.Classes.Add(klass);*/
 
             await _repository.UnitOfWork.SaveAsync();
         }

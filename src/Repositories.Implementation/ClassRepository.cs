@@ -37,8 +37,9 @@ namespace Persistence.Repositories
             return await FindByCondition(c => !c.IsDeleted, trackChanges).ToListAsync();
         }
 
-        public async Task<Class?> GetClassAsync(Guid? classId, bool trackChanges) =>
+        public async Task<Class?> GetClassAsync(Guid? classId, bool trackChanges, bool isInclude) =>
             await FindByCondition(c => !c.IsDeleted && c.Id.Equals(classId), trackChanges)
+            .JoinTable(isInclude)
             .SingleOrDefaultAsync();
 
         public async Task<IEnumerable<Class>> GetByIdsAsync(IEnumerable<Guid> ids, bool trackChanges) =>

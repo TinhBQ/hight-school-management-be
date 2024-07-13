@@ -12,8 +12,8 @@ namespace Repositories.Implementation.Extensions
 
         public static IQueryable<SubjectClass> JoinTable(this IQueryable<SubjectClass> subjectClasses, bool isInClude)
         {
-            return isInClude 
-                ? subjectClasses.Include(s => s.Class).Include(s => s.Subject) 
+            return isInClude
+                ? subjectClasses.Include(s => s.Class).Include(s => s.Subject)
                 : subjectClasses;
         }
 
@@ -24,7 +24,9 @@ namespace Repositories.Implementation.Extensions
 
             var lowerCaseTerm = searchTerm.Trim().ToLower();
 
-            return subjectClasses.Where(e => e.Class.Name.ToLower().Contains(lowerCaseTerm));
+            return subjectClasses
+                .Where(e => (e.Class.Name + " " + e.Subject.Name + " " + e.Subject.ShortName)
+                .ToLower().Contains(lowerCaseTerm));
         }
 
         public static IQueryable<SubjectClass> Sort(this IQueryable<SubjectClass> subjectClasses, string orderByQueryString)

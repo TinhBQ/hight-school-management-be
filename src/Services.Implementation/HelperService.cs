@@ -1,8 +1,6 @@
 ﻿using AutoMapper;
 using Entities.DAOs;
-using Entities.DTOs.CRUD;
 using Entities.Exceptions;
-using Entities.RequestFeatures;
 using Services.Abstraction.IApplicationServices;
 using Services.Abstraction.ILoggerServices;
 using Services.Abstraction.IRepositoryServices;
@@ -37,13 +35,13 @@ namespace Services.Implementation
             return assignment is null ? throw new AssignmentNotFoundException(classId ?? Guid.Empty) : assignment;
         }
 
-        public async Task<Class> GetClassAndCheckIfItExists(Guid? id, bool trackChanges)
+        public async Task<Class> GetClassAndCheckIfItExists(Guid? id, bool trackChanges, bool isInclude = false)
         {
             if (id == null)
             {
                 throw new ClassNotFoundException(Guid.Empty);
-            } 
-            var klass = await _repository.ClassRepository.GetClassAsync(id, trackChanges);
+            }
+            var klass = await _repository.ClassRepository.GetClassAsync(id, trackChanges, isInclude);
             return klass is null ? throw new ClassNotFoundException(id ?? Guid.Empty) : klass;
         }
 

@@ -110,6 +110,7 @@ namespace Services.Implementation
                     if (backlogCount > 500)
                     {
                         timetablePopulation = CreateInitialPopulation(root, parameters);
+                        backlogCountMax = backlogCount;
                         backlogCount = 0;
                         timetableIdBacklog = Guid.Empty;
                     }
@@ -405,7 +406,7 @@ namespace Services.Implementation
             List<TeacherTCDTO> teachers,
             List<AssignmentTCDTO> assignments,
             ETimetableFlag[,] timetableFlags,
-            Entities.RequestFeatures.TimetableParameters parameters)
+            TimetableParameters parameters)
         {
             // Tạo các timetableUnit ứng với mỗi Assignment và thêm vào tkb
 
@@ -488,7 +489,7 @@ namespace Services.Implementation
             return new TimetableIndividual(timetableFlag, timetableUnits, src.Classes, src.Teachers) { Age = 1, Longevity = _random.Next(1, 5) };
         }
 
-        private static void RandomlyAssign(TimetableIndividual src, Entities.RequestFeatures.TimetableParameters parameters)
+        private static void RandomlyAssign(TimetableIndividual src, TimetableParameters parameters)
         {
             for (var i = 0; i < src.TimetableFlag.GetLength(0); i++)
             {
@@ -540,22 +541,28 @@ namespace Services.Implementation
         #endregion
 
         #region Fitness Function
-        private static void CalculateAdaptability(TimetableIndividual src, Entities.RequestFeatures.TimetableParameters parameters)
+        private static void CalculateAdaptability(TimetableIndividual src, TimetableParameters parameters, bool isMinimized = false)
         {
+            var rate = isMinimized ? 0 : 1;
             src.TimetableUnits.ForEach(u => u.ConstraintErrors.Clear());
             src.ConstraintErrors.Clear();
             src.Adaptability =
-                  CheckH03(src, parameters) * 1000
-                //+ CheckH04AndH08(src, parameters) * 2000
-                + CheckH05(src) * 1000
-                + CheckH06(src, parameters) * 10000
-                + CheckH09(src) * 1000
-                + CheckH10(src, parameters) * 1000;
-            //+ CheckH11(src) * 1000
-            //+ CheckS01(src)
-            //+ CheckS02(src)
-            //+ CheckS03(src)
-            //+ CheckS04(src);
+            CheckH03(src, parameters) * 1000
+            + CheckH04AndH08(src, parameters) * 2000
+            + CheckH05(src) * 1000
+            + CheckH06(src, parameters) * 5000
+            + CheckH09(src) * 1000
+            + CheckH10(src, parameters) * 1000
+            + CheckH11(src) * 1000;
+            if (!isMinimized)
+            {
+                src.Adaptability +=
+            CheckS01(src)
+            + CheckS02(src)
+            + CheckS03(src)
+            + CheckS04(src);
+            }
+
             src.GetConstraintErrors();
         }
 
@@ -582,7 +589,7 @@ namespace Services.Implementation
             return count;
         }
 
-        private static int CheckH03(TimetableIndividual src, Entities.RequestFeatures.TimetableParameters parameters)
+        private static int CheckH03(TimetableIndividual src, TimetableParameters parameters)
         {
             var count = 0;
             var fixedUnits = src.TimetableUnits.Where(u => u.Priority == EPriority.Fixed).ToList();
@@ -608,34 +615,34 @@ namespace Services.Implementation
             return count;
         }
 
-        private static int CheckH04AndH08(TimetableIndividual src, Entities.RequestFeatures.TimetableParameters parameters)
+        private static int CheckH04AndH08(TimetableIndividual src, TimetableParameters parameters)
         {
             var count = 0;
-            //for (var i = 0; i < parameters.SubjectsWithPracticeRoom.Count; i++)
-            //{
-            //    var timetableUnits = src.TimetableUnits
-            //        .Where(u => u.SubjectId == parameters.SubjectsWithPracticeRoom[i].Subject.Id)
-            //        .ToList();
-            //    var group = timetableUnits
-            //        .GroupBy(u => u.StartAt)
-            //        .ToList();
-            //    for (var j = 0; j < group.Count; j++)
-            //    {
-            //        var units = group[j].Select(g => g).ToList();
-            //        if (units.Count > parameters.SubjectsWithPracticeRoom[i].RoomCount)
-            //        {
-            //            var (day, period) = GetDayAndPeriod(group[j].Key);
-            //            units.ForEach(u => u.ConstraintErrors.Add(new ConstraintError()
-            //            {
-            //                Code = "H04&H08",
-            //                ClassName = u.ClassName,
-            //                SubjectName = u.SubjectName,
-            //                Description = $"Không đủ phòng thực hành cho môn {u.SubjectName} tại tiết {period} vào thứ {day}"
-            //            }));
-            //            count += units.Count;
-            //        }
-            //    }
-            //}
+            for (var i = 0; i < parameters.SubjectsWithPracticeRoom.Count; i++)
+            {
+                var timetableUnits = src.TimetableUnits
+                    .Where(u => u.SubjectId == parameters.SubjectsWithPracticeRoom[i].Id)
+                    .ToList();
+                var group = timetableUnits
+                    .GroupBy(u => u.StartAt)
+                    .ToList();
+                for (var j = 0; j < group.Count; j++)
+                {
+                    var units = group[j].Select(g => g).ToList();
+                    if (units.Count > parameters.SubjectsWithPracticeRoom[i].RoomCount)
+                    {
+                        var (day, period) = GetDayAndPeriod(group[j].Key);
+                        units.ForEach(u => u.ConstraintErrors.Add(new ConstraintError()
+                        {
+                            Code = "H04&H08",
+                            ClassName = u.ClassName,
+                            SubjectName = u.SubjectName,
+                            Description = $"Không đủ phòng thực hành cho môn {u.SubjectName} tại tiết {period} vào thứ {day}"
+                        }));
+                        count += units.Count;
+                    }
+                }
+            }
             return count;
         }
 
@@ -673,7 +680,7 @@ namespace Services.Implementation
             return count;
         }
 
-        private static int CheckH06(TimetableIndividual src, Entities.RequestFeatures.TimetableParameters parameters)
+        private static int CheckH06(TimetableIndividual src, TimetableParameters parameters)
         {
             var count = 0;
             for (var classIndex = 0; classIndex < src.Classes.Count; classIndex++)
@@ -753,7 +760,7 @@ namespace Services.Implementation
             return count;
         }
 
-        private static int CheckH10(TimetableIndividual src, Entities.RequestFeatures.TimetableParameters parameters)
+        private static int CheckH10(TimetableIndividual src, TimetableParameters parameters)
         {
             var count = 0;
             for (var i = 0; i < parameters.NoAssignTimetableUnits.Count; i++)
@@ -963,8 +970,8 @@ namespace Services.Implementation
             Mutate(children, CHROMOSOME_TYPE, MUTATION_RATE);
 
             // Tính toán độ thích nghi
-            CalculateAdaptability(children[0], parameters);
-            CalculateAdaptability(children[1], parameters);
+            CalculateAdaptability(children[0], parameters, true);
+            CalculateAdaptability(children[1], parameters, true);
 
             return [children[0], children[1]];
         }
@@ -1087,7 +1094,7 @@ namespace Services.Implementation
         #region Enhance Solution
 
         /* Đừng có đổi 1 tiết 1 lần, đổi 1 mớ tiết 1 lần đi */
-        private List<TimetableIndividual> TabuSearch(TimetableIndividual src, Entities.RequestFeatures.TimetableParameters parameters, string code)
+        private List<TimetableIndividual> TabuSearch(TimetableIndividual src, TimetableParameters parameters, string code)
         {
             var solutions = new List<TimetableIndividual>();
             switch (code)
@@ -1136,14 +1143,14 @@ namespace Services.Implementation
 
         private List<TimetableIndividual> CreateInitialPopulation(
             TimetableRootIndividual root,
-            Entities.RequestFeatures.TimetableParameters parameters)
+            TimetableParameters parameters)
         {
             var timetablePopulation = new List<TimetableIndividual>();
             for (var i = 0; i < INITIAL_NUMBER_OF_INDIVIDUALS; i++)
             {
                 var individual = Clone(root);
                 RandomlyAssign(individual, parameters);
-                CalculateAdaptability(individual, parameters);
+                CalculateAdaptability(individual, parameters, true);
                 timetablePopulation.Add(individual);
             }
             return timetablePopulation;

@@ -1,10 +1,7 @@
 ﻿using AutoMapper;
-using Contexts;
 using Entities.DAOs;
 using Entities.DTOs.CRUD;
-using Entities.Exceptions;
 using Entities.RequestFeatures;
-using Microsoft.EntityFrameworkCore;
 using Services.Abstraction.IApplicationServices;
 using Services.Abstraction.ILoggerServices;
 using Services.Abstraction.IRepositoryServices;
@@ -89,7 +86,7 @@ namespace Services.Implementation
                 var assignmentsBySubjectId = await _repository.AssignmentRepository.GetAllAssignmentBySubjectId(item.Id, assignmentParameters, trackChanges);
 
                 var teachers = assignmentsBySubjectId.Select(a => a.Teacher);
-                    
+
                 if (teachers.Count() == teachers.Select(a => a?.Id).Distinct().Count())
                 {
                     var subjectDto = _mapper.Map<SubjectDTO>(item);
@@ -163,7 +160,8 @@ namespace Services.Implementation
             {
                 teacher.PeriodCount = teacher.PeriodCount + assignmentEntity.PeriodCount;
                 assignmentEntity.TeacherId = teacher.Id;
-            } else
+            }
+            else
             {
                 var teacherAssigned = await _helperService.GetTeacherAndCheckIfItExists(assignmentEntity.TeacherId, true);
                 teacherAssigned.PeriodCount = teacherAssigned.PeriodCount - assignmentEntity.PeriodCount;
@@ -182,7 +180,8 @@ namespace Services.Implementation
 
             var c = await _helperService.GetAssignmentAndCheckIfItExists(assignment.ClassId, assignment.SubjectId, false);
 
-            if (c.PeriodCount > 0) {
+            if (c.PeriodCount > 0)
+            {
                 throw new Exception("Đã tồn tại phân công");
             }
 

@@ -5,7 +5,6 @@ using Microsoft.EntityFrameworkCore;
 using Persistence.Repositories;
 using Repositories.Implementation.Extensions;
 using Services.Abstraction.IRepositoryServices;
-using System.Linq;
 using System.Linq.Dynamic.Core;
 
 namespace Repositories.Implementation
@@ -39,6 +38,7 @@ namespace Repositories.Implementation
         public async Task<PagedList<Assignment>> GetAllAssignmentWithPagedList(AssignmentParameters assignmentParameters, bool trackChanges, bool isInclude)
         {
             var assignments = await FindByCondition(c => !c.IsDeleted, trackChanges)
+                .Search(assignmentParameters.SearchTerm ??= "")
                 .FilterYears(assignmentParameters.StartYear, assignmentParameters.EndYear)
                 .FilterClass(assignmentParameters.ClassId)
                 .FilterTeacher(assignmentParameters.TeacherId)
@@ -69,7 +69,7 @@ namespace Repositories.Implementation
 
         public async Task<IEnumerable<Assignment>> GetByIdsAsync(IEnumerable<Guid> ids, bool trackChanges)
         {
-           return await FindByCondition(c => !c.IsDeleted && ids.Contains(c.Id), trackChanges).ToListAsync();
+            return await FindByCondition(c => !c.IsDeleted && ids.Contains(c.Id), trackChanges).ToListAsync();
         }
 
         public void CreateAssignment(Assignment assignment) => Create(assignment);

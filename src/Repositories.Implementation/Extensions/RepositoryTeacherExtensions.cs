@@ -13,7 +13,9 @@ namespace Repositories.Implementation.Extensions
 
             var lowerCaseTerm = searchTerm.Trim().ToLower();
 
-            return teachers.Where(e => e.FirstName.ToLower().Contains(lowerCaseTerm));
+            return teachers
+                .Where(e => (e.FirstName + " " + e.MiddleName + " " + e.LastName + " " + e.ShortName)
+                .ToLower().Contains(lowerCaseTerm));
         }
 
         public static IQueryable<Teacher> Sort(this IQueryable<Teacher> teachers, string orderByQueryString)

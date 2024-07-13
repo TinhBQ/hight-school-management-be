@@ -17,7 +17,7 @@ namespace Persistence.Repositories
                 .Sort(teacherParameters.OrderBy ?? "firstName")
                 .Skip((teacherParameters.PageNumber - 1) * teacherParameters.PageSize)
                 .Take(teacherParameters.PageSize)
-                .Include(c => c.SubjectTeachers)
+                .Include(c => c.SubjectTeachers.Where(st => !st.IsDeleted))
                 .ThenInclude(c => c.Subject)
                 .ToListAsync();
 

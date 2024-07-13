@@ -1,12 +1,10 @@
 ﻿using Entities.DAOs;
-using Entities.DTOs.CRUD;
-using Entities.RequestFeatures;
 
 namespace Services.Abstraction.IApplicationServices
 {
     public interface IHelperService
     {
-        Task<Class> GetClassAndCheckIfItExists(Guid? id, bool trackChanges);
+        Task<Class> GetClassAndCheckIfItExists(Guid? id, bool trackChanges, bool isInclude = false);
         Task<Teacher> GetTeacherAndCheckIfItExists(Guid? id, bool trackChanges);
         Task<Subject> GetSubjectAndCheckIfItExists(Guid? id, bool trackChanges);
         Task<SubjectClass> GetSubjectClassAndCheckIfItExists(Guid? id, bool trackChanges);

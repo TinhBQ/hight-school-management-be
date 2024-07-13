@@ -1,5 +1,4 @@
 ﻿using Entities.DAOs;
-using Entities.RequestFeatures;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Dynamic.Core;
 
@@ -21,7 +20,7 @@ namespace Repositories.Implementation.Extensions
         public static IQueryable<Assignment> FilterSemesterAssigned(this IQueryable<Assignment> assignments, bool? isNotAssigned) =>
            isNotAssigned == null
            ? assignments
-           : isNotAssigned == true ?  assignments.Where(e => (e.TeacherId == null)) : assignments.Where(e => (e.TeacherId != null));
+           : isNotAssigned == true ? assignments.Where(e => (e.TeacherId == null)) : assignments.Where(e => (e.TeacherId != null));
 
         public static IQueryable<Assignment> FilterClass(this IQueryable<Assignment> assignments, Guid? classId) =>
            classId == null
@@ -51,13 +50,16 @@ namespace Repositories.Implementation.Extensions
 
         public static IQueryable<Assignment> Search(this IQueryable<Assignment> assignments, string searchTerm)
         {
-            throw new NotImplementedException();
-            //if (string.IsNullOrWhiteSpace(searchTerm))
-            //    return assignments;
+            if (string.IsNullOrWhiteSpace(searchTerm))
+                return assignments;
 
-            //var lowerCaseTerm = searchTerm.Trim().ToLower();
+            var lowerCaseTerm = searchTerm.Trim().ToLower();
 
-            //return assignments;
+            return assignments
+                .Where(e => (e.Teacher.FirstName + " " + e.Teacher.MiddleName + " " + e.Teacher.LastName
+                            + " " + e.Class.Name + " " + e.Subject.Name)
+                            .ToLower().Contains(lowerCaseTerm)
+                );
         }
 
         public static IQueryable<Assignment> Sort(this IQueryable<Assignment> assignments, string orderByQueryString)

@@ -31,7 +31,7 @@ namespace Services.Implementation
 
         public async Task<IEnumerable<SubjectDTO>> GetUnassignedSubjectsByClassId(Guid classId, bool trackChanges)
         {
-            await _helperService.GetClassAndCheckIfItExists(classId, trackChanges);
+            await _helperService.GetClassAndCheckIfItExists(classId, trackChanges, false);
 
             var subjectsByClassId = await _repository.SubjectClassRepository.GetSubjectClassByClassId(classId, trackChanges);
 

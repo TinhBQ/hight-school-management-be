@@ -9,7 +9,7 @@ namespace Services.Abstraction.IRepositoryServices
 
         Task<IEnumerable<Class>> GetClasses(bool trackChanges);
 
-        Task<Class?> GetClassAsync(Guid? classId, bool trackChanges);
+        Task<Class?> GetClassAsync(Guid? classId, bool trackChanges, bool isInclude);
 
         void CreateClass(Class klass);
 
