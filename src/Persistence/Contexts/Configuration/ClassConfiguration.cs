@@ -18,8 +18,8 @@ namespace Persistence.Contexts.Configuration
             entity.Property(e => e.PeriodCount).IsRequired();
 
             entity.HasOne(e => e.HomeroomTeacher)
-                .WithOne(e => e.Class)
-                .HasForeignKey<Teacher>(e => e.ClassId)
+                .WithMany(e => e.Classes)
+                .HasForeignKey(e => e.HomeroomTeacherId)
                 .HasConstraintName("FK__Class__Teacher__ClassId")
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .IsRequired(false);

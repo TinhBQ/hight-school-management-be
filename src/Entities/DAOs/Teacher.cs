@@ -13,8 +13,8 @@ namespace Entities.DAOs
         public string ShortName { get; set; } = null!;
         public int PeriodCount { get; set; }
         public Guid? ClassId { get; set; }
-        public Class Class { get; set; } = null!;
 
+        public ICollection<Class> Classes { get; set; } = null!;
         public ICollection<Assignment> Assignments { get; set; } = null!;
         public ICollection<SubjectTeacher> SubjectTeachers { get; set; } = null!;
     }

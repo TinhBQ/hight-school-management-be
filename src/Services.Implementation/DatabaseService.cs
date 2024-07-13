@@ -24,8 +24,8 @@ namespace Services.Implementation
             _context.Database.EnsureDeleted();
             _context.Database.EnsureCreated();
 
-            /*#region small entities
-            List<Class> classes = [
+            #region small entities
+            /* List<Class> classes = [
                 new Class
                 {
                     Id = new Guid("499be294-43cb-4c41-8c83-e2737065ee76"),
@@ -791,7 +791,8 @@ namespace Services.Implementation
                 new SubjectClass { Id = new Guid("51b6bc9f-0259-438c-bcb5-275d62b6a112"), ClassId = new Guid("f6123108-6be8-496d-9c60-7753f313368f"), SubjectId = new Guid("ebb67e3f-fdbd-430f-9441-64c0c7ceda9a"), PeriodCount = 1 },
                 new SubjectClass { Id = new Guid("b2a82af4-ca81-4ce9-b71c-856d0bdf4421"), ClassId = new Guid("f6123108-6be8-496d-9c60-7753f313368f"), SubjectId = new Guid("37a192e0-d40f-4781-95c2-3b86707d026e"), PeriodCount = 1 },
                 new SubjectClass { Id = new Guid("e2983865-52b3-4414-ae11-da7c7ef202bb"), ClassId = new Guid("f6123108-6be8-496d-9c60-7753f313368f"), SubjectId = new Guid("2e66193f-1903-49e9-a575-383024ede8d8"), PeriodCount = 1 }];
-            #endregion*/
+            */
+            #endregion
 
             #region all entities
             List<Class> classes = [
@@ -1580,7 +1581,6 @@ namespace Services.Implementation
                 _context.SaveChanges();
             }
 
-            UpdateHomeroomTeacher();
             CreateAssignments("C:\\Users\\ponpy\\source\\repos\\KLTN\\10-be\\Assignment.csv");
             //CreateAssignments("D:\\Workspace\\dotnet-asp\\fix\\10-be\\Assignment.csv");
             //CreateAssignments("C:\\Users\\ponpy\\source\\repos\\KLTN\\10-be\\Assignment_02.csv");

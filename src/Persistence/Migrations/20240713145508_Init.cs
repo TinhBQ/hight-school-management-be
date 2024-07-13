@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Persistence.Migrations
 {
     /// <inheritdoc />
-    public partial class InitWithoutData : Migration
+    public partial class Init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -59,6 +59,7 @@ namespace Persistence.Migrations
                     StartYear = table.Column<int>(type: "int", nullable: false),
                     EndYear = table.Column<int>(type: "int", nullable: false),
                     Semester = table.Column<int>(type: "int", nullable: false),
+                    Parameters = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     CreateAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdateAt = table.Column<DateTime>(type: "datetime2", nullable: false)
@@ -88,7 +89,7 @@ namespace Persistence.Migrations
                 {
                     table.PrimaryKey("PK_Classes", x => x.Id);
                     table.ForeignKey(
-                        name: "FK__Teacher__Class__HomeroomTeacherId",
+                        name: "FK__Class__Teacher__ClassId",
                         column: x => x.HomeroomTeacherId,
                         principalTable: "Teachers",
                         principalColumn: "Id");
@@ -236,9 +237,7 @@ namespace Persistence.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Classes_HomeroomTeacherId",
                 table: "Classes",
-                column: "HomeroomTeacherId",
-                unique: true,
-                filter: "[HomeroomTeacherId] IS NOT NULL");
+                column: "HomeroomTeacherId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_SubjectClasses_ClassId",

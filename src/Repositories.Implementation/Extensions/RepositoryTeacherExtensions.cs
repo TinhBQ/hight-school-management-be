@@ -33,7 +33,7 @@ namespace Repositories.Implementation.Extensions
             isAssignedHomeroom == null || startYear == null || endYear == null
             ? teachers
             : isAssignedHomeroom == true
-                ? teachers.Where(e => (e.ClassId != null && e.Class.StartYear == startYear && e.Class.EndYear == endYear))
-                : teachers.Where(e => (e.ClassId == null || (e.Class.StartYear != startYear && e.Class.EndYear != endYear)));
+                ? teachers.Where(e => (e.ClassId != null /*&& e.Classes.StartYear == startYear && e.Classes.EndYear == endYear*/))
+                : teachers.Where(e => (e.ClassId == null /*|| (e.Classes.StartYear != startYear && e.Classes.EndYear != endYear)*/));
     }
 }

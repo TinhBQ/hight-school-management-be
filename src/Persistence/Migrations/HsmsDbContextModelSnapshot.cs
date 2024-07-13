@@ -113,9 +113,7 @@ namespace Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("HomeroomTeacherId")
-                        .IsUnique()
-                        .HasFilter("[HomeroomTeacherId] IS NOT NULL");
+                    b.HasIndex("HomeroomTeacherId");
 
                     b.ToTable("Classes");
                 });
@@ -383,9 +381,9 @@ namespace Persistence.Migrations
             modelBuilder.Entity("Entities.DAOs.Class", b =>
                 {
                     b.HasOne("Entities.DAOs.Teacher", "HomeroomTeacher")
-                        .WithOne("Class")
-                        .HasForeignKey("Entities.DAOs.Class", "HomeroomTeacherId")
-                        .HasConstraintName("FK__Teacher__Class__HomeroomTeacherId");
+                        .WithMany("Classes")
+                        .HasForeignKey("HomeroomTeacherId")
+                        .HasConstraintName("FK__Class__Teacher__ClassId");
 
                     b.Navigation("HomeroomTeacher");
                 });
@@ -464,7 +462,7 @@ namespace Persistence.Migrations
                 {
                     b.Navigation("Assignments");
 
-                    b.Navigation("Class");
+                    b.Navigation("Classes");
 
                     b.Navigation("SubjectTeachers");
                 });
