@@ -13,7 +13,7 @@ namespace Persistence.Repositories
         {
             var teacheres = await FindByCondition(c => !c.IsDeleted, trackChanges)
                 .Search(teacherParameters.SearchTerm ?? "")
-                .FilterTeachersWithIsAssignedHomeroom(teacherParameters.IsAssignedHomeroom)
+                .FilterTeachersWithIsAssignedHomeroom(teacherParameters.IsAssignedHomeroom, teacherParameters.StartYear, teacherParameters.EndYear)
                 .Sort(teacherParameters.OrderBy ?? "firstName")
                 .Skip((teacherParameters.PageNumber - 1) * teacherParameters.PageSize)
                 .Take(teacherParameters.PageSize)
@@ -23,7 +23,7 @@ namespace Persistence.Repositories
 
             var count = await FindByCondition(c => !c.IsDeleted, trackChanges)
                 .Search(teacherParameters.SearchTerm ?? "")
-                .FilterTeachersWithIsAssignedHomeroom(teacherParameters.IsAssignedHomeroom)
+                .FilterTeachersWithIsAssignedHomeroom(teacherParameters.IsAssignedHomeroom, teacherParameters.StartYear, teacherParameters.EndYear)
                 .CountAsync();
 
             return new PagedList<Teacher>(teacheres, count, teacherParameters.PageNumber, teacherParameters.PageSize);

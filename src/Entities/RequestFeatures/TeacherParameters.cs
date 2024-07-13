@@ -7,5 +7,9 @@
         public string? SearchTerm { get; set; }
 
         public bool? IsAssignedHomeroom { get; set; }
+
+        public uint? StartYear { get; set; }
+
+        public uint? EndYear { get; set; }
     }
 }

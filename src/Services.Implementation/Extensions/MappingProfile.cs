@@ -17,6 +17,8 @@ namespace Services.Implementation.Extensions
                 .ForMember(des => des.ClassName, opt => opt.MapFrom(src => src.Class.Name))
                 .ForMember(des => des.SubjectName, opt => opt.MapFrom(src => src.Subject.Name));
             CreateMap<AssignmentDTO, Assignment>();
+            CreateMap<AssignmentForCreationDTO, Assignment>();
+            CreateMap<AssignmentForUpdateDTO, Assignment>();
 
             CreateMap<Class, ClassDTO>();
             CreateMap<Class, ClassYearDTO>();

@@ -102,13 +102,32 @@ namespace Services.Implementation
 
         public async Task<SubjectClassDTO> CreateSubjectClassAsync(SubjectClassForCreationDTO subjectClass)
         {
-            await _helperService.GetClassAndCheckIfItExists(subjectClass.ClassId, false);
+            var klass = await _helperService.GetClassAndCheckIfItExists(subjectClass.ClassId, true);
 
             await _helperService.GetSubjectAndCheckIfItExists(subjectClass.SubjectId, false);
 
+            if (klass.PeriodCount + subjectClass.PeriodCount > 30)
+            {
+                throw new Exception("PeriodCount không hợp lệ");
+            }
+
             var subjectClassEntity = _mapper.Map<SubjectClass>(subjectClass);
 
+            klass.PeriodCount = klass.PeriodCount + subjectClass.PeriodCount;
+
+            var assignmentDto1 = new AssignmentForCreationDTO();
+            assignmentDto1.PeriodCount = subjectClass.PeriodCount;
+            assignmentDto1.SchoolShift = klass.SchoolShift;
+            assignmentDto1.SubjectId = subjectClass.SubjectId;
+            assignmentDto1.ClassId = subjectClass.ClassId;
+            assignmentDto1.StartYear = klass.StartYear;
+            assignmentDto1.EndYear = klass.EndYear;
+            assignmentDto1.Semester = 1;
+
+            var assignment1Entity = _mapper.Map<Assignment>(assignmentDto1);
+
             _repository.SubjectClassRepository.CreateSubjectClass(subjectClassEntity);
+            _repository.AssignmentRepository.CreateAssignment(assignment1Entity);
 
             await _repository.UnitOfWork.SaveAsync();
 

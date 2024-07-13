@@ -15,6 +15,28 @@ namespace Services.Implementation
         private readonly ILoggerManager _logger = logger;
         private readonly IMapper _mapper = mapper;
 
+        public async Task<Assignment> GetAssignmentAndCheckIfItExists(Guid? id, bool trackChanges)
+        {
+            if (id == null)
+            {
+                throw new AssignmentNotFoundException(Guid.Empty);
+            }
+            var assignment = await _repository.AssignmentRepository.GetAssignmentAsync(id, trackChanges);
+
+            return assignment is null ? throw new AssignmentNotFoundException(id ?? Guid.Empty) : assignment;
+        }
+
+        public async Task<Assignment?> GetAssignmentAndCheckIfItExists(Guid? classId, Guid? subjectId, bool trackChanges)
+        {
+            if (classId == null || subjectId == null)
+            {
+                throw new AssignmentNotFoundException(Guid.Empty);
+            }
+            var assignment = await _repository.AssignmentRepository.GetAssignmentAsync(classId, subjectId, trackChanges);
+
+            return assignment is null ? throw new AssignmentNotFoundException(classId ?? Guid.Empty) : assignment;
+        }
+
         public async Task<Class> GetClassAndCheckIfItExists(Guid? id, bool trackChanges)
         {
             if (id == null)

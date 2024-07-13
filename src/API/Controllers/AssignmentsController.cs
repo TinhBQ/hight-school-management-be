@@ -31,6 +31,20 @@ namespace API.Controllers
             return Ok(response);
         }
 
+        [HttpGet("{id:guid}", Name = "AssignmentById")]
+        public async Task<IActionResult> GetAssignment(Guid id)
+        {
+            var assignment = await _serviceBQT.AssignmentBQTService.GetAssignmentAsync(id, trackChanges: false);
+
+            var response = new ResponseBase<AssignmentDTO>
+            {
+                Data = assignment,
+                Message = ResponseMessage.GetClassSuccess,
+            };
+
+            return Ok(response);
+        }
+
         [HttpGet("all")]
         public async Task<IActionResult> GetAllAssignments([FromQuery] AssignmentParameters assignmentParameters)
         {
@@ -100,6 +114,35 @@ namespace API.Controllers
             };
 
             return Ok(response);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateAssignment([FromBody] AssignmentForCreationDTO assignment)
+        {
+            if (assignment is null)
+                return BadRequest("CompanyForCreationDto object is null");
+
+            var createdAssignment = await _serviceBQT.AssignmentBQTService.CreateAssignmentAsync(assignment);
+
+            return CreatedAtRoute("AssignmentById", new { id = createdAssignment.Id }, createdAssignment);
+        }
+
+        [HttpPut("{id:guid}")]
+        public async Task<IActionResult> UpdateAssignment(Guid id, [FromBody] AssignmentForUpdateDTO assignment)
+        {
+            if (assignment is null)
+                return BadRequest("CompanyForUpdateDto object is null");
+
+            await _serviceBQT.AssignmentBQTService.UpdateAssignmentAsync(id, assignment, trackChanges: true);
+
+            return NoContent();
+        }
+
+        [HttpDelete("{id:guid}")]
+        public async Task<IActionResult> DeleteAssignment(Guid id)
+        {
+            await _serviceBQT.AssignmentBQTService.DeleteAssignmentAsync(id, trackChanges: true);
+            return NoContent();
         }
     }
 }

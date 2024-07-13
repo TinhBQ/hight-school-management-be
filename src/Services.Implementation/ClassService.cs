@@ -94,7 +94,7 @@ namespace Services.Implementation
         {
             var klass = await _helperService.GetClassAndCheckIfItExists(classId, trackChanges);
 
-            var teacher = await _helperService.GetTeacherAndCheckIfItExists(klass.HomeroomTeacherId, trackChanges);
+            var teacher = await _helperService.GetTeacherAndCheckIfItExists(classToHomeroomAssignmentUpdate.HomeroomTeacherId, trackChanges);
 
             teacher.ClassId = null;
 

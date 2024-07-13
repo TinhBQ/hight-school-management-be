@@ -44,6 +44,7 @@ namespace Repositories.Implementation
                 .FilterTeacher(assignmentParameters.TeacherId)
                 .FilterSubject(assignmentParameters.SubjectId)
                 .FilterSemester(assignmentParameters.Semester)
+                .FilterSemesterAssigned(assignmentParameters.IsNotAssigned)
                 .JoinTable(isInclude)
                 .Skip((assignmentParameters.PageNumber - 1) * assignmentParameters.PageSize)
                 .Take(assignmentParameters.PageSize)
@@ -55,6 +56,7 @@ namespace Repositories.Implementation
                 .FilterTeacher(assignmentParameters.TeacherId)
                 .FilterSubject(assignmentParameters.SubjectId)
                 .FilterSemester(assignmentParameters.Semester)
+                .FilterSemesterAssigned(assignmentParameters.IsNotAssigned)
                 .CountAsync();
 
             return new PagedList<Assignment>(assignments, count, assignmentParameters.PageNumber, assignmentParameters.PageSize);
@@ -73,5 +75,10 @@ namespace Repositories.Implementation
         public void CreateAssignment(Assignment assignment) => Create(assignment);
 
         public void DeleteAssignment(Assignment assignment) => Delete(assignment);
+
+        public async Task<Assignment?> GetAssignmentAsync(Guid? classId, Guid? subjectId, bool trackChanges)
+        {
+            return await FindByCondition(c => !c.IsDeleted && c.ClassId.Equals(classId) && c.SubjectId.Equals(subjectId), trackChanges).SingleOrDefaultAsync();
+        }
     }
 }

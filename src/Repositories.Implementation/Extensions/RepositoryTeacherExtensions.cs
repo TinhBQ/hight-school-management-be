@@ -29,11 +29,11 @@ namespace Repositories.Implementation.Extensions
             return teachers.OrderBy(orderQuery);
         }
 
-        public static IQueryable<Teacher> FilterTeachersWithIsAssignedHomeroom(this IQueryable<Teacher> teachers, bool? isAssignedHomeroom) =>
-            isAssignedHomeroom == null
+        public static IQueryable<Teacher> FilterTeachersWithIsAssignedHomeroom(this IQueryable<Teacher> teachers, bool? isAssignedHomeroom, uint? startYear, uint? endYear) =>
+            isAssignedHomeroom == null || startYear == null || endYear == null
             ? teachers
             : isAssignedHomeroom == true
-                ? teachers.Where(e => (e.ClassId != null))
-                : teachers.Where(e => (e.ClassId == null));
+                ? teachers.Where(e => (e.ClassId != null && e.Class.StartYear == startYear && e.Class.EndYear == endYear))
+                : teachers.Where(e => (e.ClassId == null || (e.Class.StartYear != startYear && e.Class.EndYear != endYear)));
     }
 }

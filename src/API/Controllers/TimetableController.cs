@@ -155,7 +155,7 @@ namespace API.Controllers
             foreach (var @class in classes)
             {
                 var count = 30 - @class.PeriodCount;
-                if (count > 5) throw new Exception();
+                if (count > 5) throw new Exception("");
                 var a = @class.SchoolShift == ESchoolShift.Morning ? 0 : 5;
                 var startAts = new List<int>() { 35 + a, 34 + a, 33 + a, 45 + a, 44 + a };
                 for (int i = 0; i < 5 - count; i++)
