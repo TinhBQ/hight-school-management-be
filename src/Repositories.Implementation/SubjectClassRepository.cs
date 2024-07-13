@@ -61,13 +61,13 @@ namespace Persistence.Repositories
         }
 
         public async Task<SubjectClass?> GetSubjectClassAsync(Guid? id, bool trackChanges) =>
-            await FindByCondition(c => c.IsDeleted && c.Id.Equals(id), trackChanges)
+            await FindByCondition(c => !c.IsDeleted && c.Id.Equals(id), trackChanges)
             .Include(s => s.Class)
             .Include(s => s.Subject)
             .SingleOrDefaultAsync();
 
         public async Task<IEnumerable<SubjectClass>> GetByIdsAsync(IEnumerable<Guid> ids, bool trackChanges) =>
-            await FindByCondition(c => c.IsDeleted && ids.Contains(c.Id), trackChanges)
+            await FindByCondition(c => !c.IsDeleted && ids.Contains(c.Id), trackChanges)
             .ToListAsync();
 
         public void CreateSubjectClass(SubjectClass subjectClass) => Create(subjectClass);
