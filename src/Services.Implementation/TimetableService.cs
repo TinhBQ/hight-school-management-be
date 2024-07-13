@@ -165,6 +165,7 @@ namespace Services.Implementation
                 ?? throw new Exception("Không tìm thấy dữ liệu cài đặt của thời khóa biểu");
             var (classes, teachers, subjects, assignments, timetableFlags) = await GetDataAsync(parameters);
             var root = Clone(CreateRootIndividual(classes, teachers, assignments, timetableFlags, parameters));
+            root.Id = timetableDb.Id;
             root.TimetableUnits = _mapper.Map<TimetableDTO>(timetableDb).TimetableUnits;
             foreach (var unit in root.TimetableUnits)
             {
@@ -214,15 +215,15 @@ namespace Services.Implementation
 
         public async Task Update(TimetableIndividual timetable)
         {
-            var timetableDb = await _context.Timetables
-                .AsNoTracking()
-                .FirstOrDefaultAsync(t => t.Id == timetable.Id)
+            var timetableDb = _context.Timetables
+                .Include(t => t.TimetableUnits)
+                .FirstOrDefault(t => t.Id == timetable.Id)
                 ?? throw new Exception("Không tìm thấy thời khóa biểu");
 
-            _mapper.Map(timetable, timetableDb);
+            foreach (var unit in timetableDb!.TimetableUnits)
+                unit.StartAt = timetable.TimetableUnits.First(u => u.Id == unit.Id).StartAt;
 
-            _context.Update(timetableDb);
-            _context.SaveChanges();
+            var _ = await _context.SaveChangesAsync();
         }
 
         public async Task Delete(Guid id)
