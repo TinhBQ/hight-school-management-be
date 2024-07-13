@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Entities.DTOs.CRUD;
+using Microsoft.AspNetCore.Mvc;
 using Services.Abstraction.IApplicationServices;
 
 namespace API.Controllers
@@ -10,9 +11,9 @@ namespace API.Controllers
         private readonly IAuthenticationService _service = service;
 
         [HttpPost("login")]
-        public async Task<IActionResult> Login(string username, string password)
+        public async Task<IActionResult> Login([FromBody] LoginDTO loginDTO)
         {
-            var token = await _service.Login(username, password);
+            var token = await _service.Login(loginDTO.Username, loginDTO.Password);
             var result = new Dictionary<string, string>
             {
                 { "token", token }
