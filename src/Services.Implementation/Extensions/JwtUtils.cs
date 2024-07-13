@@ -4,23 +4,17 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
-namespace API.Middlewares
+namespace Services.Implementation.Extensions
 {
-    public interface IJwtUtils
+    public static class JwtUtils
     {
-        public string GenerateToken(Teacher user);
-        public Guid ValidateToken(string token);
-    }
+        private static readonly string _token = "token";
 
-    public class JwtUtils(IConfiguration configuration) : IJwtUtils
-    {
-        private readonly IConfiguration _configuration = configuration;
-
-        public string GenerateToken(Teacher user)
+        public static string GenerateToken(Teacher user)
         {
             // generate token that is valid for 7 days
             var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes(_configuration.GetSection("Token").Value ?? "");
+            var key = Encoding.ASCII.GetBytes(_token);
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity([new Claim("id", user.Id.ToString())]),
@@ -31,13 +25,13 @@ namespace API.Middlewares
             return tokenHandler.WriteToken(token);
         }
 
-        public Guid ValidateToken(string token)
+        public static Guid ValidateToken(string token)
         {
             if (token == null)
                 return Guid.Empty;
 
             var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes(_configuration.GetSection("Token").Value ?? "");
+            var key = Encoding.ASCII.GetBytes(_token);
             try
             {
                 tokenHandler.ValidateToken(token, new TokenValidationParameters

@@ -9,10 +9,16 @@ namespace API.Controllers
     {
         private readonly IAuthenticationService _service = service;
 
-        [HttpPost]
+        [HttpPost("login")]
         public async Task<IActionResult> Login(string username, string password)
         {
+            var token = await _service.Login(username, password);
+            return Ok(token);
+        }
 
+        [HttpPost("refresh-token")]
+        public async Task<IActionResult> RefreshToken(string token)
+        {
             return Ok();
         }
 

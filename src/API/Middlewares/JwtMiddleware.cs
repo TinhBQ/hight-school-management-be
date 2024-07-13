@@ -1,4 +1,5 @@
 ﻿using Contexts;
+using Services.Implementation.Extensions;
 
 namespace API.Middlewares
 {
@@ -11,10 +12,10 @@ namespace API.Middlewares
             _next = next;
         }
 
-        public async Task Invoke(HttpContext httpContext, HsmsDbContext dbContext, IJwtUtils jwtUtils)
+        public async Task Invoke(HttpContext httpContext, HsmsDbContext dbContext)
         {
             var token = httpContext.Request.Headers.Authorization.FirstOrDefault()?.Split(" ").Last();
-            var userId = jwtUtils.ValidateToken(token ?? "");
+            var userId = JwtUtils.ValidateToken(token ?? "");
             if (userId != Guid.Empty)
             {
                 // attach user to context on successful jwt validation
