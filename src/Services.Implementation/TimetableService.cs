@@ -939,7 +939,7 @@ namespace Services.Implementation
         public List<TimetableIndividual> Crossover(
             TimetableRootIndividual root,
             List<TimetableIndividual> parents,
-            Entities.RequestFeatures.TimetableParameters parameters)
+            TimetableParameters parameters)
         {
             var children = new List<TimetableIndividual> { Clone(root), Clone(root) };
             children[0] = Clone(root);

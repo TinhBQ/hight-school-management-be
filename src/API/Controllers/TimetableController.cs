@@ -7,7 +7,6 @@ using Entities.RequestFeatures;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Services.Abstraction.IApplicationServices;
-using Services.Implementation.Extensions;
 using System.Text.Json;
 
 namespace API.Controllers
@@ -177,7 +176,7 @@ namespace API.Controllers
                 Id = subjectsWithPracticeRoom.Id,
                 RoomCount = 2,
             });
-            parameters.JsonOutput();
+            // parameters.JsonOutput();
 
             return parameters;
         }

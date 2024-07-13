@@ -1,7 +1,9 @@
 ﻿using Contexts;
 using Entities.Exceptions;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Services.Abstraction.IApplicationServices;
+using Services.Implementation.Extensions;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -11,19 +13,19 @@ namespace Services.Implementation
     public class AuthenticationService(HsmsDbContext context) : IAuthenticationService
     {
         private readonly HsmsDbContext _context = context;
+        private readonly string alphanumeric = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
+        private readonly Random r = new();
 
         public async Task ChangePassword(Guid userId, string oldPassword, string newPassword)
         {
             var user = _context.Teachers.FirstOrDefault(t => t.Id == userId)
                 ?? throw new TeacherNotFoundException(userId);
 
-            var result = VerifyPassword(oldPassword, user.Hash ?? "", Encoding.ASCII.GetBytes(user.Salt ?? ""));
-            if (!result) throw new Exception("Sai Mật Khẩu");
+            var currHash = HashPassword(user.Salt ??= "", oldPassword);
+            if (currHash != user.Hash) throw new Exception("Mật khẩu không đúng");
 
-            var hash = HashPasword(newPassword, out var salt);
+            user.Hash = HashPassword(user.Salt ??= "", newPassword);
 
-            user.Hash = hash;
-            user.Salt = Convert.ToBase64String(salt);
             await _context.SaveChangesAsync();
         }
 
@@ -31,20 +33,27 @@ namespace Services.Implementation
         {
             var users = ids.IsNullOrEmpty()
                 ? _context.Teachers.ToList()
-                : _context.Teachers.Where(t => ids.Contains(t.Id)).ToList();
+                : [.. _context.Teachers.Where(t => ids.Contains(t.Id))];
             Parallel.ForEach(users, user =>
             {
-                var hash = HashPasword(RandomString(), out var salt);
-                user.Hash = hash;
-                user.Salt = Convert.ToBase64String(salt);
-                user.Username = convertToUnsign($"{user.LastName}{user.Id.ToString()[..4]}".ToLower());
+                user.Salt = GetSalt(5);
+                user.Hash = HashPassword(salt: user.Salt, password: RandomString());
+                user.Username = ConvertToUnsign($"{user.LastName}{user.Id.ToString()[..4]}".ToLower());
             });
             await _context.SaveChangesAsync();
         }
 
-        public async Task Login(string username, string password)
+        public async Task<string> Login(string username, string password)
         {
-            throw new NotImplementedException();
+            var user = await _context.Teachers.FirstOrDefaultAsync(u => u.Username == username)
+                ?? throw new Exception("Tên đăng nhập hoặc mật khẩu không đúng");
+
+            if (password != HashPassword(user.Salt ??= "", password))
+                throw new Exception("Tên đăng nhập hoặc mật khẩu không đúng");
+
+            var token = JwtUtils.GenerateToken(user);
+
+            return token;
         }
 
         public async Task Logout()
@@ -57,37 +66,42 @@ namespace Services.Implementation
             throw new NotImplementedException();
         }
 
-        const int keySize = 64;
-        const int iterations = 350000;
-        private readonly HashAlgorithmName hashAlgorithm = HashAlgorithmName.SHA512;
-        private string HashPasword(string password, out byte[] salt)
+        public string GetSalt(int saltSize)
         {
-            salt = RandomNumberGenerator.GetBytes(keySize);
-            var hash = Rfc2898DeriveBytes.Pbkdf2(
-                Encoding.UTF8.GetBytes(password),
-                salt,
-                iterations,
-                hashAlgorithm,
-                keySize);
-            return Convert.ToHexString(hash);
+            StringBuilder strB = new("");
+
+            while ((saltSize--) > 0)
+                strB.Append(alphanumeric[(int)(r.NextDouble() * alphanumeric.Length)]);
+            return strB.ToString();
         }
 
-        private bool VerifyPassword(string password, string hash, byte[] salt)
+        public static string HashPassword(string salt, string password)
         {
-            var hashToCompare = Rfc2898DeriveBytes.Pbkdf2(password, salt, iterations, hashAlgorithm, keySize);
-            return CryptographicOperations.FixedTimeEquals(hashToCompare, Convert.FromHexString(hash));
+            string mergedPass = string.Concat(salt, password);
+            return EncryptUsingMD5(mergedPass);
         }
 
-        public static string convertToUnsign(string s)
+        public static string EncryptUsingMD5(string inputStr)
         {
-            Regex regex = new Regex("\\p{IsCombiningDiacriticalMarks}+");
-            string temp = s.Normalize(NormalizationForm.FormD);
-            return regex.Replace(temp, string.Empty).Replace('\u0111', 'd').Replace('\u0110', 'D');
+            // Convert the input string to a byte array and compute the hash.
+            byte[] data = MD5.HashData(Encoding.UTF8.GetBytes(inputStr));
+
+            // Create a new Stringbuilder to collect the bytes
+            // and create a string.
+            StringBuilder sBuilder = new();
+
+            // Loop through each byte of the hashed data 
+            // and format each one as a hexadecimal string.
+            for (int i = 0; i < data.Length; i++)
+                sBuilder.Append(data[i].ToString("x2"));
+
+            // Return the hexadecimal string.
+            return sBuilder.ToString();
         }
 
-        private string RandomString(int size = 8)
+        private static string RandomString(int size = 8)
         {
-            StringBuilder builder = new StringBuilder();
+            StringBuilder builder = new();
             Random random = new();
             char ch;
             for (int i = 0; i < size; i++)
@@ -96,6 +110,12 @@ namespace Services.Implementation
                 builder.Append(ch);
             }
             return builder.ToString();
+        }
+        public static string ConvertToUnsign(string s)
+        {
+            Regex regex = new Regex("\\p{IsCombiningDiacriticalMarks}+");
+            string temp = s.Normalize(NormalizationForm.FormD);
+            return regex.Replace(temp, string.Empty).Replace('\u0111', 'd').Replace('\u0110', 'D');
         }
     }
 }
