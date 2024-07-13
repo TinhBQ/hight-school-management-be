@@ -1,4 +1,5 @@
 using API.Extensions;
+using API.Middlewares;
 using Microsoft.AspNetCore.HttpOverrides;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
@@ -22,6 +23,9 @@ namespace API
             builder.Services.ConfigureCors();
             builder.Services.ConfigureIISIntegration();
             builder.Services.ConfigureLoggerService();
+
+            builder.Services.AddAuthentication().AddJwtBearer();
+            builder.Services.AddAuthorization();
 
             builder.Services.ConfigureRepositoryManager();
             builder.Services.ConfigureServiceManager();
@@ -60,6 +64,8 @@ namespace API
 
             if (app.Environment.IsProduction())
                 app.UseHsts();
+
+            app.UseMiddleware<JwtMiddleware>();
 
             app.UseHttpsRedirection();
 

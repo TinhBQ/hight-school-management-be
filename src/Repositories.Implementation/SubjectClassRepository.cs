@@ -2,10 +2,8 @@
 using Entities.DAOs;
 using Entities.RequestFeatures;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Internal;
 using Repositories.Implementation.Extensions;
 using Services.Abstraction.IRepositoryServices;
-using System.Linq;
 
 namespace Persistence.Repositories
 {

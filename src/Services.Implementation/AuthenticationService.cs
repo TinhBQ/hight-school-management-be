@@ -37,7 +37,7 @@ namespace Services.Implementation
             Parallel.ForEach(users, user =>
             {
                 user.Salt = GetSalt(5);
-                user.Hash = HashPassword(salt: user.Salt, password: RandomString());
+                user.Hash = HashPassword(salt: user.Salt, password: "123456");
                 user.Username = ConvertToUnsign($"{user.LastName}{user.Id.ToString()[..4]}".ToLower());
             });
             await _context.SaveChangesAsync();
@@ -48,7 +48,7 @@ namespace Services.Implementation
             var user = await _context.Teachers.FirstOrDefaultAsync(u => u.Username == username)
                 ?? throw new Exception("Tên đăng nhập hoặc mật khẩu không đúng");
 
-            if (password != HashPassword(user.Salt ??= "", password))
+            if (user.Hash != HashPassword(user.Salt ??= "", password))
                 throw new Exception("Tên đăng nhập hoặc mật khẩu không đúng");
 
             var token = JwtUtils.GenerateToken(user);

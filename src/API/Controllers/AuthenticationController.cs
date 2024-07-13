@@ -13,7 +13,11 @@ namespace API.Controllers
         public async Task<IActionResult> Login(string username, string password)
         {
             var token = await _service.Login(username, password);
-            return Ok(token);
+            var result = new Dictionary<string, string>
+            {
+                { "token", token }
+            };
+            return Ok(result);
         }
 
         [HttpPost("refresh-token")]
