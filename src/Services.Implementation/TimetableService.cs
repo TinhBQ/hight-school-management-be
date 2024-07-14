@@ -181,25 +181,22 @@ namespace Services.Implementation
             return root;
         }
 
-        public async Task<TimetableIndividual> Check(Guid timetableId)
+        public async Task<TimetableIndividual> Check(Guid id)
         {
             var timetableDb = _context.Timetables
                 .Include(t => t.TimetableUnits)
                 .AsNoTracking()
-                .First(t => t.Id == timetableId);
+                .FirstOrDefault(t => t.Id == id)
+                ?? throw new Exception("Không tìm thấy thời khóa biểu");
             JsonSerializerOptions jso = new JsonSerializerOptions();
             jso.Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping;
             var parameters = JsonSerializer.Deserialize<TimetableParameters>(timetableDb.Parameters, jso)
                 ?? throw new Exception("Không tìm thấy dữ liệu cài đặt của thời khóa biểu");
-            var temp = _mapper.Map<TimetableIndividual>(timetableDb);
-            var (classes, teachers, subjects, assignments, timetableFlags) = await GetDataAsync(parameters!);
-            var root = new TimetableRootIndividual(timetableFlags, temp.TimetableUnits, classes, teachers);
-            var result = Clone(root);
-            result.StartYear = timetableDb.StartYear;
-            result.EndYear = timetableDb.EndYear;
-            result.Semester = timetableDb.Semester;
-            result.Name = timetableDb.Name;
-            foreach (var unit in result.TimetableUnits)
+            var (classes, teachers, subjects, assignments, timetableFlags) = await GetDataAsync(parameters);
+            var root = Clone(CreateRootIndividual(classes, teachers, assignments, timetableFlags, parameters));
+            root.Id = timetableDb.Id;
+            root.TimetableUnits = _mapper.Map<TimetableDTO>(timetableDb).TimetableUnits;
+            foreach (var unit in root.TimetableUnits)
             {
                 var assigment = assignments
                     .First(a => a.Teacher.Id == unit.TeacherId &&
@@ -207,10 +204,12 @@ namespace Services.Implementation
                                 a.Subject.Id == unit.SubjectId);
                 unit.AssignmentId = assigment.Id;
             };
-            RemarkTimetableFlag(result);
-            CalculateAdaptability(result, parameters);
-            result.GetConstraintErrors();
-            return result;
+
+            FixTimetableAfterUpdate(root, parameters);
+            RemarkTimetableFlag(root);
+            CalculateAdaptability(root, parameters);
+            root.GetConstraintErrors();
+            return root;
         }
 
         public async Task Update(TimetableIndividual timetable)
@@ -220,8 +219,21 @@ namespace Services.Implementation
                 .FirstOrDefault(t => t.Id == timetable.Id)
                 ?? throw new Exception("Không tìm thấy thời khóa biểu");
 
-            foreach (var unit in timetableDb!.TimetableUnits)
-                unit.StartAt = timetable.TimetableUnits.First(u => u.Id == unit.Id).StartAt;
+            JsonSerializerOptions jso = new JsonSerializerOptions();
+            jso.Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping;
+            var parameters = JsonSerializer.Deserialize<TimetableParameters>(timetableDb.Parameters, jso)
+                ?? throw new Exception("Không tìm thấy dữ liệu cài đặt của thời khóa biểu");
+            var (classes, teachers, subjects, assignments, timetableFlags) = GetData(parameters);
+
+            FixTimetableAfterUpdate(timetable, parameters);
+
+            foreach (var unit in timetableDb.TimetableUnits)
+            {
+                var unitReq = timetable.TimetableUnits.First(u => u.Id == unit.Id);
+                unit.StartAt = unitReq.StartAt;
+                unit.Priority = unitReq.Priority;
+            }
+
 
             var _ = await _context.SaveChangesAsync();
         }
@@ -850,26 +862,47 @@ namespace Services.Implementation
             var count = 0;
             var doublePeriods = src.TimetableUnits
                 .Where(u => u.Priority == EPriority.Double)
+                .OrderBy(u => u.ClassName)
+                .ThenBy(u => u.StartAt)
                 .ToList();
-            var invalidStartAts = new List<int>() { 2, 3, 8, 9 };
+            var invalidMorningStartAts = new List<int>() { 2, 3 };
+            var invalidAfternoonStartAts = new List<int>() { 8, 9 };
 
-            for (var i = 0; i < doublePeriods.Count; i++)
+            for (var i = 0; i < doublePeriods.Count - 1; i++)
             {
-                var unit = doublePeriods[i];
-                if (invalidStartAts.Contains(unit.StartAt % 10))
+                var current = doublePeriods[i];
+                var next = doublePeriods[i + 1];
+                var invalidStartAts = src.Classes.First(c => c.Name == current.ClassName).SchoolShift == ESchoolShift.Morning
+                    ? invalidMorningStartAts : invalidAfternoonStartAts;
+
+                if (invalidStartAts.Contains(current.StartAt % 10) &&
+                    invalidStartAts.Contains(next.StartAt % 10) &&
+                    current.ClassName == next.ClassName &&
+                    current.SubjectName == next.SubjectName)
                 {
-                    unit.ConstraintErrors.Add(new()
+                    current.ConstraintErrors.Add(new()
                     {
                         Code = "S01",
                         IsHardConstraint = false,
-                        TeacherName = unit.TeacherName,
-                        ClassName = unit.ClassName,
-                        SubjectName = unit.SubjectName,
-                        Description = $"Lớp {unit.ClassName}: " +
-                        $"Môn {unit.SubjectName} " +
+                        TeacherName = current.TeacherName,
+                        ClassName = current.ClassName,
+                        SubjectName = current.SubjectName,
+                        Description = $"Lớp {current.ClassName}: " +
+                        $"Môn {current.SubjectName} " +
                         $"nên tránh xếp vào các tiết 2,3 buổi sáng và 3,4 buổi chiều",
                     });
-                    count++;
+                    next.ConstraintErrors.Add(new()
+                    {
+                        Code = "S01",
+                        IsHardConstraint = false,
+                        TeacherName = next.TeacherName,
+                        ClassName = next.ClassName,
+                        SubjectName = next.SubjectName,
+                        Description = $"Lớp {next.ClassName}: " +
+                        $"Môn {next.SubjectName} " +
+                        $"nên tránh xếp vào các tiết 2,3 buổi sáng và 3,4 buổi chiều",
+                    });
+                    count += 2;
                 }
             }
 
@@ -1110,6 +1143,40 @@ namespace Services.Implementation
         #endregion
 
         #region Utils
+
+        private static void FixTimetableAfterUpdate(TimetableIndividual src, TimetableParameters parameters)
+        {
+            // fix tiết đôi
+            var doubleSubjects = src.TimetableUnits
+                .Where(u => parameters.DoublePeriodSubjects.Select(s => s.Id).Contains(u.SubjectId)).ToList();
+
+            for (var i = 0; i < src.Classes.Count; i++)
+            {
+                for (var j = 0; j < parameters.DoublePeriodSubjects.Count; j++)
+                {
+                    var periods = doubleSubjects
+                        .Where(u => u.ClassId == src.Classes[i].Id && u.SubjectId == parameters.DoublePeriodSubjects[j].Id)
+                        .OrderBy(u => u.StartAt)
+                        .ToList();
+
+                    for (var k = 0; k < periods.Count - 1; k++)
+                    {
+                        var current = periods[k];
+                        var next = periods[k + 1];
+                        if (current.StartAt == next.StartAt - 1)
+                        {
+                            current.Priority = EPriority.Double;
+                            next.Priority = EPriority.Double;
+                            for (var l = k - 1; l > 0; l--)
+                                periods[l].Priority = EPriority.None;
+                            for (var l = k + 2; l < periods.Count; l++)
+                                periods[l].Priority = EPriority.None;
+                            break;
+                        }
+                    }
+                }
+            }
+        }
 
         private void ValidateTimetableParameters(TimetableParameters parameters)
         {
