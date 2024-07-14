@@ -17,7 +17,10 @@ namespace Services.Implementation.Extensions
             var key = Encoding.ASCII.GetBytes(_token);
             var tokenDescriptor = new SecurityTokenDescriptor
             {
-                Subject = new ClaimsIdentity([new Claim("id", user.Id.ToString())]),
+                Subject = new ClaimsIdentity(
+                    [new Claim("id", user.Id.ToString()),
+                     new Claim("name", user.FirstName + " " + user.MiddleName + " " + user.LastName)
+                    ]),
                 Expires = DateTime.UtcNow.AddDays(7),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };

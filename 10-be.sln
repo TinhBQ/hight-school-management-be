@@ -6,6 +6,7 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{25DFFC1F-33E7-4487-8497-D3330A0A893A}"
 	ProjectSection(SolutionItems) = preProject
 		Assignment.csv = Assignment.csv
+		Assignment_02.csv = Assignment_02.csv
 		bang_phan_cong_giang_day.xls = bang_phan_cong_giang_day.xls
 		BC_KL_Nhom_10_F.pdf = BC_KL_Nhom_10_F.pdf
 		ConstraintList.md = ConstraintList.md
