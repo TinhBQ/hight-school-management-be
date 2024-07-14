@@ -551,7 +551,7 @@ namespace Services.Implementation
             CheckH03(src, parameters) * 1000
             + CheckH04AndH08(src, parameters) * 2000
             + CheckH05(src) * 1000
-            + CheckH06(src, parameters) * 5000
+            + CheckH06(src, parameters) * 10000
             + CheckH09(src) * 1000
             + CheckH10(src, parameters) * 1000
             + CheckH11(src) * 1000;

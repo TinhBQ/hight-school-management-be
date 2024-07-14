@@ -43,7 +43,7 @@ namespace Services.Implementation
             await _context.SaveChangesAsync();
         }
 
-        public async Task<string> Login(string username, string password)
+        public async Task<Dictionary<string, string>> Login(string username, string password)
         {
             var user = await _context.Teachers.FirstOrDefaultAsync(u => u.Username == username)
                 ?? throw new Exception("Tên đăng nhập hoặc mật khẩu không đúng");
@@ -52,8 +52,10 @@ namespace Services.Implementation
                 throw new Exception("Tên đăng nhập hoặc mật khẩu không đúng");
 
             var token = JwtUtils.GenerateToken(user);
+            var name = user.FirstName + " " + user.MiddleName + " " + user.LastName;
+            var result = new Dictionary<string, string>() { { "user", name }, { "token", token } };
 
-            return token;
+            return result;
         }
 
         public async Task Logout()

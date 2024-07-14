@@ -2,7 +2,7 @@
 {
     public interface IAuthenticationService
     {
-        public Task<string> Login(string username, string password);
+        public Task<Dictionary<string, string>> Login(string username, string password);
 
         public Task Logout();
 

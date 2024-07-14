@@ -13,11 +13,7 @@ namespace API.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginDTO loginDTO)
         {
-            var token = await _service.Login(loginDTO.Username, loginDTO.Password);
-            var result = new Dictionary<string, string>
-            {
-                { "token", token }
-            };
+            var result = await _service.Login(loginDTO.Username, loginDTO.Password);
             return Ok(result);
         }
 
