@@ -96,7 +96,7 @@ namespace Services.Implementation
 
         public async Task<IEnumerable<AssignmentDTO>> GetByIdsAsync(IEnumerable<Guid> ids)
         {
-            var assignments = await _context.Assignments.Where(a => ids.Contains(a.Id)).ToListAsync();
+            var assignments = await _context.Assignments.Where(a => ids.Contains(a.Id) && a.IsDeleted == false).ToListAsync();
             var result = new List<AssignmentDTO>();
             foreach (var assignment in assignments)
                 result.Add(_mapper.Map<AssignmentDTO>(assignment));

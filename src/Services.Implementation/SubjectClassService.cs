@@ -3,7 +3,6 @@ using Entities.DAOs;
 using Entities.DTOs.CRUD;
 using Entities.Exceptions;
 using Entities.RequestFeatures;
-using Microsoft.VisualBasic;
 using Services.Abstraction.IApplicationServices;
 using Services.Abstraction.ILoggerServices;
 using Services.Abstraction.IRepositoryServices;
@@ -44,7 +43,7 @@ namespace Services.Implementation
             var query = from subject in subjects
                         join subjectClass in subjectClasses on subject.Id equals subjectClass.SubjectId into subjectGroup
                         from subjectClass in subjectGroup.DefaultIfEmpty()
-                        
+
                         select new
                         {
                             SubjectClass = subjectClass,
@@ -53,11 +52,11 @@ namespace Services.Implementation
 
 
 
-            var classLeftJoinSubjectClass =  classes.GroupJoin(
+            var classLeftJoinSubjectClass = classes.GroupJoin(
                 subjectClasses,
                 klass => klass.Id,
                 subjectClass => subjectClass.ClassId,
-                (klass, subjectClass) => new 
+                (klass, subjectClass) => new
                 {
                     Class = klass,
                     SubjectClass = subjectClass.First(),
@@ -69,7 +68,7 @@ namespace Services.Implementation
                 return subjectClasses;
             }) as IEnumerable<dynamic>;
 
-            var k =  subjects.GroupJoin(
+            var k = subjects.GroupJoin(
                 classLeftJoinSubjectClass,
                 subject => subject.Id,
                 subjectClass => subjectClass.SubjectId,
@@ -187,8 +186,12 @@ namespace Services.Implementation
         public async Task DeleteSubjectClassAsync(Guid subjectClassId, bool trackChanges)
         {
             var subjectClass = await _helperService.GetSubjectClassAndCheckIfItExists(subjectClassId, trackChanges);
-
+            subjectClass.Class.PeriodCount -= subjectClass.PeriodCount;
             subjectClass.IsDeleted = true;
+            subjectClass.Class.Assignments.Where(a => a.SubjectId == subjectClass.SubjectId).ToList().ForEach(a =>
+            {
+                a.IsDeleted = true;
+            });
 
             await _repository.UnitOfWork.SaveAsync();
         }

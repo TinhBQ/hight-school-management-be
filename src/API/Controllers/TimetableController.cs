@@ -122,7 +122,8 @@ namespace API.Controllers
                 .ToList();
             var fixedAssignments = _context.Assignments
                 .Where(a => parameters.ClassIds.Contains(a.ClassId) &&
-                            fixedSubjects.Select(s => s.Id).Contains(a.SubjectId))
+                            fixedSubjects.Select(s => s.Id).Contains(a.SubjectId) &&
+                            a.IsDeleted == false)
                 .Include(a => a.Subject)
                 .Include(a => a.Teacher)
                 .Include(a => a.Class)

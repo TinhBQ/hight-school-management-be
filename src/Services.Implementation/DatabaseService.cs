@@ -1653,7 +1653,7 @@ namespace Services.Implementation
         private List<string> CheckAssignments(int startYear, int endYear, int semester)
         {
             var assignments = _context.Assignments
-                .Where(a => a.StartYear == startYear && a.EndYear == endYear && a.Semester == semester)
+                .Where(a => a.StartYear == startYear && a.EndYear == endYear && a.Semester == semester && a.IsDeleted == false)
                 .ToList();
             var classes = _context.Classes.Include(c => c.SubjectClasses).ThenInclude(sc => sc.Subject).ToList();
             var result = new List<string>();

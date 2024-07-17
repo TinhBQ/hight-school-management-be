@@ -170,11 +170,16 @@ namespace Services.Implementation
             foreach (var unit in root.TimetableUnits)
             {
                 var assigment = assignments
-                    .First(a => a.Teacher.Id == unit.TeacherId &&
+                    .FirstOrDefault(a => a.Teacher.Id == unit.TeacherId &&
                                 a.Class.Id == unit.ClassId &&
                                 a.Subject.Id == unit.SubjectId);
-                unit.AssignmentId = assigment.Id;
+                if (assigment == null)
+                    unit.AssignmentId = Guid.NewGuid();
+                //throw new Exception("Không tìm thấy phân công");
+                else
+                    unit.AssignmentId = assigment.Id;
             };
+            FixTimetableAfterUpdate(root, parameters);
             RemarkTimetableFlag(root);
             CalculateAdaptability(root, parameters);
             root.GetConstraintErrors();
@@ -267,8 +272,9 @@ namespace Services.Implementation
             var classesDb = await _context.Classes
                     .Where(c => parameters.ClassIds.Contains(c.Id) &&
                                 c.StartYear == parameters.StartYear &&
-                                c.EndYear == parameters.EndYear)
-                    .Include(c => c.SubjectClasses)
+                                c.EndYear == parameters.EndYear &&
+                                c.IsDeleted == false)
+                    .Include(c => c.SubjectClasses.Where(x => x.IsDeleted == false))
                         .ThenInclude(sc => sc.Subject)
                     .OrderBy(c => c.Name)
                     .AsNoTracking()
@@ -281,7 +287,7 @@ namespace Services.Implementation
 
             timetableFlags = new ETimetableFlag[classes.Count, 61];
 
-            var subjectsDb = await _context.Subjects.AsNoTracking().ToListAsync();
+            var subjectsDb = await _context.Subjects.Where(s => s.IsDeleted == false).AsNoTracking().ToListAsync();
             for (var i = 0; i < subjectsDb.Count; i++)
                 subjects.Add(new SubjectTCDTO(subjectsDb[i]));
 
@@ -289,6 +295,7 @@ namespace Services.Implementation
                 .Where(a => a.StartYear == parameters.StartYear &&
                             a.EndYear == parameters.EndYear &&
                             a.Semester == parameters.Semester &&
+                            a.IsDeleted == false &&
                             classesDb.Select(c => c.Id).Contains(a.ClassId))
                 .AsNoTracking()
                 .ToListAsync()
@@ -296,7 +303,7 @@ namespace Services.Implementation
 
             var teacherIds = assignmentsDb.Select(a => a.TeacherId).Distinct().ToList();
             var teachersDb = await _context.Teachers
-                .Where(t => teacherIds.Contains(t.Id))
+                .Where(t => teacherIds.Contains(t.Id) && t.IsDeleted == false)
                 .OrderBy(c => c.LastName)
                 .AsNoTracking()
                 .ToListAsync()
@@ -350,8 +357,9 @@ namespace Services.Implementation
             var classesDb = _context.Classes
                     .Where(c => parameters.ClassIds.Contains(c.Id) &&
                                 c.StartYear == parameters.StartYear &&
-                                c.EndYear == parameters.EndYear)
-                    .Include(c => c.SubjectClasses)
+                                c.EndYear == parameters.EndYear &&
+                                c.IsDeleted == false)
+                    .Include(c => c.SubjectClasses.Where(@class => @class.IsDeleted == false))
                         .ThenInclude(sc => sc.Subject)
                     .OrderBy(c => c.Name)
                     .AsNoTracking()
@@ -372,6 +380,7 @@ namespace Services.Implementation
                 .Where(a => a.StartYear == parameters.StartYear &&
                             a.EndYear == parameters.EndYear &&
                             a.Semester == parameters.Semester &&
+                            a.IsDeleted == false &&
                             classesDb.Select(c => c.Id).Contains(a.ClassId))
                 .AsNoTracking()
                 .ToList()
@@ -379,7 +388,7 @@ namespace Services.Implementation
 
             var teacherIds = assignmentsDb.Select(a => a.TeacherId).Distinct().ToList();
             var teachersDb = _context.Teachers
-                .Where(t => teacherIds.Contains(t.Id))
+                .Where(t => teacherIds.Contains(t.Id) && t.IsDeleted == false)
                 .OrderBy(c => c.LastName)
                 .AsNoTracking()
                 .ToList()
@@ -389,9 +398,9 @@ namespace Services.Implementation
 
             for (var i = 0; i < assignmentsDb.Count; i++)
             {
-                var teacher = teachers.First(t => t.Id == assignmentsDb[i].TeacherId);
                 var @class = classes.First(c => c.Id == assignmentsDb[i].ClassId);
                 var subject = subjects.First(s => s.Id == assignmentsDb[i].SubjectId);
+                var teacher = teachers.First(t => t.Id == assignmentsDb[i].TeacherId);
                 assignments.Add(new AssignmentTCDTO(assignmentsDb[i], teacher, @class, subject));
             }
 
@@ -1167,7 +1176,7 @@ namespace Services.Implementation
                         {
                             current.Priority = EPriority.Double;
                             next.Priority = EPriority.Double;
-                            for (var l = k - 1; l > 0; l--)
+                            for (var l = k - 1; l >= 0; l--)
                                 periods[l].Priority = EPriority.None;
                             for (var l = k + 2; l < periods.Count; l++)
                                 periods[l].Priority = EPriority.None;
@@ -1197,7 +1206,8 @@ namespace Services.Implementation
             var assignmentDb = _context.Assignments
                 .Where(a => a.StartYear == parameters.StartYear &&
                             a.EndYear == parameters.EndYear &&
-                            a.Semester == parameters.Semester)
+                            a.Semester == parameters.Semester &&
+                            a.IsDeleted == false)
                 .AsNoTracking()
                 .ToList();
             parameters.FixedTimetableUnits.ForEach(u =>

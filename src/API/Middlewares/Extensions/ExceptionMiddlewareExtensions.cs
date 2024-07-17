@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Diagnostics;
+﻿using DomainModel.Exceptions.BaseExceptions;
+using Entities.Exceptions.BaseExceptions;
+using Entities.Responses.ErrorResponse;
+using Microsoft.AspNetCore.Diagnostics;
 using Services.Abstraction.ILoggerServices;
 using System.Net;
 
@@ -20,19 +23,19 @@ namespace API.Extensions
 
                     if (contextFeature != null)
                     {
-                        //context.Response.StatusCode = contextFeature.Error switch
-                        //{
-                        //    NotFoundException => StatusCodes.Status404NotFound,
-                        //    BadRequestException => StatusCodes.Status400BadRequest,
-                        //    _ => StatusCodes.Status500InternalServerError
-                        //};
+                        context.Response.StatusCode = contextFeature.Error switch
+                        {
+                            NotFoundException => StatusCodes.Status404NotFound,
+                            BadRequestException => StatusCodes.Status400BadRequest,
+                            _ => StatusCodes.Status500InternalServerError
+                        };
 
 
-                        //logger.LogError($"Something went wrong: /n {contextFeature.Error}");
-                        //await context.Response.WriteAsync(new ErrorDetails()
-                        //{
-                        //    Message = contextFeature.Error.Message,
-                        //}.ToString());
+                        logger.LogError($"Something went wrong: /n {contextFeature.Error}");
+                        await context.Response.WriteAsync(new ErrorDetails()
+                        {
+                            Message = contextFeature.Error.Message,
+                        }.ToString());
                     }
                 });
             });
